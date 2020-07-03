@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+											http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>EA101G2</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/TestDB3</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	
+	<listener>
+  	<listener-class>listener.SessionListener</listener-class>
+	</listener>
+	
+  <filter>
+    <filter-name>setCharacterEncoding</filter-name>
+    <filter-class>filters.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>setCharacterEncoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+	
+	<filter>
+    <filter-name>BackLoginFilter</filter-name>
+    <filter-class>filters.BackLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>BackLoginFilter</filter-name>
+    <url-pattern>/back-end/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+    <dispatcher>ASYNC</dispatcher>
+  </filter-mapping>
+  
+<!--  	<filter> -->
+<!-- 		<filter-name>FrontLoginfilter</filter-name> -->
+<!-- 		<filter-class>filters.FrontLoginfilter</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>FrontLoginfilter</filter-name> -->
+<!-- 		<url-pattern>/front-end/mem/update_mem_input.jsp</url-pattern> -->
+<!-- 		<url-pattern>/front-end/suggest/addSuggest.jsp</url-pattern> -->
+		
+<!--         <dispatcher>REQUEST</dispatcher> -->
+<!--         <dispatcher>FORWARD</dispatcher> -->
+<!--         <dispatcher>INCLUDE</dispatcher> -->
+<!--         <dispatcher>ERROR</dispatcher> -->
+<!--         <dispatcher>ASYNC</dispatcher> -->
+<!-- 	</filter-mapping> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	
+	<servlet>
+		<servlet-name>MemServlet</servlet-name>
+		<servlet-class>com.mem.controller.MemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemServlet</servlet-name>
+		<url-pattern>/front-end/mem/mem.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>mPic_showServlet</servlet-name>
+		<servlet-class>com.mem.controller.mPic_showServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mPic_showServlet</servlet-name>
+		<url-pattern>/front-end/mem/mem.mPic</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MemBerLogoutServlet</servlet-name>
+		<servlet-class>com.mem.controller.MemBerLogoutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemBerLogoutServlet</servlet-name>
+		<url-pattern>/front-end/mem/memberlogout.do</url-pattern>
+	</servlet-mapping>
+	
+	
+
+	<servlet>
+		<servlet-name>EmployeeServlet</servlet-name>
+		<servlet-class>com.employee.controller.EmployeeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmployeeServlet</servlet-name>
+		<url-pattern>/back-end/employee/employee.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EmployeeLoginServlet</servlet-name>
+		<servlet-class>com.employee.controller.EmployeeLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmployeeLoginServlet</servlet-name>
+		<url-pattern>/employeelogin.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EmployeeLogoutServlet</servlet-name>
+		<servlet-class>com.employee.controller.EmployeeLogoutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmployeeLogoutServlet</servlet-name>
+		<url-pattern>/employeelogout.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EPicShowServlet</servlet-name>
+		<servlet-class>com.employee.controller.EPicShowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EPicShowServlet</servlet-name>
+		<url-pattern>/back-end/employee/epicshow.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ShoppingServlet</servlet-name>
+		<servlet-class>com.employee.controller.ShoppingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShoppingServlet</servlet-name>
+		<url-pattern>/back-end/product/DBGifReaderProduct.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CheckCodeServlet</servlet-name>
+		<servlet-class>com.tool.controller.CheckCodeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckCodeServlet</servlet-name>
+		<url-pattern>/checkcode.do</url-pattern>
+	</servlet-mapping>
+	
+	
+</web-app>

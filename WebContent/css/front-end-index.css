@@ -1,0 +1,119 @@
+@import "http://fonts.googleapis.com/earlyaccess/notosanstc.css";
+
+body {
+	font-family: 'Noto Sans TC', sans-serif;
+/* 	font-family: Microsoft JhengHei; */
+}
+
+@media screen and (max-width: 575px){
+	div.header-user-info a{
+		font-size: .9em;
+		padding:0px 5px;
+	}
+}
+
+@media screen and(min-width: 576px) and (max-width: 767px) {
+	div.Caption {
+		font-size: 0.8em;
+	}
+	div.header-user-info{
+		font-size: 16px;
+	}
+	.chefinfo{
+		font-size: 1em;
+	}
+	
+}
+
+@media screen and(min-width: 768px) and (max-width: 991px) {
+	.Caption {
+		font-size: 1.5em;
+	}
+	.header-user-info a{
+		font-size: 17px;
+	}
+	.chefinfo{
+		font-size: 1em;
+	}
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+	#navbarSupportedContent a.nav-lin{
+		font-size: 1em;
+	}
+	.chefinfo{
+		font-size: 1em;
+	}
+}
+
+@media screen and( min-width : 1200px) {
+	.Caption {
+		font-size: 2em;
+	}
+}
+
+img{
+/*   max-width:100%; */
+}
+
+/*輪播文字*/
+/* .banner-block { */
+/* 	position: absolute; */
+/* 	top: 30%; */
+/* 	left: -40%; */
+/* 	color: #EEE; */
+/* } */
+
+.w-80 { 
+	width: 80%; 
+} 
+
+.secondnavbar{
+	padding: 0;
+}
+
+/*for navbar member function style*/
+.header-area .header-top {
+	border-bottom: 1px solid #d3d3d3;
+}
+
+.header-default {
+	color: #6e6e6e;
+	font-size: 18px;
+	line-height: 40px;
+}
+
+.header-default p {
+	margin: 0;
+}
+
+.header-user-info {
+	padding: 10px 0;
+	text-align: right;
+}
+
+.header-user-info a {
+	border-left: 1px solid #f1f2f2;
+	color: #252525;
+	font-size: 18px;
+	line-height: 20px;
+	padding-left: 14px;
+	margin-right: 10px;
+}
+
+.header-user-info a:hover {
+	transition: all .3s ease 0s;
+	color: #009A86;
+	text-decoration: none;
+}
+
+/* for navbar regular btn style*/
+#navbarSupportedContent a.nav-link {
+	padding: 0 20px;
+	font-size: 18px
+}
+
+#navbarSupportedContent a:hover {
+	color: #009A86;
+}
+
