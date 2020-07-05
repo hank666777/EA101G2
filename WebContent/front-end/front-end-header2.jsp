@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 	<!-- second navbar -->
-	<div class="header-bottom container mt-4" style="height:10vh;">
+	<div class="header-bottom container " style="height:10vh;">
 
-		<nav class="secondnavbar navbar navbar-expand-xl navbar-light">
+		<nav class="secondnavbar navbar navbar-expand-xl navbar-light my-2">
 			<a class="navbar-brand" href="#">
 				<img src="${pageContext.request.contextPath}/images/logo.png" alt="Miss M logo"
 				style="width: 70px; height: 70px;">
@@ -51,7 +51,7 @@
 					</li>
 				</ul>
 				
-				<form class="form-inline" action="" method="">
+				<form class="form-inline my-3" action="" method="">
 					<div>
 						<input class="form-control mr-sm-2" type="text"
 							placeholder="請輸入商品名稱..." aria-label="Search">

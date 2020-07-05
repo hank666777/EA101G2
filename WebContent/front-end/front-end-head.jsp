@@ -9,7 +9,8 @@
 
 <script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
 <!-- font-awesome CSS-->
-<script src="https://use.fontawesome.com/0114a256f7.js"></script>
+<!-- <script src="https://use.fontawesome.com/0114a256f7.js"></script> -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
 
 <!-- 自定義CSS JS-->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/front-end-index.css">

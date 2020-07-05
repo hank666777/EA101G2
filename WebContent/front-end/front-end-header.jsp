@@ -2,13 +2,18 @@
 
 
 	<!-- first navbar -->
-	<div class="container-fluid fixed-top bg-white" style="height:35px; opacity:.8;">
-		<div class="row">
+	<div class="container-fluid  bg-white" style="height:35px; opacity:.8;">
+		<div class="row fixed-top">
 
 			<div class="col">
 				<div class="header-user-info">
-					<i class=""></i> ${sessionScope.memVO.mName } ${(memVO ==null) ? '':'您好~' }
-					
+					<i class=""><img style="width:25px; height:25px; border-radius:50%;"
+											src="${pageContext.request.contextPath}/front-end/mem/mem.mPic?memno=${memVO.memno}"></i>
+					<i class="ml-auto"></i> ${sessionScope.memVO.mName } ${(memVO ==null) ? '':'您好~' }
+				
+					<a id="member" href="${pageContext.request.contextPath}/front-end/index.jsp"> 
+						<i class="fa fa-home" aria-hidden="true"></i> 回首頁
+					</a>
 					<a id="member" href="${pageContext.request.contextPath}/front-end/mem/member_center.jsp"> 
 						<i class="fa fa-user"></i> 會員中心
 					</a> 
