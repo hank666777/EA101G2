@@ -3,6 +3,7 @@
 <%@ page import="com.mem.model.*"%>
 <%
 	MemVO memVO = (MemVO) request.getAttribute("memVO");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -67,9 +68,8 @@ body {
 <body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
 
 
-	<form METHOD="post"
-		ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do"
-		name="form1">
+	<form METHOD="post" name="form1"
+		ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do">
 		<input type="hidden" name="action" value="identify">
 
 		<tr>

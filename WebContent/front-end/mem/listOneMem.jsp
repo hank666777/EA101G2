@@ -1,17 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.mem.model.*"%>
 
 <%
-  MemVO memVO = (MemVO) request.getAttribute("memVO"); //MemServlet.java(Controller), 存入req的memVO物件
+  MemVO memVO = (MemVO) request.getAttribute("memVO"); 
   MemVO SmemVO = (MemVO)session.getAttribute("memVO");
 %>
 
 
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-<script src="https://use.fontawesome.com/0114a256f7.js"></script>
+<title>Miss M會員資料</title>
+
+	<%@ include file="/front-end/front-end-head.jsp"%>
 
 <style type="text/css">
 
@@ -71,12 +72,12 @@ td{
 
 </head>
 <center>
-<body background="front-end/mem/images/front-end/registImg/backgound.jpg">
+<body background="${pageContext.request.contextPath}/front-end/mem/images/front-end/registImg/backgound.jpg">
 
 
 <form>
 <table>
-    <img class="icon" id="demo" src="<%=request.getContextPath()%>/front-end/mem/mem.mPic?memno=${memVO.memno}" style="width: 150px; height: 150px">
+    <img class="icon" id="demo" src="${pageContext.request.contextPath}/front-end/mem/mem.mPic?memno=${memVO.memno}" style="width: 150px; height: 150px">
 	<tr>
 		<td>會員帳號:</td> 
 		<td><input type="hidden" name="mAccount"  value="<%=SmemVO.getmAccount()%>" /><%=SmemVO.getmAccount()%></td>
@@ -86,7 +87,7 @@ td{
 		<td><input  type="hidden" name="mPw"  value="<%=SmemVO.getmPw()%>" required  /><%=SmemVO.getmPw()%></td>
 	</tr>
 	<tr>
-		<FORM METHOD="get" ACTION="<%=request.getContextPath()%>/front-end/mem/mem.mPic" >
+		<FORM METHOD="post" ACTION="${pageContext.request.contextPath}/front-end/mem/mem.mPic" >
 			<td>
 			
 			</td>
@@ -116,8 +117,9 @@ td{
 		
 </table>
        <input type="button"  value="回會員中心"  style="width:110px;height:50px;"onclick="self.location.href='${pageContext.request.contextPath}/front-end/mem/member_center.jsp'"/><br>
- </form>        
-<script> 
+	</form>        
+	
+	<script> 
 
     $('#file').change(function() {
     	  var file = $('#file')[0].files[0];
@@ -127,7 +129,9 @@ td{
     	  };
     	  reader.readAsDataURL(file);
     	});
-    </script>
-
+   </script>
+    
+	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </body>
 </html>

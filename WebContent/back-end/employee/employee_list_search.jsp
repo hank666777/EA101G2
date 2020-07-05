@@ -7,7 +7,6 @@
 <%@ page import="com.features.model.*" %>
 
 <%
-// 	List<EmployeeVO> emplist = //(ArrayList<EmployeeVO>)request.getAttribute("emplist");
 	PermissionService perSvc = new PermissionService();
 	List<PermissionVO> perlist = perSvc.getAll();
 	pageContext.setAttribute("perlist", perlist);
@@ -15,27 +14,20 @@
 
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>所有員工資料 listSearchEmployee.jsp</title>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet"/>
-
-	<style>
-	</style>
+	<title>MISS M員工查詢</title>
+	<%@ include file="/back-end/back-end-head.jsp" %>
 </head>
 <body>
 
 <%@ include file="/back-end/back-end-header.jsp" %>
 
-<div class="container-fluid">
+<!-- <div class="container-fluid"> -->
 
 	<div class="table-responsive">
 		<table class="table table-striped table-bordered table-hover table-sm text-center justify-content-center">
 			<tr class="table-primary">
 				<th scope="row" class="text-nowrap">員工編號</th>
 				<th scope="row" class="text-nowrap">圖片</th>
-<!-- 				<th scope="row" class="text-nowrap">帳號</th> -->
 				<th scope="row" class="text-nowrap">姓名</th>
 				<th scope="row" class="text-nowrap">電話</th>
 				<th scope="row" class="text-nowrap" style="width:250px;">EMAIL</th>
@@ -53,7 +45,6 @@
 					<td class="align-middle">
 						<img width=100 height=100
 								 src="<%=request.getContextPath()%>/back-end/employee/epicshow.do?empno=${employeeVO.empno}"/></td>
-<%-- 					<td class="align-middle">${employeeVO.eAccount}</td> --%>
 					<td class="align-middle">${employeeVO.eName}</td>
 					<td class="align-middle">${employeeVO.ePhone}</td>
 					<td class="align-middle">${employeeVO.eEmail}</td>
@@ -77,9 +68,6 @@
 							${(employeeVO.eStatus == 0) ? '離職':'' }
 							${(employeeVO.eStatus == 1) ? '在職':'' }
 							${(employeeVO.eStatus == 2) ? '留職停薪':'' }
-<%--						<c:out value="${(employeeVO.eStatus == 0) ? '離職':'' }"/>--%>
-<%--						<c:out value="${(employeeVO.eStatus == 1) ? '在職':'' }"/>--%>
-<%--						<c:out value="${(employeeVO.eStatus == 2) ? '留職停薪':'' }"/>--%>
 					</td>
 					<td class="align-middle">
 						<FORM METHOD="post" ACTION="${pageContext.request.contextPath}/back-end/employee/employee.do">
@@ -94,7 +82,7 @@
 		</table>
 	</div>
 <%--	<%@ include file="page2.file" %>--%>
-</div>
+<!-- </div> -->
 
 <%@ include file="/back-end/back-end-footer.jsp" %>
 </body>

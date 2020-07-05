@@ -6,6 +6,12 @@
 				<div class="col" style="padding:0 0;">
 				<ul class="nav justify-content-end align-items-center" 
 				style="background-color: #778899; ">
+				
+					<li class="nav-item mx-3">
+						<div class="load ">
+						  <hr/><hr/><hr/><hr/>
+						</div>
+				  </li>
 				  <li class="nav-item" style="">
 				    <p class="mb-0 h3">${sessionScope.employeeVO.eName} 您好~</p>
 				  </li> 
@@ -41,11 +47,11 @@
 							<a class="btn btn-block btn-secondary" 
 								href="${pageContext.request.contextPath}/back-end/
 									${(feaVO.feano == 'F0010') ? 'employee/select_page_employee.jsp':''}
-									${(feaVO.feano == 'F0020') ? 'mem/select_page2.jsp':''}
+									${(feaVO.feano == 'F0020') ? 'mem/listAllMem.jsp':''}
 									${(feaVO.feano == 'F0030') ? 'product/select_page_product.jsp':''}
 									${(feaVO.feano == 'F0040') ? 'bok/select_page_booking.jsp':''}
 									${(feaVO.feano == 'F0050') ? 'activity/select_page_activity.jsp':''}
-									${(feaVO.feano == 'F0060') ? 'livestream/select_page_livestream.jsp':''}
+									${(feaVO.feano == 'F0060') ? 'chat/employee_chat.jsp':''}
 									${(feaVO.feano == 'F0070') ? 'liveorder/select_page_liveorder.jsp':''}
 									${(feaVO.feano == 'F0080') ? 'onlineorder/select_page_onlineorder.jsp':''}
 									${(feaVO.feano == 'F0090') ? 'faq/select_page_faq.jsp':''}
@@ -115,9 +121,6 @@
 	  		
 	  		<div class="col-10" style="padding:0;">
 							
-	  			<div class="container-fluid">
-						<div class="row banner justify-content-md-center">
-						
-						</div>
 						<!-- 放置區開始 -->
-						<div class="row" id="back-end-main-area" >
+						<div class="row " id="back-end-main-area" >
+							<div class="col align-self-center">

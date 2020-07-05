@@ -87,7 +87,7 @@ public class EmployeeService {
 		return empVO;
 	}
 
-	// 用詞篩選，可依據編號、姓名、職稱、狀態查詢員工
+// 精確查詢，一樣符合即是，用詞篩選，可依據編號、姓名、職稱、狀態查詢員工，未完成
 	public List<EmployeeVO> getAllbyKeyWord(String empno, String eName, String eTitle, Integer eStatus) {
 		List<EmployeeVO> emplist = new ArrayList<>();
 		emplist = dao.getAll();
@@ -101,16 +101,27 @@ public class EmployeeService {
 								(empno.equals("") || emp.getEmpno().contains(empno)) &&
 								(eName.equals("") || emp.geteName().contains(eName)) &&
 								(eTitle.equals("") || emp.geteTitle().equals(eTitle)) &&
-								eStatus == 99 || emp.geteStatus().equals(eStatus)) //包裝類重寫equals方法
+								(eStatus == 99 || emp.geteStatus().equals(eStatus))) //包裝類重寫equals方法
 						.collect(Collectors.toList());
 
-//列印測試
-//		for (EmployeeVO aemp : empfilter) {
-//			System.out.println(aemp.toString());
-//			
-//		}
 		System.out.println("employeeVOService");
 
 		return empfilter;
+	}
+// 模糊查詢，全符合即是，用詞篩選，可依據編號、姓名、職稱、狀態查詢員工，未完成
+	public List<EmployeeVO> getAllbyKeyWord2(String empno, String eName, String eTitle, Integer eStatus) {
+	  List<EmployeeVO> emplist = new ArrayList<>();
+	  emplist = dao.getAll();
+	  
+	  List<EmployeeVO> empfilter = emplist.stream()
+              		  .filter(emp -> (empno.equals("") || emp.getEmpno().contains(empno)))
+              		  .filter(emp -> (eName.equals("") || emp.geteName().contains(eName)))
+              		  .filter(emp -> (eTitle.equals("") || emp.geteTitle().equals(eTitle)))
+              		  .filter(emp -> (eStatus == 99 || emp.geteStatus().equals(eStatus))) //包裝類重寫equals方法
+              		  .collect(Collectors.toList());
+	  
+	  System.out.println("employeeVOService");
+	  
+	  return empfilter;
 	}
 }

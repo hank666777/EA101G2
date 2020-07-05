@@ -27,7 +27,7 @@ public class mPic_showServlet extends HttpServlet {
 
 			if (rs.next()) {
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("mPic"));
-				byte[] buf = new byte[4 * 1024]; // 4K buffer
+				byte[] buf = new byte[8192]; // 4K buffer
 				int len;
 				while ((len = in.read(buf)) != -1) {
 					out.write(buf, 0, len);

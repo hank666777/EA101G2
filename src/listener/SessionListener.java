@@ -1,11 +1,8 @@
 package listener;
 
-import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
 
 import com.employee.model.EmployeeVO;
 
@@ -24,7 +21,7 @@ public class SessionListener implements HttpSessionAttributeListener {
 		if (LOGIN_EMP.equals(attname)) {
 // 獲取添加的屬性值，即用戶登錄名(EmployeeVO)
 			EmployeeVO attrVal = (EmployeeVO) hsbe.getValue();
-			System.out.println("attrVal: " + attrVal);
+//			System.out.println("attrVal: " + attrVal);
 			
 			// 獲取該次操作的session對象
 			HttpSession session = hsbe.getSession();
@@ -32,7 +29,6 @@ public class SessionListener implements HttpSessionAttributeListener {
 			String sessionId = session.getId();
 // 從暫存對象裏面，獲得該用戶登錄名對應的sessionID值
 			String sessionId2 = EmpLoginCatch.getInstance().getSessionIdByEmployeeVO(attrVal);
-//			String sessionId2 = EmpLoginCatch.getInstance().getSessionIdByEmployeeVO(attrVal);
 
 			if (null == sessionId2) {// 未獲得結果，不需要清理前次登錄用戶會話信息
 

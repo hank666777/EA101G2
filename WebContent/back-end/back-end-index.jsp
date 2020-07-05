@@ -11,73 +11,28 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Miss M</title>
-<script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
-<link rel="stylesheet"	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-<style>
-	*{
-		font-family:Microsoft JhengHei;
-	}
-	
-/* 	body{background:#ECF0F1} */
-
-	.load{
-/* 		position:absolute; */
-		top:50%;
-		left:50%;
-		transform:translate(-50%, -50%)
-	;
-	  /*change these sizes to fit into your project*/
-	  width:50px;
-	  height:50px;
-	}
-	.load hr{
-		border:0;
-		margin:0;
-		width:40%;
-		height:40%;
-		position:absolute;
-		border-radius:50%;
-		animation:spin 2s ease infinite
-	}
-	
-	.load :first-child{
-		background:#19A68C;
-		animation-delay:-1.5s
-	}
-	.load :nth-child(2){background:#F63D3A;animation-delay:-1s}
-	.load :nth-child(3){background:#FDA543;animation-delay:-0.5s}
-	.load :last-child{background:#193B48}
-	
-	@keyframes spin{
-	  0%,100%{transform:translate(0)}
-	  25%{transform:translate(160%)}
-	  50%{transform:translate(160%, 160%)}
-	  75%{transform:translate(0, 160%)}
-	}
-</style>
+	<title>Miss M管理首頁</title>
+	<%@ include file="/back-end/back-end-head.jsp" %>
 </head>
 <body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg">
 	  <div class="container-fluid" style="hegiht:100vh;">
-	  	
 				
-				<ul class="nav justify-content-end align-items-center" style="background-color: #778899; margin:0 -15; padding:0 10;">
-				  
-				  <li>
-						<div class="load">
-						  <hr/><hr/><hr/><hr/>
-						</div>
-				  </li>
-				  
-				  <li class="nav-item">
-				    <p class="mb-0 h3">${sessionScope.employeeVO.eName} 您好~</p>
-				  </li> 
-				  <li class="nav-item">
-				    <img style="width:60px; height:60px; border-radius:50%;"class="mx-auto d-block" 
-							src="${pageContext.request.contextPath}/back-end/employee/epicshow.do?empno=${sessionScope.employeeVO.empno}" />
-				  </li>
-				</ul>
+			<ul class="nav justify-content-end align-items-center" style="background-color: #778899; margin:0 -15; padding:0 10;">
+			  
+			  <li class="nav-item mx-3">
+					<div class="load ">
+					  <hr/><hr/><hr/><hr/>
+					</div>
+			  </li>
+			  
+			  <li class="nav-item">
+			    <p class="mb-0 h3">${sessionScope.employeeVO.eName} 您好~</p>
+			  </li> 
+			  <li class="nav-item">
+			    <img style="width:60px; height:60px; border-radius:50%;"class="mx-auto d-block" 
+						src="${pageContext.request.contextPath}/back-end/employee/epicshow.do?empno=${sessionScope.employeeVO.empno}" />
+			  </li>
+			</ul>
 	  	
 	  	<div class="row" >
 	  		<div class="col-2 bg-secondary text-light border border-dark border-right"style="height:100vh;">
@@ -95,7 +50,6 @@
 <!-- 						</blockquote> -->
 	  			</div>
 <jsp:useBean id="feaSvc" class="com.features.model.FeaturesService"/>
-<!-- <i class="fa fa-users" aria-hidden="true"></i> -->
 					<div class="row shadow bg-secondary h3 justify-content-center">
 						<c:forEach var="feaVO" items="${feaSvc.all}">
 						<c:forEach var="perVOlist" items="${sessionScope.perVOlist}">
@@ -103,11 +57,11 @@
 							<a class="btn btn-block btn-secondary" 
 								href="${pageContext.request.contextPath}/back-end/
 									${(feaVO.feano == 'F0010') ? 'employee/select_page_employee.jsp':''}
-									${(feaVO.feano == 'F0020') ? 'mem/select_page2.jsp':''}
+									${(feaVO.feano == 'F0020') ? 'mem/listAllMem.jsp':''}
 									${(feaVO.feano == 'F0030') ? 'product/select_page_product.jsp':''}
 									${(feaVO.feano == 'F0040') ? 'bok/select_page_booking.jsp':''}
 									${(feaVO.feano == 'F0050') ? 'activity/select_page_activity.jsp':''}
-									${(feaVO.feano == 'F0060') ? 'livestream/select_page_livestream.jsp':''}
+									${(feaVO.feano == 'F0060') ? 'chat/employee_chat.jsp':''}
 									${(feaVO.feano == 'F0070') ? 'liveorder/select_page_liveorder.jsp':''}
 									${(feaVO.feano == 'F0080') ? 'onlineorder/select_page_onlineorder.jsp':''}
 									${(feaVO.feano == 'F0090') ? 'faq/select_page_faq.jsp':''}">

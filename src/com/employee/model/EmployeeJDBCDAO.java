@@ -437,73 +437,73 @@ public class EmployeeJDBCDAO implements EmployeeDAO_interface {
 		EmployeeJDBCDAO dao = new EmployeeJDBCDAO();
 
 		//新增一名員工
-		EmployeeVO emp1 = new EmployeeVO();
-		emp1.seteAccount("PeterWu");
-		emp1.setePw(UUID.randomUUID().toString().substring(0,8));
-		emp1.seteName("吳永志");
-		emp1.setePhone("0987654321");
-		emp1.seteEmail("pererwu@aaa.com");
-//		emp1.setePic(null);
-		try {
-			FileInputStream fis = new FileInputStream("D:\\importImages\\peter.PNG");
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			byte[] buf = new byte[8192];
-			int len;
-			while((len = fis.read(buf)) != -1) {
-				baos.write(buf,0,len);
-			}
-			emp1.setePic(baos.toByteArray());
-			baos.close();
-			fis.close();
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		} 
-		emp1.seteTitle("店長");
-		emp1.seteStatus(1);
-		////////////////////////////
-		//放權限
-		List<PermissionVO> perList = new ArrayList<>();
-		
-		PermissionVO per1 = new PermissionVO();
-		per1.setFeano("F0010");
-		
-		PermissionVO per2 = new PermissionVO();
-		per2.setFeano("F0020");
-		
-		PermissionVO per3 = new PermissionVO();
-		per3.setFeano("F0030");
-		
-		PermissionVO per4 = new PermissionVO();
-		per4.setFeano("F0040");
-		
-		PermissionVO per5 = new PermissionVO();
-		per5.setFeano("F0050");
-		
-		PermissionVO per6 = new PermissionVO();
-		per6.setFeano("F0060");
-		
-		PermissionVO per7 = new PermissionVO();
-		per7.setFeano("F0070");
-		
-		PermissionVO per8 = new PermissionVO();
-		per8.setFeano("F0080");
-
-		perList.add(per1);
-		perList.add(per2);
-		perList.add(per3);
-		perList.add(per4);
-		perList.add(per5);
-		perList.add(per6);
-		perList.add(per7);
-		perList.add(per8);
-		
-		//此處是進入資料庫，Servlet新增步驟的2......
-		dao.insertWithPermission(emp1, perList);
+//		EmployeeVO emp1 = new EmployeeVO();
+//		emp1.seteAccount("PeterWu");
+//		emp1.setePw(UUID.randomUUID().toString().substring(0,8));
+//		emp1.seteName("吳永志");
+//		emp1.setePhone("0987654321");
+//		emp1.seteEmail("pererwu@aaa.com");
+////		emp1.setePic(null);
+//		try {
+//			FileInputStream fis = new FileInputStream("D:\\importImages\\peter.PNG");
+//			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//			byte[] buf = new byte[8192];
+//			int len;
+//			while((len = fis.read(buf)) != -1) {
+//				baos.write(buf,0,len);
+//			}
+//			emp1.setePic(baos.toByteArray());
+//			baos.close();
+//			fis.close();
+//			
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//			System.out.println(e.getMessage());
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			System.out.println(e.getMessage());
+//		} 
+//		emp1.seteTitle("店長");
+//		emp1.seteStatus(1);
+//		////////////////////////////
+//		//放權限
+//		List<PermissionVO> perList = new ArrayList<>();
+//		
+//		PermissionVO per1 = new PermissionVO();
+//		per1.setFeano("F0010");
+//		
+//		PermissionVO per2 = new PermissionVO();
+//		per2.setFeano("F0020");
+//		
+//		PermissionVO per3 = new PermissionVO();
+//		per3.setFeano("F0030");
+//		
+//		PermissionVO per4 = new PermissionVO();
+//		per4.setFeano("F0040");
+//		
+//		PermissionVO per5 = new PermissionVO();
+//		per5.setFeano("F0050");
+//		
+//		PermissionVO per6 = new PermissionVO();
+//		per6.setFeano("F0060");
+//		
+//		PermissionVO per7 = new PermissionVO();
+//		per7.setFeano("F0070");
+//		
+//		PermissionVO per8 = new PermissionVO();
+//		per8.setFeano("F0080");
+//
+//		perList.add(per1);
+//		perList.add(per2);
+//		perList.add(per3);
+//		perList.add(per4);
+//		perList.add(per5);
+//		perList.add(per6);
+//		perList.add(per7);
+//		perList.add(per8);
+//		
+//		//此處是進入資料庫，Servlet新增步驟的2......
+//		dao.insertWithPermission(emp1, perList);
 		
 		// insert
 //		EmployeeVO empVO1 = new EmployeeVO();
@@ -566,6 +566,7 @@ public class EmployeeJDBCDAO implements EmployeeDAO_interface {
 			System.out.println(emp.geteTitle());
 			System.out.println(emp.geteStatus());
 			System.out.println();
+			System.out.println("CLASS: "+(emp instanceof EmployeeVO));
 		}
 		System.out.println("查詢全部成功");
 	}

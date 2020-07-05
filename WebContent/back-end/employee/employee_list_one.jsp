@@ -13,12 +13,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Miss M</title>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-<link	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900"	rel="stylesheet" />
-
+	<title>Miss M員工個人資料</title>
+	<%@ include file="/back-end/back-end-head.jsp" %>
 <style>
 * {
 	font-family: Microsoft JhengHei, serif;
@@ -28,7 +24,7 @@
 <body>
 
 	<%@ include file="/back-end/back-end-header.jsp" %>
-	<div class="container">
+<!-- 	<div class="container"> -->
 
 		<div class="row justify-content-center align-items-center">
 			<div class="col-xl-7 text-center">
@@ -121,7 +117,7 @@
 			</div>
 			
 		</div>
-	</div>
+<!-- 	</div> -->
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 </body>
 </html>

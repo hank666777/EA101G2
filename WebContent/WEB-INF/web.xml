@@ -52,21 +52,22 @@
     <dispatcher>ASYNC</dispatcher>
   </filter-mapping>
   
-<!--  	<filter> -->
-<!-- 		<filter-name>FrontLoginfilter</filter-name> -->
-<!-- 		<filter-class>filters.FrontLoginfilter</filter-class> -->
-<!-- 	</filter> -->
-<!-- 	<filter-mapping> -->
-<!-- 		<filter-name>FrontLoginfilter</filter-name> -->
-<!-- 		<url-pattern>/front-end/mem/update_mem_input.jsp</url-pattern> -->
-<!-- 		<url-pattern>/front-end/suggest/addSuggest.jsp</url-pattern> -->
+ 	<filter>
+		<filter-name>FrontLoginfilter</filter-name>
+		<filter-class>filters.FrontLoginfilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FrontLoginfilter</filter-name>
+		<url-pattern>/front-end/mem/update_mem_input.jsp</url-pattern>
+		<url-pattern>/front-end/suggest/addSuggest.jsp</url-pattern>
+		<url-pattern>/front-end/chat/member_chat.jsp</url-pattern>
 		
-<!--         <dispatcher>REQUEST</dispatcher> -->
-<!--         <dispatcher>FORWARD</dispatcher> -->
-<!--         <dispatcher>INCLUDE</dispatcher> -->
-<!--         <dispatcher>ERROR</dispatcher> -->
-<!--         <dispatcher>ASYNC</dispatcher> -->
-<!-- 	</filter-mapping> -->
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
   
   
   
@@ -161,6 +162,16 @@
 	<servlet-mapping>
 		<servlet-name>CheckCodeServlet</servlet-name>
 		<url-pattern>/checkcode.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- WebSocket chat -->
+	<servlet>
+		<servlet-name>NameServlet</servlet-name>
+		<servlet-class>com.websocketchat.controller.NameServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NameServlet</servlet-name>
+		<url-pattern>/chat.do</url-pattern>
 	</servlet-mapping>
 	
 	

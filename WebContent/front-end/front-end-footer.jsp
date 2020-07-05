@@ -8,8 +8,6 @@
 				<p class="lead">連絡電話：03-4567890</p>
 				<p class="lead">地址：桃園市中壢區中央路300號</p>
 				<p class="lead">聯繫方式：Miss_M@miss.com.tw</p>
-				<img src="${pageContext.request.contextPath}/images/front-end/indexImg/applestore.jpg" alt="appstore"
-					id="appStoreImg">
 			</div>
 		</div>
 	</div>

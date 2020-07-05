@@ -116,14 +116,14 @@ body {
 	
 	<form METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do">
 		<div>
-			<input class="add" type="button" style="color: white;" value="加入會員"
-				onclick="self.location.href='${pageContext.request.contextPath}/front-end/mem/addMem.jsp'" />
+			<input class="add" type="button" style="color: white;" value="Sign up"
+				onclick="self.location.href='${pageContext.request.contextPath}/front-end/mem/member_signup.jsp'" />
 		</div>
 		<div class="logo">
 			<img src="${pageContext.request.contextPath}/images/logo.png">
 		</div>
 				帳號<img src="${pageContext.request.contextPath}/images/front-end/registImg/user.png">
-				<input class="inp" type="text" name="mAccount" placeholder="請輸入你的帳號..."  />
+				<input class="inp" type="text" name="mAccount" placeholder="請輸入帳號..."  />
 
 		<br>
 
@@ -135,7 +135,7 @@ body {
 
 		<br> 
 		<br> 
-		<input class="login" type="submit" style="color: white;" value="會員登入" />
+		<input class="login" type="submit" style="color: white;" value="Sign in" />
 		<br>
 		<%-- 錯誤表列--%>
 		<c:if test="${not empty errorMsgs}">

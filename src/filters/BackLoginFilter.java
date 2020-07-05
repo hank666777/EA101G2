@@ -38,7 +38,7 @@ public class BackLoginFilter implements Filter {
 
 	if (employeeVO == null) {
 	  session.setAttribute("location", req.getRequestURI());
-	  res.sendRedirect(req.getContextPath() + "/backlogin.jsp");
+	  res.sendRedirect(req.getContextPath() + "/back_end_login.jsp");
 	  return;
 	} else {
 	  chain.doFilter(request, response);

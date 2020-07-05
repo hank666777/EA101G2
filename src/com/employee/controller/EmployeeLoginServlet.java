@@ -56,7 +56,7 @@ public class EmployeeLoginServlet extends HttpServlet {
 				}
 				
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backlogin.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back_end_login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -67,7 +67,7 @@ public class EmployeeLoginServlet extends HttpServlet {
 				if (eAccount == null || eAccount.trim().length() == 0) {
 					errorMsgs.add("帳號請勿空白");
 				} else if (!eAccount.trim().matches(eAccountReg)) {
-					errorMsgs.add("帳號只能是只能是英文大小寫或數字，長度1~10位");
+					errorMsgs.add("系統無法辨識這個帳號");
 				}
 
 				// ePw verify
@@ -76,11 +76,11 @@ public class EmployeeLoginServlet extends HttpServlet {
 				if (ePw == null || ePw.trim().length() == 0) {
 					errorMsgs.add("密碼請勿空白");
 				} else if (!ePw.trim().matches(ePwReg)) {
-					errorMsgs.add("密碼只能是英文大小寫或數字，長度1~10位");
+					errorMsgs.add("密碼錯誤");
 				}
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backlogin.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back_end_login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -95,7 +95,7 @@ public class EmployeeLoginServlet extends HttpServlet {
 					errorMsgs.add("您已離職");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backlogin.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back_end_login.jsp");
 					failureView.forward(req, res);
 					return;
 				}

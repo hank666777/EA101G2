@@ -11,23 +11,13 @@
 
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>員工資料新增 - addEmployee.jsp</title>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select_page_employee_css.css">
-<link	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900"	rel="stylesheet" />
-
-<style>
-	*{
-		font-family:微軟正黑體;
-	}
-</style>
+	<title>MISS M員工資料新增 </title>
+	<%@ include file="/back-end/back-end-head.jsp" %>
 
 </head>
 <body>
 	<%@ include file="/back-end/back-end-header.jsp" %>
-	<div class="container">
+<!-- 	<div class="container"> -->
 	
 		<div class="row justify-content-center">
 			<div class="col-xl-7 text-center">
@@ -39,14 +29,11 @@
 						
 		<div class="row justify-content-center">
 			<div class="col-xl-7 text-center" style="color:#F00;">
-			
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
-					
 						<c:forEach var="message" items="${errorMsgs}">
 							${message}<br>
 						</c:forEach>
-					<br>
 				</c:if>
 			</div>
 		</div>
@@ -68,18 +55,18 @@
 					
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">姓名</th>
-						<td><input type="TEXT" name="eName" size="20" class="form-control" 
+						<td><input type="TEXT" name="eName" size="20" class="form-control" style="background-color:LemonChiffon;"
 							value="<%=(employeeVO==null)? "羊駝" : employeeVO.geteName()%>" /></td>
 					</tr>
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">電話</th>
-						<td><input type="TEXT" name="ePhone" size="10" class="form-control"
+						<td><input type="TEXT" name="ePhone" size="10" class="form-control" style="background-color:LemonChiffon;"
 							value="<%= (employeeVO == null)? "0987654321" : employeeVO.getePhone()%>"/></td>
 					</tr>
 
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">信箱</th>
-						<td><input type="email" name="eEmail" size="50" class="form-control"
+						<td><input type="email" name="eEmail" size="50" class="form-control" style="background-color:LemonChiffon;"
 							value="<%= (employeeVO == null) ? "fengptt47@gmail.com" : employeeVO.geteEmail()%>"/></td>
 					</tr>
 					<tr>
@@ -91,7 +78,8 @@
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">職稱</th>
 						<td class="align-items-center">
-					    <select name="eTitle" id="eTitle" class="custom-select d-block w-100">
+					    <select name="eTitle" id="eTitle" class="custom-select d-block w-100"
+					    				style="background-color:LemonChiffon;">
 					      <option value="店長">店長</option>
 					      <option value="領班">領班</option>
 					      <option value="大廚">大廚</option>
@@ -104,7 +92,8 @@
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">狀態</th>
 						<td class="align-items-center">
-							<select name="eStatus" class="custom-select d-block w-100">
+							<select name="eStatus" class="custom-select d-block w-100"
+											style="background-color:LemonChiffon;">
 								<option value="0">離職</option>
 								<option value="1" selected>在職</option>
 							</select> 
@@ -139,7 +128,7 @@
 			<input class="btn btn-outline-success" type="submit" id="sendbtn" value="送出新增" >
 		</div>
 		</FORM>
-	</div>
+<!-- 	</div> -->
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 	<script>
 		$('#sendbtn').click(function(){

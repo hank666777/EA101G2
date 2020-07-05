@@ -13,15 +13,14 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Miss M員工個人資料修改</title>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<link	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900"	rel="stylesheet" />
-
+	<title>Miss M員工個人資料修改</title>
+	<%@ include file="/back-end/back-end-head.jsp" %>
 <style>
 * {
 	font-family: Microsoft JhengHei;
+}
+input{
+	background-color: yellow;
 }
 </style>
 </head>
@@ -61,7 +60,7 @@
 		<div class="row justify-content-center">
 			<div class="col-xl-7 ">
 				
-				<table style="margin-top:15px;"
+				<table style="margin-top:15px;" 
 					class="table table-striped table-bordered table-hover table-sm text-center justify-content-center">
 					<tbody>
 						<tr>
@@ -74,38 +73,43 @@
 						<tr>
 							<th scope="col" class="text-nowrap align-middle table-primary">帳號</th>
 							<td scope="col" class="align-middle">
-							<input class="form-control" type="text" name="eAccount"
+							<input class="form-control" type="text" name="eAccount" style="background-color:LemonChiffon;"
 								value="${employeeVO.eAccount}"/>
 							</td>
 						</tr>
 						<tr>
 							<th scope="col" class="text-nowrap align-middle table-primary">密碼</th>
-							<td scope="col" class="align-middle"><input class="form-control" type="password" name="ePw"
+							<td scope="col" class="align-middle">
+							<input class="form-control" type="password" name="ePw" style="background-color:LemonChiffon;"
 								value="${employeeVO.ePw}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" class="text-nowrap align-middle table-primary">姓名</th>
-							<td scope="col" class="align-middle"><input class="form-control" class="" type="text"
+							<td scope="col" class="align-middle">
+							<input class="form-control" class="" type="text" style="background-color:LemonChiffon;"
 								name="eName" value="${employeeVO.eName}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" class="text-nowrap align-middle table-primary">電話</th>
-							<td scope="col" class="align-middle"><input class="form-control" type="text"
+							<td scope="col" class="align-middle">
+							<input class="form-control" type="text" style="background-color:LemonChiffon;"
 								name="ePhone" value="${employeeVO.ePhone}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" class="text-nowrap align-middle table-primary">EMAIL</th>
-							<td scope="col" class="align-middle"><input class="form-control" type="email"
+							<td scope="col" class="align-middle">
+							<input class="form-control" type="email" style="background-color:LemonChiffon;"
 								name="eEmail" value="${employeeVO.eEmail}" /></td>
 						</tr>
 						<tr class="">
 							<th scope="row" class="text-nowrap align-middle table-primary" scope="col">圖片</th>
-							<td scope="col" class=""><input class="btn btn-secondary" type="file" name="ePic" id="ePic"/></td>
+							<td scope="col" class="">
+							<input class="btn btn-secondary" type="file" name="ePic" id="ePic"/></td>
 						</tr>
 						<tr class="text-center">
 							<th scope="col" class="text-nowrap align-middle table-primary">職稱</th>
 							<td scope="col" class="">
-								<select name="eTitle" class="custom-select d-block w-100">
+								<select name="eTitle" class="custom-select d-block w-100" style="background-color:LemonChiffon;"> 
 									<option value="店長" ${(employeeVO.eTitle == '店長') ? 'selected':'' }>店長</option>
 						      <option value="領班" ${(employeeVO.eTitle == '領班') ? 'selected':'' }>領班</option>
 						      <option value="大廚" ${(employeeVO.eTitle == '大廚') ? 'selected':'' }>大廚</option>
@@ -118,7 +122,7 @@
 						<tr class="text-center justify-content-center center">
 							<th scope="col" class="text-nowrap align-middle table-primary">狀態</th>
 							<td scope="col" class="align-middle justify-content-center">
-								<select name="eStatus" class="custom-select d-block w-100">
+								<select name="eStatus" class="custom-select d-block w-100" style="background-color:LemonChiffon;">
 									<option value="0" ${(employeeVO.eStatus == 0) ? 'selected':''}>離職</option>
 									<option value="1" ${(employeeVO.eStatus == 1) ? 'selected':''}>在職</option> 		
 									<option value="2" ${(employeeVO.eStatus == 2) ? 'selected':''}>留職停薪</option>				

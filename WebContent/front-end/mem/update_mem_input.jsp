@@ -3,15 +3,15 @@
 <%@ page import="com.mem.model.*"%>
 
 <%
-	MemVO memVO = (MemVO) request.getAttribute("memVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
-	MemVO SmemVO = (MemVO) session.getAttribute("memVO");
+	MemVO memVO = (MemVO) session.getAttribute("memVO");
+	
 %>
 
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-<script src="https://use.fontawesome.com/0114a256f7.js"></script>
+
+	<title>Miss M</title>
+	<%@ include file="/front-end/front-end-head.jsp"%>
 
 <style type="text/css">
 body {
@@ -70,73 +70,83 @@ td {
 </head>
 
 <center>
-	<body background="../../images/front-end/registImg/backgound.jpg">
 
+	<body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
+		<%@ include file="/front-end/front-end-header.jsp"%>
+		
+		<div class="container">
+			<div class="row justify-content-start">
+				<div class="col">
+				
+				
+				
+				</div>
+			</div>
+		</div>
 		<br>
-		<span class="mem_tittle"> 會員資料修改 </span>	
+		<span class="mem_tittle"> 會員資料修改</span>	
 
-		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do"
-			name="form1" enctype="multipart/form-data">
+		<FORM METHOD="post" name="form1" enctype="multipart/form-data"
+					ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do">
              
-            <input type="hidden" name="action" value="update"/>
-  
-    <img class="icon" id="demo" src="<%=request.getContextPath()%>/front-end/mem/mem.mPic?memno=${memVO.memno}" style="width: 150px; height: 150px">
-			
+         <input type="hidden" name="action" value="update"/>
+    			<img class="icon" id="demo" style="width: 150px; height: 150px"
+    						src="<%=request.getContextPath()%>/front-end/mem/mem.mPic?memno=${memVO.memno}">
+			 
 			<table>
 
 				<br>
 				<tr>
 					<td>會員帳號:</td>
 					<td><input type="hidden" name="mAccount"
-						value="<%=SmemVO.getmAccount()%>" /><%=SmemVO.getmAccount()%></td>
+						value="<%=memVO.getmAccount()%>" /><%=memVO.getmAccount()%></td>
 				</tr>
 				<tr>
 					<td>會員密碼:</td>
 					<td><input class="inp" type="password" name="mPw"
-						value="<%=SmemVO.getmPw()%>" required /></td>
+						value="<%=memVO.getmPw()%>" required /></td>
 				</tr>
 				<tr>
 					<td>大頭照:</td>
 					<td><input id="file" type="file" name="mPic"
-						value="<%=SmemVO.getmPic()%>" /></td>				
+						value="<%=memVO.getmPic()%>" /></td>				
 				</tr>
 				<tr>
 					<td>會員姓名:</td>
 					<td><input class="inp" type="TEXT" name="mName"
-						value="<%=SmemVO.getmName()%>" required /></td>
+						value="<%=memVO.getmName()%>" required /></td>
 				</tr>
 				<tr>
 					<td>會員性別:</td>
-					<td>男<input type="radio" name="mGender" value="男" checked="true"> 
+					<td>男<input type="radio" name="mGender" value="男" checked> 
 						女<input type="radio" name="mGender" value="女"></td>
 				</tr>
 				<tr>
 					<td>會員電話:</td>
 					<td><input class="inp" type="TEXT" name="mPhone"
-						value="<%=SmemVO.getmPhone()%>" required /></td>
+						value="<%=memVO.getmPhone()%>" required /></td>
 				</tr>
 				<tr>
 					<td>會員mail:</td>
 					<td><input class="inp" type="email" name="mEmail"
-						value="<%=SmemVO.getmEmail()%>" required /></td>
+						value="<%=memVO.getmEmail()%>" required /></td>
 				</tr>
 				<tr>
 					<td>註冊日期:</td>
 					<td><input class="inp" type="hidden" name="mRegDate"
-						value="<%=SmemVO.getmRegDate()%>" /><%=SmemVO.getmRegDate()%></td>
+						value="<%=memVO.getmRegDate()%>" /><%=memVO.getmRegDate()%></td>
 				</tr>
 				<tr>
 					<!-- 		<td>會員狀態:</td> 隱藏會員狀態欄位 -->
-					<td><input type="hidden" name="mStatus"
-						value="<%=SmemVO.getmStatus()%>" /></td>
+					<td><input type="hidden" name="mStatus"	value="<%=memVO.getmStatus()%>" /></td>
 				</tr>
 
 
 			</table>
-		        <input type="hidden" name="memno" value="<%=SmemVO.getMemno()%>"> 
+		    <input type="hidden" name="memno" value="<%=memVO.getMemno()%>"> 
 				<input type="submit" value="送出修改"> 
 				<input type="button" value="取消" style="width: 90px; height: 40px;"
-				       onclick="self.location.href='member_center.jsp'" /><br>
+				       onclick="self.location.href='${pageContext.request.contextPath}/front-end/mem/member_center.jsp'" /><br>
 				       
 				 <%-- 錯誤表列 --%>
 			<c:if test="${not empty errorMsgs}">
@@ -162,10 +172,7 @@ td {
 				reader.readAsDataURL(file);
 			});
 		</script>
-
-	</body>
-
-
-
-	</script>
+	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+</body>
 </html>

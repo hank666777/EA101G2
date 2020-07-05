@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
+<% 
+	
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="css/friendchat.css" type="text/css" />
-<style type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/friendchat.css" type="text/css" />
 
-</style>
-<title>最大私人聊天室</title>
+<title>會員即時通訊</title>
 </head>
 <body onload="connect();" onunload="disconnect();">
+	<h1>這是後台這是後台這是後台這是後台這是後台</h1>
 	<h3 id="statusOutput" class="statusOutput"></h3>
 	<div id="row"></div>
 	<div id="messagesArea" class="panel message-area" ></div>
@@ -22,7 +24,9 @@
 	</div>
 </body>
 <script>
+// 	var eName = '${employeeVO.eName}';	
 	var MyPoint = "/FriendWS/${userName}";
+	
 	var host = window.location.host;
 	var path = window.location.pathname;
 	var webCtx = path.substring(0, path.indexOf('/', 1));
@@ -30,6 +34,7 @@
 
 	var statusOutput = document.getElementById("statusOutput");
 	var messagesArea = document.getElementById("messagesArea");
+// 	var self = '${employeeVO.eName}';
 	var self = '${userName}';
 	var webSocket;
 
@@ -59,6 +64,7 @@
 					var historyData = JSON.parse(messages[i]);
 					var showMsg = historyData.message;
 					var li = document.createElement('li');
+					
 					// 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
 					historyData.sender === self ? li.className += 'me' : li.className += 'friend';
 					li.innerHTML = showMsg;
@@ -112,8 +118,15 @@
 		var row = document.getElementById("row");
 		row.innerHTML = '';
 		for (var i = 0; i < friends.length; i++) {
-			if (friends[i] === self) { continue; }
-			row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' ><h2>' + friends[i] + '</h2></div>';
+// 這裡要篩選腳色，後台只能顯示memVO，BY峰
+			if (friends[i] === self) { 
+				continue; 
+			}else if(friends[i] !== '${employeeVO.eName}'){
+				row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' ><h2>' + friends[i] + '</h2></div>';
+			}
+// 			else{
+// 				row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' ><h2>' + friends[i] + '</h2></div>';
+// 			}
 		}
 		addListener();
 	}

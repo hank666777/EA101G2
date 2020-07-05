@@ -1,27 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.mem.model.*"%>
+<%
+	MemVO memVO = (MemVO) session.getAttribute("memVO");
+%>
 
 <html lang="zh-Hant-TW">
 <head>
 <!-- Required meta tags -->
-<meta charset="utf-8">
 <title>Miss M</title>
-<meta name="viewport"	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-<script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
-<!-- 自定義CSS JS-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/front-end-index.css">
-<script src="${pageContext.request.contextPath}/js/main.js"></script>
-<!-- font-awesome CSS-->
-<script src="https://use.fontawesome.com/0114a256f7.js"></script>
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/nprogress.css"> --%>
-<%-- <script src="${pageContext.request.contextPath}/js/nprogress.js"></script> --%>
- 
+
+<%@ include file="/front-end/front-end-head.jsp"%>
 </head>
 <body>
-<%@ include file="front-end-header.jsp"%>
-
+<%@ include file="/front-end/front-end-header.jsp"%>
+<%@ include file="/front-end/front-end-header2.jsp"%>
 
 	<div id="main" class="container">
 		<div class="row">
@@ -29,8 +22,7 @@
 			<div id="carousel" class="carousel slide" data-ride="carousel"
 				data-interval="2500">
 				<ol class="carousel-indicators">
-					<li data-target="#carouselExampleIndicators" data-slide-to="0"
-						class="active"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 					<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
@@ -61,10 +53,6 @@
 							<p class="h3">中央大學-中央店</p>
 						</div>
 					</div>
-<!-- 					<div class="carousel-item"> -->
-<%-- 						<img src="${pageContext.request.contextPath}/images/front-end/indexImg/0003.jpg" --%>
-<!-- 							class="w-100 img-responsive d-sm-flex" alt="甜點4"> -->
-<!-- 					</div> -->
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleIndicators"
 					role="button" data-slide="prev"> <span

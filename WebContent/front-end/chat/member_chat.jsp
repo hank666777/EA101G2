@@ -1,28 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="css/friendchat.css" type="text/css" />
-<style type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/friendchat.css" type="text/css" />
+<%-- <%@ include file="/front-end/front-end-head.jsp"%> --%>
 
-</style>
-<title>最大私人聊天室</title>
+<title>會員即時通訊</title>
 </head>
 <body onload="connect();" onunload="disconnect();">
-	<h3 id="statusOutput" class="statusOutput"></h3>
-	<div id="row"></div>
-	<div id="messagesArea" class="panel message-area" ></div>
-	<div class="panel input-area">
-		<input id="message" class="text-field" type="text" placeholder="Message" onkeydown="if (event.keyCode == 13) sendMessage();" /> 
-		<input type="submit" id="sendMessage" class="button" value="Send" onclick="sendMessage();" /> 
-		<input type="button" id="connect" class="button" value="Connect" onclick="connect();" /> 
-		<input type="button" id="disconnect" class="button" value="Disconnect" onclick="disconnect();" />
-	</div>
+<%-- 	<%@ include file="/front-end/front-end-header.jsp"%> --%>
+<%-- 	<%@ include file="/front-end/front-end-header2.jsp"%> --%> 
+<!-- 	<div class="container"> -->
+<!-- 		<div class="row"> -->
+		<h1>這是會員前台</h1>
+		<h1>{mem.mName}</h1>
+		<h3 id="statusOutput" class="statusOutput"></h3>
+		<div id="row"></div>
+		<div id="messagesArea" class="panel message-area" ></div>
+		<div class="panel input-area">
+			<input id="message" class="text-field" type="text" placeholder="Message" onkeydown="if (event.keyCode == 13) sendMessage();" /> 
+			<input type="submit" id="sendMessage" class="button" value="Send" onclick="sendMessage();" /> 
+			<input type="button" id="connect" class="button" value="Connect" onclick="connect();" /> 
+			<input type="button" id="disconnect" class="button" value="Disconnect" onclick="disconnect();" />
+		</div>
+<!-- 		</div> -->
+<!-- 	</div> -->
+	 
+<%-- 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script> --%>
+<%-- 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
 </body>
 <script>
-	var MyPoint = "/FriendWS/${userName}";
+	var mName = '${memVO.mName}'
+
+	var MyPoint = "/FriendWS/" + mName;
 	var host = window.location.host;
 	var path = window.location.pathname;
 	var webCtx = path.substring(0, path.indexOf('/', 1));
@@ -30,7 +41,8 @@
 
 	var statusOutput = document.getElementById("statusOutput");
 	var messagesArea = document.getElementById("messagesArea");
-	var self = '${userName}';
+	var self = '${memVO.mName}';
+// 	var self = '${userName}';
 	var webSocket;
 
 	function connect() {
@@ -60,14 +72,18 @@
 					var showMsg = historyData.message;
 					var li = document.createElement('li');
 					// 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
-					historyData.sender === self ? li.className += 'me' : li.className += 'friend';
+//這裡要改寫
+					historyData.sender !== '${memVO.mName}' ? li.className += 'me' : li.className += 'friend';
+// 					historyData.sender === self ? li.className += 'me' : li.className += 'friend';
 					li.innerHTML = showMsg;
 					ul.appendChild(li);
 				}
 				messagesArea.scrollTop = messagesArea.scrollHeight;
 			} else if ("chat" === jsonObj.type) {
 				var li = document.createElement('li');
-				jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
+//
+				jsonObj.sender !== '${memVO.mName}' ? li.className += 'me' : li.className += 'friend';
+// 				jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
 				li.innerHTML = jsonObj.message;
 				console.log(li);
 				document.getElementById("area").appendChild(li);
@@ -111,9 +127,19 @@
 		var friends = jsonObj.users;
 		var row = document.getElementById("row");
 		row.innerHTML = '';
+		console.log('${memVO.mName}');
+		var mName = '${memVO.mName}'
+		
 		for (var i = 0; i < friends.length; i++) {
-			if (friends[i] === self) { continue; }
-			row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' ><h2>' + friends[i] + '</h2></div>';
+// 這裡要篩選腳色，前台只能顯示employeeVO，BY峰
+			if (friends[i] === self) { 
+				continue; 
+			}else if (friends[i] !== mName){
+				row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' ><h2>' + friends[i] + '</h2></div>';
+			}
+// 			else{
+// 				row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' ><h2>' + friends[i] + '</h2></div>';
+// 			}
 		}
 		addListener();
 	}

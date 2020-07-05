@@ -76,7 +76,7 @@ public class EmployeeServlet extends HttpServlet {
 				/*********3.查詢完成，準備轉交*************/
 				req.setAttribute("employeeVO", empVO);
 				req.setAttribute("perVOlist", perVOlist);
-				String url = "/back-end/employee/listOneEmployee.jsp";
+				String url = "/back-end/employee/employee_list_one.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				/*********可能的錯誤處理**********/
@@ -100,7 +100,7 @@ public class EmployeeServlet extends HttpServlet {
 //					errorMsgs.add("權限過低，乖乖做事吧");
 //				}
 //				if(!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/update_employee_input.jsp");
+//					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_update.jsp");
 //					failureView.forward(req, res);
 //					return;
 //				}
@@ -125,14 +125,14 @@ public class EmployeeServlet extends HttpServlet {
 				/********3.轉交************/
 				req.setAttribute("employeeVO", empVO);
 				req.setAttribute("perVOlist", perVOlist);
-				String url = "/back-end/employee/update_employee_input.jsp";
+				String url = "/back-end/employee/employee_update.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
 				/********Other failure process(其他錯誤處理)*******/
 			}catch(Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/update_employee_input.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_update.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -155,7 +155,7 @@ public class EmployeeServlet extends HttpServlet {
 //					errorMsgs.add("權限過低，乖乖做事吧");
 //				}
 //				if(!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/update_employee_input.jsp");
+//					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_update.jsp");
 //					failureView.forward(req, res);
 //					return;
 //				}
@@ -188,36 +188,36 @@ public class EmployeeServlet extends HttpServlet {
 				String ePw = req.getParameter("ePw");
 				String ePwReg = "^[(a-zA-Z0-9)]{1,10}$";
 				if(ePw == null || ePw.trim().length() == 0) {
-					errorMsgs.add("員工密碼: 請勿空白");
+					errorMsgs.add("密碼請勿空白");
 				}else if(!ePw.trim().matches(ePwReg)) {
-					errorMsgs.add("員工密碼: 只能是英文大小寫或數字，長度1~10位");
+					errorMsgs.add("密碼只能是英文大小寫或數字，長度1~10位");
 				}
 				
 				//employee name verify
 				String eName = req.getParameter("eName");
-				String eNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				String eNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9)]{2,10}$";
 				if(eName == null || eName.trim().length() == 0) {
-					errorMsgs.add("員工姓名: 請勿空白");
+					errorMsgs.add("姓名請勿空白");
 				}else if(!eName.trim().matches(eNameReg)) {
-					errorMsgs.add("員工姓名: 只能是中英文字母、數字和_，長度2~10位");
+					errorMsgs.add("姓名只能是中英文字母、數字，長度2~10位");
 				}
 				
 				//ePhone verify
 				String ePhone = req.getParameter("ePhone");
 				String ePhoneReg = "^[(0-9)]{9,10}$";
 				if(ePhone == null || ePhone.trim().length() == 0) {
-					errorMsgs.add("員工電話: 請勿空白");
+					errorMsgs.add("電話請勿空白");
 				}else if(!ePhone.trim().matches(ePhoneReg)) {
-					errorMsgs.add("員工電話: 只能是數字0~9，長度9~10位");
+					errorMsgs.add("電話只能是數字0~9，長度9~10位");
 				}
 				
 				//email verify
 				String eEmail = req.getParameter("eEmail");
 				String eEmailReg = "^[\\w_-]+@(.[\\w_-]+)+$";
 				if(eEmail == null || eEmail.trim().length() == 0) {
-					errorMsgs.add("員工EMAIL: 請勿空白");
+					errorMsgs.add("EMAIL請勿空白");
 				}else if(!eEmail.trim().matches(eEmailReg)) {
-					errorMsgs.add("員工EMAIL: 請依格式輸入 ex:AAA@company.com");
+					errorMsgs.add("EMAIL請依格式輸入 ex:AAA@company.com");
 				}
 				
 				//ePic verify
@@ -239,7 +239,7 @@ public class EmployeeServlet extends HttpServlet {
 				//eTitle verify，已做下拉式選單
 				String eTitle = req.getParameter("eTitle").trim();
 				if(eTitle == null || eTitle.trim().length() == 0) {
-					errorMsgs.add("員工職位: 請勿空白");
+					errorMsgs.add("職位請勿空白");
 				}
 				
 				//eStatus verify，已做下拉式選單
@@ -248,7 +248,7 @@ public class EmployeeServlet extends HttpServlet {
 					eStatus = new Integer(req.getParameter("eStatus").trim());
 				}catch(Exception e) {
 					eStatus = 0;
-					errorMsgs.add("員工狀態: 請選擇");
+					errorMsgs.add("狀態請選擇");
 				}
 				
 				//權限增加
@@ -280,7 +280,7 @@ public class EmployeeServlet extends HttpServlet {
 				//send the use back to the form, if there were errors
 				if(!errorMsgs.isEmpty()) {
 					req.setAttribute("employeeVO", empVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/update_employee_input.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_update.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -318,15 +318,16 @@ public class EmployeeServlet extends HttpServlet {
 					req.setAttribute("employeeVO", empVO);
 					req.setAttribute("perVOlist", perVOlist);
 				}
-				req.setAttribute("perVOlist", perVOlist);
-				String url = "/back-end/employee/listOneEmployee.jsp";
+				//忘記這要幹嘛0705↓
+//				req.setAttribute("perVOlist", perVOlist);
+				String url = "/back-end/employee/employee_list_one.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
 				/***********其他可能的錯誤處理***************/
 			}catch(Exception e) {
 				errorMsgs.add("修改資料失敗: " + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/update_employee_input.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_update.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -351,7 +352,7 @@ public class EmployeeServlet extends HttpServlet {
 //					errorMsgs.add("權限過低，乖乖做事吧");
 //				}
 //				if(!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/update_employee_input.jsp");
+//					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_list_all.jsp");
 //					failureView.forward(req, res);
 //					return;
 //				}
@@ -365,11 +366,11 @@ public class EmployeeServlet extends HttpServlet {
 				
 				//employee name verify
 				String eName = req.getParameter("eName");
-				String eNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				String eNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9)]{2,10}$";
 				if(eName == null || eName.trim().length() == 0) {
 					errorMsgs.add("員工姓名: 請勿空白");
 				}else if(!eName.trim().matches(eNameReg)) {
-					errorMsgs.add("員工姓名: 只能是中英文字母、數字和_，長度2~10位");
+					errorMsgs.add("員工姓名: 只能是中英文字母、數字，長度2~10位");
 				}
 				
 				//phone verify
@@ -445,7 +446,7 @@ public class EmployeeServlet extends HttpServlet {
 				//send the use back to the form, if there were errors
 				if(!errorMsgs.isEmpty()) {
 					req.setAttribute("employeeVO", empVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/addEmployee.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_add.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -470,14 +471,14 @@ public class EmployeeServlet extends HttpServlet {
 				/**********3.新增完成，準備轉交**********/
 				req.setAttribute("employeeVO", empVO);
 				req.setAttribute("perVOlist", perVOlist);
-				String url = "/back-end/employee/listAllEmployee.jsp";
+				String url = "/back-end/employee/employee_list_all.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
 				/**********其他可能的錯誤處理************/
 			}catch(Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/addEmployee.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_add.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -486,7 +487,7 @@ public class EmployeeServlet extends HttpServlet {
 		
 		
 //select_page_employee.jsp中的請求，未完成
-		if("list_search_employee".equals(action)) {
+		if("employee_list_search".equals(action) || "employee_list_search2".equals(action)) {
 			List<String> errorMsgs = new LinkedList<>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -526,7 +527,13 @@ public class EmployeeServlet extends HttpServlet {
 
 				//查詢資料
 				EmployeeService empSvc = new EmployeeService();
-				List<EmployeeVO> emplist = empSvc.getAllbyKeyWord(empno, eName, eTitle, eStatus);
+				List<EmployeeVO> emplist = null;
+				//模糊查詢或精確查詢
+				if("employee_list_search".equals(action)) {
+				  emplist = empSvc.getAllbyKeyWord(empno, eName, eTitle, eStatus);
+				}else if("employee_list_search2".equals(action)) {
+				  emplist = empSvc.getAllbyKeyWord2(empno, eName, eTitle, eStatus);
+				}
 				
 				if(emplist == null) {
 					errorMsgs.add("查無結果");
@@ -534,7 +541,7 @@ public class EmployeeServlet extends HttpServlet {
 				
 				if(!errorMsgs.isEmpty()) {
 					req.setAttribute("emplist", emplist);
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/list_search_employee.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_list_search.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -543,14 +550,14 @@ public class EmployeeServlet extends HttpServlet {
 				
 				req.setAttribute("emplist", emplist);
 //				req.setAttribute("perlist", perlist);
-				String url = "/back-end/employee/list_search_employee.jsp";
+				String url = "/back-end/employee/employee_list_search.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
 				/*************其他可能的錯誤處理*****************/
 			}catch(Exception e) {
 				errorMsgs.add("查無結果");
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/list_search_employee.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_list_search.jsp");
 				failureView.forward(req, res);
 			}
 ////////////////////////////////////////			

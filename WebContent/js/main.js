@@ -21,11 +21,11 @@ $(function($){
 //	});
 
 	
-	$('.nav-link').on('click',function(){
-		var url = $(this).attr('href');
-		$('#main').load(url + ' #main >*');
-		return false;
-	});
+//	$('.nav-link').on('click',function(){
+//		var url = $(this).attr('href');
+//		$('#main').load(url + ' #main >*');
+//		return false;
+//	});
 
 
 });

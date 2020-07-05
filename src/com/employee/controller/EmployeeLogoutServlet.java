@@ -27,7 +27,7 @@ public class EmployeeLogoutServlet extends HttpServlet {
 		session.removeAttribute("perVOlist");
 		session.invalidate();
 		
-		res.sendRedirect(req.getContextPath() + "/backlogin.jsp");
+		res.sendRedirect(req.getContextPath() + "/back_end_login.jsp");
 	}
 
 }

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.employee.model.*"%>
 <%@ page import="com.permission.model.*"%>
@@ -18,23 +17,14 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
-<title>所有員工資料 listAllEmployee.jsp</title>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-<link	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900"	rel="stylesheet" />
-
-<style>
-	#email {
-		
-  }
-</style>
+	<title>MISS M員工資料查詢</title>
+	<%@ include file="/back-end/back-end-head.jsp" %>
 </head>
 <body>
 
 <%@ include file="/back-end/back-end-header.jsp" %>
-	<div class="container-fluid">
-		<div class="row ">
+<!-- 	<div class="container"> -->
+<!-- 		<div class="row "> -->
 <!-- 		<div class=""> -->
 			<table class="table table-striped text-nowrap table-bordered table-hover table-sm text-center"
 							style="margin:0; padding:0px;">
@@ -42,7 +32,6 @@
 					<tr class="table-primary">
 						<th scope="col" class="">員工編號</th>
 						<th scope="col" class="">圖片</th>
-<!-- 						<th scope="col" class="">帳號</th> -->
 						<th scope="col" class="">姓名</th>
 						<th scope="col" class="">電話</th>
 						<th scope="col" class="" style="width:250px;">EMAIL</th>
@@ -61,7 +50,6 @@
 						<td class="align-middle">
 							<img width=100 height=100
 							src="<%=request.getContextPath()%>/back-end/employee/epicshow.do?empno=${employeeVO.empno}" /></td>
-<%-- 						<td class="align-middle">${employeeVO.eAccount}</td> --%>
 						<td class="align-middle">${employeeVO.eName}</td>
 						<td class="align-middle">${employeeVO.ePhone}</td>
 						<td class="align-middle">${employeeVO.eEmail}</td>
@@ -101,9 +89,10 @@
 				</c:forEach>
 					</tbody>
 			</table>
+<!-- 		</div> -->
+		<br>
 		<%@ include file="page2.file"%>
-		</div>
-	</div>
+<!-- 	</div> -->
 
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 
