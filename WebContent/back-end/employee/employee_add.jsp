@@ -55,19 +55,19 @@
 					
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">姓名</th>
-						<td><input type="TEXT" name="eName" size="20" class="form-control" style="background-color:LemonChiffon;"
-							value="<%=(employeeVO==null)? "羊駝" : employeeVO.geteName()%>" /></td>
+						<td><input type="TEXT" name="eName" id="eName" size="20" class="form-control" style="background-color:LemonChiffon;"
+							value="<%=(employeeVO==null)? "" : employeeVO.geteName()%>" /></td>
 					</tr>
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">電話</th>
-						<td><input type="TEXT" name="ePhone" size="10" class="form-control" style="background-color:LemonChiffon;"
-							value="<%= (employeeVO == null)? "0987654321" : employeeVO.getePhone()%>"/></td>
+						<td><input type="TEXT" name="ePhone" id="ePhone" size="10" class="form-control" style="background-color:LemonChiffon;"
+							value="<%= (employeeVO == null)? "" : employeeVO.getePhone()%>"/></td>
 					</tr>
 
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">信箱</th>
-						<td><input type="email" name="eEmail" size="50" class="form-control" style="background-color:LemonChiffon;"
-							value="<%= (employeeVO == null) ? "fengptt47@gmail.com" : employeeVO.geteEmail()%>"/></td>
+						<td><input type="email" name="eEmail" id="eEmail" size="50" class="form-control" style="background-color:LemonChiffon;"
+							value="<%= (employeeVO == null) ? "" : employeeVO.geteEmail()%>"/></td>
 					</tr>
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">圖片</th>
@@ -122,15 +122,24 @@
 				</table>
 			</div>
 		</div>
-						
+		
 		<div class="row justify-content-center">
 			<input type="hidden" name="action" value="insert"> 
 			<input class="btn btn-outline-success" type="submit" id="sendbtn" value="送出新增" >
+			<span id="magicspan" class="badge badge-success">.</span>
 		</div>
 		</FORM>
 <!-- 	</div> -->
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 	<script>
+		//神奇小按鈕	
+		$('#magicspan').on('click',function(){
+			$('#eName').val('羊駝');
+			$('#ePhone').val('0987654321');
+			$('#eEmail').val('fengptt47@gmail.com');
+		}); 
+	
+		//按鈕鎖定，避免重複送出
 		$('#sendbtn').click(function(){
 			var btn = this;
 			setTimeout(function(){
@@ -138,6 +147,7 @@
 			},50);
 		});
 	
+		//預覽圖片
 		$('#ePic').on('change',function(){
 			if(typeof(FileReader) !== "underfined"){
 				var epicPreview = $('#epicPreview');

@@ -82,6 +82,10 @@ td {
 <center>
 
 	<body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
+		<%@ include file="/front-end/front-end-header.jsp"%>
+		
+		<br>
+		<br>
 		<br>
 		<span class="mem_tittle"> 加入會員 </span>
 		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do"
@@ -91,17 +95,16 @@ td {
 				class="icon" id="demo" />
 
 			<table>
-				<br>
 				<tr>
 					<td>帳號<img src="${pageContext.request.contextPath}/images/front-end/registImg/user.png"></td>
-					<td><input class="inp" type="text" name="mAccount"
+					<td><input class="inp" type="text" name="mAccount" id="mAccount"
 						value="<%=(memVO == null) ? "" : memVO.getmAccount()%>" /></td>
 				</tr>
 
 				<tr>
 					<td>密碼<img src="${pageContext.request.contextPath}/images/front-end/registImg/key.png">
 					</td>
-					<td><input class="inp" type="password" name="mPw"
+					<td><input class="inp" type="password" name="mPw" id="mPw"
 						value="<%=(memVO == null) ? "" : memVO.getmPw()%>" /></td>
 				</tr>
 
@@ -114,7 +117,7 @@ td {
 				<tr>
 					<td>名字<img src="${pageContext.request.contextPath}/images/front-end/registImg/profile.png">
 					</td>
-					<td><input class="inp" type="text" name="mName"
+					<td><input class="inp" type="text" name="mName" id="mName"
 						value="<%=(memVO == null) ? "" : memVO.getmName()%>" /></td>
 				</tr>
 
@@ -131,14 +134,14 @@ td {
 				<tr>
 					<td>電話<img src="${pageContext.request.contextPath}/images/front-end/registImg/phone.png">
 					</td>
-					<td><input class="inp" type="text" name="mPhone"
+					<td><input class="inp" type="text" name="mPhone" id="mPhone"
 						value="<%=(memVO == null) ? "" : memVO.getmPhone()%>" /></td>
 				</tr>
 
 				<tr>
 					<td>信箱<img src="${pageContext.request.contextPath}/images/front-end/registImg/mail4.png">
 					</td>
-					<td><input class="inp" type="email" name="mEmail"
+					<td><input class="inp" type="email" name="mEmail" id="mEmail"
 						value="<%=(memVO == null) ? "" : memVO.getmEmail()%>"></td>
 				</tr>
 
@@ -148,7 +151,7 @@ td {
 			<input type="submit" value="送出" style="width: 90px; height: 40px;">
 			<input type="button" value="取消" style="width: 90px; height: 40px;"
 				onclick="self.location.href='${pageContext.request.contextPath}/front-end/mem/member_center.jsp'" /><br>
-
+			<span id="magicspan" class="badge badge-pill badge-success">.</span>
 
 			<%-- 錯誤表列 --%>
 			<c:if test="${not empty errorMsgs}">
@@ -160,17 +163,25 @@ td {
 			<br>
 
 		</FORM>
-		</fiedset>
 
 		<script>
-			$('#file').change(function() {
-				var file = $('#file')[0].files[0];
-				var reader = new FileReader;
-				reader.onload = function(e) {
-					$('#demo').attr('src', e.target.result);
-				};
-				reader.readAsDataURL(file);
-			});
+		//magic btn
+		$('#magicspan').on('click',function(){
+			$('#mAccount').val('SSSS');
+			$('#mPw').val('1234');
+			$('#mName').val('蛇丸');
+			$('#mPhone').val('0987654321');
+			$('#mEmail').val('fengptt47@gmail.com');
+		}); 
+	
+		$('#file').change(function() {
+			var file = $('#file')[0].files[0];
+			var reader = new FileReader;
+			reader.onload = function(e) {
+				$('#demo').attr('src', e.target.result);
+			};
+			reader.readAsDataURL(file);
+		});
 		</script>
 		
 		

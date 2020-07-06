@@ -2,19 +2,19 @@
 
 
 	<!-- first navbar -->
-	<div class="container-fluid bg-white" style="height:45px; opacity:.8;">
-		<div class="row fixed-top">
+	<div class="container-fluid bg-white fixed-top" style="height:45px; opacity:.8;">
+		<div class="row ">
 
 			<div class="col ">
 				<div class="header-user-info ">
 <!-- 				<i class=""> -->
 					
-					<c:if test="${memVO != null}">
+					<c:if test="${sessionScope.memVO != null}">
 						<i class=""><img style='width:25px; height:25px; border-radius:50%;'
-															src='${pageContext.request.contextPath}/front-end/mem/mem.mPic?memno=${memVO.memno}'>
+														 src='${pageContext.request.contextPath}/front-end/mem/mem.mPic?memno=${memVO.memno}'>
 						</i>
 					</c:if>
-					<i class="ml-auto"></i> ${sessionScope.memVO.mName } ${(memVO ==null) ? '':'您好~' }
+					<i class="ml-auto"></i> ${sessionScope.memVO.mName } ${(sessionScope.memVO ==null) ? '':'您好~' }
 				
 					<a id="member" href="${pageContext.request.contextPath}/front-end/index.jsp"> 
 						<i class="fa fa-home" aria-hidden="true"></i> 回首頁

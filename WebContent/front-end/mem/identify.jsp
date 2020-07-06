@@ -2,21 +2,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.mem.model.*"%>
 <%
-	MemVO memVO = (MemVO) request.getAttribute("memVO");
-	
+// 	MemVO memVO = (MemVO) request.getAttribute("memVO");
 %>
-<!DOCTYPE html>
 <html>
 <head>
 
+<title>MISS 會員驗證</title>
 <!-- sweetbox -->
-<link href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css"
-	rel="stylesheet">
+<link href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
 <script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
-
-<title>驗證</title>
-</head>
 <script src="https://use.fontawesome.com/0114a256f7.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+
 <style>
 form {
 	background-color: #FFEEDD;
@@ -63,10 +62,8 @@ body {
 }
 </style>
 
-
-
 <body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
-
+	<%@ include file="/front-end/front-end-header.jsp"%>
 
 	<form METHOD="post" name="form1"
 		ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do">
@@ -76,34 +73,23 @@ body {
 			<td>
 				<div>
 					驗證 <i class="fa fa-envelope-o" aria-hidden="true"></i>
-					   <input class="inp" type="text" name="formCode" value="" placeholder=" 請輸入你的驗證碼" required /> 
+					   <input id="" class="inp" type="text" name="formCode" value="" placeholder="請輸入驗證碼..." required /> 
 					   <input id="demo3" class="confirm" type="submit" name="" value="確認"/>
-
 				</div>
 			</td>
 		</tr>
 
 		<%-- 錯誤表列 --%>
 		<c:if test="${not empty errorMsgs}">
-			<font style="color: red">請修正以下錯誤:</font>
-			<ul>
-				<c:forEach var="message" items="${errorMsgs}">
-					<li style="color: red">${message}</li>
-				</c:forEach>
-			</ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<font style="color: #f00">${message}</font>
+			</c:forEach>
 		</c:if>
 
 
 	</form>
 
-	<script>
-	
-// 	document.getElementById("demo3").onclick = function() {
-// 	    swal("干得好", "你点击了按钮!", "success")
-// 	};
-   
-	</script>
-
-
+	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </body>
 </html>
