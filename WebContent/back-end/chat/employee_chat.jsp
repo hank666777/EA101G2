@@ -24,8 +24,10 @@
 	</div>
 </body>
 <script>
-// 	var eName = '${employeeVO.eName}';	
-	var MyPoint = "/FriendWS/${userName}";
+//
+	var eName = '${employeeVO.eName}';	
+//
+	var MyPoint = "/FriendWS/" + eName;
 	
 	var host = window.location.host;
 	var path = window.location.pathname;
@@ -35,7 +37,8 @@
 	var statusOutput = document.getElementById("statusOutput");
 	var messagesArea = document.getElementById("messagesArea");
 // 	var self = '${employeeVO.eName}';
-	var self = '${userName}';
+	var self = '${employeeVO.eName}';
+// 	var self = '${userName}';
 	var webSocket;
 
 	function connect() {

@@ -53,21 +53,23 @@ div{
 				
 				<div class="row">
 					<input class="form-control" type="text" id="eAccount" name="eAccount" 
-						placeholder="請輸入帳號" autofocus> 
+								 style="background-color:LemonChiffon;" placeholder="請輸入帳號" autofocus> 
 				</div>
 				
 				<div class="row">
-					<input class="form-control" type="password" id="ePw" name="ePw" placeholder="請輸入密碼">
+					<input class="form-control" type="password" id="ePw" name="ePw" 
+								 style="background-color:LemonChiffon;" placeholder="請輸入密碼">
 				</div>
 				
-				<div class="row my-0">
-					<label><input type="checkbox" value="remember-me">記住我</label>
-				</div>
+<!-- 				<div class="row my-0"> -->
+<!-- 					<label><input type="checkbox" value="remember-me">記住我</label> -->
+<!-- 				</div> -->
 				
 				<div class="row">
 					<img id="imageCheckCode" width=100 height=40 
 						src="${pageContext.request.contextPath}/checkcode.do">
-					<input class="form-control" type="text" name="checkCode" placeholder="請輸入驗證碼"> 
+					<input class="form-control" type="text" name="checkCode"
+								 style="background-color:LemonChiffon;" placeholder="請輸入驗證碼"> 
 				</div>
 				
 				<div class="row my-0 text-danger justify-content-md-center" >

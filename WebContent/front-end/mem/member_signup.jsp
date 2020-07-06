@@ -81,7 +81,7 @@ td {
 
 <center>
 
-	<body background="${pageContext.request.contextPath/images/front-end/registImg/backgound.jpg">
+	<body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
 		<br>
 		<span class="mem_tittle"> 加入會員 </span>
 		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do"

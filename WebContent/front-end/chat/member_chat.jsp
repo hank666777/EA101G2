@@ -41,8 +41,8 @@
 
 	var statusOutput = document.getElementById("statusOutput");
 	var messagesArea = document.getElementById("messagesArea");
-	var self = '${memVO.mName}';
-// 	var self = '${userName}';
+// 	var self = '${memVO.mName}';
+	var self = '${userName}';
 	var webSocket;
 
 	function connect() {

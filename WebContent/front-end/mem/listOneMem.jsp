@@ -72,7 +72,7 @@ td{
 
 </head>
 <center>
-<body background="${pageContext.request.contextPath}/front-end/mem/images/front-end/registImg/backgound.jpg">
+<body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
 
 
 <form>
