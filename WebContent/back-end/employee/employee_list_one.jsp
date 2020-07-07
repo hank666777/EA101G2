@@ -27,21 +27,21 @@
 <!-- 	<div class="container"> -->
 
 		<div class="row justify-content-center align-items-center">
-			<div class="col-xl-7 text-center">
+			<div class="col-xl-6 text-center">
 				<div class="alert alert-primary text-center" role="alert">
 					<h2>Miss M員工個人資料</h2>
 				</div>
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-xl-7 text-center">
+			<div class="col-xl-6 text-center">
 				<img width=200 height=200 style="border-radius:50%;"
 					src="<%=request.getContextPath()%>/back-end/employee/epicshow.do?empno=${employeeVO.empno}" />
 			</div>
 		</div>
 
 		<div class="row justify-content-center align-items-center">
-			<div class="col-xl-7">
+			<div class="col-xl-6">
 
 				<table style="margin-top:10px;"
 					class="table table-striped table-bordered table-hover table-sm text-center justify-content-center">

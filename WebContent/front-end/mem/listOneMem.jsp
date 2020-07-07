@@ -73,7 +73,7 @@ td{
 </head>
 <center>
 <body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
-
+	<%@ include file="/front-end/front-end-header.jsp"%>
 
 <form>
 <table>

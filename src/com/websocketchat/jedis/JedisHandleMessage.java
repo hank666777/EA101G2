@@ -14,7 +14,7 @@ public class JedisHandleMessage {
 		String key = new StringBuilder(sender).append(":").append(receiver).toString();
 		Jedis jedis = null;
 		jedis = pool.getResource();
-		jedis.auth("20200723");
+		jedis.auth("123456");
 		List<String> historyData = jedis.lrange(key, 0, -1);
 		jedis.close();
 		return historyData;
@@ -25,7 +25,7 @@ public class JedisHandleMessage {
 		String senderKey = new StringBuilder(sender).append(":").append(receiver).toString();
 		String receiverKey = new StringBuilder(receiver).append(":").append(sender).toString();
 		Jedis jedis = pool.getResource();
-		jedis.auth("20200723");
+		jedis.auth("123456");
 		jedis.rpush(senderKey, message);
 		jedis.rpush(receiverKey, message);
 

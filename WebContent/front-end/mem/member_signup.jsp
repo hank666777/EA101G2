@@ -77,6 +77,9 @@ td {
 	width: 200px;
 	padding: 15px;
 }
+img#demo:hover {
+	cursor: pointer;
+}
 </style>
 
 <center>
@@ -91,9 +94,12 @@ td {
 		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do"
 			name="form1" enctype="multipart/form-data">
 
-			<input type="hidden" name="action" value="insert"> <img
-				class="icon" id="demo" />
-
+			<input type="hidden" name="action" value="insert">
+			<label for="file">
+				<img class="icon" id="demo" />
+				<input id="file" type="file" name="mPic" style="display:none; "
+						value="<%=(memVO == null) ? "" : memVO.getmPic()%>" />
+		</label>
 			<table>
 				<tr>
 					<td>帳號<img src="${pageContext.request.contextPath}/images/front-end/registImg/user.png"></td>
@@ -108,11 +114,14 @@ td {
 						value="<%=(memVO == null) ? "" : memVO.getmPw()%>" /></td>
 				</tr>
 
-				<tr>
-					<td>頭像<img src="${pageContext.request.contextPath}/images/front-end/registImg/images.png"></td>
-					<td><input id="file" type="file" name="mPic"
-						value="<%=(memVO == null) ? "" : memVO.getmPic()%>" /></td>
-				</tr>
+<!-- 				<tr> -->
+<%-- 					<td>頭像<img src="${pageContext.request.contextPath}/images/front-end/registImg/images.png"></td> --%>
+<!-- 					<td> -->
+<!-- 					<input id="file" type="file" name="mPic" style="display:none; " -->
+<%-- 						value="<%=(memVO == null) ? "" : memVO.getmPic()%>" /> --%>
+<!-- 					</td> -->
+<!-- 				</tr> -->
+				
 
 				<tr>
 					<td>名字<img src="${pageContext.request.contextPath}/images/front-end/registImg/profile.png">
@@ -165,6 +174,8 @@ td {
 		</FORM>
 
 		<script>
+		
+		
 		//magic btn
 		$('#magicspan').on('click',function(){
 			$('#mAccount').val('SSSS');

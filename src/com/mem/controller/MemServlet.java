@@ -64,20 +64,20 @@ public class MemServlet extends HttpServlet {
 				
 				System.out.println("memlogin: "+memVO==null);
 				
-				if (memVO == null) {
-					errorMsgs.add("查無資料");
-				} else if (memVO.getmStatus() == 0) {
-					errorMsgs.add("未驗證");
-				} else if (memVO.getmStatus() == 2) {
-					errorMsgs.add("停權");
-				}
-
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/memberlogin.jsp");
-					failureView.forward(req, res);
-					return;// 程式中斷
-				}
+//				if (memVO == null) {
+//					errorMsgs.add("查無資料");
+//				} else if (memVO.getmStatus() == 0) {
+//					errorMsgs.add("未驗證");
+//				} else if (memVO.getmStatus() == 2) {
+//					errorMsgs.add("停權");
+//				}
+//
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/memberlogin.jsp");
+//					failureView.forward(req, res);
+//					return;// 程式中斷
+//				}
 
 //				MemVO mem = (MemVO) session.getAttribute("memVO");
 				
@@ -306,12 +306,12 @@ public class MemServlet extends HttpServlet {
 					return;
 				}
 				
-                String mAccount_reg = "^[a-zA-Z0-9]{4,10}$";
-                if (mAccount == null || mAccount.trim().length() == 0) {
-                  errorMsgs.add("帳號請勿空白");
-                }else if (!mAccount.trim().matches(mAccount_reg)) {
-                  errorMsgs.add("帳號只能是英文字母&數字,且長度為4到10之間");
-                }
+        String mAccount_reg = "^[a-zA-Z0-9]{4,10}$";
+        if (mAccount == null || mAccount.trim().length() == 0) {
+          errorMsgs.add("帳號請勿空白");
+        }else if (!mAccount.trim().matches(mAccount_reg)) {
+          errorMsgs.add("帳號只能是英文字母&數字,且長度為4到10之間");
+        }
 				
 
 				String mPw = req.getParameter("mPw").trim();
@@ -322,9 +322,14 @@ public class MemServlet extends HttpServlet {
 					errorMsgs.add("密碼只能是英文字母&數字,且長度為4到10之間");
 				}
 
+				byte[] mPic;
 				Part part = req.getPart("mPic");
 				InputStream in = part.getInputStream();
-				byte[] mPic = new byte[in.available()];
+				mPic = new byte[in.available()];
+				if(in.available() ==0) {
+					in = getServletContext().getResourceAsStream("/images/user-icon.jpg");
+					mPic = new byte[in.available()];
+				}
 				in.read(mPic);
 				in.close();
 
@@ -387,7 +392,7 @@ public class MemServlet extends HttpServlet {
 
 				// 連線Jedis
 				Jedis jedis = new Jedis("localhost", 6379);
-				jedis.auth("20200723");
+				jedis.auth("123456");
 
 				jedis.set(memVO.getmAccount(), authCode);// 把key value 存入Redis
 
@@ -421,7 +426,7 @@ public class MemServlet extends HttpServlet {
 
     			// 建立連線 取得新增會員的key value
     		    jedis = new Jedis("localhost", 6379);
-    			jedis.auth("20200723");
+    			jedis.auth("123456");
     			// 取得key裡的value
     			String authCode = jedis.get(SmemVO.getmAccount());
 

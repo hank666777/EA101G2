@@ -39,15 +39,15 @@
 		</div>
 					
 		<div class="row align-items-center justify-content-center" >
-			<div class="col-6 text-center" id="epicPreview">
+			<label for="ePic"><div class="col-6 text-center" id="epicPreview">
 				<img style="height:150px;" src="${pageContext.request.contextPath}/images/user-circle.png">
-			</div>
+			</div></label>
 		</div>	
 			
 		<FORM METHOD="post" ACTION="${pageContext.request.contextPath}/back-end/employee/employee.do" name="form1" enctype="multipart/form-data">
 		<div class="row justify-content-center  ">
 			<div id="col-7 text-center ">
-				<table class="table table-striped table-bordered table-hover  text-center">
+				<table class="table table-striped table-bordered table-shover  text-center">
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">帳號</th>
 						<td>隨機生成</td>
@@ -69,11 +69,13 @@
 						<td><input type="email" name="eEmail" id="eEmail" size="50" class="form-control" style="background-color:LemonChiffon;"
 							value="<%= (employeeVO == null) ? "" : employeeVO.geteEmail()%>"/></td>
 					</tr>
-					<tr>
-						<th class="text-nowrap align-middle table-primary" scope="col">圖片</th>
-						<td><input type="file" name="ePic" id="ePic"
-							class="btn btn-secondary text-center"/></td>
-					</tr>
+<!-- 					<tr> -->
+<!-- 						<th class="text-nowrap align-middle table-primary" scope="col">圖片</th> -->
+<!-- 						<td> -->
+						<input type="file" name="ePic" id="ePic" style="display:none;"
+							class="btn btn-secondary text-center"/>
+<!-- 							</td> -->
+<!-- 					</tr> -->
 					
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">職稱</th>

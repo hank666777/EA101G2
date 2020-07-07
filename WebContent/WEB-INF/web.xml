@@ -59,6 +59,7 @@
 	<filter-mapping>
 		<filter-name>FrontLoginfilter</filter-name>
 		<url-pattern>/front-end/mem/update_mem_input.jsp</url-pattern>
+		<url-pattern>/front-end/mem/member_center.jsp</url-pattern>
 		<url-pattern>/front-end/suggest/addSuggest.jsp</url-pattern>
 		<url-pattern>/front-end/chat/member_chat.jsp</url-pattern>
 		
@@ -100,11 +101,11 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>MemBerLogoutServlet</servlet-name>
-		<servlet-class>com.mem.controller.MemBerLogoutServlet</servlet-class>
+		<servlet-name>MemberLogoutServlet</servlet-name>
+		<servlet-class>com.mem.controller.MemberLogoutServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>MemBerLogoutServlet</servlet-name>
+		<servlet-name>MemberLogoutServlet</servlet-name>
 		<url-pattern>/front-end/mem/memberlogout.do</url-pattern>
 	</servlet-mapping>
 	

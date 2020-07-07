@@ -15,3 +15,6 @@
 <!-- 自定義CSS JS-->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/front-end-index.css">
 <%-- <script src="${pageContext.request.contextPath}/js/main.js"></script> --%>
+<style>
+
+</style>

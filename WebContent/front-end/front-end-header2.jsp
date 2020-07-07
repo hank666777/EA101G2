@@ -4,7 +4,7 @@
 	<div class="header-bottom container" style="padding:20 0 5 0">
 
 		<nav class="secondnavbar navbar navbar-expand-xl navbar-light my-2">
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/front-end/index.jsp">
 				<img src="${pageContext.request.contextPath}/images/logo.png" alt="Miss M logo"
 				style="width: 70px; height: 70px;">
 			</a>
@@ -17,9 +17,9 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active font-weight-bold">
-						<a class="nav-link" href="${pageContext.request.contextPath}/front-end/index.jsp">首頁</a>
-					</li>
+<!-- 					<li class="nav-item active font-weight-bold"> -->
+<%-- 						<a class="nav-link" href="${pageContext.request.contextPath}/front-end/index.jsp">首頁</a> --%>
+<!-- 					</li> -->
 
 					<li class="nav-item font-weight-bold">
 						<a class="nav-link" href="#">線上訂餐</a>
@@ -33,9 +33,12 @@
 						<a class="nav-link" href="#">活動快訊</a>
 					</li>
 
-					<li id="livestream font-weight-bold" class="nav-item">
-						<input type="hidden" value="" name="userName">
+					<li id="livestream" class="nav-item font-weight-bold">
 						<a class="nav-link" href="${pageContext.request.contextPath}/front-end/chat/member_chat.jsp">直播間</a>
+					</li>
+					
+					<li id="massageboard" class="nav-item font-weight-bold">
+						<a class="nav-link" href="#">留言板</a>
 					</li>
 
 					<li class="nav-item font-weight-bold dropdown">

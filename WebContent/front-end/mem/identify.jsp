@@ -54,12 +54,12 @@ form {
 	font-weight: bold;
 }
 
-body {
-	background-size: cover;
-	text-align: center;
-	position: relative;
-	margin-top: 20%;
-}
+/* body { */
+/* 	background-size: cover; */
+/* 	text-align: center; */
+/* 	position: relative; */
+/* 	margin-top: 20%; */
+/* } */
 </style>
 
 <body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">

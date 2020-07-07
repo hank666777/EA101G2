@@ -31,7 +31,7 @@ input{
 	<div class="container">
 		
 		<div class="row justify-content-center">
-			<div class="col-xl-7 text-center">
+			<div class="col-xl-6 text-center">
 				<div class="alert alert-primary text-center" role="alert">
 					<h2>Miss M員工個人資料修改</h2>
 				</div>
@@ -39,7 +39,7 @@ input{
 		</div>
 		
 		<div class="row justify-content-center">
-			<div class="col-xl-7 text-center"  style="color:#F00;">
+			<div class="col-xl-6 text-center"  style="color:#F00;">
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
 						<c:forEach var="message" items="${errorMsgs}">
@@ -50,15 +50,15 @@ input{
 		</div>
 		
 		<div class="row justify-content-center">
-			<div class="col-xl-7 text-center">
+			<label for="ePic"><div class="col-xl-6 text-center">
 				<img id="epicShow" width=150 height=150 style="border-radius:50%;" 
 					src="<%=request.getContextPath()%>/back-end/employee/epicshow.do?empno=${employeeVO.empno}" />
-			</div>
+			</div></label>
 		</div>
 
 		<form method="post" action="${pageContext.request.contextPath}/back-end/employee/employee.do" name="form1" enctype="multipart/form-data">
 		<div class="row justify-content-center">
-			<div class="col-xl-7 ">
+			<div class="col-xl-6 ">
 				
 				<table style="margin-top:15px;" 
 					class="table table-striped table-bordered table-hover table-sm text-center justify-content-center">
@@ -101,11 +101,12 @@ input{
 							<input class="form-control" type="email" style="background-color:LemonChiffon;"
 								name="eEmail" value="${employeeVO.eEmail}" /></td>
 						</tr>
-						<tr class="">
-							<th scope="row" class="text-nowrap align-middle table-primary" scope="col">圖片</th>
-							<td scope="col" class="">
-							<input class="btn btn-secondary" type="file" name="ePic" id="ePic"/></td>
-						</tr>
+<!-- 						<tr class=""> -->
+<!-- 							<th scope="row" class="text-nowrap align-middle table-primary" scope="col">圖片</th> -->
+<!-- 							<td scope="col" class=""> -->
+								<input class="btn btn-secondary" type="file" name="ePic" id="ePic" style="display:none;"/>
+<!-- 							</td> -->
+<!-- 						</tr> -->
 						<tr class="text-center">
 							<th scope="col" class="text-nowrap align-middle table-primary">職稱</th>
 							<td scope="col" class="">
