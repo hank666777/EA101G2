@@ -37,7 +37,7 @@
 			</li>
 			<li>
 				<a href="${pageContext.request.contextPath}/front-end/mem/identify.jsp">
-					<i class="fa fa-address-card" aria-hidden="true"></i>
+					<i class="fa fa-key" aria-hidden="true"></i>
 					<span class="nav-text">重新驗證</span>
 				</a>
 			</li>

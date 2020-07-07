@@ -449,6 +449,8 @@ public class MemServlet extends HttpServlet {
     				mSv.identify(mStatus, mAccount);
     				
     				String url = "/front-end/mem/memberlogin.jsp";// 成功後，跳轉到重新登入
+    				//重新登入要移除會員session
+    				session.removeAttribute("memVO");
     				RequestDispatcher successView = req.getRequestDispatcher(url);
     				successView.forward(req, res);
     				return;
