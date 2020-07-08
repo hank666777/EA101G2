@@ -14,13 +14,13 @@
 	<%@ include file="/front-end/front-end-head.jsp"%>
 
 <style type="text/css">
-body {
-	text-align: center;
-	font-size: 20px;
-	font-family: 微軟正黑體;
-	background-size: cover;
-	margin: auto;
-}
+/* body { */
+/* 	text-align: center; */
+/* 	font-size: 20px; */
+/* 	font-family: 微軟正黑體; */
+/* 	background-size: cover; */
+/* 	margin: auto; */
+/* } */
 
 form {
 	border-style: solid 5px;
@@ -72,7 +72,7 @@ td {
 <center>
 
 	<body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
-		<%@ include file="/front-end/front-end-header.jsp"%>
+<%-- 		<%@ include file="/front-end/front-end-header.jsp"%> --%>
 		
 		<div class="container">
 			<div class="row justify-content-start">
@@ -172,7 +172,7 @@ td {
 				reader.readAsDataURL(file);
 			});
 		</script>
-	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script> --%>
+<%-- 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
 </body>
 </html>

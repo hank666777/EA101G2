@@ -63,7 +63,7 @@ form {
 </style>
 
 <body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
-	<%@ include file="/front-end/front-end-header.jsp"%>
+	
 
 	<form METHOD="post" name="form1"
 		ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do">
