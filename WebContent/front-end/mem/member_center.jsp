@@ -62,14 +62,16 @@
 		  </div>
 		  
 		  <div class="col-10">
+		    <br><br><br>
 		    <div class="tab-content" id="nav-tabContent">
 		      <div class="tab-pane fade show " id="list-listOneMem" role="tabpanel" aria-labelledby="listOneMem">
-						<!--	這是會員個人資料 -->
+						<!-- 這是會員個人資料 -->
 						<%@ include file="/front-end/mem/listOneMem.jsp"%>
 		      </div>
 		      <div class="tab-pane fade" id="list-coupon" role="tabpanel" aria-labelledby="coupon">
-		    		優惠券(未導入)
-		      </div>
+		      	<!-- 這是會員的優惠券 -->
+		      	<%@ include file="/front-end/myCoupon/listMyCoupon.jsp"%>
+		    	</div>
 		      <div class="tab-pane fade" id="list-onLineOrder" role="tabpanel" aria-labelledby="list-onLineOrder">
 		      	訂單查詢(未導入)
 		      </div>

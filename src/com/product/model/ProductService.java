@@ -1,6 +1,8 @@
 package com.product.model;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class ProductService {
 	private Product_interface dao;
@@ -9,7 +11,7 @@ public class ProductService {
 		dao = new ProductJNDIDAO();
 	}
 	
-	public ProductVO addProduct(String pname,Integer pP,byte[] pPic,String pDes,Integer pDoffer,
+	public void addProduct(String pname,Integer pP,byte[] pPic,String pDes,Integer pDoffer,
 			Integer invStatus,Integer pStatus,String pTno) {
 		
 		ProductVO pd = new ProductVO();
@@ -21,10 +23,11 @@ public class ProductService {
 		pd.setINVStatus(invStatus);
 		pd.setpStatus(pStatus);
 		pd.setpTno(pTno);
-		return pd;
+		
+		dao.add(pd);
 	}
 	
-	public ProductVO updateProduct(String pname,Integer pP,byte[] pPic,String pDes,Integer pDoffer,
+	public void updateProduct(String pname,Integer pP,byte[] pPic,String pDes,Integer pDoffer,
 			Integer invStatus,Integer pStatus,String pTno,String pno) {
 		
 		ProductVO pd = new ProductVO();	
@@ -37,7 +40,8 @@ public class ProductService {
 		pd.setpStatus(pStatus);
 		pd.setpTno(pTno);
 		pd.setpno(pno);
-		return pd;
+		
+		dao.update(pd);
 		
 	}
 	public void deleteProduct(String pno) {
@@ -48,10 +52,26 @@ public class ProductService {
 		return dao.findByPK(pno);
 	}
 	
+	public ProductVO getOneNameProduct(String pname) {
+		return dao.findByName(pname);
+	}
+	
 	public List<ProductVO> getAll(){
 		return dao.getAll();
 	}
 	public List<ProductVO> getProductByStatus(int pStatus){
 		return dao.getProductByStatus(pStatus);
+	}
+	public List<ProductVO> getProductByStatusAndType(int pStatus,String pTno){
+		return dao.getProductByStatusAndType(pStatus, pTno);
+	}
+	public Set<ProductVO> getProductBypno(String pno) {
+		return dao.getProductBypno(pno);
+	}
+	public List<ProductVO> getProductByCategory(String pTno){
+		return dao.getProductByCategory(pTno);
+	}
+	public List<ProductVO> getAll(Map<String, String[]> map){
+		return dao.getAll(map);
 	}
 }

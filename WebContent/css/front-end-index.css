@@ -1,8 +1,7 @@
-@import "http://fonts.googleapis.com/earlyaccess/notosanstc.css";
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
 
-body {
-	font-family: 'Noto Sans TC', sans-serif;
-/* 	font-family: Microsoft JhengHei; */
+* {
+	font-family: 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
 }
 
 @media screen and (max-width: 575px){

@@ -127,8 +127,8 @@ public class ProductVO implements Serializable{
 		if (this == obj)
 			return true;
 		if (obj == null)
-			return false;	                         //仍要用==來判斷,也許要比較的"物件參考變數",其實指的是同一個  
-		if (getClass() != obj.getClass())	//用getclass()來畔對是否屬於同一class	
+			return false;	                //仍要用==來判斷,也許要比較的"物件參考變數",其實指的是同一個  
+		if (getClass() != obj.getClass())	//用getclass()來判斷是否屬於同一class	
 			return false;
 		ProductVO other = (ProductVO) obj;
 		if (pname == null) {

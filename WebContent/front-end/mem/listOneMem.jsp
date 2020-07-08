@@ -37,7 +37,6 @@ input {
 	border: 1px solid #888888;
 	border-radius: 15px;
 	font-size: 18px;
-	font-family: 微軟正黑體;
 	margin: 6px;
 }
 
@@ -49,7 +48,6 @@ input {
 
 td {
 	font-size: 25px;
-	font-family: 微軟正黑體;
 }
 
 .icon {
@@ -86,14 +84,11 @@ td {
 						<input type="hidden" name="mPw" value="<%=SmemVO.getmPw()%>" required /><%=SmemVO.getmPw()%></td>
 				</tr>
 				<tr>
-					<FORM METHOD="post" ACTION="${pageContext.request.contextPath}/front-end/mem/mem.mPic">
-						<td></td>
-					</FORM>
-				</tr>
-				<tr>
 					<td>會員姓名:</td>
 					<td>
-						<input class="inp" type="hidden" name="mName" value="<%=SmemVO.getmName()%>" required /><%=SmemVO.getmName()%></td>
+						<input class="inp" type="hidden" name="mName" value="<%=SmemVO.getmName()%>" required />
+						<%=SmemVO.getmName()%>
+					</td>
 				</tr>
 				<tr>
 					<td>會員性別:</td>

@@ -166,6 +166,20 @@
 		<url-pattern>/checkcode.do</url-pattern>
 	</servlet-mapping>
 	
+	<!-- coupon controller -->
+	<servlet>
+		<servlet-name>CouponServlet</servlet-name>
+		<servlet-class>com.coupon.controller.CouponServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CouponServlet</servlet-name>
+		<url-pattern>/coupon/coupon.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
+	
 	<!-- WebSocket chat -->
 	<servlet>
 		<servlet-name>NameServlet</servlet-name>

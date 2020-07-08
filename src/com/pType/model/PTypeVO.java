@@ -1,4 +1,4 @@
-package com.pType.model;
+package com.ptype.model;
 
 public class PTypeVO implements java.io.Serializable{
 	private String pTno;

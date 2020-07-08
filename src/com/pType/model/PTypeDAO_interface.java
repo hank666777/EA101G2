@@ -1,4 +1,4 @@
-package com.pType.model;
+package com.ptype.model;
 
 import java.util.*;
 

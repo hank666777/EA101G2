@@ -1,18 +1,19 @@
-package com.pType.model;
+package com.ptype.model;
 
 import java.sql.*;
 import java.util.*;
 
+
 public class PTypeJDBCDAO implements PTypeDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "NESTOR";
-	String passwd = "123";
+	String userid = "EA101_G2";
+	String passwd = "123456";
 	
 	private static final String INSERT_STMT=
 			"INSERT INTO PType(pTno, pTName) VALUES(('P'||LPAD(TO_CHAR(PT_SEQ.NEXTVAL),3,'0'),?)";
 	private static final String GET_ALL_STMT=
-			"SELECT pTno, pTName FROM PType ORDER BY pTno";
+			"SELECT * FROM PTYPE ORDER BY PTNO";
 	private static final String GET_ONE_STMT=
 			"SELECT pTno, pTName FROM PType WHERE pTno=?";
 	private static final String DELETE=
