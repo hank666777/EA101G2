@@ -70,9 +70,8 @@ td {
 
 </head>
 <center>
-	<body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
-		<%-- 	<%@ include file="/front-end/front-end-header.jsp"%> --%>
-
+	<body background="${pageContext.request.contextPath}/images/front-end/member_bg.png">
+<%-- 		<%@ include file="/front-end/mem/member_center.jsp" %> --%>
 		<form>
 			<table>
 				<img class="icon" id="demo" src="${pageContext.request.contextPath}/front-end/mem/mem.mPic?memno=${memVO.memno}" style="width: 150px; height: 150px">
@@ -115,11 +114,25 @@ td {
 				<tr>
 					<td>註冊日期:</td>
 					<td>
-						<input class="inp" type="hidden" name="mRegDate" value="<%=SmemVO.getmRegDate()%>" /><%=SmemVO.getmRegDate()%></td>
+						<input class="inp" type="hidden" name="mRegDate" value="<%=SmemVO.getmRegDate()%>" />
+						<%=SmemVO.getmRegDate()%>
+					</td>
+				</tr>
+				<tr>
+					<td>會員狀態</td>
+					<td style="color:#00F;">
+						${(memVO.mStatus == 0) ? '未驗證':''}
+						${(memVO.mStatus == 1) ? '驗證成功':''}
+					</td>
 				</tr>
 
 			</table>
-			<a href="${pageContext.request.contextPath}/front-end/mem/update_mem_input.jsp"><h2><span class="badge badge-pill badge-warning">修改資料</span></h2></a>
+			<a href="${pageContext.request.contextPath}/front-end/mem/update_mem_input.jsp">
+				<h2><span class="badge badge-pill badge-warning">修改資料</span></h2>
+			</a>
+			<a href="${pageContext.request.contextPath}/front-end/mem/identify.jsp">
+				<h2><span class="badge badge-pill badge-warning" style="display:${(memVO.mStatus == 0) ? 'display':'none'}">重新驗證</span></h2>
+			</a>
 <!-- 			<input type="button" value="修改資料" style="width: 110px; height: 50px;" -->
 <!-- 			 onclick="self.location.href=''" /> -->
 			<br>

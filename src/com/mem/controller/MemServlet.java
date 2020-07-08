@@ -62,7 +62,7 @@ public class MemServlet extends HttpServlet {
 				MemService memSvc = new MemService();
 				MemVO memVO = memSvc.memberLogin(mAccount, mPw);
 				
-				System.out.println("memlogin: "+memVO==null);
+				System.out.println("memlogin: "+ memVO == null);
 				
 //				if (memVO == null) {
 //					errorMsgs.add("查無資料");
@@ -144,6 +144,35 @@ public class MemServlet extends HttpServlet {
 
 		}
 
+		//再次取得驗證碼
+		if("identify_again".equals(action)) {
+			
+			MemVO member = (MemVO)session.getAttribute("memVO");
+			
+			MailService ms = new MailService(); // 建立物件 發送mail
+			String authCode = UUID.randomUUID().toString().substring(0, 8); // 產生驗證碼
+			System.out.println(authCode);
+
+			
+
+			// 連線Jedis
+			Jedis jedis = new Jedis("localhost", 6379);
+			jedis.auth("123456");
+
+			jedis.set(member.getmAccount(), authCode);// 把key value 存入Redis
+
+			String mEmail = member.getmEmail(); // 取得寄送到的會員mail
+			String messageText = "Hi \n" + member.getmName() + "\n這是你的驗證碼："+ authCode;
+			ms.sendMail(mEmail, "Miss M 認證信", messageText);
+			
+			//回驗證網頁
+			String url = "/front-end/mem/identify.jsp";// 跳轉驗證網頁
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+			
+			
+		}
+		
 		if ("update".equals(action)) {
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -239,36 +268,13 @@ public class MemServlet extends HttpServlet {
 				}
 
 				/*************************** 2.開始修改資料 *****************************************/
+				MemVO memVO2 = memSvc.updateMem(mAccount, mPw, mPic, mName, mGender, mPhone, mEmail, mRegDate, mStatus, memno);
 				
-				MemVO memVO2 = memSvc.updateMem(mAccount, mPw, mPic, mName, mGender, mPhone, mEmail, mRegDate, mStatus,
-						memno);
-
+				/*************************** 3.準備轉交 ***************/
 				session.setAttribute("memVO", memVO2);
-
-				MemVO mem = (MemVO) session.getAttribute("memVO");
-
-				if (mem == null) {
-					session.setAttribute("location", req.getRequestURI());
-					res.sendRedirect(req.getContextPath() + "/front-end/mem/memerlogin.jsp");
-					return;
-				} else {
-
-					// session.setAttribute("memno", rs.getString("memno")); //*工作1:
-					// 才在session內做已經登入過的標識
-					try {
-						String location = (String) session.getAttribute("location");
-						if (location != null) {
-							session.removeAttribute("location"); // *工作2: 看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
-							return;
-						}
-					} catch (Exception ignored) {
-					  //catch一定要顯示，不要空白，BY 峰
-					  System.out.println("update error:" + ignored);
-					}
-					res.sendRedirect(req.getContextPath() + "/front-end/mem/listOneMem.jsp"); // *工作3:
-																					// (-->如無來源網頁:則重導至listOneMem.jsp)
-
-				}
+				String url = "/front-end/mem/member_center.jsp";// 跳轉回會員中心
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {

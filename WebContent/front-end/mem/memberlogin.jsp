@@ -80,7 +80,7 @@ body {
 	margin: -2% 0px;
 }
 </style>
-<body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
+<body background="${pageContext.request.contextPath}/images/front-end/member_bg.png">
 	
 <%@ include file="/front-end/front-end-header.jsp"%>
 	

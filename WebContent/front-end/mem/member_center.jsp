@@ -10,7 +10,8 @@
 
 <style>
 #main{
-	background-image: url(${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg);
+	background-image: url(${pageContext.request.contextPath}/images/front-end/member_bg.png);
+	background-size:contain;
 	height:100vh;
 }
 #second-main{
@@ -21,22 +22,23 @@
 <body>
 	<div class="container-fluid" id="main">
 		
-		<div class="row" id="second-main">
+		<div class="row" id="second-main" style="height:100vh;">
 		
 		  <div class="col-2" style="padding:0;">
 		    <div class="list-group" id="list-tab" role="tablist">
+					<!-- 連結鎖定 -->
 		      <a class="list-group-item" onclick='return click(this);' disabled='ture'>
 			      <img style='width: 50px; height: 50px; border-radius: 50%;' src='${pageContext.request.contextPath}/front-end/mem/mem.mPic?memno=${memVO.memno}'>
 			      ${sessionScope.memVO.mName } ${(sessionScope.memVO ==null) ? '':'您好~' }
 		      </a>
-		      <a class="list-group-item list-group-item-action" href="${pageContext.request.contextPath}/front-end/index.jsp">
+		      <a class="list-group-item list-group-item-action active" href="${pageContext.request.contextPath}/front-end/index.jsp">
 		      	<i class="fa fa-home fa-2x"></i> 回首頁
 		      </a>
 		      <a class="list-group-item list-group-item-action " id="listOneMem" data-toggle="list" href="#list-listOneMem" role="tab" aria-controls="home">
 		      	<i class="fa fa-address-card fa-2x" aria-hidden="true"></i> 個人資料
 		      </a>
 		      <a class="list-group-item list-group-item-action" id="coupon" data-toggle="list" href="#list-coupon" role="tab" aria-controls="profile">
-		      	<i class="fa fa-ticket fa-2x" aria-hidden="true"></i> 優惠券
+		      	<i class="fa fa-tag fa-2x" aria-hidden="true"></i> 優惠券
 		      </a>
 		      <a class="list-group-item list-group-item-action" id="onLineOrder" data-toggle="list" href="#list-onLineOrder" role="tab" aria-controls="messages">
 		      	<i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i> 訂購清單
@@ -45,15 +47,24 @@
 		      	<i class="fas fa-chair fa-2x"></i> 訂位查詢
 		      </a>
 		      <a class="list-group-item list-group-item-action" id="activity" data-toggle="list" href="#list-activity" role="tab" aria-controls="settings">
-		      	<i class=""></i> 活動查詢
+		      	<i class="fa fa-list-ul fa-2x" aria-hidden="true"></i> 活動查詢
+		      </a>
+		      <a class="list-group-item list-group-item-action" id="responselist" data-toggle="list" href="#list-responselist" role="tab" aria-controls="settings">
+		      	<i class="fas fa-paper-plane fa-2x"></i> 意見反映
+		      </a>
+		      <a class="list-group-item list-group-item-action" id="message" data-toggle="list" href="#list-message" role="tab" aria-controls="settings">
+		      	<i class="fas fa-comment-dots fa-2x"></i> 留言紀錄
+		      </a>
+		      <a class="list-group-item list-group-item-action" href="${pageContext.request.contextPath}/front-end/mem/memberlogout.do">
+		      	<i class="fas fa-sign-out-alt fa-2x"></i> 登出
 		      </a>
 		    </div>
 		  </div>
 		  
 		  <div class="col-10">
 		    <div class="tab-content" id="nav-tabContent">
-		      <div class="tab-pane fade show active" id="list-listOneMem" role="tabpanel" aria-labelledby="listOneMem">
-<!-- 						這是會員個人資料 -->
+		      <div class="tab-pane fade show " id="list-listOneMem" role="tabpanel" aria-labelledby="listOneMem">
+						<!--	這是會員個人資料 -->
 						<%@ include file="/front-end/mem/listOneMem.jsp"%>
 		      </div>
 		      <div class="tab-pane fade" id="list-coupon" role="tabpanel" aria-labelledby="coupon">
@@ -68,18 +79,16 @@
 		      <div class="tab-pane fade" id="list-activity" role="tabpanel" aria-labelledby="activity-list">
 		      	活動查詢(未導入)
 		      </div>
-		      <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-list">
+		      <div class="tab-pane fade" id="list-responselist" role="tabpanel" aria-labelledby="booking-list">
 		      	意見反映查詢(未導入)
 		      </div>
-		      <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-list">
+		      <div class="tab-pane fade" id="list-message" role="tabpanel" aria-labelledby="booking-list">
 		      	留言紀錄(未導入)
 		      </div>
 		    </div>
 		  </div>
 		  
 		</div>
-		
-		
 		
 	</div>
 	

@@ -71,14 +71,12 @@ td {
 
 <center>
 
-	<body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
+	<body background="${pageContext.request.contextPath}/images/front-end/member_bg.png">
 <%-- 		<%@ include file="/front-end/front-end-header.jsp"%> --%>
 		
 		<div class="container">
 			<div class="row justify-content-start">
 				<div class="col">
-				
-				
 				
 				</div>
 			</div>
@@ -89,7 +87,7 @@ td {
 		<FORM METHOD="post" name="form1" enctype="multipart/form-data"
 					ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do">
              
-         <input type="hidden" name="action" value="update"/>
+         
     			<img class="icon" id="demo" style="width: 150px; height: 150px"
     						src="<%=request.getContextPath()%>/front-end/mem/mem.mPic?memno=${memVO.memno}">
 			 
@@ -144,18 +142,16 @@ td {
 
 			</table>
 		    <input type="hidden" name="memno" value="<%=memVO.getMemno()%>"> 
+				<input type="hidden" name="action" value="update"/>
 				<input type="submit" value="送出修改"> 
 				<input type="button" value="取消" style="width: 90px; height: 40px;"
 				       onclick="self.location.href='${pageContext.request.contextPath}/front-end/mem/member_center.jsp'" /><br>
 				       
 				 <%-- 錯誤表列 --%>
 			<c:if test="${not empty errorMsgs}">
-				<font style="color: red">請修正以下錯誤:</font>
-				<ul>
-					<c:forEach var="message" items="${errorMsgs}">
-						<li style="color: red">${message}</li>
-					</c:forEach>
-				</ul>
+				<c:forEach var="message" items="${errorMsgs}">
+					<font style="color: red">${message}</font><br>
+				</c:forEach>
 			</c:if>
 
 			<br>      		       

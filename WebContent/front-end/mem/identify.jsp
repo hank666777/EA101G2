@@ -13,7 +13,7 @@
 <script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="https://use.fontawesome.com/0114a256f7.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<%@ include file="/back-end/back-end-head.jsp" %>
 </head>
 
 <style>
@@ -73,22 +73,45 @@ form {
 			<td>
 				<div>
 					驗證 <i class="fa fa-envelope-o" aria-hidden="true"></i>
-					   <input id="" class="inp" type="text" name="formCode" value="" placeholder="請輸入驗證碼..." required /> 
+					   <input id="" class="inp" type="text" name="formCode" value="" placeholder="請輸入驗證碼..."/> 
 					   <input id="demo3" class="confirm" type="submit" name="" value="確認"/>
 				</div>
+				
 			</td>
 		</tr>
 
 		<%-- 錯誤表列 --%>
 		<c:if test="${not empty errorMsgs}">
 			<c:forEach var="message" items="${errorMsgs}">
-				<font style="color: #f00">${message}</font>
+				<font style="color: #f00">${message}</font><br>
 			</c:forEach>
 		</c:if>
-
-
 	</form>
-
+	
+	<form method="post" name="form2"
+				action="<%=request.getContextPath()%>/front-end/mem/mem.do">
+		<div>
+			<input type="submit" id="againbtn" class="confirm" value="沒收到驗證碼"/>
+			<input type="hidden" name="action" value="identify_again"/>
+		</div>
+	</form>
+	<script>
+		$('#againbtn').on('click',function(){
+			var againbtn = this;
+			setTimeout(function(){
+				againbtn.disabled = true;
+			},50);
+		});
+		
+		$('#demo3').on('click',function(){
+			var demo3 = this;
+			setTimeout(function(){
+				demo3.disabled = true;
+			},50);
+		})
+		
+		
+	</script>
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </body>

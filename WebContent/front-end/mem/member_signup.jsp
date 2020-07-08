@@ -84,7 +84,7 @@ img#demo:hover {
 
 <center>
 
-	<body background="${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg">
+	<body background="${pageContext.request.contextPath}/images/front-end/member_bg.png">
 		<%@ include file="/front-end/front-end-header.jsp"%>
 		
 		<br>
@@ -94,7 +94,7 @@ img#demo:hover {
 		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do"
 			name="form1" enctype="multipart/form-data">
 
-			<input type="hidden" name="action" value="insert">
+			
 			<label for="file">
 				<img class="icon" id="demo" />
 				<input id="file" type="file" name="mPic" style="display:none; "
@@ -156,7 +156,7 @@ img#demo:hover {
 
 			</table>
 
-
+			<input type="hidden" name="action" value="insert">
 			<input type="submit" value="送出" style="width: 90px; height: 40px;">
 			<input type="button" value="取消" style="width: 90px; height: 40px;"
 				onclick="self.location.href='${pageContext.request.contextPath}/front-end/mem/member_center.jsp'" /><br>

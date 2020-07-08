@@ -60,6 +60,7 @@
 		<filter-name>FrontLoginfilter</filter-name>
 		<url-pattern>/front-end/mem/update_mem_input.jsp</url-pattern>
 		<url-pattern>/front-end/mem/member_center.jsp</url-pattern>
+		<url-pattern>/front-end/mem/identify.jsp</url-pattern>
 		<url-pattern>/front-end/suggest/addSuggest.jsp</url-pattern>
 		<url-pattern>/front-end/chat/member_chat.jsp</url-pattern>
 		
