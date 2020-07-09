@@ -7,7 +7,7 @@
 <%
     MemService memSvc = new MemService();
 
-    List<MemVO> list = memSvc.getAll();
+	List<MemVO> list = memSvc.getAll();
     
     pageContext.setAttribute("list",list);
 

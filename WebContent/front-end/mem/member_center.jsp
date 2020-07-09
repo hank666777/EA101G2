@@ -76,13 +76,14 @@
 						<%@ include file="/front-end/mem/listOneMem.jsp"%>
 		      </div>
 		      <div class="tab-pane fade" id="list-coupon" role="tabpanel" aria-labelledby="coupon">
-		      	<!-- 這是會員的優惠券 -->
-<%@ include file="/front-end/myCoupon/listMyCoupon.jsp"%>
+		      	<!-- 會員的優惠券 -->
+						<%@ include file="/front-end/myCoupon/listMyCoupon.jsp"%>
 		    	</div>
 		      <div class="tab-pane fade" id="list-onLineOrder" role="tabpanel" aria-labelledby="list-onLineOrder">
 		      	訂單查詢(未導入)
 		      </div>
 		      <div class="tab-pane fade" id="list-booking" role="tabpanel" aria-labelledby="booking-list">
+		      	<!-- 會員的訂位紀錄 -->
 		      	<%@ include file="/front-end/bok/listByMemNoForInclude.jsp"%> 
 		      </div>
 		      <div class="tab-pane fade" id="list-activity" role="tabpanel" aria-labelledby="activity-list">

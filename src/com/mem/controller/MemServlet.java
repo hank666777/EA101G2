@@ -2,15 +2,6 @@ package com.mem.controller;
 
 import java.io.*;
 import java.util.*;
-
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
@@ -134,9 +125,11 @@ public class MemServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			MemService memSvc = new MemService();
+			
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String memno = req.getParameter("memno").trim();
 				String mAccount = req.getParameter("mAccount").trim();
 
 				if (mAccount == null || mAccount.trim().length() == 0) {
@@ -151,11 +144,15 @@ public class MemServlet extends HttpServlet {
 					errorMsgs.add("密碼只能是英文字母&數字,且長度為4到10之間");
 				}
 
-//				新增圖片
+				byte[] mPic;
 				Part part = req.getPart("mPic");
 				InputStream in = part.getInputStream();
-				byte[] mPic = new byte[in.available()];
-				in.read(mPic);
+				if(in.available() == 0) {
+					mPic = memSvc.getOneMem(memno).getmPic();
+				}else {
+					mPic = new byte[in.available()];
+					in.read(mPic);
+				}
 				in.close();
 
 				String mName = req.getParameter("mName");
@@ -192,7 +189,7 @@ public class MemServlet extends HttpServlet {
 					errorMsgs.add("會員狀態請勿空白");
 				}
 
-				String memno = req.getParameter("memno").trim();
+				
 
 				MemVO memVO = new MemVO();
 				memVO.setmAccount(mAccount);
@@ -215,34 +212,34 @@ public class MemServlet extends HttpServlet {
 				}
 
 				/*************************** 2.開始修改資料 *****************************************/
-				MemService memSvc = new MemService();
-				MemVO memVO2 = memSvc.updateMem(mAccount, mPw, mPic, mName, mGender, mPhone, mEmail, mRegDate, mStatus,
-						memno);
+				
+				MemVO memVO2 = memSvc.updateMem(mAccount, mPw, mPic, mName, mGender, mPhone, mEmail, mRegDate, mStatus,	memno);
 
 				session.setAttribute("memVO", memVO2);
+//
+				res.sendRedirect(req.getContextPath() + "/front-end/mem/member_center.jsp"); // *工作3:
+//				MemVO mem = (MemVO) session.getAttribute("memVO");
+//
+//				if (mem == null) {
+//					session.setAttribute("location", req.getRequestURI());
+//					res.sendRedirect(req.getContextPath() + "/front-end/mem/select_page.jsp");
+//					return;
+//				} else {
+//
+//					// session.setAttribute("memno", rs.getString("memno")); //*工作1:
+//					// 才在session內做已經登入過的標識
+//					try {
+//						String location = (String) session.getAttribute("location");
+//						if (location != null) {
+//							session.removeAttribute("location"); // *工作2: 看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
+//							return;
+//						}
+//					} catch (Exception ignored) {
+//						ignored.getStackTrace();
+//					}
+																					// (-->如無來源網頁:則重導至member_center.jsp)
 
-				MemVO mem = (MemVO) session.getAttribute("memVO");
-
-				if (mem == null) {
-					session.setAttribute("location", req.getRequestURI());
-					res.sendRedirect(req.getContextPath() + "/front-end/mem/select_page.jsp");
-					return;
-				} else {
-
-					// session.setAttribute("memno", rs.getString("memno")); //*工作1:
-					// 才在session內做已經登入過的標識
-					try {
-						String location = (String) session.getAttribute("location");
-						if (location != null) {
-							session.removeAttribute("location"); // *工作2: 看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
-							return;
-						}
-					} catch (Exception ignored) {
-					}
-					res.sendRedirect(req.getContextPath() + "/front-end/mem/listOneMem.jsp"); // *工作3:
-																					// (-->如無來源網頁:則重導至listOneMem.jsp)
-
-				}
+//				}
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
@@ -258,16 +255,13 @@ public class MemServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-			
-			
-			
-
+			MemService memSvc = new MemService();
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				//帳號重複防呆
-				MemService memSvc_check = new MemService();
+				
 				List<MemVO> memlist = new ArrayList<>();
-				memlist = memSvc_check.getAll();
+				memlist = memSvc.getAll();
 				
 				String mAccount = req.getParameter("mAccount").trim();
                 String mAccount_reg = "^[a-zA-Z0-9]{4,10}$";
@@ -276,13 +270,13 @@ public class MemServlet extends HttpServlet {
 				}else if (!mAccount.trim().matches(mAccount_reg)) {
 					errorMsgs.add("帳號只能是英文字母&數字,且長度為4到10之間");
 				}
+//				System.out.println("mAccount: "+ mAccount);
 				
 				//使用foreach跑迴圈確認使用者輸入的帳號是否與資料庫中的某一帳號重複
-				for(MemVO amem:memlist) {
-						if(mAccount.trim().equals(amem.getmAccount())) {
-							errorMsgs.add("此帳號已有人使用");
-						}
-					
+				for(MemVO amem : memlist) {
+					if(mAccount.trim().equals(amem.getmAccount())) {
+						errorMsgs.add("此帳號已有人使用");
+					}
 				}
 
 				String mPw = req.getParameter("mPw").trim();
@@ -326,10 +320,7 @@ public class MemServlet extends HttpServlet {
 					errorMsgs.add("email請勿空白");
 				}
 
-				Integer mStatus = new Integer(req.getParameter("mStatus"));
-				if (mStatus == null) {
-					errorMsgs.add("會員狀態請勿空白");
-				}
+				//會員狀態預設0
 
 				MemVO memVO = new MemVO();
 				memVO.setmAccount(mAccount);
@@ -339,39 +330,36 @@ public class MemServlet extends HttpServlet {
 				memVO.setmGender(mGender);
 				memVO.setmPhone(mPhone);
 				memVO.setmEmail(mEmail);
-				memVO.setmStatus(mStatus);
+				memVO.setmStatus(0);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memVO", memVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/addMem.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/member_signup.jsp");
 					failureView.forward(req, res);
 					return;
 				}
-				MemService memSvc = new MemService();
-				memVO = memSvc.addMem(mAccount, mPw, mPic, mName, mGender, mPhone, mEmail, mStatus);
 				
+				/**********2.開始新增資料***************/
+				MemVO memVO2 = memSvc.addMem(mAccount, mPw, mPic, mName, mGender, mPhone, mEmail, 0);
 				
-				
-
-				// 寄信驗證碼
+				// 2.1寄信驗證碼**********************//
 				MailService ms = new MailService(); // 建立物件 發送mail
-				String authCode = MemberRedis.returnAuthCode(); // 產生驗證碼
-				System.out.println(authCode);
+				String authCode = UUID.randomUUID().toString().substring(0, 8); // 產生驗證碼
+				System.out.println("驗證碼: "+authCode);
 
-				String to = memVO.getmEmail(); // 取得寄送到的會員mail
-				String subject = "Miss M 認證信";
-				String messageText = "Hi " + memVO.getmName() + "歡迎你加入 ," + "\n這是你的驗證碼："+authCode;
-				ms.sendMail(to, subject, messageText);
+				String messageText = "Hi " + memVO2.getmName() + " 歡迎你加入 ," + "\n這是你的驗證碼："+authCode;
+				ms.sendMail(mEmail, "Miss M 認證信", messageText);
 
 				// 連線Jedis
 				Jedis jedis = new Jedis("localhost", 6379);
-				jedis.auth("20200723");
+				jedis.auth("123456");
 
-				jedis.set(memVO.getmAccount(), authCode);// 把key value 存入Redis
+				jedis.set(memVO2.getmAccount(), authCode);// 把key value 存入Redis
 
+				/**********3.新增完成，準備轉交**********/
 				// 把key存session 存ID
-				session.setAttribute("memVO", memVO);
+				session.setAttribute("memVO", memVO2);
 
 				String url = "/front-end/mem/identify.jsp";// 跳轉驗證頁
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -382,7 +370,7 @@ public class MemServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/listOneMem.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/member_signup.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -398,7 +386,7 @@ public class MemServlet extends HttpServlet {
 
     			// 建立連線 取得新增會員的key value
     		    jedis = new Jedis("localhost", 6379);
-    			jedis.auth("20200723");
+    			jedis.auth("123456");
     			String authCode = jedis.get(SmemVO.getmAccount());// 取得key裡的value
 
     			// 驗證碼防呆 &
@@ -421,7 +409,10 @@ public class MemServlet extends HttpServlet {
     				String mAccount = SmemVO.getmAccount();
     				mSv.identify(mStatus, mAccount);
     					 				
-    				String url = "/front-end/mem/select_page.jsp";// 成功後，跳轉到重新登入
+    				String url = "/front-end/mem/memberlogin.jsp";// 成功後，跳轉到重新登入
+    				//重新登入要移除會員session
+    				session.removeAttribute("memVO");
+    				
     				RequestDispatcher successView = req.getRequestDispatcher(url);
     				successView.forward(req, res);
     				return;
@@ -432,12 +423,40 @@ public class MemServlet extends HttpServlet {
     				failureView.forward(req, res);
     				return;// 程式中斷
     			}
-            }catch(Exception e){
+            } catch(Exception e){
             	e.printStackTrace();
-            }
-			finally{
+            } finally{
 				jedis.close();// 關閉Jedis資源
 			}
+
+		}
+		
+		//再次取得驗證碼
+		if("identify_again".equals(action)) {
+
+			MemVO member = (MemVO)session.getAttribute("memVO");
+
+			MailService ms = new MailService(); // 建立物件 發送mail
+			String authCode = UUID.randomUUID().toString().substring(0, 8); // 產生驗證碼
+			System.out.println(authCode);
+
+
+
+			// 連線Jedis
+			Jedis jedis = new Jedis("localhost", 6379);
+			jedis.auth("123456");
+
+			jedis.set(member.getmAccount(), authCode);// 把key value 存入Redis
+
+			String mEmail = member.getmEmail(); // 取得寄送到的會員mail
+			String messageText = "Hi \n" + member.getmName() + "\n這是你的驗證碼："+ authCode;
+			ms.sendMail(mEmail, "Miss M 認證信", messageText);
+
+			//回驗證網頁
+			String url = "/front-end/mem/identify.jsp";// 跳轉驗證網頁
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+
 
 		}
 		

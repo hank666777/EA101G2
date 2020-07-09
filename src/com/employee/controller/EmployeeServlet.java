@@ -226,7 +226,6 @@ public class EmployeeServlet extends HttpServlet {
 				InputStream in = ePicPart.getInputStream();
 				//use default ePic
 				if(in.available() == 0) {
-//					EmployeeService empSvc = new EmployeeService();
 					ePic = empSvc.getOneEmployee(empno).getePic();
 //					System.out.println("員工圖片未更新");
 				}else {

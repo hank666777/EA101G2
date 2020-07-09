@@ -1,7 +1,6 @@
 package com.product.controller;
 
 import java.io.*;
-import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;

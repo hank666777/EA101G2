@@ -4,7 +4,6 @@
 
 <%
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
-	
 %>
 
 <html>
@@ -14,13 +13,11 @@
 	<%@ include file="/front-end/front-end-head.jsp"%>
 
 <style type="text/css">
-/* body { */
-/* 	text-align: center; */
-/* 	font-size: 20px; */
-/* 	font-family: 微軟正黑體; */
-/* 	background-size: cover; */
-/* 	margin: auto; */
-/* } */
+body { 
+ 	background-image: url(${pageContext.request.contextPath}/images/front-end/member_bg.png);
+	background-size:contain;
+	height:100vh;
+ } 
 
 form {
 	border-style: solid 5px;
@@ -72,15 +69,10 @@ td {
 <center>
 
 	<body background="${pageContext.request.contextPath}/images/front-end/member_bg.png">
-<%-- 		<%@ include file="/front-end/front-end-header.jsp"%> --%>
+		<%@ include file="/front-end/front-end-header.jsp"%>
 		
-		<div class="container">
-			<div class="row justify-content-start">
-				<div class="col">
-				
-				</div>
-			</div>
-		</div>
+		
+		<br>
 		<br>
 		<span class="mem_tittle"> 會員資料修改</span>	
 

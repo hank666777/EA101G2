@@ -94,40 +94,31 @@ img#demo:hover {
 		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/mem/mem.do"
 			name="form1" enctype="multipart/form-data">
 
-			
 			<label for="file">
 				<img class="icon" id="demo" />
-				<input id="file" type="file" name="mPic" style="display:none; "
-						value="<%=(memVO == null) ? "" : memVO.getmPic()%>" />
-		</label>
+				<input id="file" type="file" name="mPic" style="display:none;"/>
+			</label>
+			
 			<table>
 				<tr>
 					<td>帳號<img src="${pageContext.request.contextPath}/images/front-end/registImg/user.png"></td>
 					<td><input class="inp" type="text" name="mAccount" id="mAccount"
-						value="<%=(memVO == null) ? "" : memVO.getmAccount()%>" /></td>
+						value="<%=(memVO == null) ? "": memVO.getmAccount()%>" /></td>
 				</tr>
 
 				<tr>
 					<td>密碼<img src="${pageContext.request.contextPath}/images/front-end/registImg/key.png">
 					</td>
 					<td><input class="inp" type="password" name="mPw" id="mPw"
-						value="<%=(memVO == null) ? "" : memVO.getmPw()%>" /></td>
+						value="<%=(memVO == null) ?  "": memVO.getmPw()%>" /></td>
 				</tr>
-
-<!-- 				<tr> -->
-<%-- 					<td>頭像<img src="${pageContext.request.contextPath}/images/front-end/registImg/images.png"></td> --%>
-<!-- 					<td> -->
-<!-- 					<input id="file" type="file" name="mPic" style="display:none; " -->
-<%-- 						value="<%=(memVO == null) ? "" : memVO.getmPic()%>" /> --%>
-<!-- 					</td> -->
-<!-- 				</tr> -->
-				
 
 				<tr>
 					<td>名字<img src="${pageContext.request.contextPath}/images/front-end/registImg/profile.png">
 					</td>
 					<td><input class="inp" type="text" name="mName" id="mName"
-						value="<%=(memVO == null) ? "" : memVO.getmName()%>" /></td>
+						value="<%=(memVO == null) ?  "": memVO.getmName()%>" />
+					</td>
 				</tr>
 
 				<tr>
@@ -144,14 +135,16 @@ img#demo:hover {
 					<td>電話<img src="${pageContext.request.contextPath}/images/front-end/registImg/phone.png">
 					</td>
 					<td><input class="inp" type="text" name="mPhone" id="mPhone"
-						value="<%=(memVO == null) ? "" : memVO.getmPhone()%>" /></td>
+						value="<%=(memVO == null) ?  "": memVO.getmPhone()%>" />
+					</td>
 				</tr>
 
 				<tr>
 					<td>信箱<img src="${pageContext.request.contextPath}/images/front-end/registImg/mail4.png">
 					</td>
 					<td><input class="inp" type="email" name="mEmail" id="mEmail"
-						value="<%=(memVO == null) ? "" : memVO.getmEmail()%>"></td>
+						value="<%=(memVO == null) ?  "": memVO.getmEmail()%>">
+					</td>
 				</tr>
 
 			</table>
@@ -162,7 +155,7 @@ img#demo:hover {
 				onclick="self.location.href='${pageContext.request.contextPath}/front-end/mem/member_center.jsp'" /><br>
 			<span id="magicspan" class="badge badge-pill badge-success">.</span>
 
-			<%-- 錯誤表列 --%>
+			<%-- 錯誤表列 --%> 
 			<c:if test="${not empty errorMsgs}">
 				<c:forEach var="message" items="${errorMsgs}">
 					<p style="color:#F00" class="my-0">${message}</p>
@@ -180,7 +173,7 @@ img#demo:hover {
 		$('#magicspan').on('click',function(){
 			$('#mAccount').val('SSSS');
 			$('#mPw').val('1234');
-			$('#mName').val('蛇丸');
+			$('#mName').val('肉球');
 			$('#mPhone').val('0987654321');
 			$('#mEmail').val('fengptt47@gmail.com');
 		}); 
