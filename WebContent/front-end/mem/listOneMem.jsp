@@ -3,8 +3,7 @@
 <%@ page import="com.mem.model.*"%>
 
 <%
-	MemVO memVO = (MemVO) request.getAttribute("memVO");
-	MemVO SmemVO = (MemVO) session.getAttribute("memVO");
+	MemVO memVO = (MemVO) session.getAttribute("memVO");
 %>
 
 
@@ -76,41 +75,41 @@ td {
 				<tr>
 					<td>會員帳號:</td>
 					<td>
-						<input type="hidden" name="mAccount" value="<%=SmemVO.getmAccount()%>" /><%=SmemVO.getmAccount()%></td>
+						<input type="hidden" name="mAccount" value="<%=memVO.getmAccount()%>" /><%=memVO.getmAccount()%></td>
 				</tr>
 				<tr>
 					<td>會員密碼:</td>
 					<td>
-						<input type="hidden" name="mPw" value="<%=SmemVO.getmPw()%>" required /><%=SmemVO.getmPw()%></td>
+						<input type="hidden" name="mPw" value="<%=memVO.getmPw()%>" required /><%=memVO.getmPw()%></td>
 				</tr>
 				<tr>
 					<td>會員姓名:</td>
 					<td>
-						<input class="inp" type="hidden" name="mName" value="<%=SmemVO.getmName()%>" required />
-						<%=SmemVO.getmName()%>
+						<input class="inp" type="hidden" name="mName" value="<%=memVO.getmName()%>" required />
+						<%=memVO.getmName()%>
 					</td>
 				</tr>
 				<tr>
 					<td>會員性別:</td>
 					<td>
-						<input type="hidden" name="mGender" value="<%=SmemVO.getmGender()%>" /><%=SmemVO.getmGender()%></td>
+						<input type="hidden" name="mGender" value="<%=memVO.getmGender()%>" /><%=memVO.getmGender()%></td>
 
 				</tr>
 				<tr>
 					<td>會員電話:</td>
 					<td>
-						<input class="inp" type="hidden" name="mPhone" value="<%=SmemVO.getmPhone()%>" required /><%=SmemVO.getmPhone()%></td>
+						<input class="inp" type="hidden" name="mPhone" value="<%=memVO.getmPhone()%>" required /><%=memVO.getmPhone()%></td>
 				</tr>
 				<tr>
 					<td>會員mail:</td>
 					<td>
-						<input class="inp" type="hidden" name="mEmail" value="<%=SmemVO.getmEmail()%>" required /><%=SmemVO.getmEmail()%></td>
+						<input class="inp" type="hidden" name="mEmail" value="<%=memVO.getmEmail()%>" required /><%=memVO.getmEmail()%></td>
 				</tr>
 				<tr>
 					<td>註冊日期:</td>
 					<td>
-						<input class="inp" type="hidden" name="mRegDate" value="<%=SmemVO.getmRegDate()%>" />
-						<%=SmemVO.getmRegDate()%>
+						<input class="inp" type="hidden" name="mRegDate" value="<%=memVO.getmRegDate()%>" />
+						<%=memVO.getmRegDate()%>
 					</td>
 				</tr>
 				<tr>

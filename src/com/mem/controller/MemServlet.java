@@ -67,7 +67,7 @@ public class MemServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/memberlogin.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -89,7 +89,7 @@ public class MemServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/memberlogin.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -100,7 +100,7 @@ public class MemServlet extends HttpServlet {
 				MemVO mem = (MemVO) session.getAttribute("memVO");
 				if (mem == null) {
 					session.setAttribute("location", req.getRequestURI());
-					res.sendRedirect(req.getContextPath() + "/front-end/mem/select_page.jsp");
+					res.sendRedirect(req.getContextPath() + "/front-end/mem/memberlogin.jsp");
 					return;
 				} else {
 
@@ -122,7 +122,7 @@ public class MemServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/memberlogin.jsp");
 				failureView.forward(req, res);
 			}
 
