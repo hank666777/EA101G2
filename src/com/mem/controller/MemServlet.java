@@ -64,20 +64,20 @@ public class MemServlet extends HttpServlet {
 				
 				System.out.println("memlogin: "+ memVO == null);
 				
-//				if (memVO == null) {
-//					errorMsgs.add("查無資料");
-//				} else if (memVO.getmStatus() == 0) {
-//					errorMsgs.add("未驗證");
-//				} else if (memVO.getmStatus() == 2) {
-//					errorMsgs.add("停權");
-//				}
+				if (memVO == null) {
+					errorMsgs.add("查無資料");
+				} else if (memVO.getmStatus() == 0) {
+					errorMsgs.add("未驗證");
+				} else if (memVO.getmStatus() == 2) {
+					errorMsgs.add("停權");
+				}
 //
-//				// Send the use back to the form, if there were errors
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/memberlogin.jsp");
-//					failureView.forward(req, res);
-//					return;// 程式中斷
-//				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/mem/memberlogin.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
 
 //				MemVO mem = (MemVO) session.getAttribute("memVO");
 				

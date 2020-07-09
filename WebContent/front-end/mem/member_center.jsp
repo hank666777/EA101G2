@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.mem.model.*"%>
+<%-- <%@ page import="com.mem.model.*"%> --%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -70,13 +70,13 @@
 		      </div>
 		      <div class="tab-pane fade" id="list-coupon" role="tabpanel" aria-labelledby="coupon">
 		      	<!-- 這是會員的優惠券 -->
-		      	<%@ include file="/front-end/myCoupon/listMyCoupon.jsp"%>
+<%@ include file="/front-end/myCoupon/listMyCoupon.jsp"%>
 		    	</div>
 		      <div class="tab-pane fade" id="list-onLineOrder" role="tabpanel" aria-labelledby="list-onLineOrder">
 		      	訂單查詢(未導入)
 		      </div>
 		      <div class="tab-pane fade" id="list-booking" role="tabpanel" aria-labelledby="booking-list">
-		      	訂位查詢(未導入)
+		      	<%@ include file="/front-end/bok/listByMemNoForInclude.jsp"%> 
 		      </div>
 		      <div class="tab-pane fade" id="list-activity" role="tabpanel" aria-labelledby="activity-list">
 		      	活動查詢(未導入)

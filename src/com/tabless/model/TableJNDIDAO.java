@@ -100,7 +100,7 @@ public class TableJNDIDAO implements TableDAO_interface {
 			while (rs.next()) {
 				tableVO = new TableVO();
 				tableVO.setTableType(rs.getString("TableType"));
-				tableVO.setTableno(rs.getString("TableNo"));
+				tableVO.setTableNo(rs.getString("TableNo"));
 				list.add(tableVO); // Store the row in the list
 			}
 			// Handle any SQL errors
@@ -150,7 +150,7 @@ public class TableJNDIDAO implements TableDAO_interface {
 			while (rs.next()) {
 				tableVO = new TableVO();
 				tableVO.setTableType(rs.getString("TableType"));
-				tableVO.setTableno(rs.getString("TableNo"));
+				tableVO.setTableNo(rs.getString("TableNo"));
 			}
 			// Handle any SQL errors
 		} catch (SQLException se) {

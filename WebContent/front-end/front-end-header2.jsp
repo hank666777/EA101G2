@@ -26,7 +26,7 @@
 					</li>
 
 					<li class="nav-item font-weight-bold">
-						<a class="nav-link"	href="#">線上訂位</a>
+						<a class="nav-link"	href="${pageContext.request.contextPath}/front-end/bok/booking_page_user.jsp">線上訂位</a>
 					</li>
 
 					<li class="nav-item font-weight-bold">

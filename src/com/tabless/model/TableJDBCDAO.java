@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-//import com.bookingdetail.model.BokdtVO;
+import com.bookingdetail.model.BokdtVO;
 
 public class TableJDBCDAO implements TableDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "EA101_G2";
+	String userid = "G2";
 	String passwd = "123456";
 	
 	private static final String INSERT = "INSERT INTO Tabless VALUES ('T'||LPAD(to_char(Tableno_seq.NEXTVAL),4,'0'),?)";
@@ -95,9 +95,8 @@ public class TableJDBCDAO implements TableDAO_interface {
 
 			while (rs.next()) {
 				tableVO = new TableVO();
-				tableVO.setTableno(rs.getString("tableno"));
-				tableVO.setTableType(rs.getString("tableType"));
-				
+				tableVO.setTableType(rs.getString("TableType"));
+				tableVO.setTableNo(rs.getString("TableNo"));
 				list.add(tableVO); // Store the row in the list
 			}
 
@@ -152,8 +151,8 @@ public class TableJDBCDAO implements TableDAO_interface {
 
 			while (rs.next()) {
 				tableVO = new TableVO();
-				tableVO.setTableType(rs.getString("tableType"));
-				tableVO.setTableno(rs.getString("tableno"));
+				tableVO.setTableType(rs.getString("TableType"));
+				tableVO.setTableNo(rs.getString("TableNo"));
 			}
 			// Handle any SQL errors
 		} catch (ClassNotFoundException e) {

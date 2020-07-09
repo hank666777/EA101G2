@@ -63,6 +63,7 @@
 		<url-pattern>/front-end/mem/identify.jsp</url-pattern>
 		<url-pattern>/front-end/suggest/addSuggest.jsp</url-pattern>
 		<url-pattern>/front-end/chat/member_chat.jsp</url-pattern>
+		<url-pattern>/front-end/bok/*</url-pattern>
 		
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>

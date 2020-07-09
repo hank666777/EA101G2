@@ -1,32 +1,21 @@
 package com.tabless.model;
 
 public class TableVO implements java.io.Serializable{
+	private String TableNo ;
+	private String TableType ;
 	
-	private String tableno;
-	private String tableType;
-	public TableVO() {
-		super();
-		// TODO Auto-generated constructor stub
+	public String getTableNo() {
+		return TableNo;
 	}
-	public TableVO(String tableno, String tableType) {
-		super();
-		this.tableno = tableno;
-		this.tableType = tableType;
-	}
-	public String getTableno() {
-		return tableno;
-	}
-	public void setTableno(String tableno) {
-		this.tableno = tableno;
+	public void setTableNo(String tableNo) {
+		TableNo = tableNo;
 	}
 	public String getTableType() {
-		return tableType;
+		return TableType;
 	}
 	public void setTableType(String tableType) {
-		this.tableType = tableType;
+		TableType = tableType;
 	}
-	
-	
 	
 	
 
