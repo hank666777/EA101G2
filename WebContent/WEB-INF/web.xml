@@ -82,7 +82,7 @@
   
   
   
-  
+  	<!-- 博維 -->
 	
 	<servlet>
 		<servlet-name>MemServlet</servlet-name>
@@ -111,7 +111,7 @@
 		<url-pattern>/front-end/mem/memberlogout.do</url-pattern>
 	</servlet-mapping>
 	
-	
+	<!-- 漢峰 -->	
 
 	<servlet>
 		<servlet-name>EmployeeServlet</servlet-name>
@@ -150,15 +150,6 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>ShoppingServlet</servlet-name>
-		<servlet-class>com.employee.controller.ShoppingServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ShoppingServlet</servlet-name>
-		<url-pattern>/back-end/product/DBGifReaderProduct.do</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
 		<servlet-name>CheckCodeServlet</servlet-name>
 		<servlet-class>com.tool.controller.CheckCodeServlet</servlet-class>
 	</servlet>
@@ -167,7 +158,82 @@
 		<url-pattern>/checkcode.do</url-pattern>
 	</servlet-mapping>
 	
-	<!-- coupon controller -->
+	<!--鈺崧-->	
+	
+	<servlet>
+		<servlet-name>ShoppingServlet</servlet-name>
+		<servlet-class>com.product.controller.ShoppingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShoppingServlet</servlet-name>
+		<url-pattern>/product/ShoppingServlet.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	
+		<servlet-name>DBGifReaderProduct</servlet-name>
+		<servlet-class>com.product.controller.DBGifReaderProduct</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReaderProduct</servlet-name>
+		<url-pattern>/product/DBGifReaderProduct.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SungProductServlet</servlet-name>
+		<servlet-class>com.product.controller.SungProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SungProductServlet</servlet-name>
+		<url-pattern>/product/SungProductServlet.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LiveOrderServlet</servlet-name>
+		<servlet-class>com.liveOrder.controller.LiveOrderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LiveOrderServlet</servlet-name>
+		<url-pattern>/liveOrder/LiveOrderServlet.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>TablenoServlet</servlet-name>
+		<servlet-class>com.product.controller.TablenoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TablenoServlet</servlet-name>
+		<url-pattern>/product/TablenoServlet.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ONOServlet</servlet-name>
+		<servlet-class>com.ono.controller.ONOServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ONOServlet</servlet-name>
+		<url-pattern>/ONOServlet/ONOServlet.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>OnlineShopServlet</servlet-name>
+		<servlet-class>com.product.controller.OnlineShopServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OnlineShopServlet</servlet-name>
+		<url-pattern>/product/OnlineShopServlet.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdministratorServlet</servlet-name>
+		<servlet-class>com.administrator.controller.AdministratorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdministratorServlet</servlet-name>
+		<url-pattern>/administrator/AdministratorServlet.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 守偉 -->
+	
 	<servlet>
 		<servlet-name>CouponServlet</servlet-name>
 		<servlet-class>com.coupon.controller.CouponServlet</servlet-class>
@@ -177,19 +243,24 @@
 		<url-pattern>/coupon/coupon.do</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 明儀 -->
 	
-	
-	
-	
-	<!-- WebSocket chat -->
 	<servlet>
-		<servlet-name>NameServlet</servlet-name>
-		<servlet-class>com.websocketchat.controller.NameServlet</servlet-class>
+		<servlet-name>ProductServlet</servlet-name>
+		<servlet-class>com.product.controller.ProductServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>NameServlet</servlet-name>
-		<url-pattern>/chat.do</url-pattern>
+		<servlet-name>ProductServlet</servlet-name>
+		<url-pattern>/product.do</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>ProductReader</servlet-name>
+		<servlet-class>com.product.controller.ProductReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductReader</servlet-name>
+		<url-pattern>/ProductReader</url-pattern>
+	</servlet-mapping>
 	
 </web-app>
