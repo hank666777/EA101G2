@@ -55,7 +55,7 @@ public class MailService {
 
 	public static void main(String args[]) {
 
-		String to = "fengptt47@gmail.com";
+		String to = "udota3@yahoo.com.tw";
 
 		String subject = "密碼通知";
 

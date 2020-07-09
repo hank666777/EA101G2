@@ -14,9 +14,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import jdbcUtil_CompositeQuery.jdbcUtil_CompositeQuery_Booking;
 
 
-import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Booking;
 
 public class BokDAO implements BokDAO_interface{
 	

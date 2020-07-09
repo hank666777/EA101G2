@@ -3,6 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.booking.model.*"%>
 <%@ page import="com.bookingdetail.model.*"%>
+<%@ page import="com.tabless.model.*"%>
 <%@ page import="java.io.*, javax.servlet.*,java.text.*" %>
 <%
 	List<BokdtVO> list = (List<BokdtVO>)request.getAttribute("BokDetailList");
@@ -40,11 +41,13 @@
 			<td><%=bokdtVO.getBkPeriod()%></td>
 			<td><%=bokdtVO.getTableno()%></td>
 			<td>
-				<form>
+				
 					<input type="hidden" name="bkdate" value="<%=bokdtVO.getBkDate()%>">
 					<input type="hidden" name="bkperiod" value="<%=bokdtVO.getBkPeriod()%>">
+				<form action="<%=request.getContextPath()%>/product/TablenoServlet.do">
 					<input type="hidden" name="tableno" value="<%=bokdtVO.getTableno()%>">
-					<input type="submit" value="點餐">
+					<input type="hidden" name="action" value="confirm">
+					<input type="submit" name="Submit" value="點餐">
 				</form>
 			</td>
 		</tr>

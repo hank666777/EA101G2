@@ -22,7 +22,7 @@
 <!-- 					</li> -->
 
 					<li class="nav-item font-weight-bold">
-						<a class="nav-link" href="#">線上訂餐</a>
+						<a class="nav-link" href="${pageContext.request.contextPath}/front-end/onlineShop/OShop.jsp">線上訂餐</a>
 					</li>
 
 					<li class="nav-item font-weight-bold">

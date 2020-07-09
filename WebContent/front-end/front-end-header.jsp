@@ -22,7 +22,7 @@
 					<a id="member" href="${pageContext.request.contextPath}/front-end/mem/member_center.jsp"> 
 						<i class="fa fa-user"></i> 會員中心
 					</a> 
-					<a id="cart" href="${pageContext.request.contextPath}"> 
+					<a id="cart" href="${pageContext.request.contextPath}/front-end/onlineShop/OCart.jsp"> 
 						<i class="fa fa-shopping-cart"></i> 購物車
 					</a> 
 					<a id="myfavor" href="${pageContext.request.contextPath}"> 

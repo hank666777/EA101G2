@@ -17,7 +17,9 @@ import javax.sql.DataSource;
 
 import com.booking.model.BokVO;
 
-import jdbc.util.CompositeQuery.*;
+import jdbcUtil_CompositeQuery.jdbcUtil_CompositeQuery_BookingDetail;
+
+
 
 public class BokdtDAO implements BokdtDAO_interface {
 	

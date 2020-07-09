@@ -1,5 +1,14 @@
 package com.mem.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import redis.clients.jedis.BitOP;
+import redis.clients.jedis.Jedis;
+
 public class MemberRedis {
 	
 	 static String returnAuthCode() {

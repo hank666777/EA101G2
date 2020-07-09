@@ -14,7 +14,7 @@ public class MyCouponJNDIDAO implements MyCouponDAO {
 
 	private static final String INSERT_STMT = "INSERT INTO MYCOUPON VALUES"+
 			"(to_char(sysdate,'yyyymmdd')||'-CS'||LPAD(to_char(MYCOUPON_SEQ.NEXTVAL),4,'0'),1,?,?)";
-	private static final String UPDATE_STMT = "UPDATE MYCOUPON SET COUPONSTATUS=1 WHERE COUPONSNO = ?";
+	private static final String UPDATE_STMT = "UPDATE MYCOUPON SET COUPONSTATUS=0 WHERE COUPONSNO = ?";
 	private static final String GET_ALL = "SELECT * FROM MYCOUPON" ;
 	private static final String GET_PIC="SELECT COUPONPIC FROM COUPON WHERE COUPONNO=?";
 	private static final String GET_MY_COUPON="SELECT COUPONNO,COUNT(1)as COUNTS FROM MYCOUPON WHERE MEMNO=? AND COUPONSTATUS=1 GROUP BY COUPONNO";
