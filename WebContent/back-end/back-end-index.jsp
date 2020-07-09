@@ -11,10 +11,13 @@
 
 <html>
 <head>
-	<title>Miss M管理首頁</title>
+<title>Miss M管理首頁</title>
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/back-end/chatRoom/css/chatStyle.css">
 	<%@ include file="/back-end/back-end-head.jsp" %>
 </head>
-<body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg">
+<body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg" onload="connect();" onunload="disconnect();">
 	  <div class="container-fluid" style="hegiht:100vh;">
 				
 			<ul class="nav justify-content-end align-items-center" style="background-color: #778899; margin:0 -15; padding:0 10;">
@@ -58,13 +61,14 @@
 								href="${pageContext.request.contextPath}/back-end/
 									${(feaVO.feano == 'F0010') ? 'employee/select_page_employee.jsp':''}
 									${(feaVO.feano == 'F0020') ? 'mem/listAllMem.jsp':''}
-									${(feaVO.feano == 'F0030') ? 'product/select_page_product.jsp':''}
-									${(feaVO.feano == 'F0040') ? 'bok/select_page_booking.jsp':''}
+									${(feaVO.feano == 'F0030') ? 'product/selectProductPage.jsp':''}
+									${(feaVO.feano == 'F0040') ? 'bok/booking_page_admin.jsp':''}
 									${(feaVO.feano == 'F0050') ? 'activity/select_page_activity.jsp':''}
 									${(feaVO.feano == 'F0060') ? 'chat/employee_chat.jsp':''}
-									${(feaVO.feano == 'F0070') ? 'liveorder/select_page_liveorder.jsp':''}
-									${(feaVO.feano == 'F0080') ? 'onlineorder/select_page_onlineorder.jsp':''}
-									${(feaVO.feano == 'F0090') ? 'faq/select_page_faq.jsp':''}">
+									${(feaVO.feano == 'F0070') ? 'bok/liveOrderMultiQuery.jsp':''}
+									${(feaVO.feano == 'F0080') ? 'liveOrder/select_page.jsp':''}
+									${(feaVO.feano == 'F0090') ? 'coupon/couponIndex.jsp':''}
+									${(feaVO.feano == 'F0100') ? 'gggeg/egeswg.jsp':''}">
 									
 <!-- 								塞圖片用，放在引號 -->
 								<p class="h2 text-white">
@@ -100,7 +104,9 @@
 									${(feaVO.feano == 'F0080') ? '<svg class="bi bi-tag-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd" d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
 							</svg>':''}
-									${(feaVO.feano == 'F0090') ? '<svg class="bi bi-chat-quote-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									${(feaVO.feano == 'F0090') ? '':''}
+							
+									${(feaVO.feano == 'F0100') ? '<svg class="bi bi-chat-quote-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 						    <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM7.194 6.766c.087.124.163.26.227.401.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 9.333 4 8.587 4 7.667 4 6.747 4.776 6 5.734 6c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324.085.083.161.174.227.272zM11 9.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666 0-.92.777-1.667 1.734-1.667.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324.085.083.161.174.227.272.087.124.164.26.228.401.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z"/>
 							</svg>':''}
 								${feaVO.feaName}</p>
@@ -125,9 +131,7 @@
 						</div>
 						
 						<!-- 放置區開始 -->
-						<div class="row" id="back-end-main-area" >
-														
-						</div>						
+												
 						<!-- 放置區結束 -->
 						
 					</div>
@@ -135,8 +139,191 @@
 	  		</div>
 	  	</div>
 	  </div>
+	  
+	  <div id="chat-circle" class="btn btn-raised">
+			<div id="chat-overlay"></div>
+			<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  			<path fill-rule="evenodd" d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+  			<path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+			</svg>
+		</div>
+		
+		
+		<div class="chat-box">
+			<div class="chat-box-header">
+				ChatBot <span class="chat-box-toggle"><i
+					class="material-icons">close</i></span>
+			</div>
+			<div id="row"></div>
+			<div class="chat-box-body" id="messagesArea">
+									
+			
+			</div>
+			<div class="chat-input">
+				
+					<input type="text" id="message" placeholder="Send a message..." onkeydown="if (event.keyCode == 13) sendMessage();"/>
+					<input type="submit" class="chat-submit" id="sendMessage" value="送出" onclick="sendMessage();" />
+
+			</div>
+		</div>						
 	
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
+	
+<script>
+
+	$(function () {
+	  var INDEX = 0;
+	  $("#sendMessage").click(function (e) {
+	    e.preventDefault();
+	    var msg = $("#message").val();
+	    if (msg.trim() == "") {
+	      return false;
+	    }
+
+	  });
+	
+	 $("#chat-circle").click(function () {
+	    $("#chat-circle").toggle("scale");
+	    $(".chat-box").toggle("scale");
+	  });
+
+	  $(".chat-box-toggle").click(function () {
+	    $("#chat-circle").toggle("scale");
+	    $(".chat-box").toggle("scale");
+	  });
+	});
+	
+	var MyPoint = "/FriendWS/${employeeVO.empno}";
+	var host = window.location.host;
+	var path = window.location.pathname;
+	var webCtx = path.substring(0, path.indexOf('/', 1));
+	var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+
+	var statusOutput = document.getElementById("statusOutput");
+	var messagesArea = document.getElementById("messagesArea");
+	var self = '${employeeVO.empno}';
+	var webSocket;                   
+
+	function connect() {
+		// create a websocket
+		webSocket = new WebSocket(endPointURL);
+
+		webSocket.onopen = function(event) {
+			console.log("Connect Success!");
+		};
+
+		webSocket.onmessage = function(event) {
+			var jsonObj = JSON.parse(event.data);
+			if ("open" === jsonObj.type) {
+				refreshFriendList(jsonObj);
+				
+			/*不須點選取得歷史訊息*/
+			var jsonObj = {
+				"type" : "history",
+				"sender" : self,
+				"receiver" : "E0000003",
+				"message" : ""
+			};
+			webSocket.send(JSON.stringify(jsonObj));
+				
+				
+			} else if ("history" === jsonObj.type) {
+				messagesArea.innerHTML = '';
+				var ul = document.createElement('ul');
+				ul.id = "area";
+				messagesArea.appendChild(ul);
+				// 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
+				var messages = JSON.parse(jsonObj.message);
+				for (var i = 0; i < messages.length; i++) {
+					var historyData = JSON.parse(messages[i]);
+					var showMsg = historyData.message;
+					var li = document.createElement('li');
+					// 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
+					historyData.sender === self ? li.className += 'me' : li.className += 'friend';
+					li.innerHTML = showMsg;
+					ul.appendChild(li);
+				}
+				messagesArea.scrollTop = messagesArea.scrollHeight;
+			} else if ("chat" === jsonObj.type) {
+				var li = document.createElement('li');
+				jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
+				li.innerHTML = jsonObj.message;
+				console.log(li);
+				document.getElementById("area").appendChild(li);
+				messagesArea.scrollTop = messagesArea.scrollHeight;
+			} else if ("close" === jsonObj.type) {
+				refreshFriendList(jsonObj);
+			}
+			
+		};
+
+		webSocket.onclose = function(event) {
+			console.log("Disconnected!");
+		};
+	}
+	
+	function sendMessage() {
+		var inputMessage = document.getElementById("message");
+		//var friend = statusOutput.textContent;
+		var message = inputMessage.value.trim();
+
+		if (message === "") {
+			alert("Input a message");
+			inputMessage.focus();
+		} else {
+			var jsonObj = {
+				"type" : "chat",
+				"sender" : self,
+				"receiver" : "Trump",
+				"message" : message
+			};
+			webSocket.send(JSON.stringify(jsonObj));
+			inputMessage.value = "";
+			inputMessage.focus();
+		}
+	}
+	
+	// 有好友上線或離線就更新列表
+	function refreshFriendList(jsonObj) {
+		var friends = jsonObj.users;
+		var row = document.getElementById("row");
+		row.innerHTML = '';
+		for (var i = 0; i < friends.length; i++) {
+			if (friends[i] === self) { continue; }                                                     /*註解好友列表*/
+			row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' style="display:none;"><h2>' + friends[i] + '</h2></div>';
+		}
+		addListener();
+	}
+	// 註冊列表點擊事件並抓取好友名字以取得歷史訊息
+	function addListener() {
+		var container = document.getElementById("row");
+		container.addEventListener("click", function(e) {
+			//以下讓多餘的編號畫面隱藏
+			var test = document.getElementById("statusOutput");   
+			test.style.display="none";
+			
+			var friend = e.srcElement.textContent;
+			updateFriendName("Trump");
+			var jsonObj = {
+					"type" : "history",
+					"sender" : self,
+					"receiver" : "Trump",
+					"message" : ""
+				};
+			webSocket.send(JSON.stringify(jsonObj));
+		});
+	}
+	
+	function disconnect() {
+		webSocket.close();
+		document.getElementById('sendMessage').disabled = true;
+	}
+	
+	function updateFriendName(name) {
+		statusOutput.innerHTML = name;
+	}
+</script>	
 </body>
 </html>

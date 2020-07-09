@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<body style="background-size:cover; ">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/chatRoom/css/chatStyle.css">
+<body style="background-size:cover; " onload="connect();" onunload="disconnect();">
 	  <div class="container-fluid" style="hegiht:100vh;">
 	  	
-			<div class="row">
-				<div class="col" style="padding:0 0;">
+		<div class="row">
+			<div class="col" style="padding:0 0;">
 				<ul class="nav justify-content-end align-items-center" 
 				style="background-color: #778899; ">
 				
@@ -20,24 +22,24 @@
 							src="${pageContext.request.contextPath}/back-end/employee/epicshow.do?empno=${sessionScope.employeeVO.empno}" />
 				  </li>
 				</ul>
-				</div>
+			</div>
 	  	</div>
 	  	
 	  	<div class="row" >
 	  		<div class="col-2 bg-secondary text-light border border-dark border-right"style="max-height:100%;">
 	  			
 	  			<div class="row text-light w-100 h-auto">
-						<div class="col">
-							<img style="width:150px; height:150px;"class="mx-auto d-block" 
-							src="${pageContext.request.contextPath}/images/logo.png" />
-						</div>
+					<div class="col">
+						<img style="width:150px; height:150px;"class="mx-auto d-block" 
+						src="${pageContext.request.contextPath}/images/logo.png" />
 					</div>
+				</div>
 					
-	  			<div class="row justify-content-center">
+<!-- 	  			<div class="row justify-content-center"> -->
 <!-- 	  				<blockquote class="blockquote text-center"> -->
 <%-- 						  <p class="mb-0 h3">${sessionScope.employeeVO.eName} 您好</p> --%>
 <!-- 						</blockquote> -->
-	  			</div>
+<!-- 	  			</div> -->
 <jsp:useBean id="feaSvc" class="com.features.model.FeaturesService"/>
 <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
 					<div class="row shadow bg-secondary h3 justify-content-center">
@@ -48,14 +50,14 @@
 								href="${pageContext.request.contextPath}/back-end/
 									${(feaVO.feano == 'F0010') ? 'employee/select_page_employee.jsp':''}
 									${(feaVO.feano == 'F0020') ? 'mem/listAllMem.jsp':''}
-									${(feaVO.feano == 'F0030') ? 'product/select_page_product.jsp':''}
-									${(feaVO.feano == 'F0040') ? 'bok/select_page_booking.jsp':''}
+									${(feaVO.feano == 'F0030') ? 'product/selectProductPage.jsp':''}
+									${(feaVO.feano == 'F0040') ? 'bok/booking_page_admin.jsp':''}
 									${(feaVO.feano == 'F0050') ? 'activity/select_page_activity.jsp':''}
 									${(feaVO.feano == 'F0060') ? 'chat/employee_chat.jsp':''}
-									${(feaVO.feano == 'F0070') ? 'liveorder/select_page_liveorder.jsp':''}
-									${(feaVO.feano == 'F0080') ? 'onlineorder/select_page_onlineorder.jsp':''}
-									${(feaVO.feano == 'F0090') ? 'faq/select_page_faq.jsp':''}
-									${(feaVO.feano == 'F0100') ? 'coupon/select_page_coupon.jsp':''}">
+									${(feaVO.feano == 'F0070') ? 'bok/liveOrderMultiQuery.jsp':''}
+									${(feaVO.feano == 'F0080') ? 'liveOrder/select_page.jsp':''}
+									${(feaVO.feano == 'F0090') ? 'coupon/couponIndex.jsp':''}
+									${(feaVO.feano == 'F0100') ? 'gggeg/egeswg.jsp':''}">
 									
 <!-- 								塞圖片用，放在引號 -->
 								<p class="h2 text-white">
