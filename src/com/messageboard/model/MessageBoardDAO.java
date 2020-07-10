@@ -19,7 +19,7 @@ public class MessageBoardDAO implements MessageBoardDAO_interface {
 	static {
 		try {
 			Context ctx = new javax.naming.InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TESTDB3");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB3");
 		} catch (NamingException ne) {
 			ne.printStackTrace();
 		}

@@ -58,8 +58,8 @@ body {
 				
 				<div class="">
 					<a href='addNew.jsp' class="indexbtn">
-                    <img src="<%=request.getContextPath()%>/images/front-end/messageboard/penicon.png" alt="">&nbsp發表新留言
-                	</a>						
+          	<img src="<%=request.getContextPath()%>/images/front-end/messageboard/penicon.png" alt="">&nbsp發表新留言
+         	</a>						
 				</div>
 				
 			</div>
@@ -208,4 +208,5 @@ body {
 	
 <%@ include file="/front-end/front-end-footer.jsp"%>
 
-
+</body>
+</html>
