@@ -1,0 +1,37 @@
+.container{
+	
+}
+
+.wrapper{
+	
+	width:100%;
+	margin-top:80px; 
+}
+.data_area{
+	background-color:lightblue;
+	padding:10px;
+	border:5px solid lightblue;
+	border-radius:10px;
+	margin-bottom: 40px;
+}
+#post_info, #report_info{
+	background-color:#ffffff;
+	width:100%;
+}
+
+
+table, th, td {
+	border: 1px solid #CCCCFF;
+}
+
+
+th, td {
+	padding: 5px;
+	
+}
+th{
+	width:30%;
+}
+td{
+	width:70%;
+}

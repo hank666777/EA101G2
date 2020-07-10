@@ -1,0 +1,116 @@
+body {
+	background-color: #fab5b6;
+}
+
+#main {
+	width: 100%;
+	padding: 36px 0 65px 0;
+}
+div#wrapper{
+ width:100%;
+ font-family: 'DFKai-SB';
+ color:#000000;
+ /*border:1px solid black;*/
+ margin:0 auto;
+ padding: 18px 0;
+}
+
+
+
+
+/*main*/
+h2 {
+	font-size: 42px;
+	text-align: center;
+}
+
+h3 {
+	font-size: 24px;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 42px;
+}
+
+/*mainform*/
+.post_page_form {
+	width: 100%;
+	background-color: rgba(225,100,100,0.9);
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+	padding: 42px 0px 50px 0px;
+	border:2px solid black;
+	margin-bottom: 50px;
+	
+}
+
+.formlist {
+	width: 100%;
+	margin-bottom: 22px;
+	position: relative;
+}
+
+.formlist p {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	font-size: 22px;
+}
+
+
+.formlist textarea {
+	
+	box-sizing: border-box;
+	display: inline-block;
+	vertical-align: top;
+	width: 50%;
+	height: 210px;
+	margin-left: 5px;
+	padding-left: 1%;
+	border: 1px solid #999;
+	border-radius: 8px;
+}
+
+.postdetail {
+	background-color: #ffffff;
+	box-sizing: border-box;
+	display: inline-block;
+	width: 95%;
+	margin-left: 2.5%;
+	padding: 1%;
+	border: 1px solid #999;
+	border-radius: 8px;
+}
+
+div#verifycode {
+	text-align: center;
+}
+
+select option {
+	box-sizing: border-box;
+	display: block;
+	min-height: 1.2em;
+	padding: 0 2px 1px;
+	text-align: center;
+}
+
+input#verifyno {
+	font-size: 22px;
+	width: 200px;
+}
+
+img#verifyimg {
+	height: 60px;
+	vertical-align: middle;
+}
+
+#submit {
+	display: block;
+	margin: 0 auto;
+	font-size: 24px;
+	font-weight: bold;
+	background-color: #ff704a;
+	padding: 15px 74px;
+	margin-top: 10px;
+	border-radius: 99em;
+	color: #fff;
+	border:1px solid #000000;
+}
