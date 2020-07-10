@@ -93,7 +93,8 @@
 		      	意見反映查詢(未導入)
 		      </div>
 		      <div class="tab-pane fade" id="list-messagess" role="tabpanel" aria-labelledby="">
-		      	留言紀錄(未導入)
+	      		留言板，不知道是哪個(未導入)
+<%-- 		      	<%@ include file="/front-end/messageboard/listBySearchCondition.jsp"%> --%>
 		      </div>
 		    </div>
 		  </div>
@@ -102,106 +103,6 @@
 		
 	</div>
 	
-
-
-<!-- 	<div class="area"> -->
-<%-- 		<img alt="" style=" width:100%; height:100%;  --%>
-<%-- 		background-image: url(${pageContext.request.contextPath}/images/front-end/registImg/backgound.jpg);"> --%>
-<!-- 	</div> -->
-	
-<!-- 	<nav class="main-menu"> -->
-<!-- 		<ul> -->
-<%-- 			<li style="padding:0 0 0 10; color:#FFF; display: ${(sessionScope.memVO == null) ? 'none':'display'}; height:50px;"> --%>
-<%-- 				<img style='width: 50px; height: 50px; border-radius: 50%;' src='${pageContext.request.contextPath}/front-end/mem/mem.mPic?memno=${memVO.memno}'> --%>
-<%-- 				${sessionScope.memVO.mName } ${(sessionScope.memVO ==null) ? '':'您好~' } --%>
-<!-- 			</li> -->
-			
-<!-- 			<li> -->
-<%-- 				<a href="${pageContext.request.contextPath}/front-end/index.jsp"> --%>
-<!-- 					<i class="fa fa-home fa-2x"></i> -->
-<!-- 					<span class="nav-text">回首頁</span> -->
-<!-- 				</a> -->
-<!-- 			</li> -->
-			
-<%-- 			<c:if test="${sessionScope.memVO.mStatus == 1 }"> --%>
-<!-- 			<li> -->
-<%-- 				<a href="${pageContext.request.contextPath}/front-end/mem/listOneMem.jsp"> --%>
-<!-- 					<i class="fa fa-address-card" aria-hidden="true"></i> -->
-<!-- 					<span class="nav-text">個人資料</span> -->
-<!-- 				</a> -->
-<!-- 			</li> -->
-<%-- 			<li style="display:${(sessionScope.memVO.mStatus == 1) ? 'none':'display'}"> --%>
-			
-<%-- 				<a href="${pageContext.request.contextPath}/front-end/mem/identify.jsp"> --%>
-<!-- 					<i class="fa fa-key" aria-hidden="true"></i> -->
-<!-- 					<span class="nav-text">重新驗證</span> -->
-<!-- 				</a> -->
-			
-<!-- 			</li> -->
-			
-<!-- 			<li class="has-subnav"> -->
-<!-- 				<a href="#"> -->
-<!-- 					<i class="fa fa-laptop fa-2x"></i> -->
-<!-- 					<span class="nav-text"> Stars Components </span> -->
-<!-- 				</a> -->
-
-<!-- 			</li> -->
-<!-- 			<li class="has-subnav"> -->
-<!-- 				<a href="#"> -->
-<!-- 					<i class="fa fa-list fa-2x"></i> -->
-<!-- 					<span class="nav-text"> Forms </span> -->
-<!-- 				</a> -->
-
-<!-- 			</li> -->
-<!-- 			<li class="has-subnav"> -->
-<!-- 				<a href="#"> -->
-<!-- 					<i class="fa fa-folder-open fa-2x"></i> -->
-<!-- 					<span class="nav-text"> Pages </span> -->
-<!-- 				</a> -->
-
-<!-- 			</li> -->
-<!-- 			<li> -->
-<!-- 				<a href="#"> -->
-<!-- 					<i class="fa fa-bar-chart-o fa-2x"></i> -->
-<!-- 					<span class="nav-text"> Graphs and Statistics </span> -->
-<!-- 				</a> -->
-<!-- 			</li> -->
-<!-- 			<li> -->
-<!-- 				<a href="#"> -->
-<!-- 					<i class="fa fa-font fa-2x"></i> -->
-<!-- 					<span class="nav-text"> Quotes </span> -->
-<!-- 				</a> -->
-<!-- 			</li> -->
-<!-- 			<li> -->
-<!-- 				<a href="#"> -->
-<!-- 					<i class="fa fa-table fa-2x"></i> -->
-<!-- 					<span class="nav-text"> Tables </span> -->
-<!-- 				</a> -->
-<!-- 			</li> -->
-<!-- 			<li> -->
-<!-- 				<a href="#"> -->
-<!-- 					<i class="fa fa-map-marker fa-2x"></i> -->
-<!-- 					<span class="nav-text"> Maps </span> -->
-<!-- 				</a> -->
-<!-- 			</li> -->
-<!-- 			<li> -->
-<!-- 				<a href="#"> -->
-<!-- 					<i class="fa fa-info fa-2x"></i> -->
-<!-- 					<span class="nav-text"> Documentation </span> -->
-<!-- 				</a> -->
-<!-- 			</li> -->
-<%-- 			</c:if> --%>
-<!-- 		</ul> -->
-		
-<!-- 		<ul class="logout"> -->
-<!-- 			<li> -->
-<%-- 				<a href="${pageContext.request.contextPath}/front-end/mem/memberlogout.do"> --%>
-<!-- 					<i class="fa fa-power-off fa-2x"></i> -->
-<!-- 					<span class="nav-text">Logout</span> -->
-<!-- 				</a> -->
-<!-- 			</li> -->
-<!-- 		</ul> -->
-<!-- 	</nav> -->
 		
 		<div id="chat-circle" class="btn btn-raised">
 			<div id="chat-overlay"></div>

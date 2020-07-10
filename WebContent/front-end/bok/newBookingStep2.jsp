@@ -36,7 +36,7 @@
 	<%@ include file="/front-end/front-end-head.jsp"%>
 	<style type="text/css" media="screen">
 	
-		.container-fluid{
+		.bok-container{
 			background-image:url(<%=request.getContextPath()%>/front-end/bok/images/back_img2.jpg);
 			background-size: cover;
 			background-position:bottom ;
@@ -258,11 +258,11 @@
 			</ul>
 		</div>
 		<div id="member">
-			<p>您好! <%=memvo.getmName()%></p>
+<%-- 			<p>您好! <%=memvo.getmName()%></p> --%>
 		</div>
 	</nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid bok-container">
 		<form id="newbooking" METHOD="post" ACTION="<%=request.getContextPath()%>/BokServlet">
 			<div id="rule-list">
 				<div id="rules">

@@ -26,7 +26,7 @@ MemVO memvo = (MemVO) session.getAttribute("memVO");
 	<link rel="stylesheet" href="">
 <%@ include file="/front-end/front-end-head.jsp"%>
 	<style type="text/css" media="screen">
-		.container-fluid{
+		.bok-container{
 			background-image:url(<%=request.getContextPath()%>/front-end/bok/images/back_img2.jpg);
 			background-size: cover;
 			background-position:bottom ;
@@ -94,11 +94,11 @@ MemVO memvo = (MemVO) session.getAttribute("memVO");
 			</ul>
 		</div>
 		<div id="member">
-			<p>您好! <%=memvo.getmName()%></p>
+<%-- 			<p>您好! <%=memvo.getmName()%></p> --%>
 		</div>
 	</nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid bok-container">
 		<div id="faillureView">
 			<br><br><br>
 			<img src="<%=request.getContextPath()%>/front-end/bok/images/cloud-alert.png"><br>

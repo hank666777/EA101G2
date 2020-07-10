@@ -35,7 +35,7 @@
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.css">
 <%-- <%@ include file="/front-end/front-end-head.jsp"%> --%>
 	<style type="text/css" media="screen">
-		.container-fluid{
+		.bok-container{
 			background-image:url(<%=request.getContextPath()%>/front-end/bok/images/back_img2.jpg);
 			background-size: cover;
 			background-position:bottom ;
@@ -126,11 +126,11 @@
 			</ul>
 		</div>
 		<div id="member">
-			<p>您好! <%=memvo.getmName()%></p>
+<%-- 			<p>您好! <%=memvo.getmName()%></p> --%>
 		</div>
 	</nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid bok-container">
 		<div id="date_and_period">
 			<FORM name="step1" METHOD="post" ACTION="<%=request.getContextPath()%>/BokServlet">
 				<div id="date_block">選擇日期: <br>

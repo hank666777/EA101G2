@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 	<!-- second navbar -->
-	<div class="header-bottom container" style="padding:20 0 5 0">
+	<div class="header-bottom container" style="padding:0">
 
 		<nav class="secondnavbar navbar navbar-expand-xl navbar-light my-2">
 			<a class="navbar-brand" href="${pageContext.request.contextPath}/front-end/index.jsp">
