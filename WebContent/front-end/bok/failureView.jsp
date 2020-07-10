@@ -6,7 +6,6 @@
 <%
 MemVO memvo = (MemVO) session.getAttribute("memVO");
 %>
-<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -25,7 +24,7 @@ MemVO memvo = (MemVO) session.getAttribute("memVO");
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 	<link rel="stylesheet" href="">
-
+<%@ include file="/front-end/front-end-head.jsp"%>
 	<style type="text/css" media="screen">
 		.container-fluid{
 			background-image:url(<%=request.getContextPath()%>/front-end/bok/images/back_img2.jpg);
@@ -74,6 +73,7 @@ MemVO memvo = (MemVO) session.getAttribute("memVO");
 
 </head>
 <body>
+<%@ include file="/front-end/front-end-header.jsp"%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="<%=request.getContextPath()%>/front-end/index.jsp"><img id="logo" src="<%=request.getContextPath()%>/front-end/bok/images/logo.png" title="首頁"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,7 +112,7 @@ MemVO memvo = (MemVO) session.getAttribute("memVO");
 			</c:if>	
 		</div>
 	</div>
-	
+	<%@ include file="/front-end/front-end-footer-type2.jsp"%>
 	<script type="text/javascript">
 		$(document).ready(function (){
 			 $("#faillureView").fadeIn("slow");

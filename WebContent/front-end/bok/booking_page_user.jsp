@@ -148,7 +148,7 @@
 			</ul>
 		</div>
 	</div>
-<%-- 	<%@ include file="front-end-footer.jsp"%> --%>
+	<%@ include file="/front-end/front-end-footer-type2.jsp"%>
 	<script type="text/javascript">
 		$(document).ready(function (){
 			 $("#list").fadeIn("slow");

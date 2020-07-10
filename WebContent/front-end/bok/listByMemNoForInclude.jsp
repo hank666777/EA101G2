@@ -108,7 +108,7 @@
 </head>
 
 <body>
-	
+<%-- 	<%@ include file="/front-end/front-end-header.jsp"%> --%>
 
 	
 		<div id="list_container">
@@ -174,7 +174,7 @@
 			</article>
 		</div>
 	
-	
+<%-- 	<%@ include file="/front-end/front-end-footer-type2.jsp"%> --%>
 	<script type="text/javascript">
 		$(document).ready(function (){
 			 $("#list_container").fadeIn("slow");
