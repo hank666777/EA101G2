@@ -7,15 +7,15 @@ public class TestLiveOrderDetail {
 		
 		LiveOrderDetailJDBCDAO dao = new LiveOrderDetailJDBCDAO();
 		
-		// ·s¼W
-//		LiveOrderDetail lodd = new LiveOrderDetail();
-//		lodd.setLiveOrderno(2);
-//		lodd.setPno(5);
+		// ï¿½sï¿½W
+//		LiveOrderDetailVO lodd = new LiveOrderDetailVO();
+//		lodd.setLiveOrderno("20200401-L00002");
+//		lodd.setPno("P0004");
 //		lodd.setPp(8000);
 //		lodd.setLiveOrderQty(7);
 //		dao.add(lodd);
 		
-		//­×§ï
+		//ï¿½×§ï¿½
 //		LiveOrderDetail lodd = new LiveOrderDetail();
 //		lodd.setPno(6);
 //		lodd.setPp(9000);
@@ -23,26 +23,26 @@ public class TestLiveOrderDetail {
 //		lodd.setLiveOrderno(2);
 //		dao.update(lodd);
 		
-		// §R°£
-//		dao.delete(2);
+		// ï¿½Rï¿½ï¿½
+		dao.delete("20200401-L00002");
 		
-		// ¬d¸ß(¥ÑPK¬d¸ß)
-//		LiveOrderDetail lodd = dao.findByPK(1);
+		// ï¿½dï¿½ï¿½(ï¿½ï¿½PKï¿½dï¿½ï¿½)
+//		LiveOrderDetailVO lodd = dao.findByPK("20200401-L00001");
 //		System.out.println(lodd.getLiveOrderno()+ ",");
 //		System.out.println(lodd.getPno()+ ",");
 //		System.out.println(lodd.getPp()+ ",");
 //		System.out.println(lodd.getLiveOrderQty());
 //		System.out.println("---------------------");
 		
-		// ¬d¸ß(¬d¸ß¥þ³¡¸ê°T)
-		List<LiveOrderDetailVO> list = dao.getAll();
-		for(LiveOrderDetailVO lodd : list) {
-			System.out.println(lodd.getLiveOrderno()+ ",");
-			System.out.println(lodd.getPno()+ ",");
-			System.out.println(lodd.getPp()+ ",");
-			System.out.println(lodd.getLiveOrderQty());
-			System.out.println();
-		}
+		// ï¿½dï¿½ï¿½(ï¿½dï¿½ß¥ï¿½ï¿½ï¿½ï¿½ï¿½T)
+//		List<LiveOrderDetailVO> list = dao.getAll();
+//		for(LiveOrderDetailVO lodd : list) {
+//			System.out.println(lodd.getLiveOrderno()+ ",");
+//			System.out.println(lodd.getPno()+ ",");
+//			System.out.println(lodd.getPp()+ ",");
+//			System.out.println(lodd.getLiveOrderQty());
+//			System.out.println();
+//		}
 		
 	}
 }

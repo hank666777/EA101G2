@@ -1,18 +1,23 @@
 package com.liveOrderDetail.model;
 
+import java.sql.Connection;
 import java.util.List;
+import java.util.Set;
+
+import com.product.model.ProductVO;
 
 public class LiveOrderDetailService {
 	private LiveOrderDetail_interface dao;
 	
 	public LiveOrderDetailService() {
-		
+		dao = new LiveOrderDetailJNDIDAO();
 	}
 	
-	public LiveOrderDetailVO addLiveOrderDetail(String pno,
+	public LiveOrderDetailVO addLiveOrderDetail(String liveOrderno,String pno,
 			Integer pp,Integer liveOrderQty) {
 		
 		LiveOrderDetailVO loddVO = new LiveOrderDetailVO();
+		loddVO.setLiveOrderno(liveOrderno);
 		loddVO.setPno(pno);
 		loddVO.setPp(pp);
 		loddVO.setLiveOrderQty(liveOrderQty);
@@ -44,4 +49,10 @@ public class LiveOrderDetailService {
 		return dao.getAll();
 	}
 	
+	public void insert2(LiveOrderDetailVO liveOrderDetailVO, Connection con) {
+		dao.insert2(liveOrderDetailVO, con);
+	}
+	public Set<ProductVO> getProductBypno(String pno){
+		return dao.getProductBypno(pno);
+	}
 }
