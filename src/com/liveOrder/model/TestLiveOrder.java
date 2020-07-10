@@ -12,18 +12,18 @@ public class TestLiveOrder {
 		
 		LiveOrderJDBCDAO dao = new LiveOrderJDBCDAO();
 		
-		// ·s¼W
-//		LiveOrderVO lod = new LiveOrder();		
+		// ï¿½sï¿½W
+//		LiveOrderVO lod = new LiveOrderVO();		
 //		Timestamp d = new Timestamp(System.currentTimeMillis());	
-//		lod.setEmpno(2);
-//		lod.setTableno(10);
+//		lod.setEmpno("E0000004");
+//		lod.setTableno("T0001");
 //		lod.setLiveOrderTime(d);
 //		lod.setLiveOrderTotal(new Double(10000));
 //		lod.setLiveOrderPayment(0);
 //		lod.setLiveOrderStatus(1);
 //		dao.add(lod);
 		
-		// ­×§ï
+		// ï¿½×§ï¿½
 //		LiveOrderVO lod = new LiveOrderVO();
 //		Timestamp d = new Timestamp(System.currentTimeMillis());
 //		
@@ -36,10 +36,10 @@ public class TestLiveOrder {
 //		lod.setLiveOrderno(4);
 //		dao.update(lod);
 		
-		// §R°£
-//		dao.delete(3);
+		// ï¿½Rï¿½ï¿½
+//		dao.delete("20200401-L00003");
 		
-		// ¬d¸ß(¥ÑPK¬d¸ß)
+		// ï¿½dï¿½ï¿½(ï¿½ï¿½PKï¿½dï¿½ï¿½)
 //		LiveOrderVO lod = dao.findByPK(1);
 //		System.out.println(lod.getLiveOrderno()+ ",");
 //		System.out.println(lod.getEmpno()+ ",");
@@ -51,18 +51,18 @@ public class TestLiveOrder {
 //		System.out.println("---------------------");
 	
 		
-		// ¬d¸ß(¬d¸ß¥þ³¡¸ê°T)
-		List<LiveOrderVO> list= dao.getAll();
-		for(LiveOrderVO lod: list) {
-			System.out.println(lod.getLiveOrderno()+ ",");
-			System.out.println(lod.getEmpno()+ ",");
-			System.out.println(lod.getTableno()+ ",");
-			System.out.println(lod.getLiveOrderTime()+ ",");
-			System.out.println(lod.getLiveOrderTotal()+ ",");
-			System.out.println(lod.getLiveOrderPayment()+ ",");
-			System.out.println(lod.getLiveOrderStatus());
-			System.out.println();
-		}
+		// ï¿½dï¿½ï¿½(ï¿½dï¿½ß¥ï¿½ï¿½ï¿½ï¿½ï¿½T)
+//		List<LiveOrderVO> list= dao.getAll();
+//		for(LiveOrderVO lod: list) {
+//			System.out.println(lod.getLiveOrderno()+ ",");
+//			System.out.println(lod.getEmpno()+ ",");
+//			System.out.println(lod.getTableno()+ ",");
+//			System.out.println(lod.getLiveOrderTime()+ ",");
+//			System.out.println(lod.getLiveOrderTotal()+ ",");
+//			System.out.println(lod.getLiveOrderPayment()+ ",");
+//			System.out.println(lod.getLiveOrderStatus());
+//			System.out.println();
+//		}
 		
 	}
 }

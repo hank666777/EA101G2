@@ -2,15 +2,19 @@ package com.liveOrder.model;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
+
+import com.liveOrderDetail.model.LiveOrderDetailVO;
 
 public class LiveOrderService {
+	
 	private LiveOrder_interface dao;
 	
 	public LiveOrderService() {
-		
+		dao = new LiveOrderJNDIDAO();
 	}
 	
-	public LiveOrderVO addLiveOrder(String empno,String tableno,Timestamp liveOrderTime,
+	public void addLiveOrder(String empno,String tableno,Timestamp liveOrderTime,
 			Double liveOrderTotal,Integer liveOrderPayment,Integer liveOrderStatus) {
 		
 		LiveOrderVO lodVO = new LiveOrderVO();
@@ -21,22 +25,22 @@ public class LiveOrderService {
 		lodVO.setLiveOrderPayment(liveOrderPayment);
 		lodVO.setLiveOrderStatus(liveOrderStatus);
 		
-		return lodVO;	
+		dao.add(lodVO);	
 	}
 	
-	public LiveOrderVO updateLiveOrder(String liveOrderno,String empno,String tableno,Timestamp liveOrderTime,
-			Double liveOrderTotal,Integer liveOrderPayment,Integer liveOrderStatus) {
+	public void updateLiveOrder(String empno,String tableno,Timestamp liveOrderTime,
+			Double liveOrderTotal,Integer liveOrderPayment,Integer liveOrderStatus,String liveOrderno) {
 		
 		LiveOrderVO lodVO = new LiveOrderVO();
+		lodVO.setEmpno(empno);
+		lodVO.setTableno(tableno);
+		lodVO.setLiveOrderTime(liveOrderTime);
+		lodVO.setLiveOrderTotal(liveOrderTotal);
+		lodVO.setLiveOrderPayment(liveOrderPayment);
+		lodVO.setLiveOrderStatus(liveOrderStatus);
 		lodVO.setLiveOrderno(liveOrderno);
-		lodVO.setEmpno(empno);
-		lodVO.setTableno(tableno);
-		lodVO.setLiveOrderTime(liveOrderTime);
-		lodVO.setLiveOrderTotal(liveOrderTotal);
-		lodVO.setLiveOrderPayment(liveOrderPayment);
-		lodVO.setLiveOrderStatus(liveOrderStatus);
 		
-		return lodVO;
+		dao.update(lodVO);
 	}
 	
 	public void deleteLiveOrder(String liveOrderno) {
@@ -50,4 +54,11 @@ public class LiveOrderService {
 	public List<LiveOrderVO> getAll(){
 		return dao.getAll();
 	}	
+	
+	public LiveOrderVO insertWithLiveOrderDetail(LiveOrderVO liveOrderVO , List<LiveOrderDetailVO> list){
+		return dao.insertWithLiveOrderDetail(liveOrderVO, list);
+	}
+	public List<LiveOrderVO> getAll(Map<String, String[]> map){
+		return dao.getAll(map);
+	}
 }
