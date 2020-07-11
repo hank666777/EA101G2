@@ -2,7 +2,7 @@
 
 
 	<!-- first navbar -->
-	<div class="container-fluid bg-white fixed-top" style="height:45px; opacity:.8;">
+	<div class="container-fluid bg-white sticky-top" style="height:45px; opacity:.8;">
 		<div class="row ">
 
 			<div class="col ">
@@ -10,8 +10,9 @@
 <!-- 				<i class=""> -->
 					
 					<c:if test="${sessionScope.memVO != null}">
-						<i class=""><img style='width:25px; height:25px; border-radius:50%;'
-														 src='${pageContext.request.contextPath}/front-end/mem/mem.mPic?memno=${memVO.memno}'>
+						<i class="">
+							<img style='width:25px; height:25px; border-radius:50%;'
+									 src='${pageContext.request.contextPath}/front-end/mem/mem.mPic?memno=${memVO.memno}'>
 						</i>
 					</c:if>
 					<i class="ml-auto"></i> ${sessionScope.memVO.mName } ${(sessionScope.memVO ==null) ? '':'您好~' }

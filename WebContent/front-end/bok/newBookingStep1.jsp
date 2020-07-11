@@ -5,7 +5,6 @@
 <%
 	MemVO memvo = (MemVO) session.getAttribute("memVO");
 %>
-<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -25,9 +24,18 @@
 	<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	
-
+	
+	<!-- 自定義CSS JS-->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/front-end-index.css">
+	<!-- 聊天室用CSS JS-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/chatRoom/css/chatStyle.css">
+ 
+<!-- font-awesome CSS 5.13-->
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.css">
+<%-- <%@ include file="/front-end/front-end-head.jsp"%> --%>
 	<style type="text/css" media="screen">
-		.container-fluid{
+		.bok-container{
 			background-image:url(<%=request.getContextPath()%>/front-end/bok/images/back_img2.jpg);
 			background-size: cover;
 			background-position:bottom ;
@@ -97,6 +105,7 @@
 
 </head>
 <body>
+<%@ include file="/front-end/front-end-header.jsp"%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="<%=request.getContextPath()%>/front-end/index.jsp"><img id="logo" src="<%=request.getContextPath()%>/front-end/bok/images/logo.png" title="首頁"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,11 +126,11 @@
 			</ul>
 		</div>
 		<div id="member">
-			<p>您好! <%=memvo.getmName()%></p>
+<%-- 			<p>您好! <%=memvo.getmName()%></p> --%>
 		</div>
 	</nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid bok-container">
 		<div id="date_and_period">
 			<FORM name="step1" METHOD="post" ACTION="<%=request.getContextPath()%>/BokServlet">
 				<div id="date_block">選擇日期: <br>
@@ -146,7 +155,7 @@
 			<input type="button" id="giveup" value="放棄" onclick="location.href='<%=request.getContextPath()%>/front-end/bok/booking_page_user.jsp'">
 		</div>
 	</div>
-
+<%@ include file="/front-end/front-end-footer-type2.jsp"%>
 	<script type="text/javascript">
 		$(document).ready(function (){
 			$("#date_and_period").fadeIn("slow");

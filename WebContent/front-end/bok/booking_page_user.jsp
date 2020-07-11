@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="">
 <%@ include file="/front-end/front-end-head.jsp"%>
 	<style type="text/css" media="screen">
-		.container-fluid{
+		.bok-container{
 			background-image:url(<%=request.getContextPath()%>/front-end/bok/images/back_img2.jpg);
 			background-size: cover;
 			background-position:bottom ;
@@ -92,7 +92,7 @@
 </head>
 <body>
 <%@ include file="/front-end/front-end-header.jsp"%>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light ">
 		<a class="navbar-brand" href="<%=request.getContextPath()%>/front-end/index.jsp">
 			<img id="logo" src="${pageContext.request.contextPath}/images/logo.png" title="首頁">
 		</a>
@@ -118,7 +118,7 @@
 		</div>
 	</nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid bok-container">
 		<div id="list">
 			<ul id="list-ul">
 				<li><a href="<%=request.getContextPath()%>/front-end/bok/newBookingStep1.jsp">
@@ -148,7 +148,7 @@
 			</ul>
 		</div>
 	</div>
-<%-- 	<%@ include file="front-end-footer.jsp"%> --%>
+	<%@ include file="/front-end/front-end-footer-type2.jsp"%>
 	<script type="text/javascript">
 		$(document).ready(function (){
 			 $("#list").fadeIn("slow");

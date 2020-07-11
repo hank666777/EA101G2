@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 	<!-- second navbar -->
-	<div class="header-bottom container" style="padding:20 0 5 0">
+	<div class="header-bottom container" style="padding:0">
 
 		<nav class="secondnavbar navbar navbar-expand-xl navbar-light my-2">
 			<a class="navbar-brand" href="${pageContext.request.contextPath}/front-end/index.jsp">
@@ -33,12 +33,8 @@
 						<a class="nav-link" href="#">活動快訊</a>
 					</li>
 
-					<li id="livestream" class="nav-item font-weight-bold">
-						<a class="nav-link" href="${pageContext.request.contextPath}/front-end/chat/member_chat.jsp">直播間</a>
-					</li>
-					
 					<li id="massageboard" class="nav-item font-weight-bold">
-						<a class="nav-link" href="#">留言板</a>
+						<a class="nav-link" href="${pageContext.request.contextPath}/front-end/messageboard/listAllMessageBoard.jsp">留言板</a>
 					</li>
 
 					<li class="nav-item font-weight-bold dropdown">
@@ -47,8 +43,7 @@
 							aria-expanded="false">FAQ 
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">關於我們</a> 
-							<a class="dropdown-item" href="#">留言板</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/front-end/about_us.jsp">關於我們</a> 
 							<a class="dropdown-item" href="#">意見反映</a>
 						</div>
 					</li>

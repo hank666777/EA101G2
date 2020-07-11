@@ -1,0 +1,43 @@
+body {
+	
+}
+
+.container{
+	margin-top:50px;
+}
+
+.wrapper{
+	padding:30px;
+	border:1px solid #ff8080;
+	background-color: #fab5b6;
+	border-radius:5px;
+}
+
+.title::after{
+	content: "";
+	height: 1px;
+	display: block;
+	width: 100%;
+	background-color: #ff8080;
+	margin: 20px 0 20px 0;
+}
+
+#contentblock{
+	margin:30px 10px;
+	
+}
+
+#contenttext {
+	font-size:24px;
+	background-color:#eed7e9;
+	padding:40px;
+	border-radius:5px;
+}
+
+.context_pic{
+	border-radius:5px;
+	width:600px;
+}
+.ad_img{
+	width:600px;
+}

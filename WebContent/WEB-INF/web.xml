@@ -64,6 +64,7 @@
 		<url-pattern>/front-end/suggest/addSuggest.jsp</url-pattern>
 		<url-pattern>/front-end/chat/member_chat.jsp</url-pattern>
 		<url-pattern>/front-end/bok/*</url-pattern>
+		<url-pattern>/front-end/messageboard/listAllMessageBoard.jsp</url-pattern>
 		
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
@@ -262,5 +263,31 @@
 		<servlet-name>ProductReader</servlet-name>
 		<url-pattern>/ProductReader</url-pattern>
 	</servlet-mapping>
+	
+	
+	<!-- 留言板相關 -->
+	 <servlet>
+    <servlet-name>MessageBoardServlet</servlet-name>
+    <servlet-class>com.messageboard.controller.MessageBoardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MessageBoardServlet</servlet-name>
+    <url-pattern>/front-end/messageboard/messageboard.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 檢舉相關 -->
+  <servlet>
+    <servlet-name>MessageReportServlet</servlet-name>
+    <servlet-class>com.messagereport.controller.MessageReportServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MessageReportServlet</servlet-name>
+    <url-pattern>/front-end/messagereport/messagereport.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MessageReportServlet</servlet-name>
+    <url-pattern>/back-end/messagereport/messagereport.do</url-pattern>
+  </servlet-mapping>
+	
 	
 </web-app>
