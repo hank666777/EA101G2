@@ -42,7 +42,7 @@ table {
 	<div class="container">
 		<div class="row">
 			<a href="<%=request.getContextPath()%>/mycoupon/mycoupon.do?memno=${memVO.memno}">我的優惠券</a>
-			<table class="table table-hover .info text-center">
+			<table class="table text-nowrap table-hover info text-center">
 				<thead class="bg">
 					<tr>
 						<th>我的優惠券</th>
@@ -54,19 +54,19 @@ table {
 				<%@ include file="page1.file"%>
 				<c:forEach var="myCoupon" items="${myCoupon}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 
-					<tr>
-						<td style="height:35px;">
+					<tr class="text-center">
+						<td class="text-center" style="height:35px;">
 							<img src="<%=request.getContextPath()%>/mycoupon/imgs?couponno=${myCoupon.couponno}" />
 						</td>
 
 						<c:forEach var="CouponVO" items="${cps.all}">
 							<c:if test="${myCoupon.couponno==CouponVO.couponno}">
-								<td>${CouponVO.couponName}</td>
-								<td>${CouponVO.couponDiscount}</td>
+								<td class="text-center">${CouponVO.couponName}</td>
+								<td class="text-center">${CouponVO.couponDiscount}</td>
 							</c:if>
 						</c:forEach>
 
-						<td>${myCoupon.count}</td>
+						<td class="text-center">${myCoupon.count}</td>
 					</tr>
 
 				</c:forEach>

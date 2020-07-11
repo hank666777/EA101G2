@@ -20,6 +20,7 @@
 	background-image: url(${pageContext.request.contextPath}/images/front-end/member_bg.png);
 	background-size:contain;
 	height:100vh;
+	padding:0;
 }
 #second-main{
 	opacity:.9;

@@ -46,7 +46,7 @@
 				
 			<c:forEach var="mbVO" items="${mblist}" >
 				<li class="board_info">
-					<a href="messageboard.do?search=getOne_For_Display&postno=${mbVO.postno}" class="btn2">
+					<a href="${pageContext.request.contextPath}/messageboard.do?search=getOne_For_Display&postno=${mbVO.postno}" class="btn2">
 
 					<div class="main_info" >
 						<div class="board_title">
@@ -74,17 +74,17 @@
 							<fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd hh:mm:ss" />
 						</div>
 					</div>
-						<div class="board_sorttime">
-							<div class="d-none d-xl-block">分類:
-                <c:if test="${mbVO.postSort eq ''}">無</c:if>
-								<c:if test="${mbVO.postSort == 1}">閒聊</c:if>
-								<c:if test="${mbVO.postSort == 2}">心得</c:if>
-								<c:if test="${mbVO.postSort == 3}">問題</c:if>                             	
-							</div>
-						<div class="d-none d-xl-block">
-							<fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd hh:mm:ss" />
-		        </div>
-			    </div>
+<!-- 						<div class="board_sorttime"> -->
+<!-- 							<div class="d-none d-xl-block">分類: -->
+<%--                 <c:if test="${mbVO.postSort eq ''}">無</c:if> --%>
+<%-- 								<c:if test="${mbVO.postSort == 1}">閒聊</c:if> --%>
+<%-- 								<c:if test="${mbVO.postSort == 2}">心得</c:if> --%>
+<%-- 								<c:if test="${mbVO.postSort == 3}">問題</c:if>                             	 --%>
+<!-- 							</div> -->
+<!-- 						<div class="d-none d-xl-block"> -->
+<%-- 							<fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd hh:mm:ss" /> --%>
+<!-- 		        </div> -->
+<!-- 			    </div> -->
 						    
 					</li>
            </c:forEach> 
