@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.naming.Context;
@@ -15,6 +16,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.ono.controller.jdbcUtil_CompositeQuery_Emp2;
+import com.ono.model.ONOVO;
 import com.onodetail.model.ONODetailJDBCDAO;
 import com.onodetail.model.ONODetailVO;
 
@@ -420,6 +423,67 @@ int updateCount_ONODetail = 0;
 			}
 		}
 		return onoVO;
+	}
+
+	@Override
+	public List<ONOVO> getAll(Map<String, String[]> map) {
+		
+		 List<ONOVO> list = new ArrayList<ONOVO>();
+		 ONOVO onVO = null;
+		
+		 Connection con = null;
+		 PreparedStatement pstmt = null;
+		 ResultSet rs = null;
+		 
+		 try {
+			 
+			 con = ds.getConnection();
+			 String finalSQL = "select * from ono "
+			          + jdbcUtil_CompositeQuery_Emp2.get_WhereCondition(map)
+			          + "order by onono";
+			 pstmt = con.prepareStatement(finalSQL);
+			 System.out.println("●●finalSQL(by DAO) = "+finalSQL);
+			 rs = pstmt.executeQuery();
+			 
+			 while(rs.next()) {
+				 onVO = new ONOVO();
+				 onVO.setonono(rs.getString("onono"));
+				 onVO.setmemno(rs.getString("memno"));
+				 onVO.setcouponSno(rs.getString("couponSno"));
+				 onVO.setonoTime(rs.getTimestamp("onoTime"));
+				 onVO.setonoTotal(rs.getInt("onoTotal"));
+				 onVO.setonoStatus(rs.getInt("onoStatus"));
+				 onVO.setonoPay(rs.getInt("onoPay"));
+				 list.add(onVO); // Store the row in the List
+			 }
+	 
+		 }catch (SQLException se) {
+				throw new RuntimeException("A database error occured. "
+						+ se.getMessage());
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+		return list;
 	}
 
 }

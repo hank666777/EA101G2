@@ -2,6 +2,7 @@ package com.ono.model;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import com.onodetail.model.ONODetailVO;
 
@@ -57,5 +58,9 @@ public void addONO(String memno, String couponSno,Timestamp onoTime, Integer ono
 	
 	public ONOVO insertWithONODetail(ONOVO onVO,List<ONODetailVO> list) {
 		return dao.insertWithONODetail(onVO, list);
+	}
+	
+	public List<ONOVO> getAll(Map<String, String[]> map){
+		return dao.getAll(map);
 	}
 }

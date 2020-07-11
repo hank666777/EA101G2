@@ -1,16 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.employee.model.*"%>
+<%@ page import="java.util.*"%>
 <%@ page import="com.permission.model.*" %>
 <%@ page import="com.features.model.*" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <style>
-  #productselecttitle{
+ #productselecttitle{
 		margin:25px auto;
 		text-align:center;
 	}
@@ -114,6 +116,7 @@
   	-webkit-transform:translate(10px) scale(0.9);
   	transform:translate(10px) scale(0.9);
   }
+
 </style>
 </head>
 <%@ include file="/back-end/back-end-head.jsp" %>
@@ -124,128 +127,125 @@
 <div id="container">
 <div id="selectproductonline" class="carding">
 
-<table id="table-1">
-   <tr><td><h1 id="productselecttitle">現場訂單管理</h1></td></tr>
-</table>
+	<table id="table-1">
+		<tr>
+			<td><h1 id="productselecttitle">線上訂單管理</h1></td>
+		</tr>
+	</table>
 
-
-<%-- 錯誤表列 --%>
+	<%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
 	    <c:forEach var="message" items="${errorMsgs}">
-			<li>${message}</li>
+			<li style="color:red">${message}</li>
 		</c:forEach>
 	</ul>
 </c:if>
 
 <ul class="wrap">
-  <li><a href="<%=request.getContextPath()%>/back-end/liveOrder/listAllLiveOrder.jsp"> 查詢</a> 全部現場訂單 <br><br></li>
+  <li><a href="<%=request.getContextPath()%>/back-end/ono/listAllONO.jsp">查詢</a> 全部線上訂單  <br><br></li>
 
 <!--   <li> -->
-<%--     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/liveOrder/LiveOrderServlet.do" > --%>
-<!--         <b>輸入現場訂單編號 (如20200401-L00001):</b> -->
-<!--         <input type="text" name="liveOrderno" class="input"> -->
-<!--         <label for="input"></label> -->
-<!--         <div class="bottom-line"></div> -->
+<%--     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ONOServlet/ONOServlet.do" > --%>
+<!--         <b>輸入線上訂單編號 (如20200622-O00002):</b> -->
+<!--         <input type="text" name="onono"> -->
 <!--         <input type="hidden" name="action" value="getOne_For_Display"> -->
 <!--         <input type="submit" value="送出"> -->
 <!--     </FORM> -->
 <!--   </li> -->
 
-<%--   <jsp:useBean id="loSvc" scope="page" class="com.liveOrder.model.LiveOrderService" /> --%>
-
+<%--   <jsp:useBean id="onSvc" scope="page" class="com.ono.model.ONOService" /> --%>
+<%--   <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" /> --%>
 <!--   <li> -->
-<%--      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/liveOrder/LiveOrderServlet.do" > --%>
-<!--        <b>選擇桌位編號:</b> -->
-<!--        <select size="1" name="liveOrderno"> -->
-<%--          <c:forEach var="loVO" items="${loSvc.all}" >  --%>
-<%--           <option value="${loVO.liveOrderno}">${loVO.tableno} --%>
+<%--      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ONOServlet/ONOServlet.do" > --%>
+<!--        <b>選擇會員編號:</b> -->
+<!--        <select size="1" name="onono"> -->
+<%--          <c:forEach var="onVO" items="${onSvc.all}" >   --%>
+<%--           <option value="${onVO.onono}">${onVO.memno}(${memSvc.getOneMem(onVO.memno).mName}) --%>
 <%--          </c:forEach>    --%>
 <!--        </select> -->
 <!--        <input type="hidden" name="action" value="getOne_For_Display"> -->
 <!--        <input type="submit" value="送出"> -->
 <!--     </FORM> -->
 <!--   </li> -->
-  
+
 
 
 <%-- 萬用複合查詢-以下欄位-可隨意增減 --%>
 
   <li>
-  	<form method="post" action="<%=request.getContextPath()%>/liveOrder/LiveOrderServlet.do">
+  	<form method="post" action="<%=request.getContextPath()%>/ONOServlet/ONOServlet.do">
   		<b><font color=blue>複合查詢:</font></b> <br>
-  		<b>輸入現場訂單編號:(如20200629-L00002)</b>
+  		<b>輸入線上訂單編號:(如20200617-O00001)</b>
   		<div class="input-container">
-  		<input type="text" name="liveOrderno" class="input"><br>		
+  		<input type="text" name="onono" class="input"><br>
+  		<label for="input"></label>
+  		<div class="bottom-line"></div>
+  		</div>
+  	
+  		<b>輸入會員編號:(如M000000001)</b>
+  		<div class="input-container">
+  		<input type="text" name="memno" class="input"><br>
   		<label for="input"></label>
   		<div class="bottom-line"></div>
   		</div>
   		
-  		<b>輸入員工編號:(如E0000001)</b>
+  		<b>輸入優惠卷編號:(如20200711-CS0100)</b>
   		<div class="input-container">
-  		<input type="text" name="empno" class="input"><br>
-  		<label for="input"></label>
-  		<div class="bottom-line"></div>
-  		</div>
-
-  		<b>輸入桌號:(如T0001)</b>
-  		<div class="input-container">
-        <input type="text" name="tableno" class="input"><br>
+        <input type="text" name="couponSno" class="input"><br>
         <label for="input"></label>
         <div class="bottom-line"></div>
         </div>
-        
-        
-        <b>現場訂單日期時間:(查詢從輸入日期之後的訂單)</b>
+
+        <b>線上訂單日期時間:(查詢從輸入日期之後的訂單)</b>
         <div class="input-container">
-	    <input name="liveOrderTime" class="f_date1" type="text" class="input"><br>	
+	    <input name="onoTime" class="f_date1" type="text" class="input"><br>	          
 	    <label for="input"></label>          
 	    <div class="bottom-line"></div>
 	    </div>
 	    
 	    <b>消費總價:</b>
-	    <div class="input-container">
-        <input type="text" name="liveOrderTotal" value="" class="input"><br>
+	     <div class="input-container">
+        <input type="text" name="onoTotal" value="" class="input"><br>
         <label for="input"></label>
         <div class="bottom-line"></div>
         </div>
         
-        <b>現場訂單付款狀態:(輸入查詢0=未付款,1=已付款)</b>
+        <b>線上訂單狀態:(輸入查詢0=未完成,1=已完成)</b>
         <div class="input-container">
-        <input type="text" name="liveOrderPayment" value="" class="input"><br>
+        <input type="text" name="onoStatus" value="" class="input"><br>
         <label for="input"></label>
         <div class="bottom-line"></div>
         </div>
         
-        <b>現場訂單狀態:(輸入查詢0=未完成,1=已完成)</b> 
-        <div class="input-container">       
-        <input type="text" name="liveOrderStatus" value="" class="input"><br>
+        <b>線上訂單付款狀態:(輸入查詢0=未付款,1=已付款)</b>
+        <div class="input-container"> 
+        <input type="text" name="onoPay" value="" class="input"><br>
         <label for="input"></label>
         <div class="bottom-line"></div>
         </div>
         
         <input type="submit" value="送出">
-  		<input type="hidden" name="action" value="listLiveOrder_ByCompositeQuery">
+  		<input type="hidden" name="action" value="listONO_ByCompositeQuery">
   	</form> 
   </li>
 </ul>
 
 
 <!-- <ul> -->
-<%--   <li><a href="<%=request.getContextPath()%>/back-end/liveOrder/addLiveOrder.jsp">Add</a> a new LiveOrder</li> --%>
+<%--   <li><a href="<%=request.getContextPath()%>/front-end/ono/addONO.jsp">Add</a> a new ONO</li> --%>
 <!-- </ul> -->
 </div>
 </div>
 
 <%@ include file="/back-end/back-end-footer.jsp"%>
 </body>
-
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/liveOrder/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/back-end/liveOrder/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/back-end/liveOrder/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/ono/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/back-end/ono/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/back-end/ono/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {

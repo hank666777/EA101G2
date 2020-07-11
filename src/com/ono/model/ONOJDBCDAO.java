@@ -3,6 +3,7 @@ package com.ono.model;
 import java.sql.*;
 import java.util.*;
 
+import com.liveOrder.model.LiveOrderVO;
 import com.liveOrderDetail.model.LiveOrderDetailVO;
 import com.onodetail.model.ONODetailJDBCDAO;
 import com.onodetail.model.ONODetailVO;
@@ -23,7 +24,7 @@ public class ONOJDBCDAO implements ONODAO_interface{
 	private static final String DELETE_ONO = "DELETE FROM ONO WHERE onono = ?";
 	
 	private static final String UPDATE = "UPDATE ONO SET  memno=?, couponSno=?, onoTime=?, onoTotal=?, onoStatus=?, onoPay=? WHERE onono =?";
-	
+	public static final String GET_LIVEORDERDETAIL_BYLIVEORDERNO_STMT = "SELECT onono,memno,PP,couponSno FROM LIVEORDERDETAIL WHERE LIVEORDERNO = ?";
 	@Override
 	public void insert(ONOVO onoVO) {
 		Connection con = null;
@@ -492,6 +493,11 @@ public class ONOJDBCDAO implements ONODAO_interface{
 			System.out.println(aDept.getonoPay());
 			System.out.println();
 		}
+	}
+	@Override
+	public List<ONOVO> getAll(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

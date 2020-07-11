@@ -1,20 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.liveOrder.model.*"%>
+<%@ page import="com.ono.model.*"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.permission.model.*" %>
 <%@ page import="com.features.model.*" %>
 <%-- 萬用複合查詢-可由客戶端select_page.jsp隨意增減任何想查詢的欄位 --%>
 <%-- 此頁只作為複合查詢時之結果，可視需要再增加分頁、送出修改、刪除之功能--%>
 
-<jsp:useBean id="listLiveOrder_ByCompositeQuery" scope="request" type="java.util.List<LiveOrderVO>" />
-<jsp:useBean id="deptSvc" scope="page" class="com.liveOrder.model.LiveOrderService" />
+<jsp:useBean id="listONO_ByCompositeQuery" scope="request" type="java.util.List<ONOVO>" />
+<jsp:useBean id="deptSvc" scope="page" class="com.ono.model.ONOService" />
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>複合查詢</title>
+<title>線上訂單複合查詢</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back-end/bok/jquery-ui-1.12.1/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
@@ -81,10 +81,9 @@
 <body>
 <%@ include file="/back-end/back-end-header.jsp" %>
 
-
 <table id="table-1">
 	<tr><td>
-		 <h3>現場訂單資料如下</h3>
+		 <h3>線上訂單資料如下</h3>
 		 <h4><a href="<%=request.getContextPath()%>/back-end/ono/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/liveShop/images/logo.png" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -94,38 +93,48 @@
 	<table id="listAll">
 
 	<tr>
-		<th>現場訂單編號</th>
+		<th>線上訂單編號</th>
 		<th>員工編號</th>
-		<th>桌號</th>
-		<th>現場訂單日期時間</th>
+		<th>優惠卷編號</th>
+		<th>線上訂單日期時間</th>
 		<th>消費總價</th>
-		<th>現場訂單付款狀態</th>
-		<th>現場訂單狀態</th>
+		<th>線上訂單狀態</th>
+		<th>線上訂單付款狀態</th>
 	</tr>
-	<c:forEach var="loVO" items="${listLiveOrder_ByCompositeQuery}">
-		<tr class="data">
-			<td>${loVO.liveOrderno}</td>
-			<td>${loVO.empno}</td>
-			<td>${loVO.tableno}</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${loVO.liveOrderTime}"></fmt:formatDate></td>			
-			<td><fmt:formatNumber type="number" value="${loVO.liveOrderTotal}"></fmt:formatNumber></td>
+	<c:forEach var="onVO" items="${listONO_ByCompositeQuery}">
+	<tr class="data">
+			<td>${onVO.onono}</td>
+			<td>${onVO.memno}</td>
+			
 			<td>
-			<c:if test="${loVO.liveOrderPayment == 0}">
-				<c:out value="未付款"></c:out>
+			<c:if test="${onVO.couponSno == null}">
+				<c:out value="未使用"></c:out>
 			</c:if>
-			<c:if test="${loVO.liveOrderPayment == 1}">
-				<c:out value="已付款"></c:out>
+			<c:if test="${onVO.couponSno != null}">
+				<c:out value="${onVO.couponSno}"></c:out>
+			</c:if>
+			</td>
+			
+			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${onVO.onoTime}"></fmt:formatDate></td>			
+			<td><fmt:formatNumber type="number" value="${onVO.onoTotal}"></fmt:formatNumber></td>
+			
+			<td>
+			<c:if test="${onVO.onoStatus == 0}">
+				<c:out value="未完成"></c:out>
+			</c:if>
+			<c:if test="${onVO.onoStatus == 1}">
+				<c:out value="已完成"></c:out>
 			</c:if>
 			</td>
 			
 			<td>
-			<c:if test="${loVO.liveOrderStatus == 0}">
-				<c:out value="未完成"></c:out>
+			<c:if test="${onVO.onoPay == 0}">
+				<c:out value="未付款"></c:out>
 			</c:if>
-			<c:if test="${loVO.liveOrderStatus == 1}">
-				<c:out value="已完成"></c:out>
+			<c:if test="${onVO.onoPay == 1}">
+				<c:out value="已付款"></c:out>
 			</c:if>
-			</td>
+			</td>	
 		</tr>
 	</c:forEach>
 </table>
@@ -133,6 +142,7 @@
 
 </div>
 <%@ include file="/back-end/back-end-footer.jsp"%>
+
 </body>
 <script src="${pageContext.request.contextPath}/back-end/bok/jquery-ui-1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">

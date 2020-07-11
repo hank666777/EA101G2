@@ -361,7 +361,7 @@ public class LiveOrderJNDIDAO implements LiveOrder_interface{
 			con = ds.getConnection();
 			String finalSQL = "select * from liveorder "
 		          + jdbcUtil_CompositeQuery_Emp2.get_WhereCondition(map)
-		          + "order by empno";
+		          + "order by liveOrderno";
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("●●finalSQL(by DAO) = "+finalSQL);
 			rs = pstmt.executeQuery();

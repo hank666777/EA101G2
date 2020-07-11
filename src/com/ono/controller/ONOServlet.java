@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -24,7 +25,6 @@ import com.onodetail.model.ONODetailVO;
 
 @MultipartConfig
 public class ONOServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
@@ -104,7 +104,7 @@ public class ONOServlet extends HttpServlet {
 			
 			/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 			req.setAttribute("onVO2", onVO2);
-			String url = "/front-end/ono/listAllONO.jsp";
+			String url = "/back-end/ono/listAllONO.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 			return;// 程式中斷	
@@ -128,7 +128,7 @@ public class ONOServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front-end/ono/select_page.jsp");
+							.getRequestDispatcher("/back-end/ono/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -142,7 +142,7 @@ public class ONOServlet extends HttpServlet {
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/ono/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/ono/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}				
@@ -157,7 +157,7 @@ public class ONOServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front-end/ono/select_page.jsp");
+							.getRequestDispatcher("/back-end/ono/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -165,7 +165,7 @@ public class ONOServlet extends HttpServlet {
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				
 				req.setAttribute("onVO", onVO);
-				String url = "/front-end/ono/listOneONO.jsp";
+				String url = "/back-end/ono/listOneONO.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 				
@@ -173,7 +173,7 @@ public class ONOServlet extends HttpServlet {
 			}catch(Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front-end/ono/select_page.jsp");
+						.getRequestDispatcher("/back-end/ono/select_page.jsp");
 				failureView.forward(req, res);
 			}		
 		}
@@ -195,7 +195,7 @@ public class ONOServlet extends HttpServlet {
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("onVO", onVO);
-				String url = "/front-end/ono/update_ono_input.jsp";
+				String url = "/back-end/ono/update_ono_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 				
@@ -203,7 +203,7 @@ public class ONOServlet extends HttpServlet {
 			}catch(Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front-end/ono/listAllONO.jsp");
+						.getRequestDispatcher("/back-end/ono/listAllONO.jsp");
 				failureView.forward(req, res);
 			}				
 		}
@@ -269,7 +269,7 @@ public class ONOServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("onVO", onVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front-end/ono/update_ono_input.jsp");
+							.getRequestDispatcher("/back-end/ono/update_ono_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -280,14 +280,14 @@ public class ONOServlet extends HttpServlet {
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("onVO", onVO); // 資料庫update成功後,正確的的onVO物件,存入req
-				String url = "/front-end/ono/listOneONO.jsp";
+				String url = "/back-end/ono/listOneONO.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 				
 			}catch(Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front-end/ono/update_ono_input.jsp");
+						.getRequestDispatcher("/back-end/ono/update_ono_input.jsp");
 				failureView.forward(req, res);
 			}	
 		}
@@ -351,7 +351,7 @@ public class ONOServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("onVO", onVO); // 含有輸入格式錯誤的loVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front-end/ono/addONO.jsp");
+							.getRequestDispatcher("/back-end/ono/addONO.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -361,7 +361,7 @@ public class ONOServlet extends HttpServlet {
 				onSvc.addONO(memno, couponSno, onoTime, onoTotal, onoStatus, onoPay);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/front-end/ono/listAllONO.jsp";
+				String url = "/back-end/ono/listAllONO.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 				
@@ -369,7 +369,7 @@ public class ONOServlet extends HttpServlet {
 			}catch(Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front-end/ono/addONO.jsp");
+						.getRequestDispatcher("/back-end/ono/addONO.jsp");
 				failureView.forward(req, res);
 			}	
 		}
@@ -398,9 +398,50 @@ public class ONOServlet extends HttpServlet {
 			}catch(Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front-end/ono/listAllONO.jsp");
+						.getRequestDispatcher("/back-end/ono/listAllONO.jsp");
 				failureView.forward(req, res);
 			}				
-		}					
+		}	
+		
+		if("listONO_ByCompositeQuery".equals(action)) {  // 來自select_page.jsp的複合查詢請求
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			
+			try {
+				
+				/***************************1.將輸入資料轉為Map**********************************/ 
+				//採用Map<String,String[]> getParameterMap()的方法 
+				//注意:an immutable java.util.Map 
+				Map<String, String[]> map = req.getParameterMap();
+				
+				/***************************2.開始複合查詢***************************************/
+				
+				ONOService onSvc = new ONOService();
+				List<ONOVO> list = onSvc.getAll(map);
+				
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("listONO_ByCompositeQuery", list); // 資料庫取出的list物件,存入request
+				RequestDispatcher successView = req.getRequestDispatcher("/back-end/ono/listONO_ByCompositeQuery.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
+				successView.forward(req, res);
+				
+				/***************************其他可能的錯誤處理**********************************/	
+			}catch(Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back-end/ono/select_page.jsp");
+				failureView.forward(req, res);
+			}
+
+		}
+		
+		
+		
+		
+		
+		
 	}
 }

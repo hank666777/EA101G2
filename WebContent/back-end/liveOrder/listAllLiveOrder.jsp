@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.*"%>
+<%@ page import="java.io.*, javax.servlet.*,java.text.*" %>
 <%@ page import="com.liveOrder.model.*"%>
 <%@ page import="com.permission.model.*" %>
 <%@ page import="com.features.model.*" %>
@@ -17,52 +18,43 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
-<link rel="stylesheet"	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<style>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back-end/bok/jquery-ui-1.12.1/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/back-end/bok/jquery-ui-1.12.1/jquery-ui.js"></script>
+<style type="text/css">
 
-  table#table-1 {
-  position: relative;
+  #table-1{
+ 	position: relative;
 	background-color: #CCCCFF;
     border: 2px solid black;
     text-align: center;
     border-collapse: collapse;
     margin:auto;
-    width:800px;
+    width:500px;
   }
-  table#table-1 h4 {
+  #table-1 h4 {
     color: red;
     display: block;
     margin-bottom: 1px;
   }
 
-  listAll {
-  border-collapse: collapse;
-  position: relative;
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
+  #listAll {
+  			position: relative;
+			margin-top: 10px;
+			border-collapse: collapse;
+			width: 100%;
   }
-  listAll, th, td {
+  #listAll, th, td {
     border: 1px solid #CCCCFF;
-  }
-  th, td {
     padding: 8px;
     text-align: center;
     border-bottom: 1px solid #ddd;
   }
-  .picture{
-  	width:100px;
-  	height:100px;
-  }
-  #contain{
-  width:1040px;
-  height:800px;
-  	margin-left:350px;
-  }
+
+
   #booking-container{
 
 			position: relative;
@@ -71,7 +63,7 @@
 			border:0px solid ;		
 			overflow:hidden;
   }
-  data:hover {
+  .data:hover {
 			background-color:#CADCF9;
   }
 	#list_container{ 
@@ -89,7 +81,7 @@
  		} 
 </style>
 </head>
-<%@ include file="/back-end/back-end-head.jsp" %>
+
 <body>
 <%@ include file="/back-end/back-end-header.jsp" %>
 
@@ -97,6 +89,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>所有現場訂單資料</h3>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/ono/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/liveShop/images/logo.png" width="100" height="32" border="0">回現場訂單首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -134,8 +127,25 @@
 			<td>${loVO.tableno}</td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${loVO.liveOrderTime}"></fmt:formatDate></td>
 			<td><fmt:formatNumber type="number" value="${loVO.liveOrderTotal}"></fmt:formatNumber></td> 
-			<td>${loVO.liveOrderPayment}</td>
-			<td>${loVO.liveOrderStatus}</td>
+			
+			<td>
+			<c:if test="${loVO.liveOrderPayment == 0}">
+				<c:out value="未付款"></c:out>
+			</c:if>
+			<c:if test="${loVO.liveOrderPayment == 1}">
+				<c:out value="已付款"></c:out>
+			</c:if>
+			</td>
+			
+			<td>
+			<c:if test="${loVO.liveOrderStatus == 0}">
+				<c:out value="未完成"></c:out>
+			</c:if>
+			<c:if test="${loVO.liveOrderStatus == 1}">
+				<c:out value="已完成"></c:out>
+			</c:if>
+			</td>
+			
 			<td>	
 			 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/liveOrder/LiveOrderServlet.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
@@ -160,8 +170,7 @@
 
 
 <%@ include file="/back-end/back-end-footer.jsp"%>
-</body>
-<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+	<script src="${pageContext.request.contextPath}/back-end/bok/jquery-ui-1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function (){
 			 $("#list_container").fadeIn("slow");
@@ -174,4 +183,5 @@
 			$('[data-toggle="popover"]').popover()
 		})
 	</script>
+</body>
 </html>
