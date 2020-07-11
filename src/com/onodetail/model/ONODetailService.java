@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Set;
 
-import com.liveOrderDetail.model.LiveOrderDetailVO;
 import com.product.model.ProductVO;
 
 public class ONODetailService {
@@ -59,5 +58,10 @@ public class ONODetailService {
 	}
 	public Set<ProductVO> getProductBypno(String pno){
 		return dao.getProductBypno(pno);
+	}
+	
+	//取得一筆訂單的所有明細(一對多)
+	public Set<ProductVO> getOneDetails(String onono){
+		return dao.getProductBypno(onono);
 	}
 }

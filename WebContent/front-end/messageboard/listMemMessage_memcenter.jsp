@@ -40,7 +40,8 @@
 	</c:forEach>
 </c:if>
 
-	<div>
+	<div class="container">
+		<div class="row">
 		<div id='wrapper'>			
 			<ul class="list-group">
 				
@@ -91,7 +92,8 @@
             
 			</ul>
 		</div>
-	
+		
+	</div>
 	</div>	
 
 </body>

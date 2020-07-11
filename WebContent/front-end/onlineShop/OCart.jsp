@@ -67,7 +67,7 @@
 					<input class="btn btn-sm btn-outline-danger" type="submit" value="刪除" class="button2">
 				</Form>
 				</div>
-			</td>			
+			</td>
 		</tr>
 		<%}%>
   	</table>

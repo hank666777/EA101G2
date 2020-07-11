@@ -22,7 +22,7 @@
 	/* font-family: 'DFKai-SB';*/
 	background-color: #fab5b6;
 	background-image: url('<%=request.getContextPath()%>/images/background_candy.jpg');
-	background-repeat: no-repeat;
+	background-repeat: no-repeat-y;
 	background-size: cover;
  }
 </style>

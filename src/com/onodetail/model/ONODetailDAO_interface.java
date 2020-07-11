@@ -14,4 +14,7 @@ public interface ONODetailDAO_interface {
      public void insert2(ONODetailVO ondVO,java.sql.Connection con);
    //查詢某類別的商品(一對多)(回傳 Set)
  	public Set<ProductVO> getProductBypno(String pno);//讓購買後頁面回到一樣的位置
+ 	
+ 	//取得一筆訂單的所有明細
+ 	public Set<ONODetailVO> getONODetails(String onono);
 }

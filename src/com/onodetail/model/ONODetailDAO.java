@@ -35,7 +35,9 @@ public class ONODetailDAO implements ONODetailDAO_interface {
 	private static final String DELETE = "DELETE FROM ONODetail WHERE (onono=? and pno=?)";
 	private static final String UPDATE = "UPDATE ONODetail SET onoQty= ?, onoPrice= ? WHERE (onono = ? and  pno = ?)";
 	private static final String GET_Product_Bypno_STMT = "SELECT PNAME, PP,PPIC,PDES,PDOFFER,INVSTATUS,pStatus,PTNO FROM PRODUCT where pno = ? order by pno";
-
+	private static final String	GET_ONODETAILS_BY_ONONO =
+			"SELECT * FROM ONODETAIL WHERE = ? ORDER BY PNO";
+	
 	@Override
 	public void insert(ONODetailVO ondVO) {
 
@@ -351,4 +353,55 @@ public class ONODetailDAO implements ONODetailDAO_interface {
 		return set;
 	}
 
+	@Override
+	public Set<ONODetailVO> getONODetails(String onono) {
+		Set<ONODetailVO> set = new LinkedHashSet<>();
+		ONODetailVO onlineOrderDetail = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONODETAILS_BY_ONONO);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				onlineOrderDetail = new ONODetailVO();
+				onlineOrderDetail.setonono(rs.getString(1));
+				onlineOrderDetail.setpno(rs.getString(2));
+				onlineOrderDetail.setonoQty(rs.getInt(3));
+				onlineOrderDetail.setonoPrice(rs.getInt(4));
+				set.add(onlineOrderDetail);
+			}
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
+	}
+	
+	
 }
