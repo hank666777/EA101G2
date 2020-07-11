@@ -19,7 +19,7 @@
 <title>Miss M MessageBoard</title>
 
 <style type="text/css">
-body {
+#main {
 	/* font-family: 'DFKai-SB';*/
 	background-color: #fab5b6;
 	background-image: url('<%=request.getContextPath()%>/images/background_candy.jpg');

@@ -10,8 +10,8 @@
 	MemVO member = (MemVO) session.getAttribute("memVO");
 	
   MyCpService myCpService = new MyCpService();
-  List<MyCouponVO> list = myCpService.getMyCoupon(member.getMemno());
-  pageContext.setAttribute("list", list);
+//   List<MyCouponVO> list = myCpService.getMyCoupon(member.getMemno());
+//   pageContext.setAttribute("list", list);
   List<MyCouponVO> myCoupon = myCpService.getMyCoupon(member.getMemno());
   session.setAttribute("myCoupon", myCoupon);
 %>
@@ -51,7 +51,7 @@ table {
 						<th>優惠券數量(張)</th>
 					</tr>
 				</thead>
-				<%@ include file="/page/page1.file"%>
+				<%@ include file="page1.file"%>
 				<c:forEach var="myCoupon" items="${myCoupon}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 
 					<tr>
@@ -71,7 +71,7 @@ table {
 
 				</c:forEach>
 			</table>
-			<%@ include file="/page/page2.file"%>
+			<%@ include file="page2.file"%>
 		</div>
 	</div>
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>

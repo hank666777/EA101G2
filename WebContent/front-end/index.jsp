@@ -12,7 +12,7 @@
 
 <%@ include file="/front-end/front-end-head.jsp"%>
 </head>
-<body>
+
 <%@ include file="/front-end/front-end-header.jsp"%>
 <%@ include file="/front-end/front-end-header2.jsp"%>
 

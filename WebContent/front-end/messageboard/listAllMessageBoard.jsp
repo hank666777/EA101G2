@@ -17,19 +17,17 @@
     pageContext.setAttribute("memlist",memlist);
 %>
 
-
-
 <html>
 <head>
 <title>Miss M MessageBoard</title>
 <%@ include file="/front-end/front-end-head.jsp"%>
 
 <style type="text/css">
-body {
+#main {
 	/* font-family: 'DFKai-SB';*/
 	background-color: #fab5b6;
 	background-image: url('<%=request.getContextPath()%>/images/front-end/messageboard/background_candy.jpg');
-	background-repeat: no-repeat;
+	background-repeat: repeat-y;
 	background-size: cover;
 }
 </style>
@@ -40,16 +38,9 @@ body {
 
 </head>
 
-<body>
+<body id="">
 <%@ include file="/front-end/front-end-header.jsp"%>
 <%@ include file="/front-end/front-end-header2.jsp"%>	
-
-
-
-
-
-
-
 
 	<div id='main'>
 		<div class="container" id='wrapper'>
@@ -58,8 +49,8 @@ body {
 				
 				<div class="">
 					<a href='addNew.jsp' class="indexbtn">
-          	<img src="<%=request.getContextPath()%>/images/front-end/messageboard/penicon.png" alt="">&nbsp發表新留言
-         	</a>						
+                    <img src="<%=request.getContextPath()%>/images/front-end/messageboard/penicon.png" alt="">&nbsp發表新留言
+                	</a>						
 				</div>
 				
 			</div>
@@ -98,7 +89,7 @@ body {
 				</div>
 				
 			</div>
-			
+					<!--  往下為留言列表	 -->
 			<ul class="list-group">
 				<div class='page'><%@ include file="page1.file" %></div> 
 				<c:forEach var="mbVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -121,7 +112,7 @@ body {
                         	<div class="board_pic"  
                         	style="background-image:url('<%=request.getContextPath()%>/images/front-end/messageboard/question.jpg')" ></div>
                         </c:if>  
-                            
+				<!--       以上為圖片判斷     -->
                         <div class="main_info" >
                             <div class="board_title">${mbVO.postTitle}</div>
                         </div>
@@ -132,15 +123,29 @@ body {
                             <div id="M_NAME" class="d-none d-xl-block">
                             	<c:forEach var="memVO" items="${memlist}">
 							 		<c:if test="${memVO.memno == mbVO.memno}">
-							 		<img style="width:24px; "src="<%=request.getContextPath()%>/images/front-end/messageboard/mb_member.png">&nbsp
-							 		
-							 		<!-- Button trigger modal -->
-<!-- 									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> -->
-<%-- 									  ${memVO.mName} --%>
-<!-- 									</button> -->
-							 		
-							 		<a class="alert-link" data-toggle="modal" data-target="#exampleModalCenter"
-							 			href="<%=request.getContextPath()%>/front-end/messageboard/show_member.jsp?memno=${memVO.memno}" style="color:blue">${memVO.mName}</a>
+								 		<img style="width:24px; "src="<%=request.getContextPath()%>/images/front-end/messageboard/mb_member.png">
+								 		<a class="alert-link" href="" style="color:blue"
+								 		data-toggle="modal" data-target="#_${memVO.memno }">${memVO.mName}</a>
+									
+										<!--  modal -->
+								 		<div class="modal fade" id="_${memVO.memno }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog modal-dialog-centered">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h5 class="modal-title" id="exampleModal">${memVO.mName}</h5>
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										          <span aria-hidden="true">&times;</span>
+										        </button>
+										      </div>
+										      <div class="modal-body">      
+										     	 <%@ include file="/front-end/messageboard/show_member.jsp"%>        
+										      </div>
+										     
+										    </div>
+										  </div>
+										</div>
+		
+
 									</c:if><!-- 按下後連結留言者資訊-->
 								</c:forEach>
 
@@ -152,59 +157,25 @@ body {
                             <c:if test="${mbVO.postSort == '3'}">問題</c:if>                             	
                             </div>
                             <div class="d-none d-xl-block">
-                            <fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd hh:mm:ss" />
+                            <fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </div>
                         </div>
                         <!--未完工-->                                                      
                        	<div class="board_popular">
                             <div class="" title="回覆數"><img src="<%=request.getContextPath()%>/images/front-end/messageboard/repeatcount.png">&nbsp12</div>
                             <div class="" title="瀏覽數"><img src="<%=request.getContextPath()%>/images/front-end/messageboard/viewcount.png">&nbsp123456</div>
-                        </div>
-                      
-                        
+                        </div>    
                     </li>
-
-              
                 </c:forEach> 
-                <div class='page'><%@ include file="page2.file" %></div>  
-                  
-            
+                <div class='page'><%@ include file="page2.file" %></div>                  
 			</ul>
 		</div>
-	
-
-	
 	</div>	
 	
-	
-	
-	
-<!-- 	model視窗 -->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-      	<div>${memVO.memno}</div>
-      	 <%@ include file="/front-end/messageboard/show_member.jsp"%> 
-<%--       	<jsp:include page='<%=request.getContextPath() + "/front-end/messageboard/show_member.jsp" %>'>     			 --%>
-<%--       			<jsp:param name="memno" value="${memVO.memno}"/> --%>
-
-<%--       	</jsp:include> --%>
-
-      </div>
-    </div>
+  	
   </div>
 </div>
-	
-	
-	
-	
-	
-	
-	
-	
 	
 <%@ include file="/front-end/front-end-footer.jsp"%>
 

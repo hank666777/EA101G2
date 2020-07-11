@@ -6,7 +6,6 @@
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
 %>
 
-
 <html>
 <head>
 <title>Miss M會員資料</title>
@@ -14,14 +13,6 @@
 <%@ include file="/front-end/front-end-head.jsp"%>
 
 <style type="text/css">
-body {
-	/* 	text-align: center; */
-	/* 	font-size: 20px; */
-	/* 	font-family: 微軟正黑體; */
-	/* 	background-size: cover; */
-	/* 	margin:auto; */
-	
-}
 
 form {
 	border-style: solid 5px;
@@ -75,12 +66,9 @@ td {
 				<tr>
 					<td>會員帳號:</td>
 					<td>
-						<input type="hidden" name="mAccount" value="<%=memVO.getmAccount()%>" /><%=memVO.getmAccount()%></td>
-				</tr>
-				<tr>
-					<td>會員密碼:</td>
-					<td>
-						<input type="hidden" name="mPw" value="<%=memVO.getmPw()%>" required /><%=memVO.getmPw()%></td>
+						<input type="hidden" name="mAccount" value="<%=memVO.getmAccount()%>" />
+						<%=memVO.getmAccount()%>
+					</td>
 				</tr>
 				<tr>
 					<td>會員姓名:</td>
@@ -92,18 +80,23 @@ td {
 				<tr>
 					<td>會員性別:</td>
 					<td>
-						<input type="hidden" name="mGender" value="<%=memVO.getmGender()%>" /><%=memVO.getmGender()%></td>
-
+						<input type="hidden" name="mGender" value="<%=memVO.getmGender()%>" />
+						<%=memVO.getmGender()%>
+					</td>
 				</tr>
 				<tr>
 					<td>會員電話:</td>
 					<td>
-						<input class="inp" type="hidden" name="mPhone" value="<%=memVO.getmPhone()%>" required /><%=memVO.getmPhone()%></td>
+						<input class="inp" type="hidden" name="mPhone" value="<%=memVO.getmPhone()%>" required />
+						<%=memVO.getmPhone()%>
+					</td>
 				</tr>
 				<tr>
 					<td>會員mail:</td>
 					<td>
-						<input class="inp" type="hidden" name="mEmail" value="<%=memVO.getmEmail()%>" required /><%=memVO.getmEmail()%></td>
+						<input class="inp" type="hidden" name="mEmail" value="<%=memVO.getmEmail()%>" required />
+						<%=memVO.getmEmail()%>
+					</td>
 				</tr>
 				<tr>
 					<td>註冊日期:</td>
@@ -117,15 +110,20 @@ td {
 					<td style="color:#00F;">
 						${(memVO.mStatus == 0) ? '未驗證':''}
 						${(memVO.mStatus == 1) ? '驗證成功':''}
+						${(memVO.mStatus == 2) ? '停權':''}
 					</td>
 				</tr>
 
 			</table>
 			<a href="${pageContext.request.contextPath}/front-end/mem/update_mem_input.jsp">
-				<h2><span class="badge badge-pill badge-warning">修改資料</span></h2>
+				<h2>
+					<span class="badge badge-pill badge-warning">修改資料</span>
+				</h2>
 			</a>
 			<a href="${pageContext.request.contextPath}/front-end/mem/identify.jsp">
-				<h2><span class="badge badge-pill badge-warning" style="display:${(memVO.mStatus == 0) ? 'display':'none'}">重新驗證</span></h2>
+				<h2>
+					<span class="badge badge-pill badge-warning" style="display:${(memVO.mStatus == 0) ? 'display':'none'}">重新驗證</span>
+				</h2>
 			</a>
 <!-- 			<input type="button" value="修改資料" style="width: 110px; height: 50px;" -->
 <!-- 			 onclick="self.location.href=''" /> -->
