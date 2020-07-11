@@ -1,14 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-
 
 <html>
 <head>
 
-<title>Insert title here</title>
+<title>MISS M about us</title>
 <%@ include file="/front-end/front-end-head.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/about_us.css" type="text/css" />
 
+<style>
+.header-bottom{
+	margin:0 auto;
+}
+.container{
+	margin:5 auto;
+}
+</style>
 </head>
 <body>
 <%@ include file="/front-end/front-end-header.jsp"%>

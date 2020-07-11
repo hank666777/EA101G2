@@ -114,7 +114,7 @@
 			</ul>
 		</div>
 		<div id="member">
-			<p>您好! <%=memvo.getmName()%></p>
+<%-- 			<p>您好! <%=memvo.getmName()%></p> --%>
 		</div>
 	</nav>
 

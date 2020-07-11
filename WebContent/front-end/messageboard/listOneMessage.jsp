@@ -14,8 +14,6 @@
 	MemService mSvc= new MemService();
 	List<MemVO> memlist = mSvc.getAll();
 	pageContext.setAttribute("memlist",memlist);
-
-	
 %>
 
 
@@ -34,8 +32,6 @@ body {
 </style>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/messageboard/listonemessage.css" type="text/css" />
-
-
 
 </head>
 
@@ -68,16 +64,40 @@ body {
 					
 					<div class ="col-sm " id="post_member">
 						<c:forEach var="memVO" items="${memlist}">
-							 		<c:if test="${memVO.memno == mbVO.memno}">
-							 		<a style="text-decoration:none;" href="">${memVO.mName}</a>&nbsp${memVO.mAccount}
-									</c:if><!-- 按下後連結留言者資訊-->
+							<c:if test="${memVO.memno == mbVO.memno}">
+							
+							
+							 		<a style="text-decoration:none;" href=""
+							 		data-toggle="modal" data-target="#_${memVO.memno }">${memVO.mName}</a>&nbsp${memVO.mAccount}
+							 		
+										<!--  modal -->
+								 		<div class="modal fade" id="_${memVO.memno }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog modal-dialog-centered">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h5 class="modal-title" id="exampleModal">${memVO.mName}</h5>
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										          <span aria-hidden="true">&times;</span>
+										        </button>
+										      </div>
+										      <div class="modal-body">      
+										     	 <%@ include file="/front-end/messageboard/show_member.jsp"%>        
+										      </div>
+										     
+										    </div>
+										  </div>
+										</div>
+							 		
+							 		
+							 		
+							</c:if><!-- 按下後連結留言者資訊-->
 						</c:forEach>
 						
 					</div>
 					
 					<div class ="col-sm" id="post_time">
 						<fmt:formatDate value="${mbVO.postTime}" 
-									pattern="yyyy-MM-dd hh:mm" />
+									pattern="yyyy-MM-dd HH:mm" />
 					</div>
 					
 					
@@ -147,7 +167,7 @@ body {
 					</div>
 					<div class ="col-sm" id="post_time">
 						<fmt:formatDate value="${mbVO.postTime}" 
-									pattern="yyyy-MM-dd hh:mm" />
+									pattern="yyyy-MM-dd HH:mm" />
 					</div>
 					
 				</div>
@@ -169,17 +189,19 @@ body {
 		     			<input type="hidden" name="action"	value="getOne_For_Update"></FORM>				
 					</div>
 					</c:if>
-					
+				<!-- 占格數用 -->
 					<c:if test="${mbVO.memno != sessionScope.memVO.memno}" ><input class="btn btn-danger invisible" type="submit" value="修改"></c:if>
 			
 					<div class="">
 							<input class="btn btn-danger" type="submit" value="回覆" data-toggle="modal" data-target="#replymessage" >			
 						</div>
-					<div class="">
-					
-				     	<input class="btn btn-secondary" type="submit" value="檢舉" data-toggle="modal" data-target="#reportmessage">
-		    		 			
-					</div>
+					<c:if test="${mbVO.memno != sessionScope.memVO.memno}" >
+						<div class="">
+							<input class="btn btn-secondary" type="submit" value="檢舉" data-toggle="modal" data-target="#reportmessage">
+		    		 	</div>
+					</c:if>	
+					<c:if test="${mbVO.memno != sessionScope.memVO.memno}" ><input class="btn btn-danger invisible" type="submit" value="檢舉"></c:if>
+			
 			
 			
 		</div>
@@ -230,11 +252,7 @@ body {
 		for(var i=0; i<fc.length ;i++){
 			fc[i].innerText += (i+2)+'樓';
 		}
-
 	}
 </script>
-
-	
-
 
 <%@ include file="/front-end/front-end-footer.jsp"%>
