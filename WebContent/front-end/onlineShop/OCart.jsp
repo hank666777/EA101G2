@@ -20,7 +20,7 @@
 
 <% if(buylist != null && (buylist.size() > 0)) {%>
 
-<div class="container" style="width:1200px; height:850px; margin:auto;">
+<div class="container text-center" style="width:1200px; height:850px; margin:auto;">
 
 <div id="font">
 <font size="+3">目前已購商品如下</font><p>

@@ -17,10 +17,10 @@
 					</c:if>
 					<i class="ml-auto"></i> ${sessionScope.memVO.mName } ${(sessionScope.memVO ==null) ? '':'您好~' }
 				
-					<a id="member" href="${pageContext.request.contextPath}/front-end/index.jsp"> 
+					<a id="index" href="${pageContext.request.contextPath}/front-end/index.jsp"> 
 						<i class="fa fa-home" aria-hidden="true"></i> 回首頁
 					</a>
-					<a id="member" href="${pageContext.request.contextPath}/front-end/mem/member_center.jsp"> 
+					<a id="member-center" href="${pageContext.request.contextPath}/front-end/mem/member_center.jsp"> 
 						<i class="fa fa-user"></i> 會員中心
 					</a> 
 					<a id="cart" href="${pageContext.request.contextPath}/front-end/onlineShop/OCart.jsp"> 

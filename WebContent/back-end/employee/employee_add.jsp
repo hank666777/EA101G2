@@ -69,13 +69,8 @@
 						<td><input type="email" name="eEmail" id="eEmail" size="50" class="form-control" style="background-color:LemonChiffon;"
 							value="<%= (employeeVO == null) ? "" : employeeVO.geteEmail()%>"/></td>
 					</tr>
-<!-- 					<tr> -->
-<!-- 						<th class="text-nowrap align-middle table-primary" scope="col">圖片</th> -->
-<!-- 						<td> -->
 						<input type="file" name="ePic" id="ePic" style="display:none;"
-							class="btn btn-secondary text-center"/>
-<!-- 							</td> -->
-<!-- 					</tr> -->
+									class="btn btn-secondary text-center"/>
 					
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">職稱</th>

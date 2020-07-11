@@ -45,7 +45,7 @@
 			display: none;
 		}
 		h3{
-  			font: bold 26px/1.5 "微軟正黑體", Verdana, sans-serif;
+  			font: bold 26px/1.5 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
 		}
 		#list-ul li {
 			padding: 10px;
@@ -65,7 +65,7 @@
 			width: 300px;
 		}
 		#list-ul li div p {
-			font: 250 20px/1.5 "微軟正黑體", Times New Roman,sans-serif;
+			font: 250 20px/1.5 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
 		}	
 		#list-ul li {
 			list-style-type: none;
@@ -81,10 +81,10 @@
 			height: 45px;
 		}
 		.nav-link{
-			font: bold 18px/1.5 "微軟正黑體";
+			font: bold 18px/1.5 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
 		}
 		#member{
-			font: bold 16px/1.5 "微軟正黑體";
+			font: bold 16px/1.5 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
 			margin-top: 8px;
 		}
 	</style>

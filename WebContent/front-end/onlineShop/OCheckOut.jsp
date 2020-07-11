@@ -3,7 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.mem.model.*"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
+
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -71,7 +71,7 @@
 		<td colspan="1" style="text-align:center;">
 			<p>
 			<a href="<%=request.getContextPath()%>/front-end/onlineShop/OShop.jsp" style="text-align:center;">
-				<font> 是 否 繼 續 購 物</font>
+				<font>  繼 續 購 物</font>
 			</a>  
 		</td>
 		<td colspan="5" style="text-align:right;"> 

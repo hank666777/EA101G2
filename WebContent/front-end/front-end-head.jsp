@@ -16,7 +16,6 @@
  
 <!-- font-awesome CSS 5.13-->
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.css">
-<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"> --%>
 
 <style>
 

@@ -13,7 +13,9 @@
 }
 .container{
 	margin:5 auto;
+	padding: auto 0;
 }
+
 </style>
 </head>
 <body>

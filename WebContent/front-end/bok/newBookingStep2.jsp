@@ -200,10 +200,10 @@
 		}
 		#newbooking{
 			display: none;
-			font: 350 20px/1.5 "微軟正黑體", Times New Roman,sans-serif;
+			font: 350 20px/1.5 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
 		}
 		.table ~ p{
-			font: bold 14px/1.5 "微軟正黑體", Times New Roman,sans-serif;
+			font: bold 14px/1.5 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
 		}
 		#bkprice{
 			position: relative;
@@ -227,11 +227,11 @@
 		}
 		
 		.nav-link{
-			font: bold 18px/1.5 "微軟正黑體";
+			font: bold 18px/1.5 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
 		}
 		
 		#member{
-			font: bold 16px/1.5 "微軟正黑體";
+			font: bold 16px/1.5 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
 			margin-top: 8px;
 		}
 	</style>
@@ -313,7 +313,7 @@
 			<div id="result">
 				<br>
 				選擇人數:
-				<select id="peoples" name="numofpeoples">
+				<select id="peoples" name="numofpeoples" class="custom-select d-block w-50">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -341,7 +341,7 @@
 				<input type="hidden" name="memno" value="<%=memvo.getMemno()%>">
 				<input type="hidden" name="bkdate" value="${bkdate}">
 				<input type="hidden" name="bkperiod" value="${bkperiod}">
-				<input id="send" type="button" value="送出" onclick="checking()">
+				<input class="btn btn-success" id="send" type="button" value="送出" onclick="checking()">
 			</div>
 		</form>
 	</div>

@@ -62,6 +62,9 @@
 		      <a class="list-group-item list-group-item-action" id="messagess" data-toggle="list" href="#list-messagess" role="tab" aria-controls="settings">
 		      	<i class="fas fa-comment-dots fa-2x"></i> 留言紀錄
 		      </a>
+		      <a class="list-group-item list-group-item-action" id="messagess-report" data-toggle="list" href="#list-messagess-report" role="tab" aria-controls="settings">
+		      	<i class="fas fa-poll-h fa-2x"></i> 留言檢舉紀錄
+		      </a>
 		      <a class="list-group-item list-group-item-action" href="${pageContext.request.contextPath}/front-end/mem/memberlogout.do">
 		      	<i class="fas fa-sign-out-alt fa-2x"></i> 登出
 		      </a>
@@ -93,11 +96,10 @@
 		      	意見反映查詢(未導入)
 		      </div>
 		      <div class="tab-pane fade" id="list-messagess" role="tabpanel" aria-labelledby="">
-	      		留言板，不知道是哪個(未導入)
-<%-- 	      		<jsp:include page="${pageContext.request.contextPath}/front-end/messageboard/listMemMessage.jsp" flush="true"> --%>
-<%-- 	      			<jsp:parem name="${memVO.memno}" value=""/> --%>
-<%-- 	      		</jsp:include> --%>
-<%-- 		      	<%@ include file="/front-end/messageboard/listMemMessage.jsp"%> --%>
+		      	<%@ include file="/front-end/messageboard/listMemMessage_for_memcenter.jsp"%>
+		      </div>
+		      <div class="tab-pane fade" id="list-messagess-report" role="tabpanel" aria-labelledby="">
+		      	留言檢舉紀錄(未導入)
 		      </div>
 		    </div>
 		  </div>

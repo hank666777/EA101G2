@@ -64,7 +64,7 @@
 body {
   background: #dce1df;
   color: #4f585e;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
   text-rendering: optimizeLegibility;
 }
 a.btn {
@@ -97,7 +97,7 @@ input.btn:active {
   transition: all 0.025s 0s ease-out;
 }
 div.cards {
-  margin: 80px auto;
+  margin: 70px auto 10px auto;
   max-width: 100%;
   text-align: center;
 }

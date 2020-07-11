@@ -68,7 +68,7 @@
 			height:36px;
 		}
 		#date_and_period{
-			font: 350 20px/1.5 "微軟正黑體", Times New Roman,sans-serif;
+			font: 350 20px/1.5 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
 			display: none;
 		}
 		#date_block{
@@ -95,10 +95,10 @@
 		}
 		
 		.nav-link{
-			font: bold 18px/1.5 "微軟正黑體";
+			font: bold 18px/1.5 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
 		}
 		#member{
-			font: bold 16px/1.5 "微軟正黑體";
+			font: bold 16px/1.5 'Noto Sans TC', "Helvetica", "Arial","LiHei Pro","Microsoft JhengHei", Verdana, sans-serif;
 			margin-top: 8px;
 		}
 	</style>
@@ -140,7 +140,7 @@
 				
 				<div id="period_block">
 				選擇時段: <br>
-				<select name="bkperiod" id="bkperiod">
+				<select class="custom-select d-block w-100" name="bkperiod" id="bkperiod">
 					<option value="1200-1300">1200-1300</option>
 					<option value="1300-1400">1300-1400</option>
 					<option value="1400-1500">1400-1500</option>
@@ -152,9 +152,9 @@
 				</select></div>
 				
 				<input type="hidden" name="action" value="getStatusByTime">
-				<input type="button" id="next" value="下一步" onclick="checkdate()">	
+				<input class="btn btn-success" type="button" id="next" value="下一步" onclick="checkdate()">	
 			</FORM>
-			<input type="button" id="giveup" value="放棄" onclick="location.href='<%=request.getContextPath()%>/front-end/bok/booking_page_user.jsp'">
+			<input class="btn btn-secondary" type="button" id="giveup" value="放棄" onclick="location.href='<%=request.getContextPath()%>/front-end/bok/booking_page_user.jsp'">
 		</div>
 	</div>
 <%@ include file="/front-end/front-end-footer-type2.jsp"%>
