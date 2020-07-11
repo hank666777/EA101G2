@@ -81,7 +81,7 @@
 
 </ul>
 
-<h3>商品管理</h3>
+<h3>商品管理8787</h3>
 
 <ul>
   <li><a href="<%=request.getContextPath()%>/back-end/liveShop/add_Product.jsp">Add</a> a new product</li>
