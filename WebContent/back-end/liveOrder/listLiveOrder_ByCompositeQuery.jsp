@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.liveOrder.model.*"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.permission.model.*" %>
+<%@ page import="com.features.model.*" %>
 <%-- 萬用複合查詢-可由客戶端select_page.jsp隨意增減任何想查詢的欄位 --%>
 <%-- 此頁只作為複合查詢時之結果，可視需要再增加分頁、送出修改、刪除之功能--%>
 

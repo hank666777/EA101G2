@@ -28,14 +28,14 @@
 	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+	
 	<script type="text/javascript" src="js/app.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<style type="text/css" media="screen">
 	
-		.container-fluid{
+		 #booking-container{
 			background-image:url(<%=request.getContextPath()%>/back-end/bok/backImages/background.jpg);
 			background-size: cover;
 			background-position:bottom ;
@@ -49,12 +49,12 @@
 		#floor_plan{
 			position: relative;
 			float: left;
-			margin-top:1.5%; 
+			margin-top:30px; 
 			margin-left: 50px;
 			width:1100px;
 			height:830px;
 			background-color: #F8F8F8;
-			background-image:url(<%=request.getContextPath()%>/front-end/bok/seat_img/FloorPlan.jpg);
+			background-image:url(<%=request.getContextPath()%>/back-end/bok/seat_img/FloorPlan.jpg);
 			background-size: 100% 100%;
 			border-radius:5px;
 			box-shadow:3px 3px 9px black;
@@ -64,7 +64,7 @@
 		#rule-list{
 			position: relative;
 			float: left;
-			margin-top:6.5%; 
+			margin-top:30px; 
 			margin-left: 50px;
 			width: 300px;
 			height: 400px; 
@@ -76,7 +76,7 @@
 		#result{
 			position: relative;
 			float: left;
-			margin-top:6.5%; 
+			margin-top:30px; 
 			margin-left: 50px;
 			width: 300px;
 			height: 400px; 
@@ -234,11 +234,8 @@
 	</style>
 </head>
 <body>
+	<%@ include file="/back-end/back-end-header.jsp" %>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="<%=request.getContextPath()%>/back-end/back-end-index.jsp"><img id="logo" src="<%=request.getContextPath()%>/back-end/bok/backImages/home.png" title="回主控台" style="height: 50px;height: 50px;"></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
@@ -253,23 +250,12 @@
 				</li>
 			</ul>
 		</div>
-		<div id="emp">
-			<p>員工名稱</p>
-		</div>
+		
 	</nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid" id="booking-container">
 		<form id="newbooking" METHOD="post" ACTION="<%=request.getContextPath()%>/BokServlet_admin">
-			<div id="rule-list">
-				<div id="rules">
-					<p><img src="<%=request.getContextPath()%>/front-end/bok/images/red-square.png">紅色代表已經被訂</p>
-					<p><img src="<%=request.getContextPath()%>/front-end/bok/images/green-square.png">綠色代表可以選擇</p>
-					<p><img src="<%=request.getContextPath()%>/front-end/bok/images/black-square.png">灰色代表不可選擇</p>
-					<p><img src="<%=request.getContextPath()%>/front-end/bok/images/orange-square.png">橘色代表目前的選擇</p>
-					<hr>
-					<p><img src="<%=request.getContextPath()%>/front-end/bok/images/blockly-pink.png">每張桌子最多只能留有一個空位。</p>
-				</div>
-			</div>
+			
 			<div id="floor_plan">
 				<label id="T0001" for="0"><input class="table" id=0 type="checkbox" name="tableno" value="T0001">
 					<img class="seat2" src=""><p>T0001(兩人桌)</p></label>
@@ -333,9 +319,20 @@
 				<input type="hidden" name="bkperiod" value="${bkperiod}">
 				<input id="send" type="button" value="送出" onclick="checking()">
 			</div>
+			<div id="rule-list">
+				<div id="rules">
+					<p><img src="<%=request.getContextPath()%>/back-end/bok/images/red-square.png">紅色代表已經被訂</p>
+					<p><img src="<%=request.getContextPath()%>/back-end/bok/images/green-square.png">綠色代表可以選擇</p>
+					<p><img src="<%=request.getContextPath()%>/back-end/bok/images/black-square.png">灰色代表不可選擇</p>
+					<p><img src="<%=request.getContextPath()%>/back-end/bok/images/orange-square.png">橘色代表目前的選擇</p>
+					<hr>
+					<p><img src="<%=request.getContextPath()%>/back-end/bok/images/blockly-pink.png">每張桌子最多只能留有一個空位。</p>
+				</div>
+			</div>
 		</form>
 	</div>
-	
+	<%@ include file="/back-end/back-end-footer.jsp"%>
+	<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 		allGreen();
 		
@@ -355,13 +352,13 @@
 				}
 				for(var i=5 ; i<10 ; i++){
 					$("input[id='"+i+"']").attr("disabled",true);
-					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat4_gray.png");
-					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat4_orange.png");
+					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat4_gray.png");
+					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat4_orange.png");
 				}
 				for(var i=10 ; i<15 ; i++){
 					$("input[id='"+i+"']").attr("disabled",true);
-					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat6_gray.png");
-					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat6_orange.png");
+					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat6_gray.png");
+					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat6_orange.png");
 				}
 			}else if((pe-to)<=0){
 				for(var i=0 ; i<=14 ; i++){
@@ -370,25 +367,25 @@
 				}
 				for(var i=0 ; i<5 ; i++){
 					$("input[id='"+i+"']").attr("disabled",true);
-					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat2_gray.png");
-					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat2_orange.png");
+					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat2_gray.png");
+					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat2_orange.png");
 				}
 				for(var i=5 ; i<10 ; i++){
 					$("input[id='"+i+"']").attr("disabled",true);
-					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat4_gray.png");
-					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat4_orange.png");
+					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat4_gray.png");
+					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat4_orange.png");
 				}
 				for(var i=10 ; i<15 ; i++){
 					$("input[id='"+i+"']").attr("disabled",true);
-					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat6_gray.png");
-					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat6_orange.png");
+					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat6_gray.png");
+					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat6_orange.png");
 				}
 			}else if((pe-to)>=3 && (pe-to)<=4){
 				for(var i=10 ; i<=14 ; i++){
 					$("input[id='"+i+"']").attr("disabled",true);	
 					//$("input[id='"+i+"']+p").css("background-color","gray");
-					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat6_gray.png");	
-					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat6_orange.png");
+					$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat6_gray.png");	
+					$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat6_orange.png");
 				}
 			}		
 			$('input[name="tableno"]:checkbox:checked').attr("disabled",false);
@@ -407,11 +404,11 @@
 				$("input[id='"+t[n]+"']").attr("disabled",true);
 				$("input[id='"+t[n]+"']+p").attr('style','background-color:red;color:black');
 				if(t[n]<5){
-					$("input[id='"+t[n]+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat2_red.png");
+					$("input[id='"+t[n]+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat2_red.png");
 				}else if (t[n]>4 && t[n]<10) {
-					$("input[id='"+t[n]+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat4_red.png");
+					$("input[id='"+t[n]+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat4_red.png");
 				}else if (t[n]>9){
-					$("input[id='"+t[n]+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat6_red.png");
+					$("input[id='"+t[n]+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat6_red.png");
 				}
 				
 			<%}%>
@@ -470,31 +467,31 @@
 		
 		function allGreen(){
 			for(var i=0 ; i<5 ; i++)
-				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat2_green.png");
+				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat2_green.png");
 			for(var i=5 ; i<10 ; i++)
-				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat4_green.png");
+				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat4_green.png");
 			for(var i=10 ; i<15 ; i++)
-				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat6_green.png");
+				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat6_green.png");
 		}
 		
 		function Orange_and_Green(){
 			var text = "" ;
 			$("#items").empty();
 			for(var i=0 ; i<5 ; i++){
-				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat2_green.png");
-				$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat2_orange.png");
+				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat2_green.png");
+				$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat2_orange.png");
 				text = "<p>" + $("input[id='"+i+"']:checkbox:checked ~ p").text() + "</p>";
 				$("#items").append(text);
 			}
 			for(var i=5 ; i<10 ; i++){
-				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat4_green.png");
-				$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat4_orange.png");
+				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat4_green.png");
+				$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat4_orange.png");
 				text = "<p>" + $("input[id='"+i+"']:checkbox:checked ~ p").text() + "</p>";
 				$("#items").append(text);
 			}
 			for(var i=10 ; i<15 ; i++){
-				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat6_green.png");
-				$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/front-end/bok/seat_img/seat6_orange.png");
+				$("input[id='"+i+"']+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat6_green.png");
+				$("input[id='"+i+"']:checkbox:checked+img").attr("src","<%=request.getContextPath()%>/back-end/bok/seat_img/seat6_orange.png");
 				text = "<p>" + $("input[id='"+i+"']:checkbox:checked ~ p").text() + "</p>";
 				$("#items").append(text);
 			}

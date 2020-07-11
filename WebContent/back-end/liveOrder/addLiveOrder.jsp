@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.liveOrder.model.*"%>
-
+<%@ page import="com.permission.model.*" %>
+<%@ page import="com.features.model.*" %>
 <%
 	LiveOrderVO loVO = (LiveOrderVO)request.getAttribute("loVO");
 %>

@@ -24,7 +24,7 @@
 <jsp:useBean id="tableSvc" scope="page" class="com.tabless.model.TableService" />
 
 <div id="font">
-<font size="+3">桌號${tbVO.tableno}目前已購商品如下</font><p>
+<font size="+3">桌號${tbVO.tableNo}目前已購商品如下</font><p>
 </div>
 	
 	<table>

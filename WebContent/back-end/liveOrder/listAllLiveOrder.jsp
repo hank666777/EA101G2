@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.*"%>
 <%@ page import="com.liveOrder.model.*"%>
+<%@ page import="com.permission.model.*" %>
+<%@ page import="com.features.model.*" %>
 
 <% 
 	LiveOrderService loSvc = new LiveOrderService();
@@ -13,41 +15,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <style>
-  body{
-  	margin:0;
-  	padding:0;
-  }
+
   table#table-1 {
+  position: relative;
 	background-color: #CCCCFF;
     border: 2px solid black;
     text-align: center;
+    border-collapse: collapse;
+    margin:auto;
+    width:800px;
   }
   table#table-1 h4 {
     color: red;
     display: block;
     margin-bottom: 1px;
   }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-  table {
+
+  listAll {
+  border-collapse: collapse;
+  position: relative;
 	width: 800px;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
   }
-  table, th, td {
+  listAll, th, td {
     border: 1px solid #CCCCFF;
   }
   th, td {
-    padding: 5px;
+    padding: 8px;
     text-align: center;
+    border-bottom: 1px solid #ddd;
   }
   .picture{
   	width:100px;
@@ -58,17 +63,40 @@
   height:800px;
   	margin-left:350px;
   }
+  #booking-container{
+
+			position: relative;
+			width:100%;
+			height:900px;	
+			border:0px solid ;		
+			overflow:hidden;
+  }
+  data:hover {
+			background-color:#CADCF9;
+  }
+	#list_container{ 
+ 			position: relative;  
+ 			margin:3% auto; 
+ 			width: 1000px;
+			height: 800px; 
+ 			text-align: center; 
+			background-color: #F8F8F8; 
+ 			border-radius:5px; 
+ 			box-shadow:3px 3px 9px black; 
+ 			padding: 5px; 
+ 			overflow-y: auto; 
+ 			display: none;
+ 		} 
 </style>
 </head>
 <%@ include file="/back-end/back-end-head.jsp" %>
 <body>
 <%@ include file="/back-end/back-end-header.jsp" %>
-<div id="container"  style="width:600px;margin:50px auto;border:2px solid black">
+
 
 <table id="table-1">
 	<tr><td>
 		 <h3>所有現場訂單資料</h3>
-		 <h4><a href="<%=request.getContextPath()%>/back-end/liveOrder/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/liveShop/images/logo.png" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -82,7 +110,10 @@
 	</ul>
 </c:if>
 
-<table>
+
+<div class="container-fluid" id="booking-container">
+	<div id="list_container">
+	<table id="listAll">
 	<tr>
 		<th>現場訂單編號</th>
 		<th>員工編號</th>
@@ -97,7 +128,7 @@
 	<%@ include file="/back-end/liveShop/page1.file" %>
 	<c:forEach var="loVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
-	<tr>
+	<tr class="data">
 			<td>${loVO.liveOrderno}</td>
 			<td>${loVO.empno}</td>
 			<td>${loVO.tableno}</td>
@@ -119,10 +150,28 @@
 			</td>
 	</tr>
 	</c:forEach>
+	<%@ include file="/back-end/liveShop/page2.file" %>
 </table>
-<%@ include file="/back-end/liveShop/page2.file" %>
 
 </div>
+
+</div>
+
+
+
 <%@ include file="/back-end/back-end-footer.jsp"%>
 </body>
+<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function (){
+			 $("#list_container").fadeIn("slow");
+		});
+
+		function detail(){
+			alert();
+		}
+		$(function () {
+			$('[data-toggle="popover"]').popover()
+		})
+	</script>
 </html>

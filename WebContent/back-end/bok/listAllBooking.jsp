@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.booking.model.*"%>
 <%@ page import="com.bookingdetail.model.*"%>
@@ -28,7 +29,7 @@
 	<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<style type="text/css">
-		.container-fluid{
+		#booking-container{
 			background-image:url(<%=request.getContextPath()%>/back-end/bok/backImages/background.jpg);
 			background-size: cover;
 			background-position:top ;
@@ -98,12 +99,9 @@
 	</style>
 </head>
 <body>
+	<%@ include file="/back-end/back-end-header.jsp" %>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="<%=request.getContextPath()%>/back-end/back-end-index.jsp"><img id="logo" src="<%=request.getContextPath()%>/back-end/bok/backImages/home.png" title="回主控台" style="height: 50px;height: 50px;"></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
+		
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
@@ -121,7 +119,7 @@
 			<p>員工名稱</p>
 		</div>
 	</nav>
-	<div class="container-fluid">
+	<div class="container-fluid" id="booking-container">
 		<div id="list_container">
 			<table id="listAll">
 				<tr>
@@ -217,7 +215,8 @@
 			</article>
 		</div>
 	</div>
-	
+	<%@ include file="/back-end/back-end-footer.jsp"%>
+	<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function (){
 			 $("#list_container").fadeIn("slow");

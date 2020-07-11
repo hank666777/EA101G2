@@ -8,7 +8,7 @@
 <title>結帳購物車</title>
  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front-end/onlineShop/css/ShoppingCart.css">
 </head>
-<%@ include file="/front-end/front-end-head.jsp"%>
+<%-- <%@ include file="/front-end/front-end-head.jsp"%> --%>
 <body>
 
 <%	
@@ -19,14 +19,18 @@
 
 <% if(buylist != null && (buylist.size() > 0)) {%>
 
-<%@ include file="/front-end/front-end-header.jsp"%>
-<%@ include file="/front-end/front-end-header2.jsp"%>
-<div id="banner">
+<%-- <%@ include file="/front-end/front-end-header.jsp"%> --%>
+<%-- <%@ include file="/front-end/front-end-header2.jsp"%> --%>
+
+<div class="container" style="width:1200px; height:850px; margin:auto;">
+
 <div id="font">
 <font size="+3">目前已購商品如下</font><p>
 </div>
+
+
 	
-	<table>
+	<table id="Carts">
 		<tr>
 			<th><font size="+2.5">選購商品圖片</font></th>
 			<th><font size="+2.5">選購商品名稱</font></th>
@@ -39,11 +43,11 @@
 		%>
 	
 		<tr>
-			<td width="350" height="30"><div align="center"><b><img src="<%=request.getContextPath()%>/product/DBGifReaderProduct.do?pno=<%= order.getpno()%>"></b></div></td>
-			<td width="350" height="30"><div align="center"><b><%= order.getpname()%></b></div></td>
-			<td width="350" height="30"><div align="center"><b><%= order.getpP()%></b></div></td>			
+			<td style="width:350px; height:30px;"><div align="center"><b><img src="<%=request.getContextPath()%>/product/DBGifReaderProduct.do?pno=<%= order.getpno()%>"></b></div></td>
+			<td style="width:350px; height:30px;"><div align="center"><b><%= order.getpname()%></b></div></td>
+			<td style="width:350px; height:30px;"><div align="center"><b><%= order.getpP()%></b></div></td>			
 			
-			<td width="350" height="30">
+			<td style="width:350px; height:30px;">
 			<div align="center">
 			<Form name="deleteForm" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="POST">
 			    <input type="hidden" name="action" value="QTY"> 
@@ -65,6 +69,7 @@
 		</tr>
 		<%}%>
   	</table>
+
 	<p>
 		<form name="checkoutForm" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="POST">
 			<input type="hidden" name="action" value="CHECKOUT">
@@ -72,7 +77,7 @@
 		</form>	
 <%}%>
 </div>
-<%@ include file="/front-end/front-end-footer.jsp"%>
+<%-- <%@ include file="/front-end/front-end-footer.jsp"%> --%>
 
 
 </body>

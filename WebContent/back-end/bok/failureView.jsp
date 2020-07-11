@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="com.booking.model.*"%>
 <%@ page import="com.bookingdetail.model.*"%>
-<%
-	//MemVO memvo = session.getAttribute("MemVO"); 
-%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,11 +71,8 @@
 
 </head>
 <body>
+	<%@ include file="/back-end/back-end-header.jsp" %>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="<%=request.getContextPath()%>/back-end/back-end-index.jsp"><img id="logo" src="<%=request.getContextPath()%>/back-end/bok/backImages/home.png" title="回主控台" style="height: 50px;height: 50px;"></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
@@ -91,15 +87,13 @@
 				</li>
 			</ul>
 		</div>
-		<div id="emp">
-			<p>員工名稱</p>
-		</div>
+		
 	</nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid" id="booking-container">
 		<div id="faillureView">
 			<br><br><br>
-			<img src="<%=request.getContextPath()%>/front-end/bok/images/cloud-alert.png"><br>
+			<img src="<%=request.getContextPath()%>/back-end/bok/images/cloud-alert.png"><br>
 			<c:if test="${not empty errorMsgs}">
 				<font color='red'>請修正以下錯誤:</font>
 				
@@ -110,7 +104,8 @@
 			</c:if>	
 		</div>
 	</div>
-	
+	<%@ include file="/back-end/back-end-footer.jsp"%>
+	<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function (){
 			 $("#faillureView").fadeIn("slow");

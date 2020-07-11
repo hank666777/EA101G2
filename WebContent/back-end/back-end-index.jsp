@@ -68,7 +68,7 @@
 									${(feaVO.feano == 'F0070') ? 'bok/liveOrderMultiQuery.jsp':''}
 									${(feaVO.feano == 'F0080') ? 'liveOrder/select_page.jsp':''}
 									${(feaVO.feano == 'F0090') ? 'coupon/couponIndex.jsp':''}
-									${(feaVO.feano == 'F0100') ? 'gggeg/egeswg.jsp':''}">
+									${(feaVO.feano == 'F0100') ? 'messagereport/select_page.jsp':''}">
 									
 <!-- 								塞圖片用，放在引號 -->
 								<p class="h2 text-white">
