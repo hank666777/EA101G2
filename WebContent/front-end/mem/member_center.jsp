@@ -76,18 +76,19 @@
 		    <br><br><br>
 		    <div class="tab-content" id="nav-tabContent">
 		      <div class="tab-pane fade show " id="list-listOneMem" role="tabpanel" aria-labelledby="listOneMem">
-						<!-- 這是會員個人資料 -->
+						<!-- 會員個人資料 -->
 						<%@ include file="/front-end/mem/listOneMem.jsp"%>
 		      </div>
 		      <div class="tab-pane fade" id="list-coupon" role="tabpanel" aria-labelledby="coupon">
-		      	<!-- 會員的優惠券 -->
+		      	<!-- 會員優惠券 -->
 						<%@ include file="/front-end/myCoupon/listMyCoupon.jsp"%>
 		    	</div>
 		      <div class="tab-pane fade" id="list-onLineOrder" role="tabpanel" aria-labelledby="list-onLineOrder">
-		      	訂單查詢(未導入)
+		      	<!-- 會員訂單紀錄 -->
+		      	<%@ include file="/front-end/ono/listMemONO_membercenter.jsp"%>
 		      </div>
 		      <div class="tab-pane fade" id="list-booking" role="tabpanel" aria-labelledby="booking-list">
-		      	<!-- 會員的訂位紀錄 -->
+		      	<!-- 會員訂位紀錄 -->
 		      	<%@ include file="/front-end/bok/listByMemNoForInclude.jsp"%> 
 		      </div>
 		      <div class="tab-pane fade" id="list-activity" role="tabpanel" aria-labelledby="activity-list">
@@ -97,7 +98,8 @@
 		      	意見反映查詢(未導入)
 		      </div>
 		      <div class="tab-pane fade" id="list-messagess" role="tabpanel" aria-labelledby="">
-		      	<%@ include file="/front-end/messageboard/listMemMessage_for_memcenter.jsp"%>
+		      	<!-- 會員留言紀錄 -->
+		      	<%@ include file="/front-end/messageboard/listMemMessage_memcenter.jsp"%>
 		      </div>
 		      <div class="tab-pane fade" id="list-messagess-report" role="tabpanel" aria-labelledby="">
 		      	留言檢舉紀錄(未導入)
