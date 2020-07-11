@@ -20,13 +20,13 @@
 
 <style>
 
-	body{
-		background-image:url('<%= request.getContextPath() %>/front-end/product/image/productShoppingBackground.jpg');
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-position: center;
-	}
+/* 	body{ */
+<%-- 		background-image:url('<%= request.getContextPath() %>/front-end/product/image/productShoppingBackground.jpg'); --%>
+/* 		background-size: cover; */
+/* 		background-repeat: no-repeat; */
+/* 		background-attachment: fixed; */
+/* 		background-position: center; */
+/* 	} */
 
 	#productselecttitle{
 		margin:25px auto;
