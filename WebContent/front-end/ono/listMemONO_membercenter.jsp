@@ -13,6 +13,7 @@
 	List<ONOVO> myONOlist = onolist.stream().filter(ono -> ono.getmemno().contains(memvo1.getMemno()))
 																					.collect(Collectors.toList());
 	pageContext.setAttribute("myONOlist", myONOlist);
+	
 %>
 
 <html>
@@ -101,7 +102,6 @@
 		</td>
 	
 	</tr>
-	
 	
 	
 	<!-- Modal -->
