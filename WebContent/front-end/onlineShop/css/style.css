@@ -1,0 +1,198 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "proxima-nova", "Helvetica Neue",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/402979/plmojilhdju-sebastian-lp.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container {
+  float: right;
+  background: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  width: 60%;
+  color: #fff;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+
+h1 {
+  font-size: 4em;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 100;
+  border: 2px solid #fff;
+  padding: 16px;
+  text-align: center;
+  max-width: 5em;
+  box-sizing: content-box;
+  text-align: center;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+h1:hover {
+  color: #ff7e12;
+  border-color: #ff7e12;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+form {
+  width: 75%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.radio-group {
+  margin-bottom: 16px;
+}
+
+.radio-group input, .radio-group label {
+  display: inline-block;
+}
+
+label, input[type="text"] {
+  display: block;
+}
+
+input, select {
+  margin-bottom: 32px;
+}
+
+select {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #bbb;
+  width: 100%;
+  max-width: 15em;
+  padding: 8px 0;
+  color: #bbb;
+  text-align: center;
+  -moz-text-align-last: center;
+       text-align-last: center;
+  font-size: 20px;
+  outline: 0;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+select:focus {
+  color: #ff7e12;
+  border-color: #ff7e12;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+select option {
+  color: #000;
+  text-align: center;
+  -moz-text-align-last: center;
+       text-align-last: center;
+}
+
+input[type="text"] {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #bbb;
+  color: #bbb;
+  padding: 8px 0;
+  width: 100%;
+  max-width: 15em;
+  font-size: 20px;
+  text-align: center;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+input[type="text"]:focus {
+  color: #ff7e12;
+  border-color: #ff7e12;
+  outline: 0;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+input[type="submit"] {
+  background-color: #ff7e12;
+  border: 0;
+  border-radius: 100px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 16px 32px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+  outline: 0;
+}
+input[type="submit"]:hover, input[type="submit"]:focus {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+@media (max-width: 768px) {
+  body {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: start;
+            align-items: flex-start;
+    height: 100vh;
+    width: 100%;
+  }
+
+  .container {
+    float: none;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    padding-top: 32px;
+  }
+}
+@media (max-width: 512px) {
+  body {
+    height: 100vh;
+    background-attachment: fixed;
+  }
+
+  form {
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+
+  input[type="submit"] {
+    margin: 0 0 64px 0;
+  }
+}
+@media (max-height: 850px) {
+  body {
+    height: 100%;
+  }
+
+  .container {
+    height: 100%;
+  }
+}
