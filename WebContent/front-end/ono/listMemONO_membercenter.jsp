@@ -114,19 +114,19 @@
 		
 				      	<!-- 要導入的訂單明細，未完成 -->
 <%-- 	        <%@ include file="/front-end/ono/listMemONODetail_membercenter.jsp"%> --%>
-
+								<!-- 要導入的訂單明細，未完成 -->
 		</td>
 	</tr>
 	<script type="text/javascript">
-            //表格的展开和收缩实现代码
-	$(function(){
-    $("tr#${onVO.onono}").click(function(){
-        $(this)
-        .toggleClass("selected")
-        .siblings('#child_${onVO.onono}').toggle();
-    }).click();
-	});
-</script>
+  	//表格的展开和收缩实现代码
+		$(function(){
+	    $("tr#${onVO.onono}").click(function(){
+	        $(this)
+	        .toggleClass("selected")
+	        .siblings('#child_${onVO.onono}').toggle();
+	    }).click();
+		});
+	</script>
 	
 
 

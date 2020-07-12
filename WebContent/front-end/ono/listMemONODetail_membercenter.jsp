@@ -6,10 +6,25 @@
 <%@ page import="com.ono.model.*"%>
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.onodetail.model.*"%>
+<%@ page import="com.product.model.*"%>
 <% 
+	//取得所有訂單
+	List<ONOVO> onolist = new ONOService().getAll();
+	//取得登入者的訂單
+	MemVO memvo1 = (MemVO)session.getAttribute("memVO");
+	List<ONOVO> myONOlist = onolist.stream().filter(ono -> ono.getmemno().contains(memvo1.getMemno()))
+																					.collect(Collectors.toList());
+	pageContext.setAttribute("myONOlist", myONOlist);	
+	
 	ONODetailService ondSvc = new ONODetailService();
-	List<ONODetailVO> onoDetailList = ondSvc.getAll();
-	pageContext.setAttribute("onoDetailList",onoDetailList);
+
+	List<ONODetailVO> list = ondSvc.getAll();
+	pageContext.setAttribute("list",list);
+	
+	ProductService pdSvc = new ProductService();
+	List<ProductVO> pdlist = pdSvc.getAll();
+	pageContext.setAttribute("pdlist",pdlist);
+
 %>
 
 <!DOCTYPE html>
@@ -30,18 +45,21 @@
 			<th>購買數量</th>
 			<th>單品價格</th>
 	    </tr>
-	    
-		<c:forEach var="ondVO" items="${onoDetailList}">
-			<c:forEach var="onVO" items="${myONOlist}">
-				<c:if test="${myONOlist.onono} == ${list.onono}">
+
+	    <c:forEach var="ondVO" items="${list}">
+	    	<c:forEach var="onVO" items="${myONOlist}">
+				<c:if test="${(onVO.onono eq ondVO.onono)}">
+
 					<tr class="text-center">
 	
+							<c:forEach var="pdVO" items="${pdlist}">
+									<c:if test="${(pdVO.pno eq ondVO.pno)}">
+										<td class="text-center">${pdVO.pname}</td>
+									</c:if>
+							</c:forEach>
 							
-							<td class="text-center">${ondVO.pno}</td>
-							<td class="text-center">${ondVO.onoQty}</td>
-							<td class="text-center">${ondVO.onoPrice}</td>
-							
-							
+							<td class="text-center" id="qty">${ondVO.onoQty}</td>
+							<td class="text-center" id="price">${ondVO.onoPrice}</td>
 
 					</tr>
 				</c:if>
@@ -49,6 +67,7 @@
 		</c:forEach>
 		
 	</table>
+
 	
 </body>
 </html>
