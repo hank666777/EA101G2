@@ -370,7 +370,7 @@ public class ONODetailJDBCDAO implements ONODetailDAO_interface {
 
 	//未實作
 	@Override
-	public Set<ONODetailVO> getONODetails(String onono) {
+	public List<ONODetailVO> getONODetails(String onono) {
 		// TODO Auto-generated method stub
 		return null;
 	}

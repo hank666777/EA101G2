@@ -5,6 +5,7 @@
 <%@ page import="com.ono.model.*"%>
 <%@ page import="com.onodetail.model.*"%>
 <%@ page import="com.mem.model.*"%>
+<%@ page import="com.product.model.*"%>
 
 <% 
 	//取得所有訂單
@@ -16,14 +17,18 @@
 	pageContext.setAttribute("myONOlist", myONOlist);
 	
 	//取得一筆訂單的所有明細
-// 	ONODetailService ondSvc = new ONODetailService();
-	
+	//ONODetailService ondSvc = new ONODetailService();
 	
 %>
 <% 
 	ONODetailService ondSvc = new ONODetailService();
 	List<ONODetailVO> onoDetailList = ondSvc.getAll();
 	pageContext.setAttribute("onoDetailList",onoDetailList);
+	
+	ProductService pdSvc = new ProductService();
+	List<ProductVO> pdlist = pdSvc.getAll();
+	pageContext.setAttribute("pdlist",pdlist);
+
 %>
 
 <html>
@@ -80,7 +85,7 @@
 <!-- 		</td> -->
 <!-- 	</tr> -->
 <!-- </table> -->
-<table class="table text-nowrap table-hover info text-center
+<table class="table table-sm text-nowrap table-hover info text-center
 							shadow-lg p-3 mb-5 bg-white rounded">
 	<tr class="text-center">
 		<th>線上訂單編號</th>
@@ -112,13 +117,56 @@
 	<tr id="child_${onVO.onono}">
 		<td>
 		
+		<!-- 訂單明細 -->
+		<table class="table table-sm text-nowrap">  
+			<tr class="text-center">
+				<th>商品名稱</th>
+				<th>購買數量</th>
+				<th>單品價格</th>
+			</tr>
+	 
+<%-- 		    <c:forEach var="ondVO" items="${onoDetailList}"> --%>
+<%-- 		    	<c:forEach var="onVO" items="${myONOlist}"> --%>
+<%-- 					<c:if test="${(onVO.onono eq ondVO.onono)}"> --%>
+	<c:forEach var="ondVO" items="${myONOlist.oneDetails(onVO.onono)}">
+	<c:if test="${ondVO.onono eq onVO.onono}">
+	
+						<tr class="text-center">
+		
+								<c:forEach var="pdVO" items="${pdlist}">
+<%-- 										<c:if test="${(pdVO.pno eq ondVO.pno)}"> --%>
+<%-- 											<td class="text-center">${pdVO.pname}</td> --%>
+<td class="text-center">${pdVO.pname }</td>
+<td class="text-center">${ondVO.onoQty }</td>
+<td class="text-center">${ondVO.onoPrice }</td>
+<%-- 										</c:if> --%> 
+								</c:forEach>
+								
+<%-- 								<td class="text-center" id="qty">${ondVO.onoQty}</td> --%>
+<%-- 								<td class="text-center" id="price">${ondVO.onoPrice}</td> --%>
+	
+						</tr>
+	</c:if>
+	</c:forEach>
+<%-- 					</c:if> --%>
+<%-- 				</c:forEach> --%>
+<%-- 			</c:forEach> --%>
+		</table>
+			
+		
+		
+		
+		
+		
+		
+		
 				      	<!-- 要導入的訂單明細，未完成 -->
 <%-- 	        <%@ include file="/front-end/ono/listMemONODetail_membercenter.jsp"%> --%>
 								<!-- 要導入的訂單明細，未完成 -->
 		</td>
 	</tr>
 	<script type="text/javascript">
-  	//表格的展开和收缩实现代码
+  	//表格的展開
 		$(function(){
 	    $("tr#${onVO.onono}").click(function(){
 	        $(this)

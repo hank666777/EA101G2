@@ -354,8 +354,8 @@ public class ONODetailDAO implements ONODetailDAO_interface {
 	}
 
 	@Override
-	public Set<ONODetailVO> getONODetails(String onono) {
-		Set<ONODetailVO> set = new LinkedHashSet<>();
+	public List<ONODetailVO> getONODetails(String onono) {
+		List<ONODetailVO> list = new ArrayList<>();
 		ONODetailVO onlineOrderDetail = null;
 		
 		Connection con = null;
@@ -373,7 +373,7 @@ public class ONODetailDAO implements ONODetailDAO_interface {
 				onlineOrderDetail.setpno(rs.getString(2));
 				onlineOrderDetail.setonoQty(rs.getInt(3));
 				onlineOrderDetail.setonoPrice(rs.getInt(4));
-				set.add(onlineOrderDetail);
+				list.add(onlineOrderDetail);
 			}
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -400,7 +400,7 @@ public class ONODetailDAO implements ONODetailDAO_interface {
 				}
 			}
 		}
-		return set;
+		return list;
 	}
 	
 	

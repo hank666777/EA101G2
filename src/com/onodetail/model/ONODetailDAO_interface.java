@@ -16,5 +16,5 @@ public interface ONODetailDAO_interface {
  	public Set<ProductVO> getProductBypno(String pno);//讓購買後頁面回到一樣的位置
  	
  	//取得一筆訂單的所有明細
- 	public Set<ONODetailVO> getONODetails(String onono);
+ 	public List<ONODetailVO> getONODetails(String onono);
 }

@@ -61,7 +61,7 @@ public class ONODetailService {
 	}
 	
 	//取得一筆訂單的所有明細(一對多)
-	public Set<ProductVO> getOneDetails(String onono){
-		return dao.getProductBypno(onono);
+	public List<ONODetailVO> getOneDetails(String onono){
+		return dao.getONODetails(onono);
 	}
 }
