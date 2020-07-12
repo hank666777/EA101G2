@@ -20,7 +20,10 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>Insert title here</title>
-<script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.slim.js"
+  integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+  crossorigin="anonymous"></script>
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <style>
 /*   table#table-1 { */
@@ -55,6 +58,7 @@
 <body>
 <%-- <%@ include file="/back-end/back-end-header.jsp" %> --%>
 <div id="container" class="container" style="margin:auto; margin-top:30px;">
+	<div class="row">
 <!-- <table id="table-1"> -->
 <!-- 	<tr> -->
 <!-- 		<td> -->
@@ -78,15 +82,9 @@
 		<th>訂單付款狀態</th>
 	</tr>
 <c:forEach var="onVO" items="${myONOlist}">
-	<tr class="text-center">
-	
-	
+	<tr id="${onVO.onono}" class="text-center parent">
 		<td class="text-center">
-				<!-- Button trigger modal 訂單明細內容-->
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#_${memVO.memno}">
-				  詳細
-				</button>
-				${onVO.onono}
+			 ${onVO.onono}
 		</td>
 		<td class="text-center">${memVO.mName}</td>
 		<td class="text-center">${onVO.couponSno}</td>
@@ -100,31 +98,32 @@
 		<td class="text-center">
 			${(onVO.onoPay == 0)? '<p class="text-danger">未結帳<p>':'<p class="text-success">結帳<p>'}
 		</td>
-	
 	</tr>
-	
-	
-	<!-- Modal -->
-	<div class="modal fade" id="_${memVO.memno}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	      	<!-- 要導入的訂單明細，未完成 -->
-	        333333333333...
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<!-- modal end -->
-	
+	<tr id="" class="child_${onVO.onono}">
+		<td>
+			123.0
+		</td>	 
+	</tr>
+	<script type="text/javascript">
+		$(function(){
+			$('tr.parent').click(function(){
+				$(this).toggleClass('selected')
+							 .siblings('.child_${onVO.onono}').tollge();
+			}).click();
+			
+		});
+	</script>
 </c:forEach>
 </table>
+
+		
+	
+	</div>
 </div>
 <%-- <%@ include file="/back-end/back-end-footer.jsp"%> --%>
+
+	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	
 </body>
 </html>
