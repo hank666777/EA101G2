@@ -3,6 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.stream.*"%>
 <%@ page import="com.ono.model.*"%>
+<%@ page import="com.onodetail.model.*"%>
 <%@ page import="com.mem.model.*"%>
 
 <% 
@@ -14,6 +15,15 @@
 																					.collect(Collectors.toList());
 	pageContext.setAttribute("myONOlist", myONOlist);
 	
+	//取得一筆訂單的所有明細
+// 	ONODetailService ondSvc = new ONODetailService();
+	
+	
+%>
+<% 
+	ONODetailService ondSvc = new ONODetailService();
+	List<ONODetailVO> onoDetailList = ondSvc.getAll();
+	pageContext.setAttribute("onoDetailList",onoDetailList);
 %>
 
 <html>
@@ -99,39 +109,27 @@
 			${(onVO.onoPay == 0)? '<p class="text-danger">未結帳<p>':'<p class="text-success">結帳<p>'}
 		</td>
 	</tr>
-	<tr id="" class="child_${onVO.onono}">
+	<tr id="child_${onVO.onono}">
 		<td>
-			123.0
-		</td>	 
+		
+				      	<!-- 要導入的訂單明細，未完成 -->
+<%-- 	        <%@ include file="/front-end/ono/listMemONODetail_membercenter.jsp"%> --%>
+
+		</td>
 	</tr>
 	<script type="text/javascript">
-		$(function(){
-			$('tr.parent').click(function(){
-				$(this).toggleClass('selected')
-							 .siblings('.child_${onVO.onono}').tollge();
-			}).click();
-			
-		});
-	</script>
+            //表格的展开和收缩实现代码
+	$(function(){
+    $("tr#${onVO.onono}").click(function(){
+        $(this)
+        .toggleClass("selected")
+        .siblings('#child_${onVO.onono}').toggle();
+    }).click();
+	});
+</script>
 	
-	
-	<!-- Modal -->
-	<div class="modal fade" id="_${memVO.memno}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	      	<!-- 要導入的訂單明細，未完成 -->
-	        <%@ include file="/front-end/ono/listMemONODetail_membercenter.jsp"%>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<!-- modal end -->
+
+
 
 </c:forEach>
 </table>

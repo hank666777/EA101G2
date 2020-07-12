@@ -8,8 +8,8 @@
 <%@ page import="com.onodetail.model.*"%>
 <% 
 	ONODetailService ondSvc = new ONODetailService();
-	List<ONODetailVO> list = ondSvc.getAll();
-	pageContext.setAttribute("list",list);
+	List<ONODetailVO> onoDetailList = ondSvc.getAll();
+	pageContext.setAttribute("onoDetailList",onoDetailList);
 %>
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
 			<th>單品價格</th>
 	    </tr>
 	    
-		<c:forEach var="ondVO" items="${list}">
+		<c:forEach var="ondVO" items="${onoDetailList}">
 			<c:forEach var="onVO" items="${myONOlist}">
 				<c:if test="${myONOlist.onono} == ${list.onono}">
 					<tr class="text-center">
