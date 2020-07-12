@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.permission.model.*" %>
+<%@ page import="com.features.model.*" %>
+<%@ page import="com.employee.model.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,13 +16,17 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
-	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/back_end_header.css"/>
 	<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
+
 <body>
-	<h3>複合查詢</h3>
+	
+	<%@ include file="/back-end/back-end-header.jsp" %>
+	
+	<h3>現場劃位</h3>
 	<form method="post" action="<%=request.getContextPath()%>/BokdtServlet" name="form1" id="form1">
 		<div id="date_block">
 			日期: 
@@ -65,6 +73,8 @@
 		<input type="submit" id="send" value="送出查詢">
 		<input type="hidden" name="action" value="listBokDetailByCompositeQuery">
 	</form>
+	
+	<%@ include file="/back-end/back-end-footer.jsp"%>
 	
 </body>
 </html>

@@ -59,6 +59,7 @@ html, body {
   border-radius:5px;  
 /*   box-shadow: 0px 5px 35px 9px #464a92; */
   box-shadow: 0px 5px 35px 9px #ccc;
+  z-index: 500;
 }
 .chat-box-toggle {
   float:right;

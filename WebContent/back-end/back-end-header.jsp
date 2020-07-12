@@ -55,7 +55,7 @@
 									${(feaVO.feano == 'F0050') ? 'activity/select_page_activity.jsp':''}
 									${(feaVO.feano == 'F0060') ? 'chat/employee_chat.jsp':''}
 									${(feaVO.feano == 'F0070') ? 'bok/liveOrderMultiQuery.jsp':''}
-									${(feaVO.feano == 'F0080') ? 'liveOrder/chooseList.jsp.jsp':''}
+									${(feaVO.feano == 'F0080') ? 'liveOrder/chooseList.jsp':''}
 									${(feaVO.feano == 'F0090') ? 'coupon/couponIndex.jsp':''}
 									${(feaVO.feano == 'F0100') ? 'messagereport/listAllMessageReport.jsp':''}">
 									
