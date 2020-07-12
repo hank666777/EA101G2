@@ -19,6 +19,8 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/messagereport/update_report.css" type="text/css" />
 
+<%@ include file="/back-end/back-end-head.jsp" %>
+
 <link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
 
@@ -26,6 +28,7 @@
 <body bgcolor='white'>
 
 
+<%@ include file="/back-end/back-end-header.jsp" %>
 
 	
 
@@ -84,7 +87,7 @@
 						</tr>
 						<tr>
 							<th>檢舉編號:</th>
-							<td>${mrVO.reportno}</td>
+							<td><a />${mrVO.reportno}</td>
 						</tr>
 						<tr>
 							<th>檢舉理由:</th>
@@ -127,16 +130,16 @@
 						type="hidden" name="parentno" value="<%=mbVO.getParentno()%>">
 
 					<input type="submit" value="送出修改">
-				</FORM>
-					<input type="submit" value="返回審核列表" 
+					<input type="button" value="返回審核列表" 
 							onclick="location.href='<%=request.getContextPath()%>/back-end/messagereport/listAllMessageReport.jsp'">
 					
+				</FORM>
 
 			</div>
 		</div>
 	</div>
 
-
+<%@ include file="/back-end/back-end-footer.jsp"%>
 	<script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>

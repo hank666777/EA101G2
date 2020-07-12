@@ -89,7 +89,7 @@
 </ul>--%>
 
 
-<h3><a href='<%=request.getContextPath() %>/messageboard/listAllMessageBoard.jsp'>新增檢舉</a></h3>
+<h3><a href='<%=request.getContextPath() %>/back-end/messageboard/listAllMessageBoard.jsp'>新增檢舉</a></h3>
 <%-- 
 <ul>
   <li><a href='addReport.jsp'>Add</a> a new Report.</li>

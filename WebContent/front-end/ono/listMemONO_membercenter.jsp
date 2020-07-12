@@ -115,7 +115,7 @@
 	      </div>
 	      <div class="modal-body">
 	      	<!-- 要導入的訂單明細，未完成 -->
-	        333333333333...
+	        <%@ include file="/front-end/ono/listMemONODetail_membercenter.jsp"%>
 	      </div>
 	    </div>
 	  </div>

@@ -51,6 +51,7 @@ th, td {
 	text-align: center;
 }
 </style>
+<%@ include file="/back-end/back-end-head.jsp" %>
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/messagereport/update_report.css"
@@ -62,7 +63,7 @@ th, td {
 <script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
 </head>
 <body bgcolor='white'>
-
+<%@ include file="/back-end/back-end-header.jsp" %>
 	<div class="container">
 		<div class="wrapper">
 			<h2 class="text-center">審核相關資料如下:</h2>
@@ -83,7 +84,7 @@ th, td {
 						<th>檢舉時間:</th>
 						<td>
 							<fmt:formatDate value="${mrVO.reportTime}"
-								pattern="yyyy-MM-dd hh:mm" />
+								pattern="yyyy-MM-dd HH:mm" />
 						</td>
 					</tr>
 					<tr>
@@ -113,7 +114,7 @@ th, td {
 		</div>
 	</div>
 
-
+		<%@ include file="/back-end/back-end-footer.jsp"%>
 	<script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>

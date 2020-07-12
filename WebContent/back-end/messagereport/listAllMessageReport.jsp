@@ -66,14 +66,15 @@ tr {
 	border-radius:10px;
 }
 </style>
+<%@ include file="/back-end/back-end-head.jsp" %>
 
-
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
+
+
 </head>
 <body bgcolor='white'>
-
+<%@ include file="/back-end/back-end-header.jsp" %>
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -110,10 +111,10 @@ tr {
 								<td>${mrVO.reportno}</td>
 								<td>${mrVO.reportDetail}</td>
 								<td><fmt:formatDate value="${mrVO.reportTime}"
-										pattern="yyyy-MM-dd hh:mm" /></td>
+										pattern="yyyy-MM-dd HH:mm" /></td>
 
 								<td><c:if test="${mrVO.reportStatus == 0}">
-										<p style="color: blue; font-weight: bold">未審核
+										<div style="color: blue; font-weight: bold; vertical-align:middle">未審核</div>
 									</c:if> <c:if test="${mrVO.reportStatus == 1}">已審核通過</c:if> <c:if
 										test="${mrVO.reportStatus == 2}">已審核未通過</c:if></td>
 								<td>${mrVO.postno}</td>
@@ -142,7 +143,7 @@ tr {
 		</div>
 	</div>
 
-
+ 	<%@ include file="/back-end/back-end-footer.jsp"%>
 	<script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
