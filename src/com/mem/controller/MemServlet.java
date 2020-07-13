@@ -104,7 +104,8 @@ public class MemServlet extends HttpServlet {
 							res.sendRedirect(location);
 							return;
 						}
-					} catch (Exception ignored) {
+					} catch (Exception e) {
+						System.out.println("memberlogin: "+ e.getMessage());
 					}
 					res.sendRedirect(req.getContextPath() + "/front-end/mem/member_center.jsp"); // *工作3:
 																						// (-->如無來源網頁:則重導至member_center.jsp)
@@ -412,6 +413,7 @@ public class MemServlet extends HttpServlet {
     				String url = "/front-end/mem/memberlogin.jsp";// 成功後，跳轉到重新登入
     				//重新登入要移除會員session
     				session.removeAttribute("memVO");
+    				session.removeAttribute("memno");
     				
     				RequestDispatcher successView = req.getRequestDispatcher(url);
     				successView.forward(req, res);

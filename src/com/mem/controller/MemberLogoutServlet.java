@@ -22,7 +22,8 @@ public class MemberLogoutServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		session.removeAttribute("MemVO");
-//		session.invalidate();
+		session.removeAttribute("memno");
+		session.invalidate();
 		
 		res.sendRedirect(req.getContextPath() + "/front-end/index.jsp");
 	}
