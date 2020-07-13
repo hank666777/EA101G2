@@ -3,11 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mem.model.*"%>
-
+<%@ page import="com.liveOrder.model.*"%>
+<%@ page import="com.permission.model.*" %>
+<%@ page import="com.features.model.*" %>
 <%
     MemService memSvc = new MemService();
 
-	List<MemVO> list = memSvc.getAll();
+    List<MemVO> list = memSvc.getAll();
     
     pageContext.setAttribute("list",list);
 
@@ -15,30 +17,30 @@
 
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script src="https://use.fontawesome.com/0114a256f7.js"></script>
 
 <title>所有會員資料</title>
 
 <style>
-  h4 {
-    color: blue;
-    display: inline;
-  }
 
   table {
-	width: 990x;
+	width: 1210x;
 	background-color: white;
 	margin-top: 5px;
-	margin-bottom: 5px;	
+	margin-bottom: 5px;
+	text-align:center;
+	margin:auto;
   }
   table, th, td {
     border: 1px solid #CCCCFF;
+    
   }
   th {
     padding: 10px;
-    width:110 px;
+    width:120 px;
+    background-color:#D2E9FF;
   }
   
   td{
@@ -46,28 +48,21 @@
   }
   
 
+
+  
+
 </style>
 
 </head>
+<%@ include file="/back-end/back-end-head.jsp" %>
 <center>
 <body bgcolor='white'>
+<%@ include file="/back-end/back-end-header.jsp" %>
+
+	
 
 
-	<tr><td>
-		 <h4><a href="select_page.jsp">回首頁</a></h4>
-	</td></tr>
-
-
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
-
+<br><br><br>
 <table >
 	<tr >
 		<th>會員編號</th>
@@ -82,10 +77,10 @@
 		<th>會員狀態</th>		
 		<th>修改</th>		
 	</tr>
+<%@ include file="page1.file" %> 
 
 
-
-	<c:forEach var="memVO" items="${list}" >
+	<c:forEach var="memVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
 		     
@@ -93,9 +88,9 @@
 			<td>${memVO.mAccount}</td>
 			<td>${memVO.mPw}</td>
 			
-			<FORM METHOD="get" ACTION="<%=request.getContextPath()%>/mem/mem.mPic" >
+			<FORM METHOD="get" ACTION="<%=request.getContextPath()%>/back-end/mem/mem.mPic" >
 			<td>
-			<img class="icon" id="demo" src="<%=request.getContextPath()%>/back-end/mem/mem.mPic?memno=${memVO.memno}" style="width: 75px; height: 75px">
+			<img class="icon" id="demo" src="<%=request.getContextPath()%>/back-end/mem/mem.mPic?memno=${memVO.memno}" style="width: 100px; height: 80px">
 			</td>
 			</FORM>
 
@@ -115,6 +110,7 @@
 		</tr>
 	</c:forEach>
 </table>
+<%@ include file="page2.file" %>
 <script> 
 
     $('#file').change(function() {
@@ -127,6 +123,6 @@
     	});
     </script>
 
-
+<%@ include file="/back-end/back-end-footer.jsp"%>
 </body>
 </html>

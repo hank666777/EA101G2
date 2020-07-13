@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/chatRoom/css/chatStyle.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/back-end/chatRoom/css/chatStyle.css">
 <body style="background-size:cover; " onload="connect();" onunload="disconnect();">
 	  <div class="container-fluid" style="hegiht:100vh;">
 	  	

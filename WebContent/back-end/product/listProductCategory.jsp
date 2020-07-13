@@ -59,11 +59,19 @@
 		margin:20px;
 	}
 	
+	#selectednum{
+		margin-bottom:10px;
+	}
+	
 </style>
 
 
 </head>
+
 <body>
+<%@ include file="/back-end/back-end-head.jsp" %>
+
+<%@ include file="/back-end/back-end-header.jsp" %>
 
 	<table>
 		<tr>
@@ -143,6 +151,8 @@
 		</c:forEach>
 </table>
 <%@ include file="page2.file" %>
+
+<%@ include file="/back-end/back-end-footer.jsp" %>
 
 </body>
 </html>

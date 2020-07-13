@@ -28,7 +28,7 @@
 <style>
 	
 	body{
-		background-image:url('<%= request.getContextPath() %>/front-end/product/image/productShoppingBackground.jpg');
+		background-image:url('<%= request.getContextPath() %>/images/back-end/productImg/backProductBackground.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
@@ -48,7 +48,7 @@
 	.card{
 		opacity:0.9;
 		width:1200px;
-		margin:20px auto;
+		margin:50px auto;
 	}
 	
 	.ths{
@@ -78,87 +78,107 @@
 		margin-top:10px;
 	}
 	
+	#selectednum{
+		margin-bottom:10px;
+	}
+	
 </style>
 
 
 </head>
+
 <body>
+
+<%@ include file="/back-end/back-end-head.jsp" %>
+<%@ include file="/back-end/back-end-header.jsp" %>
+
 
 <div class="card">
 		
-				<h4 id ="backbutton"><a href="<%= request.getContextPath() %>/back-end/product/selectProductPage.jsp">回前頁</a></h4>
+	<h4 id ="backbutton"><a href="<%= request.getContextPath() %>/back-end/product/selectProductPage.jsp">回前頁</a></h4>
 
 	<h1 id="addproducttitle">商品資料查詢</h1>
 
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs} ">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
+	<c:if test="${not empty errorMsgs}">
+		<font style="color:red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs} ">
+				<li style="color:red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
 
-<div id="productlistoutline">
-<table id="listall">
-		<tr>
-			<th class="ths" nowrap="nowrap">商品編號</th>
-			<th class="ths" nowrap="nowrap">商品名稱</th>
-			<th class="ths" nowrap="nowrap">商品類型</th>
-			<th class="ths" nowrap="nowrap">商品圖片</th>
-			<th class="ths" nowrap="nowrap">商品單價</th>
-			<th class="ths" nowrap="nowrap">商品每日供給量</th>
-			<th class="ths" nowrap="nowrap">商品庫存狀態</th>
-			<th class="ths" nowrap="nowrap">商品狀態</th>
-			<th class="ths" nowrap="nowrap">商品描述</th>
-			<th class="ths" colspan ="2"></th>
-			
-		</tr>
-	<%@ include file="page1.file" %> 
-	<jsp:useBean id="PTypeSvc" scope="page" class="com.ptype.model.PTypeService" />
-			
-		<c:forEach var="productVO" items="${list}" begin="<%=pageIndex %>" end="<%=pageIndex + rowsPerPage-1 %>">
+	<div id="productlistoutline">
+		<table id="listall">
+				<tr>
+					<th class="ths" nowrap="nowrap">商品編號</th>
+					<th class="ths" nowrap="nowrap">商品名稱</th>
+					<th class="ths" nowrap="nowrap">商品類型</th>
+					<th class="ths" nowrap="nowrap">商品圖片</th>
+					<th class="ths" nowrap="nowrap">商品單價</th>
+					<th class="ths" nowrap="nowrap">商品每日供給量</th>
+					<th class="ths" nowrap="nowrap">商品庫存狀態</th>
+					<th class="ths" nowrap="nowrap">商品狀態</th>
+					<th class="ths" nowrap="nowrap">商品描述</th>
+					<th class="ths" colspan ="2"></th>
+				
+				</tr>
+<%@ include file="page1.file" %> 
 		
-		<tr>
-			<td class="tds">${productVO.pno}</td>
-			<td class="tds">${productVO.pname}</td>
+			<jsp:useBean id="PTypeSvc" scope="page" class="com.ptype.model.PTypeService" />
 			
+			<c:forEach var="productVO" items="${list}" begin="<%=pageIndex %>" end="<%=pageIndex + rowsPerPage-1 %>">
+		
+				<tr ${(productVO.pno==param.pno) ? 'bgcolor=#E6CEAC':''}>
+					<td class="tds">${productVO.pno}</td>
+					<td class="tds">${productVO.pname}</td>
+				
+				
+					<td class="tds">
+						<c:forEach var="ptypeVO" items="${PTypeSvc.all}"> 
+							<c:if test="${ptypeVO.pTno == productVO.pTno}">
+									${ptypeVO.pTName}
+							</c:if>
+						</c:forEach>
+					</td>
+				
+				
+					<td class="tds"><img src="<%=request.getContextPath()%>/ProductReader?pno=${productVO.pno}" width=100px height=75px></td>
+					<td class="tds">${productVO.pP}元</td>
+					<td class="tds">${productVO.pDoffer}份</td>
+					<td class="tds">${productVO.INVStatus ==1 ? "正常" : "缺貨"}</td>
+					<td class="tds">${productVO.pStatus ==1 ? "上架中" : "已下架"}</td>
+					<td class="tddes">${productVO.pDes}</td>
+					<td class="tds">
+						<form method="post" action="<%=request.getContextPath()%>/product.do" >
+							<input type="submit" value="修改"> 
+							<input type="hidden" name="pno" value="${productVO.pno}">
+							<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
+							<input type="hidden" name="whichPage"	value="<%=whichPage%>">
+							<input type="hidden" name="action" value="getOne_For_Update">
+						</form>
+					</td>
+					<td class="tds">
+						<form method="post" action="<%=request.getContextPath()%>/product.do" >
+							<input type="submit" value="刪除"> 
+							<input type="hidden" name="pno" value="${productVO.pno}">
+							<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
+							<input type="hidden" name="whichPage"	value="<%=whichPage%>">
+							<input type="hidden" name="action" value="delete">
+						</form>
+					</td>			
+				</tr>
 			
-			<td class="tds">
-				<c:forEach var="ptypeVO" items="${PTypeSvc.all}"> 
-					<c:if test="${ptypeVO.pTno == productVO.pTno}">
-							${ptypeVO.pTName}
-					</c:if>
-				</c:forEach>
-			</td>
-			
-			
-			<td class="tds"><img src="<%=request.getContextPath()%>/ProductReader?pno=${productVO.pno}" width=100px height=75px></td>
-			<td class="tds">${productVO.pP}</td>
-			<td class="tds">${productVO.pDoffer}</td>
-			<td class="tds">${productVO.invStatus}</td>
-			<td class="tds">${productVO.pStatus}</td>
-			<td class="tddes">${productVO.pDes}</td>
-			<td class="tds">
-				<form method="post" action="<%=request.getContextPath()%>/product.do" >
-					<input type="submit" value="修改"> 
-					<input type="hidden" name="pno" value="${productVO.pno}">
-					<input type="hidden" name="action" value="getOne_For_Update">
-				</form>
-			</td>
-			<td class="tds">
-				<form method="post" action="<%=request.getContextPath()%>/product.do" >
-					<input type="submit" value="刪除"> 
-					<input type="hidden" name="pno" value="${productVO.pno}">
-					<input type="hidden" name="action" value="delete">
-				</form>
-			</td>	
-		</tr>
-
-		</c:forEach>
-</table>
+			</c:forEach>
+		
+		</table>
+		
 <%@ include file="page2.file" %>
+	
+	</div>
 </div>
-</div>
+
+<%@ include file="/back-end/back-end-footer.jsp" %>
+
 </body>
 </html>

@@ -35,7 +35,7 @@
 <style>
 
 	body{
-		background-image:url('<%= request.getContextPath() %>/front-end/product/image/productShoppingBackground.jpg');
+		background-image:url('<%= request.getContextPath() %>/images/back-end/productImg/backProductBackground.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
@@ -45,7 +45,7 @@
 	.card{
 		opacity:0.9;
 		width:1200px;
-		margin:20px auto;
+		margin:50px auto;
 	}
 
 	#addproducttitle{
@@ -85,9 +85,12 @@
 
 <body>
 
+	<%@ include file="/back-end/back-end-head.jsp" %>
+	<%@ include file="/back-end/back-end-header.jsp" %>
+
 <div class="card">
 
-				<h4 id ="backbutton"><a href="<%= request.getContextPath() %>/back-end/product/selectProductPage.jsp">回首頁</a></h4>
+				<h4 id ="backbutton"><a href="<%= request.getContextPath() %>/back-end/product/selectProductPage.jsp">回前頁</a></h4>
 	
 	<h1 id="addproducttitle">商品新增</h1>
 
@@ -197,6 +200,8 @@
 		
 		window.onload = init;
 	</script>
+
+<%@ include file="/back-end/back-end-footer.jsp" %>
 
 </body>
 </html>

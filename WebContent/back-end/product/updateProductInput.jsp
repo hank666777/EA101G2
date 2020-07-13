@@ -22,12 +22,20 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-</head>
+
 
 <style>
 
+	#preview{
+		width:200px;
+	}
+	img{
+		max-width:300px;
+		height:225px;
+	}
+
 	body{
-		background-image:url('<%= request.getContextPath() %>/front-end/product/image/productShoppingBackground.jpg');
+		background-image:url('<%= request.getContextPath() %>/images/back-end/productImg/backProductBackground.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
@@ -37,7 +45,7 @@
 	.card{
 		opacity:0.9;
 		width:1200px;
-		margin:20px auto;
+		margin:50px auto;
 	}
 
 	#addproducttitle{
@@ -73,11 +81,16 @@
 
 </style>
 
+</head>
+
 <body>
+<%@ include file="/back-end/back-end-head.jsp" %>
+
+<%@ include file="/back-end/back-end-header.jsp" %>
 
 <div class="card">
 	
-				<h4 id ="backbutton"><a href="<%= request.getContextPath() %>/back-end/product/listAllProduct.jsp">回首頁</a></h4>
+				<h4 id ="backbutton"><a href="<%= request.getContextPath() %>/back-end/product/listAllProduct.jsp">回前頁</a></h4>
 
 	<h1 id="addproducttitle">商品資料修改</h1>
 
@@ -159,6 +172,8 @@
 </table>
 
 		<input type ="hidden" name="action" value="update" >
+		<input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
+		<input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>">
 		<input type="hidden" name="pno" value="<%=productVO.getpno() %>">
 		<input id="delive" type ="submit"  value="送出修改">
 
@@ -190,6 +205,8 @@
 		
 		window.onload = init;
 	</script>
+
+<%@ include file="/back-end/back-end-footer.jsp" %>
 
 </body>
 </html>

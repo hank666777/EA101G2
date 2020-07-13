@@ -86,31 +86,34 @@
   	<!-- 博維 -->
 	
 	<servlet>
-		<servlet-name>MemServlet</servlet-name>
-		<servlet-class>com.mem.controller.MemServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>MemServlet</servlet-name>
-		<url-pattern>/front-end/mem/mem.do</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>mPic_showServlet</servlet-name>
-		<servlet-class>com.mem.controller.mPic_showServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>mPic_showServlet</servlet-name>
-		<url-pattern>/front-end/mem/mem.mPic</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>MemberLogoutServlet</servlet-name>
-		<servlet-class>com.mem.controller.MemberLogoutServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>MemberLogoutServlet</servlet-name>
-		<url-pattern>/front-end/mem/memberlogout.do</url-pattern>
-	</servlet-mapping>
+	  <servlet-name>MemServlet</servlet-name>
+	  <servlet-class>com.mem.controller.MemServlet</servlet-class>
+	 </servlet>
+ 	<servlet-mapping>
+	  <servlet-name>MemServlet</servlet-name>
+	  <url-pattern>/front-end/mem/mem.do</url-pattern>
+	  <url-pattern>/back-end/mem/mem.do</url-pattern>
+ 	</servlet-mapping>
+ 
+  	<servlet>
+	  <servlet-name>SugServlet</servlet-name>
+	  <servlet-class>com.suggest.controller.SugServlet</servlet-class>
+ 	</servlet>
+	 <servlet-mapping>
+	  <servlet-name>SugServlet</servlet-name>
+	  <url-pattern>/front-end/suggest/suggest.do</url-pattern>
+	  <url-pattern>/back-end/suggest/suggest.do</url-pattern>
+	 </servlet-mapping>
+ 
+ 	<servlet>
+	  <servlet-name>mPic_showServlet</servlet-name>
+	  <servlet-class>com.mem.controller.mPic_showServlet</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+	  <servlet-name>mPic_showServlet</servlet-name>
+	  <url-pattern>/front-end/mem/mem.mPic</url-pattern>
+	  <url-pattern>/back-end/mem/mem.mPic</url-pattern> 
+ 	</servlet-mapping>
 	
 	<!-- 漢峰 -->	
 

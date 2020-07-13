@@ -17,7 +17,7 @@
 <head>
 <title>商品資料 - listOneEmp.jsp</title>
 
-</head>
+
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -27,7 +27,7 @@
 <style>
 
 	body{
-		background-image:url('<%= request.getContextPath() %>/front-end/product/image/productShoppingBackground.jpg');
+		background-image:url('<%= request.getContextPath() %>/images/back-end/productImg/backProductBackground.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
@@ -72,13 +72,22 @@
 		margin:20px auto;
 	}
 	
+	#selectednum{
+		margin-bottom:10px;
+	}
+	
 </style>
 
+</head>
+
 <body>
+<%@ include file="/back-end/back-end-head.jsp" %>
+
+<%@ include file="/back-end/back-end-header.jsp" %>
 
 <div class="card">
 
-				<h4 id ="backbutton"><a href="<%= request.getContextPath() %>/back-end/product/selectProductPage.jsp">回首頁</a></h4>
+				<h4 id ="backbutton"><a href="<%= request.getContextPath() %>/back-end/product/selectProductPage.jsp">回前頁</a></h4>
 
 	<h1 id="addproducttitle">商品資料查詢</h1>
 	
@@ -119,6 +128,8 @@
 	</table>
 	</div>
 </div>
+
+<%@ include file="/back-end/back-end-footer.jsp" %>
 
 </body>
 </html>

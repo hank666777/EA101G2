@@ -10,7 +10,6 @@
 
 <html>
 <head>
-
 <title>Product:Home</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -20,13 +19,20 @@
 
 <style>
 
-/* 	body{ */
-<%-- 		background-image:url('<%= request.getContextPath() %>/front-end/product/image/productShoppingBackground.jpg'); --%>
-/* 		background-size: cover; */
-/* 		background-repeat: no-repeat; */
-/* 		background-attachment: fixed; */
-/* 		background-position: center; */
-/* 	} */
+
+	.bg {
+            position: fixed;
+            top: -100px;
+            left: 200px;
+            bottom: 200px;
+            right: 0;
+            z-index: -999;
+            opacity:0.85;
+        }
+        .bg img {
+            min-height: 100%;
+            width: 100%;
+        }
 
 	#productselecttitle{
 		margin:25px auto;
@@ -44,7 +50,6 @@
 	}
 	
 	.card{
-		opacity:0.9;
 		width:500px;
 		height:700px;	
 		margin:20px auto;
@@ -60,22 +65,34 @@
 		margin-left: 5px;
 	}
 	
+	#selectproductonline{
+		margin-top:50px;
+	}
+	
 	
 	
 </style>
 
 
 </head>
-<body>
 	
-<%-- 	<c:if test="${not empty errorMsgs}"> --%>
-<!-- 		<font style="color: red">請修正以下錯誤:</font> -->
-<!-- 		<ul> -->
-<%-- 			<c:forEach var="message" items="${errorMsgs}"> --%>
-<%-- 				<li style="color: red">${message}</li> --%>
-<%-- 			</c:forEach> --%>
-<!-- 		</ul> -->
-<%-- 	</c:if> --%>
+<body>
+	<%@ include file="/back-end/back-end-head.jsp" %>
+	<%@ include file="/back-end/back-end-header.jsp" %>
+	
+	<div class="bg">
+		<img src='<%= request.getContextPath() %>/images/back-end/productImg/backProductBackground.jpg'>
+	</div>
+	
+	
+	<c:if test="${not empty errorMsgs}">
+		<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
 	
 <!-- 		<ul class="wrap"> -->
 <!-- 			<li> -->
@@ -109,8 +126,8 @@
 		
 		
 			<ul>
-				<li class="shorthyper"><a href='addProduct.jsp'>新增商品</a></li>
-				<li class="shorthyper"><a href='listAllProduct.jsp'>商品列表</a></li>
+				<li class="shorthyper"><a href='<%= request.getContextPath() %>/back-end/product/addProduct.jsp'>新增商品</a></li>
+				<li class="shorthyper"><a href='<%= request.getContextPath() %>/back-end/product/listAllProduct.jsp'>商品列表</a></li>
 			</ul>
 
 		<ul class="wrap">
@@ -130,7 +147,7 @@
 					<li>		
 						<b>選擇商品類型：</b>
 						<select size="1" style ="width:100px" name="pTno">
-							<option value="">
+								<option value="">
 							<c:forEach var="ptypeVO" items="${ptypeSvc.all}">
 								<option value="${ptypeVO.pTno}"> ${ptypeVO.pTName}</option>
 							</c:forEach>
@@ -166,8 +183,10 @@
 					</div>	
 				</form>	
 			
-		</ul>
+			</ul>
 		</div>
 		
+	<%@ include file="/back-end/back-end-footer.jsp" %>
+
 </body>
 </html>

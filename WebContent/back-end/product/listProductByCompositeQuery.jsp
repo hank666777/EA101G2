@@ -29,7 +29,7 @@
 <head>
 <meta charset="UTF-8">
 <title>CompositeQuery</title>
-</head>
+
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -39,7 +39,7 @@
 <style>
 
 	body{
-		background-image:url('<%= request.getContextPath() %>/front-end/product/image/productShoppingBackground.jpg');
+		background-image:url('<%= request.getContextPath() %>/images/back-end/productImg/backProductBackground.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
@@ -59,7 +59,7 @@
 	.card{
 		opacity:0.9;
 		width:1200px;
-		margin:20px auto;
+		margin:50px auto;
 	}
 	
 	.ths{
@@ -88,10 +88,18 @@
 		text-align:left;
 		margin-top:10px;
 	}
+	
+	#selectednum{
+		margin-bottom:10px;
+	}
 
 </style>
+</head>
 
 <body>
+<%@ include file="/back-end/back-end-head.jsp" %>
+
+<%@ include file="/back-end/back-end-header.jsp" %>
 
 <div class="card">
 
@@ -131,7 +139,7 @@
 		<c:forEach var="productVO" items="${listProduct_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		
-		<tr>
+		<tr ${(productVO.pno==param.pno) ? 'bgcolor=#CCCCFF':''}>
 			<td class="tds">${productVO.pno}</td>
 			<td class="tds">${productVO.pname}</td>
 			
@@ -146,10 +154,10 @@
 			
 			
 			<td class="tds"><img src="<%=request.getContextPath()%>/ProductReader?pno=${productVO.pno}" width=100px height=75px></td>
-			<td class="tds">${productVO.pP}</td>
-			<td class="tds">${productVO.pDoffer}</td>
-			<td class="tds">${productVO.invStatus}</td>
-			<td class="tds">${productVO.pStatus}</td>
+			<td class="tds">${productVO.pP}元</td>
+			<td class="tds">${productVO.pDoffer}份</td>
+			<td class="tds">${productVO.INVStatus ==1 ? "正常" : "缺貨"}</td>
+			<td class="tds">${productVO.pStatus ==1 ? "上架中" : "已下架"}</td>
 			<td class="tddes">${productVO.pDes}</td>
 			<td class="tds">
 				<form method="post" action="<%=request.getContextPath()%>/product.do" >
@@ -177,5 +185,8 @@
 <%@ include file="pageTwoByComposite.file" %>
 </div>
 </div>
+
+<%@ include file="/back-end/back-end-footer.jsp" %>
+
 </body>
 </html>
