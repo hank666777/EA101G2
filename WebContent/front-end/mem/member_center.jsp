@@ -57,6 +57,9 @@
 		      <a class="list-group-item list-group-item-action" id="activity" data-toggle="list" href="#list-activity" role="tab" aria-controls="settings">
 		      	<i class="fa fa-list-ul fa-2x" aria-hidden="true"></i> 活動查詢
 		      </a>
+		      <a class="list-group-item list-group-item-action" id="activity-post" data-toggle="list" href="#list-activity-post" role="tab" aria-controls="settings">
+		      	<i class="fas fa-poll-h fa-2x"></i> 活動貼文查詢
+		      </a>
 		      <a class="list-group-item list-group-item-action" id="responselist" data-toggle="list" href="#list-responselist" role="tab" aria-controls="settings">
 		      	<i class="fas fa-paper-plane fa-2x"></i> 意見反映
 		      </a>
@@ -64,7 +67,7 @@
 		      	<i class="fas fa-comment-dots fa-2x"></i> 留言紀錄
 		      </a>
 		      <a class="list-group-item list-group-item-action" id="messagess-report" data-toggle="list" href="#list-messagess-report" role="tab" aria-controls="settings">
-		      	<i class="fas fa-poll-h fa-2x"></i> 留言檢舉紀錄
+		      	<i class="fas fa-exclamation-triangle fa-2x"></i> 留言檢舉紀錄
 		      </a>
 		      <a class="list-group-item list-group-item-action" href="${pageContext.request.contextPath}/front-end/mem/memberlogout.do">
 		      	<i class="fas fa-sign-out-alt fa-2x"></i> 登出
@@ -93,6 +96,9 @@
 		      </div>
 		      <div class="tab-pane fade" id="list-activity" role="tabpanel" aria-labelledby="activity-list">
 		      	活動查詢(未導入)
+		      </div>
+		      <div class="tab-pane fade" id="list-activity-post" role="tabpanel" aria-labelledby="activity-post-list">
+		      	活動貼文查詢(未導入)
 		      </div>
 		      <div class="tab-pane fade" id="list-responselist" role="tabpanel" aria-labelledby="">
 		      	意見反映查詢(未導入)
