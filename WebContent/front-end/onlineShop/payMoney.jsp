@@ -86,9 +86,9 @@ $(function(){
 		</c:forEach>
 	</select>
 	
-	<input type="hidden" name="onoTotal"  value="<fmt:formatNumber type="number" value="<%=amount %>"></fmt:formatNumber>">
+	<input type="hidden" name="onoTotal"  value="<fmt:formatNumber type="number" groupingUsed = "false" value="<%=amount %>"></fmt:formatNumber>">
 	<input type="hidden" name="action" value="Detail">
-	<input id="paySubmitBtn" class="money" type="submit" value="需付新台幣$<fmt:formatNumber type="number" value="<%=amount %>"></fmt:formatNumber>">
+	<input id="paySubmitBtn" class="money" type="submit" value="需付新台幣$<fmt:formatNumber type="number" groupingUsed = "false" value="<%=amount %>"></fmt:formatNumber>">
 	
 </form>
 </div>
