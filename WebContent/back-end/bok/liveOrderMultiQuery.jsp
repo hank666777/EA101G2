@@ -31,9 +31,9 @@
 		}
 		#Multi_Queries{
 			position: relative;
-			margin:7% auto;
+			margin:15% auto;
 			width: 400px;
-			height: 500px;
+			height: 350px;
 			background-color: #F8F8F8;
 			border-radius:5px;
 			box-shadow:3px 3px 9px black;
