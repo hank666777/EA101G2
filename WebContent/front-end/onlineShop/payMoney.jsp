@@ -16,11 +16,10 @@
 	pageContext.setAttribute("myCoupon", myCoupon);
 %>
 <jsp:useBean id="cps" scope="page" class="com.coupon.model.CpService" />
-<!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant-TW">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-<title>付款頁面</title>
+<title>MISS M付款頁面</title>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/onlineShop/css/style.css">
@@ -75,7 +74,7 @@ $(function(){
 	<input id="cvc" type="text" placeholder="123" required  value="035"/>
 		
 	<select class="select" name="myCoupon">	
-	 <option value="no">請選擇優惠券</option>	
+	 <option value="">請選擇優惠券</option>	
 		<c:forEach var="myCoupon" items="${myCoupon}">
 								 
 			<c:forEach var="CouponVO" items="${cps.all}">		
@@ -89,11 +88,19 @@ $(function(){
 	
 	<input type="hidden" name="onoTotal"  value="<fmt:formatNumber type="number" value="<%=amount %>"></fmt:formatNumber>">
 	<input type="hidden" name="action" value="Detail">
-	<input class="money" type="submit" value="需付新台幣$<fmt:formatNumber type="number" value="<%=amount %>"></fmt:formatNumber>">
+	<input id="paySubmitBtn" class="money" type="submit" value="需付新台幣$<fmt:formatNumber type="number" value="<%=amount %>"></fmt:formatNumber>">
 	
 </form>
 </div>
-
+<script>
+//按鈕鎖定，避免重複送出
+$('#"paySubmitBtn"').click(function(){
+	var btn = this;
+	setTimeout(function(){
+		btn.disabled = true;
+	},50);
+});
+</script>
 
  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js'></script>

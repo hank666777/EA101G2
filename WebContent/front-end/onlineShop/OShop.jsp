@@ -97,7 +97,7 @@ input.btn:active {
   transition: all 0.025s 0s ease-out;
 }
 div.cards {
-  margin: 70px auto 10px auto;
+  margin: 10px auto 10px auto;
   max-width: 100%;
   text-align: center;
 }
@@ -236,7 +236,7 @@ div.card.show div.flap2 {
 	width:300px;
 	height:150px;
 	margin:auto;
-	margin-bottom:-100px;
+	margin-bottom:-10px; 
 }
 #hoot img{
 	width:125px;
@@ -264,6 +264,7 @@ div.card.show div.flap2 {
 	</div>
 	
 	<%@ include file="page/page1.file"%>
+	<center><%@ include file="page/page2.file"%></center>
 	<div class="cards">
 		<c:forEach var="prdVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 			<Form name="shoppingForm" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="post">
@@ -316,7 +317,7 @@ div.card.show div.flap2 {
 		</c:forEach>	
 		
 	</div>
-	<center><%@ include file="page/page2.file"%></center>
+	
 	<%@ include file="/front-end/front-end-footer.jsp"%>
 	
 	

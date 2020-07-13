@@ -8,6 +8,11 @@
 <html lang="zh-Hant-TW">
 <head>
 <!-- Required meta tags -->
+<style>
+#main1{
+	background-color: #EEE; 
+}
+</style>
 <title>Miss M</title>
 
 <%@ include file="/front-end/front-end-head.jsp"%>
@@ -15,6 +20,10 @@
 
 <%@ include file="/front-end/front-end-header.jsp"%>
 <%@ include file="/front-end/front-end-header2.jsp"%>
+
+<div id="main1" class="container-fluid">
+	<div class="row">
+	
 
 	<div id="main" class="container">
 		<div class="row">
@@ -161,7 +170,9 @@
 		</div>
 
 	</div>
-
+	
+	</div>
+</div>
 <%@ include file="front-end-footer.jsp"%>
 
 </body>

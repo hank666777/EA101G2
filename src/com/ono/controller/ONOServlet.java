@@ -57,9 +57,8 @@ public class ONOServlet extends HttpServlet {
 			try {
 				couponSno = req.getParameter("myCoupon").trim();
 				System.out.println(couponSno);
-			}catch (NumberFormatException e) {
+			}catch (RuntimeException e) {
 				couponSno = null;
-				errorMsgs.add("線上訂單總價請填數字.");
 			}
 			MyCpService mcp = new MyCpService();
 			mcp.update(couponSno);
@@ -75,7 +74,9 @@ public class ONOServlet extends HttpServlet {
 			
 			ONOVO onVO = new ONOVO();
 			onVO.setmemno(memno);
-			onVO.setcouponSno(couponSno);
+			if(couponSno != null) {
+				onVO.setcouponSno(couponSno);
+			}		
 			onVO.setonoTime(onoTime);
 			onVO.setonoTotal(onoTotal);
 			onVO.setonoStatus(onoStatus);
@@ -94,7 +95,7 @@ public class ONOServlet extends HttpServlet {
 			}
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("onVO", onVO); // 含有輸入格式錯誤的member物件,也存入req
-				RequestDispatcher failureView = req.getRequestDispatcher("front-end/onlineShop/CheckOut.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/onlineShop/CheckOut.jsp");
 				failureView.forward(req, res);
 				return;
 			}
@@ -103,8 +104,10 @@ public class ONOServlet extends HttpServlet {
 			ONOVO onVO2 = onSvc.insertWithONODetail(onVO, list);
 			
 			/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+/************需把購物車清出，修改中，峰***********/
+			session.removeAttribute("shoppingcart");
 			req.setAttribute("onVO2", onVO2);
-			String url = "/back-end/ono/listAllONO.jsp";
+			String url = "/front-end/index.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 			return;// 程式中斷	

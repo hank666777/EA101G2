@@ -20,20 +20,20 @@
 
 <% if(buylist != null && (buylist.size() > 0)) {%>
 
-<div class="container text-center" style="width:1200px; height:850px; margin:auto;">
+<div class="container text-center mb-2">
+	<div class="row">
+		<div class="col text-center">
+			<p class="h2">目前已購商品如下</p>
+		</div>
+	</div>
 
-<div id="font">
-<font size="+3">目前已購商品如下</font><p>
-</div>
-
-
-	
-	<table class="table text-nowrap text-center table-hover shadow-lg p-3 mb-5 bg-white rounded" id="Carts">
+	<div class="row">
+	<table class="table text-nowrap text-center table-hover shadow-lg p-3 mb-3 bg-white rounded" id="Carts">
 		<tr>
-			<th><font size="+2.5">選購商品圖片</font></th>
-			<th><font size="+2.5">選購商品名稱</font></th>
-			<th><font size="+2.5">商品單價</font></th>
-			<th><font size="+2.5">選購數量</font></th>
+			<th><p class="h3">選購商品圖片</p></th>
+			<th><p class="h3">選購商品名稱</p></th>
+			<th><p class="h3">商品單價</p></th>
+			<th><p class="h3">選購數量</p></th>
 		</tr>
 		<%
 		for(int index = 0 ; index < buylist.size(); index++){
@@ -45,8 +45,8 @@
 				<img class="rounded mx-auto d-block" style="width:83px; height:40px;" 
 						 src="<%=request.getContextPath()%>/product/DBGifReaderProduct.do?pno=<%= order.getpno()%>">
 			</td>
-			<td style="width:350px; height:30px;"><div align="center"><b><%= order.getpname()%></b></div></td>
-			<td style="width:350px; height:30px;"><div align="center"><b><%= order.getpP()%></b></div></td>			
+			<td style="width:350px; height:30px;"><div align="center"><p class="h4"><%= order.getpname()%></p></div></td>
+			<td style="width:350px; height:30px;"><div align="center"><p class="h4"><%= order.getpP()%></p></div></td>			
 			
 			<td style="width:350px; height:30px;">
 				<div align="center">
@@ -71,12 +71,16 @@
 		</tr>
 		<%}%>
   	</table>
-
-	<p>
-		<form name="checkoutForm" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="POST">
-			<input type="hidden" name="action" value="CHECKOUT">
-			<input class="btn btn-outline-success" type="submit" value="前往購買明細" class="button3">
-		</form>	
+		</div>
+		
+		<div class="row">
+			<div class="col text-center">
+			<form name="checkoutForm" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="POST">
+				<input type="hidden" name="action" value="CHECKOUT">
+				<input class="btn btn-outline-success" type="submit" value="前往購買明細" class="button3">
+			</form>
+			</div>	
+		</div>
 <%}%>
 </div>
 <%@ include file="/front-end/front-end-footer.jsp"%>

@@ -36,51 +36,18 @@
   integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
   crossorigin="anonymous"></script>
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-<style>
-/*   table#table-1 { */
-/* 	background-color: #CCCCFF; */
-/*     border: 2px solid black; */
-/*     text-align: center; */
-/*   } */
-/*   table#table-1 h4 { */
-/*     color: red; */
-/*     display: block; */
-/*     margin-bottom: 1px; */
-/*   } */
-/*   h4 { */
-/*     color: blue; */
-/*     display: inline; */
-/*   } */
-/*   table { */
-/* 	width: 600px; */
-/* 	background-color: white; */
-/* 	margin-top: 5px; */
-/* 	margin-bottom: 5px; */
-/*   } */
-/*   table, th, td { */
-/*     border: 1px solid #CCCCFF; */
-/*   } */
-/*   th, td { */
-/*     padding: 5px; */
-/*     text-align: center; */
-/*   } */
-</style>
 </head>
+
 <body>
-<%-- <%@ include file="/back-end/back-end-header.jsp" %> --%>
 <div id="container" class="container" style="margin:auto; margin-top:30px;">
 	<div class="row">
-<!-- <table id="table-1"> -->
-<!-- 	<tr> -->
-<!-- 		<td> -->
-<!-- 		 <h3>現場訂單資料</h3> -->
-<!-- 		 <h4> -->
-<%-- 			 <a href="<%=request.getContextPath()%>/front-end/ono/select_page.jsp"> --%>
-<%-- 			 <img src="<%=request.getContextPath()%>/back-end/liveShop/images/logo.png" width="100" height="32" border="0">回首頁</a> --%>
-<!-- 		 </h4> -->
-<!-- 		</td> -->
-<!-- 	</tr> -->
-<!-- </table> -->
+<table id="table-1">
+	<tr>
+		<td>
+		 <h3>線上訂單資料</h3>
+		</td>
+	</tr>
+</table>
 <table class="table table-sm text-nowrap table-hover info text-center
 							shadow-lg p-3 mb-5 bg-white rounded">
 	<tr class="text-center">
