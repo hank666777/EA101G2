@@ -10,7 +10,10 @@
 <!-- Required meta tags -->
 <style>
 #main1{
-	background-color: #EEE; 
+	background-color: #FFF; 
+}
+.introduce-bg2#p{
+	font-size:;
 }
 </style>
 <title>Miss M</title>
@@ -83,9 +86,7 @@
 		</div>
 		<div class="row my-4">
 			<div class="col text-center">
-				<form>
-				
-				</form>
+				<%@ include file="/front-end/product/frontProduct3pic.jsp" %>
 			</div>
 		</div>
 

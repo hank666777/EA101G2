@@ -18,14 +18,18 @@
 	Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingcart");
 %>
 
-<% if(buylist != null && (buylist.size() > 0)) {%>
+
 
 <div class="container text-center mb-2">
 	<div class="row">
 		<div class="col text-center">
 			<p class="h2">目前已購商品如下</p>
+				<% if(buylist.size() == 0) {%>
+				<p class="h1 text-danger my-5">您沒有選購商品</p>
+				<%}%>
 		</div>
 	</div>
+<% if(buylist != null && (buylist.size() > 0)) {%>
 
 	<div class="row">
 	<table class="table text-nowrap text-center table-hover shadow-lg p-3 mb-3 bg-white rounded" id="Carts">
