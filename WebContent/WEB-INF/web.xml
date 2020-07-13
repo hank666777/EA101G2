@@ -65,6 +65,7 @@
 		<url-pattern>/front-end/chat/member_chat.jsp</url-pattern>
 		<url-pattern>/front-end/bok/*</url-pattern>
 		<url-pattern>/front-end/messageboard/listAllMessageBoard.jsp</url-pattern>
+		<url-pattern>/front-end/onlineShop/payMoney.jsp</url-pattern>
 		
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
@@ -93,6 +94,15 @@
 	  <servlet-name>MemServlet</servlet-name>
 	  <url-pattern>/front-end/mem/mem.do</url-pattern>
 	  <url-pattern>/back-end/mem/mem.do</url-pattern>
+ 	</servlet-mapping>
+ 	
+	<servlet>
+	  <servlet-name>MemberLogoutServlet</servlet-name>
+	  <servlet-class>com.mem.controller.MemberLogoutServlet</servlet-class>
+	 </servlet>
+ 	<servlet-mapping>
+	  <servlet-name>MemberLogoutServlet</servlet-name>
+	  <url-pattern>/front-end/mem/memberlogout.do</url-pattern>
  	</servlet-mapping>
  
   	<servlet>

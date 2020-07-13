@@ -13,7 +13,7 @@
 	background-color: #FFF; 
 }
 .introduce-bg2#p{
-	font-size:;
+	font-size:1.2em;
 }
 </style>
 <title>Miss M</title>

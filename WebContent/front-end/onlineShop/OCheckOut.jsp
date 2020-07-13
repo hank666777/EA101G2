@@ -26,11 +26,11 @@
 
 	<table class="table text-nowrap text-center table-hover" id="table-1" style="margin: auto;">
 		<tr>
-		<th width="200">商品名稱</th>
-		<th width="100">價格</th>
-		<th width="100">數量</th>
-		<th width="120"><h3>總價</h3></th>
-	</tr>
+			<th width="200"><p class="h3">商品名稱</p></th>
+			<th width="100"><p class="h3">價格</p></th>
+			<th width="100"><p class="h3">數量</p></th>
+			<th width="120"><p class="h3" style="color:#F00">總價</p></th>
+		</tr>
 	</table>
 	
 	<% 	
@@ -49,29 +49,28 @@
 	<form action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="post">
 	<table class="table text-nowrap text-center table-hover" style="margin: auto;">
 	<tr>
-		<td width="200"><%=pname%>     </td>
-		<td width="100"><%=pP%>   </td>
-		<td width="100"><%=pDoffer%></td>
+		<td width="200"><p class="h3"><%=pname%>	</p></td>
+		<td width="100"><p class="h3"><%=pP%>   	</p></td>
+		<td width="100"><p class="h3"><%=pDoffer%></p></td>
 		<%Integer count = pP*pDoffer; %>
-		<td width="120"><%=count%></td>
+		<td width="120"><p class="h3"><%=count%>	</p></td>
 	</tr>
 	<%
 		}
 	%>
 	
 	<tr>
-		
 		<td colspan="6" style="text-align:right;"> 
-		<input type="hidden" name = "liveOrderTotal" value="<%=amount%>">
-		   <font size="+2">總金額： <h4>$<fmt:formatNumber type="number" value="<%=amount %>"></fmt:formatNumber></h4> </font>
-		   
-	    </td>
+			<input type="hidden" name = "liveOrderTotal" value="<%=amount%>">
+			<p class="h2">總金額：<span class="h1" style="color:#F00">$<fmt:formatNumber type="number" value="<%=amount %>"></fmt:formatNumber></span> </p>
+		</td>
 	</tr>
+	
 	<tr>
 		<td colspan="1" style="text-align:center;">
-			<p>
+			
 			<a href="<%=request.getContextPath()%>/front-end/onlineShop/OShop.jsp" style="text-align:center;">
-				<font>  繼 續 購 物</font>
+				<p class="h3">繼 續 購 物</p>
 			</a>  
 		</td>
 		<td colspan="5" style="text-align:right;"> 
