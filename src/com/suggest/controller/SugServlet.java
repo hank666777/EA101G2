@@ -47,7 +47,7 @@ public class SugServlet extends HttpServlet {
 				
 				Integer resStatus = 0 ;
 				
-				String responseDetail = "null";
+				String responseDetail = "";
 				
 					
 				//將會員登入的seesion拿來用

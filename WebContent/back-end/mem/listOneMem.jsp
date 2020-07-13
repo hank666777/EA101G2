@@ -83,7 +83,7 @@
 	</tr>
 </table>
 <br>
-<button class="button_size" onclick="self.location.href='listAllMem.jsp'" />回會員列表</a></button>
+<input type ="button"  onclick="javascript:location.href='listAllMem.jsp'"   value="回會員列表" ></input>
 <%@ include file="/back-end/back-end-footer.jsp"%>
 </body>
 </html>
