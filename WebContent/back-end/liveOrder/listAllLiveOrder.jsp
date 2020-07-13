@@ -89,7 +89,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>所有現場訂單資料</h3>
-		 <h4><a href="<%=request.getContextPath()%>/back-end/ono/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/liveShop/images/logo.png" width="100" height="32" border="0">回現場訂單首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/liveOrder/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/liveShop/images/logo.png" width="100" height="32" border="0">回現場訂單首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -118,7 +118,7 @@
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
-	<%@ include file="/back-end/liveShop/page1.file" %>
+	<%@ include file="/back-end/liveOrder/page/page1.file" %>
 	<c:forEach var="loVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 	<tr class="data">
@@ -160,9 +160,9 @@
 			</td>
 	</tr>
 	</c:forEach>
-	<%@ include file="/back-end/liveShop/page2.file" %>
+	
 </table>
-
+	<%@ include file="/back-end/liveOrder/page/page2.file" %>
 </div>
 
 </div>

@@ -20,13 +20,66 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/back-end/bok/js/app.js"></script>
+	<style type="text/css">
+		#booking-container{
+			
+			position: relative;
+			width:100%;
+			height:900px;	
+			border:0px solid ;		
+			overflow:hidden;
+		}
+		#Multi_Queries{
+			position: relative;
+			margin:7% auto;
+			width: 400px;
+			height: 500px;
+			background-color: #F8F8F8;
+			border-radius:5px;
+			box-shadow:3px 3px 9px black;
+			display: none;
+			font: bold 18px/1.5 "微軟正黑體";
+			padding:1px;
+		}
+		#form1{
+			position: relative;
+		}
+		#bkperiod{
+			height: 33px;
+			width: 205px;
+		}
+		#date_block{
+			position: relative;
+			top: 20px;
+			left: 60px;
+		}
+		#period_block{
+			position: relative;
+			top: 80px;
+			left: 60px;
+		}
+		#table_block{
+			position: relative;
+			left: 60px;			
+  			top: 5px;	
+		}
+		#send{
+			position: relative;
+			top: 100px;
+			left: 160px;
+		}
+	</style>
 </head>
 
 <body>
 	
 	<%@ include file="/back-end/back-end-header.jsp" %>
 	
-	<h3>現場劃位</h3>
+	<div class="container-fluid" id="booking-container">
+		<div id="Multi_Queries">
+			<br>
+	
+	<h3 style="text-align: center;">現場劃位</h3>
 	<form method="post" action="<%=request.getContextPath()%>/BokdtServlet" name="form1" id="form1">
 		<div id="date_block">
 			日期: 
@@ -73,8 +126,14 @@
 		<input type="submit" id="send" value="送出查詢">
 		<input type="hidden" name="action" value="listBokDetailByCompositeQuery">
 	</form>
-	
+	</div>
+	</div>
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 	<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function (){
+			$("#Multi_Queries").fadeIn("slow");
+		});
+	</script>
 </body>
 </html>

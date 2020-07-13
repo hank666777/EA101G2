@@ -175,7 +175,7 @@ input{
 		margin-left: 20px;
 	}
 	.form {
-	 	width: calc( (100% - 20px) / 4);
+	 	width: calc( (100% - 20px) / 6);
 		float: left;
 		padding: 0;
 		margin-bottom: -70px;

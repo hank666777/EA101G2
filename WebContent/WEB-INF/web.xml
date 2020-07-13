@@ -292,5 +292,68 @@
     <url-pattern>/back-end/messagereport/messagereport.do</url-pattern>
   </servlet-mapping>
 	
+	<!-- 銘傑 -->
+	<servlet>
+	    <servlet-name>ActivityServlet</servlet-name>
+	    <servlet-class>com.activity.controller.ActivityServlet</servlet-class>
+    </servlet>
+ 	 <servlet-mapping>
+	    <servlet-name>ActivityServlet</servlet-name>
+	    <url-pattern>/back-end/activity/activityServlet.do</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet>
+	    <servlet-name>ActivitypostServlet</servlet-name>
+	    <servlet-class>com.activitypost.controller.ActivitypostServlet</servlet-class>
+  	</servlet>
+ 	 <servlet-mapping>
+	    <servlet-name>ActivitypostServlet</servlet-name>
+	    <url-pattern>/back-end/activity_post/activitypostServlet.do</url-pattern>
+  	</servlet-mapping>
+  	
+  	 <servlet>
+	    <servlet-name>ActparticipationServlet</servlet-name>
+	    <servlet-class>com.actparticipation.controller.ActparticipationServlet</servlet-class>
+ 	 </servlet>
+ 	 <servlet-mapping>
+	    <servlet-name>ActparticipationServlet</servlet-name>
+	    <url-pattern>/back-end/activity_participation/actparticipationServlet.do</url-pattern>
+  	</servlet-mapping>
+  	
+ 	 <servlet>
+	  	<servlet-name>ActivityShop</servlet-name>
+	  	<servlet-class>com.activity.controller.ActivityShop</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+	  	<servlet-name>ActivityShop</servlet-name>
+	  	<url-pattern>/front-end/activity/activityshop.do</url-pattern>
+  	</servlet-mapping>
+  	
+	 <servlet>
+	  	<servlet-name>ActivityFeelings</servlet-name>
+	  	<servlet-class>com.activitypost.controller.ActivityFeelings</servlet-class>
+ 	 </servlet>
+  	<servlet-mapping>
+ 		<servlet-name>ActivityFeelings</servlet-name>
+  		<url-pattern>/front-end/activity/activityfeelings.do</url-pattern>
+ 	 </servlet-mapping>
+  
+   	<servlet>
+	    <servlet-name>ActivitypicServlet</servlet-name>
+	    <servlet-class>com.activity.controller.ActivitypicServlet</servlet-class>
+ 	 </servlet>
+ 	 <servlet-mapping>
+	    <servlet-name>ActivitypicServlet</servlet-name>
+	    <url-pattern>/back-end/activity/activitypicServlet.do</url-pattern>
+  	</servlet-mapping>
+  	
+ 	 <servlet>
+	    <servlet-name>ActivitypostpicServlet</servlet-name>
+	    <servlet-class>com.activitypost.controller.ActivitypostpicServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+	    <servlet-name>ActivitypostpicServlet</servlet-name>
+	    <url-pattern>/back-end/activity_post/activitypostpicServlet.do</url-pattern>
+  	</servlet-mapping>
 	
 </web-app>

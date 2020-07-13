@@ -28,14 +28,78 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
+	<style type="text/css">
+
+  #table-1{
+ 	position: relative;
+	background-color: #CCCCFF;
+    border: 2px solid black;
+    text-align: center;
+    border-collapse: collapse;
+    margin:auto;
+    width:500px;
+  }
+  #table-1 h4 {
+    color: red;
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  #listAll {
+  			position: relative;
+			margin-top: 10px;
+			border-collapse: collapse;
+			width: 100%;
+  }
+  #listAll, th, td {
+    border: 1px solid #CCCCFF;
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+
+  #booking-container{
+
+			position: relative;
+			width:100%;
+			height:900px;	
+			border:0px solid ;		
+			overflow:hidden;
+  }
+  .data:hover {
+			background-color:#CADCF9;
+  }
+	#list_container{ 
+ 			position: relative;  
+ 			margin:3% auto; 
+ 			width: 1000px;
+			height: 800px; 
+ 			text-align: center; 
+			background-color: #F8F8F8; 
+ 			border-radius:5px; 
+ 			box-shadow:3px 3px 9px black; 
+ 			padding: 5px; 
+ 			overflow-y: auto; 
+ 			display: none;
+ 		} 
+</style>
 </head>
 
 <body>
 
 <%@ include file="/back-end/back-end-header.jsp" %>
 
-	<h3>複合查詢結果</h3>
-	<table>
+	<table id="table-1">
+		<tr><td>
+			<h3>查詢結果</h3>
+		</td></tr>
+	</table>
+	
+	
+	<div class="container-fluid" id="booking-container">
+	<div id="list_container">
+	<table id="listAll">
 		<tr>
 			<th>日期</th>
 			<th>時段</th>		
@@ -43,7 +107,7 @@
 			<th></th>
 		</tr>	
 		<% for (BokdtVO bokdtVO : list) {%>
-		<tr>
+		<tr class="data">
 			<td><%=bokdtVO.getBkDate()%></td>
 			<td><%=bokdtVO.getBkPeriod()%></td>
 			<td><%=bokdtVO.getTableno()%></td>
@@ -60,6 +124,22 @@
 		</tr>
 		<%}%>
 	</table>
+	</div>
+
+</div>
 	<%@ include file="/back-end/back-end-footer.jsp"%>
+	<script src="${pageContext.request.contextPath}/back-end/bok/jquery-ui-1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function (){
+			 $("#list_container").fadeIn("slow");
+		});
+
+		function detail(){
+			alert();
+		}
+		$(function () {
+			$('[data-toggle="popover"]').popover()
+		})
+	</script>
 </body>
 </html>
