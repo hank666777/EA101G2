@@ -1,7 +1,10 @@
 package com.product.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -102,6 +105,41 @@ public class OnlineShopServlet extends HttpServlet {
 			return;	
 			
 		}
+		
+		
+		
+		// ----------------------查詢商品-------------------------------------------
+		
+		if("listProduct_ByCompositeQuery".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+			/**1.將輸入資料轉為Map**/
+				Map<String, String[]> map = (Map<String, String[]>) session.getAttribute("map");
+				if (req.getParameter("whichPage") == null) {
+					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());	
+					req.setAttribute("map", map1);
+					map = map1;
+				}
+			/**2.開始複合查詢**/	
+				ProductService productSvc = new ProductService();
+				List<ProductVO> list = productSvc.getAll(map);
+				
+			/**3.查詢完成,準備轉交(Send the Success view)**/
+				req.setAttribute("listProduct_ByCompositeQuery", list);
+				RequestDispatcher successView = req.getRequestDispatcher("/front-end/onlineShop/OShop.jsp");
+				successView.forward(req, res);
+				
+			}catch(Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/onlineShop/OShop.jsp");
+				failureView.forward(req, res);
+				
+			}
+		}
+		
+		
 		
 		// ----------------------刪除購物車中的書籍-------------------------------------------
 		

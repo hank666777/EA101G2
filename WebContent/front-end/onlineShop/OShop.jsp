@@ -263,6 +263,66 @@ div.card.show div.flap2 {
 		</a>
 	</div>
 	
+	<c:if test="${listProduct_ByCompositeQuery !=null }">
+		
+	
+	<div class="cards">
+		<c:forEach var="listVO" items="${listProduct_ByCompositeQuery}">
+			<Form name="shoppingForm" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="post">
+			
+				<div class="card">
+					<div class="card__image-holder">
+						<img class="card__image"
+							src="<%=request.getContextPath()%>/product/DBGifReaderProduct.do?pno=${listVO.pno}" alt="wave"
+							style="width: 298px;height:230px;" >
+					</div>
+					<div class="card-title">
+						<a href="#" class="toggle-info btn"> <span class="left"></span>
+							<span class="right"></span>
+						</a>
+						<h2>
+							商品名稱:${listVO.pname}<small>商品價格:$${listVO.pP}</small>
+						</h2>
+					</div>
+					<div class="card-flap flap1">
+						<div class="card-description">商品明細:${listVO.pDes}</div>
+						<div class="card-flap flap2">
+							<div class="card-actions">數量:
+						        <select size="1" name="pDoffer">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+								</select>
+								<input type="hidden" name="action" value="ADD">
+								<input type="hidden" name="pno" value="${listVO.pno}">
+								<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+								<input type="submit" name="Submit" value="加入購物車" class="btn">
+							</div>
+							<input type="hidden" name="pPic" value="${listVO.pPic}">
+							<input type="hidden" name="pname" value="${listVO.pname}">
+							<input type="hidden" name="pP" value="${listVO.pP}">
+							<input type="hidden" name="pDes" value="${listVO.pDes}">
+							
+						</div>
+					</div>
+				</div>
+				
+			</Form>
+		</c:forEach>	
+		
+	</div>
+		
+	</c:if>
+	
+	
+	<c:if test="${listProduct_ByCompositeQuery ==null }">
+				
 	<%@ include file="page/page1.file"%>
 	<center><%@ include file="page/page2.file"%></center>
 	<div class="cards">
@@ -317,7 +377,7 @@ div.card.show div.flap2 {
 		</c:forEach>	
 		
 	</div>
-	
+	</c:if>
 	<%@ include file="/front-end/front-end-footer.jsp"%>
 	
 	

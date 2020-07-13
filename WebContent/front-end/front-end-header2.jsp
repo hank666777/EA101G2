@@ -49,15 +49,14 @@
 					</li>
 				</ul>
 				
-				<form class="form-inline my-3" action="" method="">
+				<form class="form-inline my-3" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="post">
 					<div>
 						<input class="form-control mr-sm-2" type="text"
-							placeholder="請輸入商品名稱..." aria-label="Search">
+							placeholder="請輸入商品名稱..." aria-label="Search" name="pname">
 					</div>
 					<div>
-						<input type="hidden" name="action" value="">
-						<input type="hidden" name="pno" value="">
-						<input type="submit" class="btn btn-outline-success my-2 my-sm-0" value="搜尋商品">
+						<input type="hidden" name="action" value="listProduct_ByCompositeQuery">
+						<input type="submit" class="btn-outline-success my-2 my-sm-0" value="搜尋商品" style="height: 35px;">
 					</div>
 				</form>
 			</div>
