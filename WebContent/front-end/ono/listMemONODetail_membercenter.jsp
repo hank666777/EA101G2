@@ -9,15 +9,14 @@
 <%@ page import="com.product.model.*"%>
 <% 
 	//取得所有訂單
-	List<ONOVO> onolist = new ONOService().getAll();
-	//取得登入者的訂單
-	MemVO memvo1 = (MemVO)session.getAttribute("memVO");
-	List<ONOVO> myONOlist = onolist.stream().filter(ono -> ono.getmemno().contains(memvo1.getMemno()))
-																					.collect(Collectors.toList());
-	pageContext.setAttribute("myONOlist", myONOlist);	
+// 	List<ONOVO> onolist = new ONOService().getAll();
+// 	//取得登入者的訂單
+// 	MemVO memvo1 = (MemVO)session.getAttribute("memVO");
+// 	List<ONOVO> myONOlist = onolist.stream().filter(ono -> ono.getmemno().contains(memvo1.getMemno()))
+// 																					.collect(Collectors.toList());
+// 	pageContext.setAttribute("myONOlist", myONOlist);	
 	
 	ONODetailService ondSvc = new ONODetailService();
-
 	List<ONODetailVO> list = ondSvc.getAll();
 	pageContext.setAttribute("list",list);
 	

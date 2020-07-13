@@ -41,7 +41,9 @@ table {
 <body>
 	<div class="container">
 		<div class="row">
-			<a href="<%=request.getContextPath()%>/mycoupon/mycoupon.do?memno=${memVO.memno}">我的優惠券</a>
+<%-- 			<a href="<%=request.getContextPath()%>/mycoupon/mycoupon.do?memno=${memVO.memno}"> --%>
+			我的優惠券
+<!-- 			</a> -->
 			<table class="table text-nowrap table-hover info text-center">
 				<thead class="bg">
 					<tr>

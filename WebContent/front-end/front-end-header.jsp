@@ -26,9 +26,6 @@
 					<a id="cart" href="${pageContext.request.contextPath}/front-end/onlineShop/OCart.jsp"> 
 						<i class="fa fa-shopping-cart"></i> 購物車
 					</a> 
-					<a id="myfavor" href="${pageContext.request.contextPath}"> 
-						<i class="fa fa-heart"></i> 追蹤清單
-					</a> 
 					<a id="menberlogin" style="display: ${(sessionScope.memVO == null) ? 'display':'none'};"
 					href="${pageContext.request.contextPath}/front-end/mem/memberlogin.jsp"> 
 						<i class="fa fa-unlock-alt"></i> 會員登入

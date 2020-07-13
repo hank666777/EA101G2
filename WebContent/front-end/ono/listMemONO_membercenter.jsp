@@ -17,19 +17,15 @@
 	pageContext.setAttribute("myONOlist", myONOlist);
 	
 	//取得一筆訂單的所有明細
-	//ONODetailService ondSvc = new ONODetailService();
-	
-%>
-<% 
 	ONODetailService ondSvc = new ONODetailService();
-	List<ONODetailVO> onoDetailList = ondSvc.getAll();
-	pageContext.setAttribute("onoDetailList",onoDetailList);
+	List<ONODetailVO> list = ondSvc.getAll();
+	pageContext.setAttribute("list",list);
 	
 	ProductService pdSvc = new ProductService();
 	List<ProductVO> pdlist = pdSvc.getAll();
 	pageContext.setAttribute("pdlist",pdlist);
-
 %>
+
 
 <html>
 <head>
@@ -118,51 +114,34 @@
 		<td>
 		
 		<!-- 訂單明細 -->
-		<table class="table table-sm text-nowrap">  
-			<tr class="text-center">
-				<th>商品名稱</th>
-				<th>購買數量</th>
-				<th>單品價格</th>
-			</tr>
-	 
-<%-- 		    <c:forEach var="ondVO" items="${onoDetailList}"> --%>
-<%-- 		    	<c:forEach var="onVO" items="${myONOlist}"> --%>
-<%-- 					<c:if test="${(onVO.onono eq ondVO.onono)}"> --%>
-	<c:forEach var="ondVO" items="${myONOlist.oneDetails(onVO.onono)}">
-	<c:if test="${ondVO.onono eq onVO.onono}">
-	
-						<tr class="text-center">
+		<table class="table table-sm text-nowrap table-hover info text-center
+									shadow-lg p-3 bg-white rounded my-0">
+				<tr class="text-center">
+					<th>商品編號</th>
+					<th>購買數量</th>
+					<th>單品價格</th>
+			    </tr>
 		
-								<c:forEach var="pdVO" items="${pdlist}">
-<%-- 										<c:if test="${(pdVO.pno eq ondVO.pno)}"> --%>
-<%-- 											<td class="text-center">${pdVO.pname}</td> --%>
-<td class="text-center">${pdVO.pname }</td>
-<td class="text-center">${ondVO.onoQty }</td>
-<td class="text-center">${ondVO.onoPrice }</td>
-<%-- 										</c:if> --%> 
-								</c:forEach>
-								
-<%-- 								<td class="text-center" id="qty">${ondVO.onoQty}</td> --%>
-<%-- 								<td class="text-center" id="price">${ondVO.onoPrice}</td> --%>
-	
-						</tr>
-	</c:if>
-	</c:forEach>
-<%-- 					</c:if> --%>
-<%-- 				</c:forEach> --%>
-<%-- 			</c:forEach> --%>
-		</table>
+			    <c:forEach var="ondVO" items="${list}">
+						<c:if test="${(onVO.onono eq ondVO.onono)}">
+		
+							<tr class="text-center">
 			
+									<c:forEach var="pdVO" items="${pdlist}">
+											<c:if test="${(pdVO.pno eq ondVO.pno)}">
+												<td class="text-center">${pdVO.pname}</td>
+											</c:if>
+									</c:forEach>
+									
+									<td class="text-center" id="qty">${ondVO.onoQty}</td>
+									<td class="text-center" id="price">${ondVO.onoPrice}</td>
 		
-		
-		
-		
-		
-		
-		
-				      	<!-- 要導入的訂單明細，未完成 -->
-<%-- 	        <%@ include file="/front-end/ono/listMemONODetail_membercenter.jsp"%> --%>
-								<!-- 要導入的訂單明細，未完成 -->
+							</tr>
+						</c:if>
+				</c:forEach>
+		</table>
+								
+								
 		</td>
 	</tr>
 	<script type="text/javascript">
