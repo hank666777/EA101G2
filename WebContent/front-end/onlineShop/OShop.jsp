@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
@@ -13,8 +12,7 @@
 	MemVO SmemVO= (MemVO) session.getAttribute("memVO");
 %>
 
-<!DOCTYPE html>
-<html lang="en" >
+<html lang="zh-Hant-TW" >
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <title>線上購物頁面</title>
@@ -444,6 +442,8 @@ div.card.show div.flap2 {
 <!-- 	</script> -->
 	<!-- 以上為測試AJAX非同步查詢，撰寫中 -->
 	
+=======
+>>>>>>> 6453d85f138c77a68f944180332451843ca09d4d
 	
 	<%@ include file="/front-end/front-end-footer.jsp"%>
 	
