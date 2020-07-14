@@ -57,19 +57,23 @@ public class MessageBoardService {
 	} 
 	
 	public List<MessageBoardVO> getByMemno(String memno){
-		List<MessageBoardVO> list = dao.getByMemno(memno);
-
+		List<MessageBoardVO> list = dao.getByMemno(memno).stream()
+				.filter(mb -> mb.getPostStatus().equals(1))
+				.collect(Collectors.toList());
 		return list;
 	}
 	
 	public MessageBoardVO getOneMessage(String postno) {
 		
-		
 		return dao.getByPostno(postno);
 	}
 	
 	public List<MessageBoardVO> getReply(String postno) {
-		return dao.getReply(postno);
+		List<MessageBoardVO> list = dao.getReply(postno).stream()			
+				.filter(mb -> mb.getPostStatus().equals(1))
+				.collect(Collectors.toList());
+		
+		return list;
 	}
 	
 	public List<MessageBoardVO> getByPostSort(Integer postsort) {
@@ -85,6 +89,7 @@ public class MessageBoardService {
 	public List<MessageBoardVO> getAll() {
 		/*SE8 filter*/
 		List<MessageBoardVO> list = dao.getAll().stream()
+				.filter(mb -> mb.getPostStatus().equals(1))
 				.filter(mbvo -> mbvo.getParentno().equals("0"))
 				.collect(Collectors.toList());
 		

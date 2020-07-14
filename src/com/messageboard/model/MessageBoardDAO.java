@@ -33,14 +33,8 @@ public class MessageBoardDAO implements MessageBoardDAO_interface {
 	private static final String UPDATEPOST = "UPDATE MessageBoard SET POSTTITLE=? , POSTSORT=? , POSTDETAIL=? , POSTSTATUS=? WHERE POSTNO=?";
 	private static final String QUERYBYPOSTNO = "SELECT POSTNO, PARENTNO, POSTTITLE, POSTSORT, POSTDETAIL, to_char(POSTTIME,'yyyy-mm-dd hh24:mi:ss') POSTTIME, POSTSTATUS, MEMNO FROM MessageBoard WHERE POSTNO=?";
 	private static final String QUERY_REPLY = "SELECT POSTNO, PARENTNO, POSTTITLE, POSTSORT, POSTDETAIL, to_char(POSTTIME,'yyyy-mm-dd hh24:mi:ss') POSTTIME, POSTSTATUS, MEMNO FROM MessageBoard WHERE PARENTNO=? order by POSTTIME" ;	
-	private static final String QUERYBYMEMNO = "SELECT POSTNO, PARENTNO, POSTTITLE, POSTSORT, POSTDETAIL,to_char(POSTTIME,'yyyy-mm-dd hh24:mi:ss') POSTTIME, POSTSTATUS, MEMNO FROM MessageBoard WHERE MEMNO= ?";
-	private static final String QUERYALL = "SELECT POSTNO, PARENTNO, POSTTITLE, POSTSORT, POSTDETAIL, to_char(POSTTIME,'yyyy-mm-dd hh24:mi:ss') POSTTIME, POSTSTATUS, MEMNO FROM MessageBoard order by POSTTIME";
-
-	/*
-	 * private static final String QUERYALL =
-	 * "SELECT POSTNO, PARENTNO, POSTTITLE, POSTSORT, POSTDETAIL, to_char(POSTTIME,'yyyy-mm-dd hh:mi:ss') POSTTIME, POSTSTATUS, MEMNO FROM MessageBoard WHERE parentno = '0' order  by POSTNO"
-	 * ;
-	 */
+	private static final String QUERYBYMEMNO = "SELECT POSTNO, PARENTNO, POSTTITLE, POSTSORT, POSTDETAIL,to_char(POSTTIME,'yyyy-mm-dd hh24:mi:ss') POSTTIME, POSTSTATUS, MEMNO FROM MessageBoard WHERE MEMNO= ? order by POSTTIME DESC";
+	private static final String QUERYALL = "SELECT POSTNO, PARENTNO, POSTTITLE, POSTSORT, POSTDETAIL, to_char(POSTTIME,'yyyy-mm-dd hh24:mi:ss') POSTTIME, POSTSTATUS, MEMNO FROM MessageBoard order by POSTTIME DESC";
 
 	private static final String QUERYMAIN = "SELECT POSTNO, PARENTNO, POSTTITLE, POSTSORT, POSTDETAIL,to_char(POSTTIME,'yyyy-mm-dd hh:mi:ss') POSTTIME, POSTSTATUS, MEMNO FROM MessageBoard WHERE parentno = '0'  AND poststatus = '1'  order by POSTTIME DESC";
 

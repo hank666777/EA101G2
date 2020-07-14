@@ -87,6 +87,15 @@
 			</section>
 		</div>
 </body>
+<script>
+		$('#submit').click(function(){
+			var btn = this;
+			setTimeout(function(){
+				btn.disabled = true;
+			},50);
+		});
+</script>
+
 
 <script>
 	CKEDITOR.replace('postdetail');

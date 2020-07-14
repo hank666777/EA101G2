@@ -16,6 +16,7 @@
 <%	
 	@SuppressWarnings("unchecked")
 	Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingcart");
+	System.out.println("buylist: "+ buylist);
 %>
 
 
@@ -24,9 +25,9 @@
 	<div class="row">
 		<div class="col text-center">
 			<p class="h2">目前已購商品如下</p>
-				<% if(buylist.size() == 0) {%>
-				<p class="h1 text-danger my-5">您沒有選購商品</p>
-				<%}%>
+<%-- 				<% if( buylist.isEmpty()) {%> --%>
+<!-- 				<p class="h1 text-danger my-5">您沒有選購商品</p> -->
+<%-- 				<%}%> --%>
 		</div>
 	</div>
 <% if(buylist != null && (buylist.size() > 0)) {%>

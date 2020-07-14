@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mem.model.MemService;
 import com.mem.model.MemVO;
@@ -60,7 +61,9 @@ public class MessageBoardServlet extends HttpServlet {
 				}
 				
 				List<MessageBoardVO> list = mbSvc.getReply(postno);
-				
+				if(list.isEmpty()) {
+					System.out.println("list empty;");
+				}
 				MemService mSvc= new MemService();
 				List<MemVO> memlist = mSvc.getAll();
 				
@@ -74,7 +77,7 @@ public class MessageBoardServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("mbVO", mbVO); // 資料庫取出mbVO物件,存入req
-				req.setAttribute("list", list);
+				req.setAttribute("mblist", list);
 				req.setAttribute("memlist",memlist);
 				String url = "/front-end/messageboard/listOneMessage.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneMessage.jsp
@@ -87,7 +90,7 @@ public class MessageBoardServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-		
+				
 		//依種類查詢
 		if ("getMessageByPostSort".equals(action)) { // 來自select_page.jsp的請求
 
@@ -109,10 +112,10 @@ public class MessageBoardServlet extends HttpServlet {
 
 				/*************************** 2.開始查詢資料 *****************************************/
 				MessageBoardService mbSvc = new MessageBoardService();
-				List<MessageBoardVO> list = mbSvc.getByPostSort(postsort);
+				List<MessageBoardVO> mblist = mbSvc.getByPostSort(postsort);
 
-				if (list.isEmpty()) {
-					errorMsgs.add("發生未預期之狀況請聯絡該網站營運方");
+				if (mblist.isEmpty()) {
+					errorMsgs.add("目前尚無相關留言");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -122,7 +125,8 @@ public class MessageBoardServlet extends HttpServlet {
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("list", list); // 資料庫取出mbVO物件,存入req
+				HttpSession session = req.getSession();
+				session.setAttribute("mblist", mblist); // 資料庫取出mbVO物件,存入req
 				String url = "/front-end/messageboard/listBySearchCondition.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
@@ -176,7 +180,7 @@ public class MessageBoardServlet extends HttpServlet {
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("list", list); // 資料庫取出mbVO物件,存入req
+				req.setAttribute("mblist", list); // 資料庫取出mbVO物件,存入req
 				String url = "/front-end/messageboard/listMemMessage.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
@@ -184,6 +188,8 @@ public class MessageBoardServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			
 		}
+		
+		
 
 		if ("addMessage".equals(action)) { // 來自addMessageEmp.jsp的請求
 
@@ -195,13 +201,13 @@ public class MessageBoardServlet extends HttpServlet {
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				String posttitle = req.getParameter("posttitle");
-				String titleReg = "[]{4,30}$";
+				String titleReg = "^[\\S]{4,25}$";
 							
 				if (posttitle == null || posttitle.trim().length() == 0) {
-					errorMsgs.add("留言標題: 請勿空白");}
-//				} else if (!posttitle.trim().matches(titleReg)) { // 以下練習正則(規)表示式(regular-expression)
-//					errorMsgs.add("留言標題: 只能是中、英文字母、數字和_ , 且長度必需在4到30之間");
-//				}
+					errorMsgs.add("留言標題: 請勿空白");
+				} else if (!posttitle.trim().matches(titleReg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("留言標題: 長度請在4到25個字之間");
+				}
 				
 				Integer postsort = new Integer(req.getParameter("postsort").trim());
 
@@ -213,12 +219,7 @@ public class MessageBoardServlet extends HttpServlet {
 				Timestamp posttime = new java.sql.Timestamp(System.currentTimeMillis());
 				//"^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{10}$"
 				String memno = req.getParameter("memno");
-//				String memReg = "M{1}[0-9]{9}$";
-//				if (memno == null || memno.trim().length() == 0) {
-//					errorMsgs.add("會員編號: 請勿空白");
-//				} else if (!memno.trim().matches(memReg)) { // 以下練習正則(規)表示式(regular-expression)
-//					errorMsgs.add("會員編號: M開頭且後9碼為數字之組合，如:M000000001");
-//				}
+
 				
 				String parentno = "0";
 				Integer poststatus = 1;
@@ -292,7 +293,7 @@ public class MessageBoardServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("mbVO", mbVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					req.setAttribute("list", list);
+					req.setAttribute("mblist", list);
 
 					
 					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/messageboard/replyMessage.jsp");
@@ -306,7 +307,7 @@ public class MessageBoardServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("mbVO", mbVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					req.setAttribute("list", list);
+					req.setAttribute("mblist", list);
 					
 					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/messageboard/listOneMessage.jsp");
 					failureView.forward(req, res);
@@ -319,7 +320,7 @@ public class MessageBoardServlet extends HttpServlet {
 				list = mbSvc.getReply(parentno);
 				
 				req.setAttribute("mbVO", mbVO2); // 資料庫取出mbVO物件,存入req
-				req.setAttribute("list", list);
+				req.setAttribute("mblist", list);
 				String url = "/front-end/messageboard/listOneMessage.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneMessage.jsp
 				successView.forward(req, res);
@@ -380,13 +381,13 @@ public class MessageBoardServlet extends HttpServlet {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String postno = req.getParameter("postno").trim();
 				String parentno = req.getParameter("parentno").trim();
-				
+				System.out.println(postno);
 				
 				String posttitle = req.getParameter("posttitle");
 				if("0".equals(parentno)) {
-					String titleReg = "{4,30}$";
+					String titleReg = "^[\\S]{4,25}$";;
 					if (posttitle == null || posttitle.trim().length() == 0) {
-						errorMsgs.add("留言標題: 請勿空白");}					
+						errorMsgs.add("留言標題: 請勿空白，並在4-25字之間");}					
 				}				
 				Integer postsort = new Integer(req.getParameter("postsort").trim());
 
@@ -429,11 +430,12 @@ public class MessageBoardServlet extends HttpServlet {
 				if(!"0".equals(parentno)) {
 					postno = parentno;
 				}
+				System.out.println(postno);
 				MessageBoardVO mbVO2 = mbSvc.getOneMessage(postno);//主留言
 				List<MessageBoardVO> list = mbSvc.getReply(postno);//底下reply
 																
 				req.setAttribute("mbVO", mbVO2); // 資料庫update成功後,正確的的mbVO物件,存入req
-				req.setAttribute("list", list);
+				req.setAttribute("mblist", list);
 				String url = "/front-end/messageboard/listOneMessage.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneMessage.jsp
 				successView.forward(req, res);
@@ -447,6 +449,7 @@ public class MessageBoardServlet extends HttpServlet {
 				
 			}
 		}
+		
 	}
 	
 	

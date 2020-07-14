@@ -7,43 +7,46 @@
 
 
 
-<%
+<%	
+	
     MessageBoardService mbSvc = new MessageBoardService();
-    List<MessageBoardVO> list = mbSvc.getAll();
-    pageContext.setAttribute("list",list);
+    List<MessageBoardVO> mblist = mbSvc.getAll();
+    pageContext.setAttribute("mblist",mblist);
     
     MemService mSvc= new MemService();
     List<MemVO> memlist = mSvc.getAll();
     pageContext.setAttribute("memlist",memlist);
 %>
 
+
+
 <html>
 <head>
 <title>Miss M MessageBoard</title>
-<%@ include file="/front-end/front-end-head.jsp"%>
 
 <style type="text/css">
 #main {
 	/* font-family: 'DFKai-SB';*/
 	background-color: #fab5b6;
 	background-image: url('<%=request.getContextPath()%>/images/front-end/messageboard/background_candy.jpg');
-	background-repeat: repeat-y;
+	background-repeat: no-repeat;
 	background-size: cover;
 }
 </style>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/messageboard/listmessageboard.css" type="text/css" />
 
+<%@ include file="/front-end/front-end-head.jsp"%>
 <!--include css,js -->
 
 </head>
 
-<body id="">
+<body>
 <%@ include file="/front-end/front-end-header.jsp"%>
 <%@ include file="/front-end/front-end-header2.jsp"%>	
 
 	<div id='main'>
-		<div class="container" id='wrapper'>
+		<div class="containreplyMessage.jsper" id='wrapper'>
 			<div class="row post_header">
 				<h2 class="title text-center">留言板	</h2>
 				
@@ -63,12 +66,12 @@
 							</c:if>
 						</div>
 			<div class="row text-right" id="searchbar" style="font-size:16px">
-				<div class="col-3 d-inline-block" >搜尋:&nbsp&nbsp<input id="barcontent" type="text" placeholder="請輸入欲搜尋之關鍵字"/></div>
+				<div class="col-3 d-inline-block" ></div>
 				<div class="col-9 d-inline-block">
 					<div class="row text-right">
 						<div class="col">
 							<form method="post" action="<%=request.getContextPath()%>/front-end/messageboard/messageboard.do">					
-								<select size="1" name="postsort" id="inputtext">
+								<select size="1" name="postsort" id="inputtext" >
 									<option value=1>閒聊</option>
 									<option value=2>心得</option>
 									<option value=3>問題</option>								
@@ -77,11 +80,11 @@
 								<input type="hidden" name="action" value="getMessageByPostSort">
 							</form>	
 						</div>
+
 						<div class="col-2">
-							<form method="post" action="<%=request.getContextPath()%>/front-end/messageboard/messageboard.do">					
-								<input class="btn btn-info" type="submit" value="會員留言">
-								<input type="hidden" name="memno" value="${sessionScope.memVO.memno }">
-								<input type="hidden" name="action" value="getMessageFromMemno_For_Display">
+							<form method="post" action="<%=request.getContextPath()%>/front-end/messageboard/listMemMessage.jsp">					
+								<input class="btn btn-info" type="submit" value="我的留言">
+
 							</form>	
 						</div>	
 					</div>
@@ -92,7 +95,7 @@
 					<!--  往下為留言列表	 -->
 			<ul class="list-group">
 				<div class='page'><%@ include file="page1.file" %></div> 
-				<c:forEach var="mbVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+				<c:forEach var="mbVO" items="${mblist}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 				
 				<!-- foreach list-->
 								 
@@ -160,14 +163,23 @@
                             <fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </div>
                         </div>
-                        <!--未完工-->                                                      
-                       	<div class="board_popular">
-                            <div class="" title="回覆數"><img src="<%=request.getContextPath()%>/images/front-end/messageboard/repeatcount.png">&nbsp12</div>
-                            <div class="" title="瀏覽數"><img src="<%=request.getContextPath()%>/images/front-end/messageboard/viewcount.png">&nbsp123456</div>
-                        </div>    
+              
+                        <div class="board_popular">
+                         <c:if test="${mbVO.postSort == '1'}">
+                         	<div class=""><img src="<%=request.getContextPath()%>/images/front-end/messageboard/mb_icon_Cake1.png"></div>
+                      	 </c:if>
+                        <c:if test="${mbVO.postSort == '2'}">
+                        	<div class=""><img src="<%=request.getContextPath()%>/images/front-end/messageboard/mb_icon_Cake2.png"></div>
+ 						</c:if>
+                        <c:if test="${mbVO.postSort == '3'}">
+                        	<div class=""><img src="<%=request.getContextPath()%>/images/front-end/messageboard/mb_icon_Cake3.png"></div>
+                        	
+                        </c:if>
+                        </div>                                                       
+               
                     </li>
                 </c:forEach> 
-                <div class='page'><%@ include file="page2.file" %></div>                  
+               <div class='page'> <%@ include file="page2.file" %></div>               
 			</ul>
 		</div>
 	</div>	
@@ -179,5 +191,4 @@
 	
 <%@ include file="/front-end/front-end-footer.jsp"%>
 
-</body>
-</html>
+

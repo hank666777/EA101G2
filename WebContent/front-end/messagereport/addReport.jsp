@@ -11,24 +11,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>檢舉資料新增</title>
 
-<style>
-table#table-1 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
 
 <style>
 table {
@@ -55,40 +37,60 @@ width="800px" height="800px;"
 </head>
 <body bgcolor='white'>
 
-	
-	<h3>資料新增:</h3>
+	<div class="container ">		
+		<div class="text-left">
+			<FORM class="needs-validation" METHOD="post" 
+			ACTION="<%=request.getContextPath()%>/front-end/messagereport/messagereport.do" novalidate>
+				 <div class="form-row">
+				  	<div class="col-md-6 mb-3">
+				   		<label for="validationCustom03">檢舉原因:</label>
+				      	<input type="text" class="form-control" name="reportdetail" size="45"
+				      			placeholder="請填入檢舉原因"
+				      			id="validationCustom03" required>
+					     <div class="invalid-feedback">
+					       	檢舉原因不可空白
+					     </div>
+				    </div>   
+				 </div>	
 
-	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/messagereport/messagereport.do" name="form1">
-			<%-- 錯誤表列 --%>
-						<div class="errormsgs" style="padding-left:2%;text-align:center">
-							<c:if test="${not empty errorMsgs}">
-							<font style="color: red">請修正以下錯誤:</font>
-							
-								<c:forEach var="message" items="${errorMsgs}">
-									<p style="color: red">${message}</p>
-								</c:forEach>
-							
-							</c:if>
-						</div>
-			<tr>
-				<td>檢舉原因:</td>
-				<td><input type="TEXT" name="reportdetail" size="45"
-					placeholder="請填入檢舉原因"
-					value="" reqired/></td>
-			</tr>
-			<tr>
-				<td>會員編號(暫先):</td>
-				<td><input type="TEXT" name="memno" size="45"
-					placeholder="請填入會員編號"
-					value="" reqired/></td>
-			</tr>			
-		</table>
-		<br>
-		<input type="hidden" name="postno" value="${mbVO.postno}">
-		<input type="hidden" name="action" value="addReport">
-		<input type="submit" value="送出檢舉">	</FORM>
+				<br>
+				<input type="hidden" name="postno" value="${mbVO.postno}">
+				<input type="hidden" name="memno" value="${sessionScope.memVO.memno}">
+				<input type="hidden" name="action" value="addReport">
+				<input id="report_btn"type="submit" value="送出檢舉">
+			</FORM>
+		</div>
+	</div>
 		
-		
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+<!-- 	按鈕鎖定 -->
+<script>
+// 		$('#report_btn').click(function(){
+// 			var btn = this;
+// 			setTimeout(function(){
+// 				btn.disabled = true;
+// 			},50);
+// 		});
+</script>		
 
 <script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>	
 <script src="${pageContext.request.contextPath}/js/popper.min.js"></script>

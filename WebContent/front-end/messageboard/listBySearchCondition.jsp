@@ -11,6 +11,11 @@
 	MemService mSvc= new MemService();
 	List<MemVO> memlist = mSvc.getAll();
 	pageContext.setAttribute("memlist",memlist);
+	
+	
+	List<MessageBoardVO> mblist = (List<MessageBoardVO>)session.getAttribute("mblist");		
+	session.setAttribute("mblist",mblist);
+	
 %>
 
 <html>
@@ -21,8 +26,8 @@
 #main {
 	/* font-family: 'DFKai-SB';*/
 	background-color: #fab5b6;
-	background-image: url('<%=request.getContextPath()%>/images/background_candy.jpg');
-	background-repeat: no-repeat-y;
+	background-image: url('<%=request.getContextPath()%>/images/front-end/messageboard/background_candy.jpg');
+	background-repeat: repeat-y;
 	background-size: cover;
  }
 </style>
@@ -55,12 +60,12 @@
 			<div class="post_header">
 				<h2 class="title">留言板</h2>
 				<a href='addNew.jsp' class="indexbtn">
-					<img src="<%=request.getContextPath()%>/images/front-end/messageboard/penicon.png" alt="">&nbsp發表新留言
-				</a>
+                    <img src="<%=request.getContextPath()%>/images/front-end/messageboard/penicon.png" alt="">&nbsp發表新留言
+                </a>
 				
 			</div>
 	<div class="row text-right" id="searchbar" style="font-size:16px">
-		<div class="col-3 d-inline-block" >搜尋:&nbsp&nbsp<input id="barcontent" type="text" placeholder="請輸入欲搜尋之關鍵字"/></div>
+		<div class="col-3 d-inline-block" ></div>
 		<div class="col-9 d-inline-block">
 			<div class="row text-right">
 				<div class="col">
@@ -76,7 +81,7 @@
 				</div>
 				<div class="col-2">
 						<form method="post" action="<%=request.getContextPath()%>/front-end/messageboard/messageboard.do">					
-								<input class="btn btn-info" type="submit" value="會員留言">
+								<input class="btn btn-info" type="submit" value="我的留言">
 								<input type="hidden" name="memno" value="M000000001">
 								<input type="hidden" name="action" value="getMessageFromMemno_For_Display">
 						</form>	
@@ -88,7 +93,8 @@
 	</div>		
 			<ul class="list-group">
 				
-				<c:forEach var="mbVO" items="${list}">
+				<div class='page'><%@ include file="page1.file" %></div>
+				<c:forEach var="mbVO" items="${mblist}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 				
 				<!-- foreach list-->
 								 
@@ -119,7 +125,27 @@
 								<c:forEach var="memVO" items="${memlist}">
 							 		<c:if test="${memVO.memno == mbVO.memno}">
 							 		<img style="width:24px; "src="<%=request.getContextPath()%>/images/front-end/messageboard/mb_member.png">&nbsp
-							 		<a class="alert-link" href="" style="color:blue">${memVO.mName}</a>
+							 		
+							 		<a class="alert-link" href="" style="color:blue"
+							 			data-toggle="modal" data-target="#_${memVO.memno}">${memVO.mName}</a>
+		
+										<!--  modal -->
+								 		<div class="modal fade" id="_${memVO.memno}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog modal-dialog-centered">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h5 class="modal-title" id="exampleModal">${memVO.mName}</h5>
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										          <span aria-hidden="true">&times;</span>
+										        </button>
+										      </div>
+										      <div class="modal-body">      
+										     	 <%@ include file="/front-end/messageboard/show_member.jsp"%>        
+										      </div>
+										     
+										    </div>
+										  </div>
+										</div>
 									</c:if><!-- 按下後連結留言者資訊-->
 								</c:forEach>
 							</div><!-- 按下後連結留言者資訊-->
@@ -133,24 +159,16 @@
                             <fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd hh:mm:ss" />
                             </div>
                         </div>
-                        <!--未完工-->
-                        <div class="board_popular">
-                            <div class="" title="回覆數"><img src="<%=request.getContextPath()%>/images/front-end/messageboard/repeatcount.png">&nbsp12</div>
-                            <div class="" title="瀏覽數"><img src="<%=request.getContextPath()%>/images/front-end/messageboard/viewcount.png">&nbsp13687</div>
-                        </div>
+                        
+                       
                         
                     </li>
 
               
                 </c:forEach> 
-
-                  
-            
+				<div class='page'><%@ include file="page2.file" %></div>    
 			</ul>
 		</div>
-	
-
-	
 	</div>	
 	
 <%@ include file="/front-end/front-end-footer.jsp"%>

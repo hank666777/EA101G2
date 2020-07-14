@@ -15,7 +15,7 @@
 					
 				<%for (int i=1; i<=pageNumber; i++){%>
 			    <li class="page-item"><a class="page-link" 
-			    	href="${pageContext.request.contextPath}/front-end/messageboard/listAllMessageBoard.jsp?whichPage=<%=i%>"><%=i%></a></li>
+			    	href="<%=request.getRequestURI()%>?whichPage=<%=i%>"><%=i%></a></li>
 			  <%}%> 
 							   
 		    <%if (rowsPerPage<rowNumber) {%>

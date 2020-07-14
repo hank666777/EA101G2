@@ -2,9 +2,7 @@ package com.messagereport.model;
 
 import java.sql.Timestamp;
 import java.util.List;
-
-
-
+import java.util.stream.Collectors;
 
 
 public class MessageReportService {
@@ -51,5 +49,15 @@ public class MessageReportService {
 
 	public List<MessageReportVO> getAll() {
 		return dao.getAll();
+	}
+	
+	public List<MessageReportVO> getByMemno(String memno) {
+		List<MessageReportVO> list = dao.getAll().stream()
+				.filter(mr->mr.getMemno().equals(memno))
+				.collect(Collectors.toList());
+		
+		
+		
+		return list;
 	}
 }

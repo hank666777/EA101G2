@@ -5,52 +5,67 @@
 <%@ page import="com.mem.model.*"%>
 <%@ page import="java.util.List"%>
 
-<%@ include file="/front-end/front-end-head.jsp"%>
+
 <%
 
 	MessageBoardVO mbVO = (MessageBoardVO) request.getAttribute("mbVO");
-	List<MessageBoardVO> list = (List<MessageBoardVO>)request.getAttribute("list");
+	List<MessageBoardVO> list = (List<MessageBoardVO>)request.getAttribute("mblist");
 	 
 	MemService mSvc= new MemService();
 	List<MemVO> memlist = mSvc.getAll();
 	pageContext.setAttribute("memlist",memlist);
 %>
 
-
 <html>
 <head>
 <title>Miss M MessageBoard</title>
 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/messageboard/listonemessage.css" type="text/css" />
 <style type="text/css">
-body {
+html, #main  {
 	/* font-family: 'DFKai-SB';*/
-	background-color: #fab5b6;
+/* 	background-color: #fab5b6; */
 	background-image: url('<%=request.getContextPath()%>/images/front-end/messageboard/background_candy.jpg');
-	background-repeat: repeat;
+	background-repeat: repeat-y;
 	background-size: contain;
-	}
+}
+
+#main_message{
+	margin:40 auto;
+}
+#side_message{
+	margin:20 auto;
+}
+	
 </style>
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/messageboard/listonemessage.css" type="text/css" />
-
+<%@ include file="/front-end/front-end-head.jsp"%>
 </head>
 
 <body>
+<%-- ${not empty mblist } --%>
+<%-- ${not empty mbVO } --%>
+
 <%@ include file="/front-end/front-end-header.jsp"%>
-<%@ include file="/front-end/front-end-header2.jsp"%>		
+<%@ include file="/front-end/front-end-header2.jsp"%>	
+<div class="container-fluid" id="main" style="padding: 0;">
+	<div class="row" >	 
+		<div class="col-12">
 	<div class ="container rounded" id="main_message">
 		<div id="post_header">
 			<div class ="h3" id="title_info">
-					<c:if test="${mbVO.postSort == '1'}">
-                        	<div>【閒聊】&nbsp${mbVO.postTitle}</div></c:if>
-                    <c:if test="${mbVO.postSort == '2'}">
-                        	<div>【心得】&nbsp${mbVO.postTitle}</div></c:if>
-                    <c:if test="${mbVO.postSort == '3'}">
-                        	<div>【問題】&nbsp${mbVO.postTitle}</div></c:if>
-					
+				<c:if test="${mbVO.postSort == '1'}">
+					<div>【閒聊】&nbsp${mbVO.postTitle}</div>
+				</c:if>
+				<c:if test="${mbVO.postSort == '2'}">
+					<div>【心得】&nbsp${mbVO.postTitle}</div>
+				</c:if>
+				<c:if test="${mbVO.postSort == '3'}">
+					<div>【問題】&nbsp${mbVO.postTitle}</div>
+				</c:if>
 			</div>
+			
 			<div class="row blockquote text-left">
-				
 				
 				<div class="img_block">
 					<c:forEach var="memVO" items="${memlist}">
@@ -61,11 +76,9 @@ body {
 				</div>	
 				
 				<div class="col-sm align-self-end" id="member_info">
-					
 					<div class ="col-sm " id="post_member">
 						<c:forEach var="memVO" items="${memlist}">
 							<c:if test="${memVO.memno == mbVO.memno}">
-							
 							
 							 		<a style="text-decoration:none;" href=""
 							 		data-toggle="modal" data-target="#_${memVO.memno }">${memVO.mName}</a>&nbsp${memVO.mAccount}
@@ -86,36 +99,31 @@ body {
 										     
 										    </div>
 										  </div>
-										</div>
-							 		
-							 		
-							 		
+										</div>							 			
 							</c:if><!-- 按下後連結留言者資訊-->
 						</c:forEach>
-						
 					</div>
+					
 					
 					<div class ="col-sm" id="post_time">
-						<fmt:formatDate value="${mbVO.postTime}" 
-									pattern="yyyy-MM-dd HH:mm" />
+						<fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd HH:mm" />
 					</div>
-					
-					
 				</div>
+				
 				<c:if test="${mbVO.parentno == '0' }">
-						<div class ="col-sm text-right">#1樓</div>
+					<div class ="col-sm text-right">#1樓</div>
 				</c:if>
 			</div>
 		</div>
-		<div>
-			<div class="h4">${mbVO.postDetail}</div>
+		<div >
+			<div class="h4" style="width: 1000px;" >${mbVO.postDetail}</div>
 			<br>
 			<br>
 
 			<div class="row blockquote text-right" >
 				<div class="col-sm-9"></div>
 				
- 					
+<!--  互動按鈕 -->
 						<c:if test="${mbVO.memno == sessionScope.memVO.memno}" >
 							<div class="">
 							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/messageboard/messageboard.do">
@@ -124,22 +132,27 @@ body {
 				     		<input type="hidden" name="action"	value="getOne_For_Update"></FORM>				
 						</div>
 						</c:if>
-				
-						<div class=" ">
-							<input class="btn btn-danger" type="submit" value="回覆" data-toggle="modal" data-target="#replymessage" >			
-						</div>
-						<div class=" ">							
-			    	 		<input class="btn btn-secondary" type="submit" value="檢舉" data-toggle="modal" data-target="#reportmessage">				     							
-						</div>
+<!-- 修改格			 --><c:if test="${mbVO.memno != sessionScope.memVO.memno}" ><input class="btn btn-danger invisible" type="submit" value="修改"></c:if>
 					
+							<div class=" ">
+								<input class="btn btn-danger" type="submit" value="回覆" data-toggle="modal" data-target="#replymessage" >			
+							</div>
+						<c:if test="${mbVO.memno != sessionScope.memVO.memno}" >
+							<div class=" ">							
+				    	 		<input class="btn btn-secondary" type="submit" value="檢舉" data-toggle="modal" data-target="#reportmain">				     							
+							</div>
+						</c:if>
+						<c:if test="${mbVO.memno == sessionScope.memVO.memno}" ><input class="btn btn-danger invisible" type="submit" value="檢舉"></c:if>
 				
 			</div>
 		</div>
 	</div>
+	
+	
 		<!-- 底下為回覆留言 -->
 	
 
-<c:forEach var="mbVO" items="${list}">
+<c:forEach var="mbVO" items="${mblist}">
 		<!-- 以下為Side Message -->
 		<!-- foreach VO-->
 	<p id="floor_count"></p>
@@ -157,11 +170,30 @@ body {
 				</div>	
 				<div class="col-sm align-self-end" id="member_info">
 					
-					<div class ="col-sm" id="post_member">
-						<c:forEach var="memVO" items="${memlist}">
-							 	<c:if test="${memVO.memno == mbVO.memno}">
-							 	<a style="text-decoration:none;" href="">${memVO.mName}</a>&nbsp${memVO.mAccount}														 
-								</c:if><!-- 按下後連結留言者資訊-->
+				<div class ="col-sm" id="post_member">
+					<c:forEach var="memVO" items="${memlist}">
+						<c:if test="${memVO.memno == mbVO.memno}">
+								 <a style="text-decoration:none;" href=""
+							 		data-toggle="modal" data-target="#_${memVO.memno }">${memVO.mName}</a>&nbsp${memVO.mAccount}								
+									
+					<!-- 		memberdata modal -->
+								 	<div class="modal fade" id="_${memVO.memno }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									  <div class="modal-dialog modal-dialog-centered">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h5 class="modal-title" id="exampleModal">${memVO.mName}</h5>
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+									      </div>
+									      <div class="modal-body">      
+									     	 <%@ include file="/front-end/messageboard/show_member.jsp"%>        
+									      </div>
+										     
+									    </div>
+									  </div>
+									</div>							 					 															 
+							</c:if><!-- 按下後連結留言者資訊-->
 						</c:forEach>
 						
 					</div>
@@ -175,7 +207,7 @@ body {
 			</div>	
 		</div>
 		<div>
-			<div class="h4">${mbVO.postDetail}</div>
+			<div class="h4" style="width: 1000px;">${mbVO.postDetail}</div>
 			<br>
 			<br>
 		</div>
@@ -189,27 +221,51 @@ body {
 		     			<input type="hidden" name="action"	value="getOne_For_Update"></FORM>				
 					</div>
 					</c:if>
-				<!-- 占格數用 -->
-					<c:if test="${mbVO.memno != sessionScope.memVO.memno}" ><input class="btn btn-danger invisible" type="submit" value="修改"></c:if>
+				
+   <!-- 占格數用 --><c:if test="${mbVO.memno != sessionScope.memVO.memno}" ><input class="btn btn-danger invisible" type="submit" value="修改"></c:if>
 			
-					<div class="">
+						<div class="">
 							<input class="btn btn-danger" type="submit" value="回覆" data-toggle="modal" data-target="#replymessage" >			
 						</div>
-					<c:if test="${mbVO.memno != sessionScope.memVO.memno}" >
+					<c:if test="${sessionScope.memVO.memno != mbVO.memno }" >
 						<div class="">
-							<input class="btn btn-secondary" type="submit" value="檢舉" data-toggle="modal" data-target="#reportmessage">
+							<input class="btn btn-secondary" type="submit" value="檢舉" data-toggle="modal" data-target="#_${mbVO.postno}">
 		    		 	</div>
-					</c:if>	
-					<c:if test="${mbVO.memno != sessionScope.memVO.memno}" ><input class="btn btn-danger invisible" type="submit" value="檢舉"></c:if>
-			
-			
-			
+
+					</c:if>		
+   <!-- 占格數用 --><c:if test="${mbVO.memno != sessionScope.memVO.memno}" ><input class="btn btn-secondary invisible" type="submit" value="檢舉"></c:if>
 		</div>
 	</div>
+	
+	</div>
+</div>
+
+	
+	
+	
+								<!-- bootstrap report message -->
+							<div class="modal fade" id="_${mbVO.postno}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+							  <div class="modal-dialog modal-dialog-centered">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModal">Report message</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">    
+							        <%@ include file="/front-end/messagereport/addReport.jsp"%>        
+							      </div>
+							     
+							    </div>
+							  </div>
+							</div>
+	
 </c:forEach>
 
 <!-- bootstrap reply message -->
 <div class="modal fade" id="replymessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -226,33 +282,58 @@ body {
   </div>
 </div>
 
+<!-- bootstrap report mainmessage -->
+								<div class="modal fade" id="reportmain" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title" id="exampleModalLabel">Report message</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">    
+								        <%@ include file="/front-end/messagereport/addReport.jsp"%>        
+								      </div>
+								     
+								    </div>
+								  </div>
+								</div>
 <!-- bootstrap report message -->
-<div class="modal fade" id="reportmessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Report message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">    
-        <%@ include file="/front-end/messagereport/addReport.jsp"%>        
-      </div>
-     
-    </div>
-  </div>
-</div>
+							<div class="modal fade" id="_${mbVO.postno}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+							  <div class="modal-dialog modal-dialog-centered">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">Report message</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">    
+							        <%@ include file="/front-end/messagereport/addReport.jsp"%>        
+							      </div>
+							     
+							    </div>
+							  </div>
+							</div>
+
 
 
 <script>
+	
 
 	var fc = document.getElementsByClassName("floor");	
 	window.onload = function(){
 		for(var i=0; i<fc.length ;i++){
 			fc[i].innerText += (i+2)+'樓';
 		}
+
 	}
 </script>
 
+	
+
+
 <%@ include file="/front-end/front-end-footer.jsp"%>
+</body>
+</html>

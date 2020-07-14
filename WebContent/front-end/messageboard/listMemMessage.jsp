@@ -8,9 +8,18 @@
 <%@ include file="/front-end/front-end-head.jsp"%>
 
 <%  
+	MemVO ssVO = (MemVO)session.getAttribute("memVO");
+	String memno= ssVO.getMemno();
+	
+	MessageBoardService mbSvc = new MessageBoardService();
+	List<MessageBoardVO> mblist = mbSvc.getByMemno(memno);
+	pageContext.setAttribute("mblist",mblist);
+
 	MemService mSvc= new MemService();
 	List<MemVO> memlist = mSvc.getAll();
 	pageContext.setAttribute("memlist",memlist);
+	
+	
 %>
 
 
@@ -22,10 +31,11 @@
 #main {
 	/* font-family: 'DFKai-SB';*/
 	background-color: #fab5b6;
-	background-image: url('<%=request.getContextPath()%>/images/background_candy.jpg');
+	background-image: url('<%=request.getContextPath()%>/images/front-end/messageboard/background_candy.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	}
+
 </style>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/messageboard/listmessageboard.css" type="text/css" />
@@ -54,18 +64,18 @@
 		<div id='wrapper'>
 			
 			<ul class="list-group">
-				<% List<MessageBoardVO> list = (List<MessageBoardVO>)request.getAttribute("list");%>
 				
-				<c:forEach var="mbVO" items="${list}" >
+				<div class='page'><%@ include file="page1.file" %></div> 
+				<c:forEach var="mbVO" items="${mblist}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+				
+				
                     <li class="board_info">
-                    	<a href="messageboard.do?search=getOne_For_Display&postno=${mbVO.postno}" class="btn2">
-						
-                            
-                        <div class="main_info" >
-                            <div class="board_title">${mbVO.postDetail}</div>
-
-                        </div>
-                          </a>    
+                    	<a href="messageboard.do?search=getOne_For_Display&postno=${mbVO.postno}" class="btn2">      
+                        	<div class="" style="display: inline-block;padding: 0 0 10px 35px;width: 50%;" >
+                            	<div class="board_title">${mbVO.postDetail}
+                            </div>
+                      		</div>
+                        </a>    
                         <div class="board_sorttime">
                             <div id="M_NAME" title="PO文者" class="d-none d-xl-block">
                             	<c:forEach var="memVO" items="${memlist}">
@@ -76,6 +86,8 @@
 									</c:if><!-- 按下後連結留言者資訊-->
 								</c:forEach>
                             </div><!-- 按下後連結留言者資訊-->
+                        </div>
+						<div class="board_sorttime">
                             <div class="d-none d-xl-block">分類:
                             <c:if test="${mbVO.postSort eq ''}">無</c:if>
                             <c:if test="${mbVO.postSort == 1}">閒聊</c:if>
@@ -85,17 +97,12 @@
                             <div class="d-none d-xl-block">
                             <fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd hh:mm:ss" />
                             </div>
-                        </div>
-                        <!--未完工-->
-                        <div class="board_popular">
-                            <div class="" title="回覆數"><img src="<%=request.getContextPath()%>/images/front-end/messageboard/repeatcount.png">&nbsp12</div>
-                            <div class="" title="瀏覽數"><img src="<%=request.getContextPath()%>/images/front-end/messageboard/viewcount.png">&nbsp13687</div>
-                        </div>
+
+						</div>                       
                         
                     </li>
                 </c:forEach> 
-            
-                  
+            	<div class='page'><%@ include file="page2.file" %></div>  
             
 			</ul>
 		</div>

@@ -14,87 +14,97 @@
 	MessageBoardService mbSvc = new MessageBoardService();
 	List<MessageBoardVO> mblist = mbSvc.getByMemno(memno);
 	pageContext.setAttribute("mblist",mblist);
+	pageContext.setAttribute("mblistsize",mblist.size()-5);
+	
 	
 	MemService mSvc= new MemService();
 	List<MemVO> memlist = mSvc.getAll();
 	pageContext.setAttribute("memlist",memlist);
+	 
 %>
+
 
 <html>
 <head>
 <title>Miss M MessageBoard</title>
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/messageboard/listmessageboard.css" type="text/css" />
+
+
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/messageboard/listmessageboard2.css" type="text/css" />
 
 <!-- bootstrap -->
+
 </head>
 
 <body>
-<%-- ${not empty sessionScope.memVO}	 --%>
-<%-- ${sessionScope.memVO.memno } --%>
-<%-- ${not empty mblist}	 --%>
-<%-- 錯誤表列 --%>
+
 <c:if test="${not empty errorMsgs}">
-	<c:forEach var="message" items="${errorMsgs}">
-		<font style="color:red">${message}</font>
-	</c:forEach>
+	<font style="color:red">請修正以下錯誤:</font>
+	<ul>
+		<c:forEach var="message" items="${errorMsgs}">
+			<li style="color:red">${message}</li>
+		</c:forEach>
+	</ul>
 </c:if>
 
-	<div class="container">
-		<div class="row">
+<!-- 	<div id='main'> -->
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<p class="h2">最後五筆留言資料</p>
+				</div>
+			</div>
+		</div>
 		<div id='wrapper'>			
 			<ul class="list-group">
+			
 				
-			<c:forEach var="mbVO" items="${mblist}" >
-				<li class="board_info">
-					<a href="${pageContext.request.contextPath}/messageboard.do?search=getOne_For_Display&postno=${mbVO.postno}" class="btn2">
-
-					<div class="main_info" >
-						<div class="board_title">
-							${mbVO.postDetail}
-						</div>
-          </div>
-          </a>    
-					<div class="board_sorttime">
-						<div id="M_NAME" title="PO文者" class="d-none d-xl-block">
-							<c:forEach var="memVO" items="${memlist}">
-							<c:if test="${memVO.memno == mbVO.memno}">
-								<img style="width:24px; "src="<%=request.getContextPath()%>/images/front-end/messageboard/mb_member.png">&nbsp
-								<a class="alert-link" style="color:blue">${memVO.mName}</a>
+				<c:forEach var="mbVO" items="${mblist}" end ="4" >
+                    <li class="board_info">
+                    	<a href="messageboard.do?search=getOne_For_Display&postno=${mbVO.postno}" class="btn2">
 						
-							</c:if><!-- 按下後連結留言者資訊-->
-							</c:forEach>
-						</div><!-- 按下後連結留言者資訊-->
-						<div class="d-none d-xl-block">分類:
-							<c:if test="${mbVO.postSort eq ''}">無</c:if>
-							<c:if test="${mbVO.postSort == 1}">閒聊</c:if>
-							<c:if test="${mbVO.postSort == 2}">心得</c:if>
-							<c:if test="${mbVO.postSort == 3}">問題</c:if>                             	
-						</div>
-						<div class="d-none d-xl-block">
-							<fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd hh:mm:ss" />
-						</div>
-					</div>
-<!-- 						<div class="board_sorttime"> -->
-<!-- 							<div class="d-none d-xl-block">分類: -->
-<%--                 <c:if test="${mbVO.postSort eq ''}">無</c:if> --%>
-<%-- 								<c:if test="${mbVO.postSort == 1}">閒聊</c:if> --%>
-<%-- 								<c:if test="${mbVO.postSort == 2}">心得</c:if> --%>
-<%-- 								<c:if test="${mbVO.postSort == 3}">問題</c:if>                             	 --%>
-<!-- 							</div> -->
-<!-- 						<div class="d-none d-xl-block"> -->
-<%-- 							<fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd hh:mm:ss" /> --%>
-<!-- 		        </div> -->
-<!-- 			    </div> -->
-						    
-					</li>
-           </c:forEach> 
+                            
+                        <div class="" style="display: inline-block;padding: 0 0 10px 35px;width: 50%;">
+                            <div class="board_title">${mbVO.postDetail}</div>
+
+                        </div>
+                          </a>    
+                        <div class="board_sorttime">
+                            <div id="M_NAME" title="PO文者" class="d-none d-xl-block">
+                            	<c:forEach var="memVO" items="${memlist}">
+							 		<c:if test="${memVO.memno == mbVO.memno}">
+							 		 <img style="width:24px; "src="<%=request.getContextPath()%>/images/front-end/messageboard/mb_member.png">&nbsp
+							 		 <p class="alert-link" style="color:blue">${memVO.mName}</p>
+							 		
+									</c:if>
+								</c:forEach>
+                            </div>
+                            
+                        </div>
+                         <div class="board_sorttime">
+                            <div class="d-none d-xl-block">分類:
+                            <c:if test="${mbVO.postSort eq ''}">無</c:if>
+                            <c:if test="${mbVO.postSort == 1}">閒聊</c:if>
+                            <c:if test="${mbVO.postSort == 2}">心得</c:if>
+                            <c:if test="${mbVO.postSort == 3}">問題</c:if>                             	
+                            </div>
+                            <div class="d-none d-xl-block">
+                            <fmt:formatDate value="${mbVO.postTime}" pattern="yyyy-MM-dd hh:mm:ss" />
+                            </div>
+                        </div>
+                        
+                    </li>
+                </c:forEach> 
+            	
+                  
             
 			</ul>
 		</div>
-		
-	</div>
-	</div>	
+	
+
+	
+<!-- 	</div>	 -->
 
 </body>
 </html>
+

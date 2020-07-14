@@ -19,7 +19,7 @@
 #main{
 	background-image: url(${pageContext.request.contextPath}/images/front-end/member_bg.png);
 	background-size:contain;
-	height:100vh;
+	height:100%;
 	padding:0;
 }
 #second-main{
@@ -108,7 +108,8 @@
 		      	<%@ include file="/front-end/messageboard/listMemMessage_memcenter.jsp"%>
 		      </div>
 		      <div class="tab-pane fade" id="list-messagess-report" role="tabpanel" aria-labelledby="">
-		      	留言檢舉紀錄(未導入)
+		      	<!-- 會員留言檢舉紀錄 --> 
+		      	<%@ include file="/front-end/messagereport/listMemReport_memcenter.jsp"%>
 		      </div>
 		    </div>
 		  </div>

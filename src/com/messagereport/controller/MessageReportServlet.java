@@ -224,7 +224,7 @@ public class MessageReportServlet extends HttpServlet {
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String reportno = req.getParameter("reportno").trim();
-				Integer reportstatus = new Integer(req.getParameter("reportstatus"));
+				Integer reportstatus = 0;
 				String reportdetail = req.getParameter("reportdetail").trim();
 				Timestamp reporttime = Timestamp.valueOf(req.getParameter("reporttime").trim());
 				
@@ -238,7 +238,17 @@ public class MessageReportServlet extends HttpServlet {
 				String memno =req.getParameter("memno");
 				String parentno = req.getParameter("parentno");
 				Integer poststatus = new Integer(req.getParameter("poststatus"));
-				
+				//reportstatus依poststatus改值
+				//poststatus=0(隱藏),reportstatus=1 (檢舉已通過)
+				//poststatus=1(顯示),reportstatus=2 (檢舉未通過)
+				if(poststatus==0) {
+					reportstatus = 1;
+				}else if(poststatus==1) {
+					reportstatus = 2;
+				}else {
+					errorMsgs.add("無法比對poststatus參數");	
+				}
+
 				MessageReportVO mrVO = new MessageReportVO();
 				mrVO.setReportno(reportno);
 				mrVO.setReportDetail(reportdetail);

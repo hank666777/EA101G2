@@ -76,6 +76,13 @@
 			},50);
 		});
 </script>
+<%-- 						<c:if test="${mbVO.memno == sessionScope.memVO.memno}" > --%>
+<!-- 							<div class=""> -->
+<%-- 							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/messageboard/replyMessage.jsp"> --%>
+<!-- 					     	<input class="btn btn-danger" type="submit" value="回覆"> -->
+<%-- 				    	 	<input type="hidden" name="postno"  value="${mbVO.postno}">				     					 --%>
+<!-- 						</div> -->
+<%-- 						</c:if> --%>
 
 
 
