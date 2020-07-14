@@ -60,7 +60,7 @@
 							<a class="btn btn-block btn-secondary" 
 								href="${pageContext.request.contextPath}/back-end/
 									${(feaVO.feano == 'F0010') ? 'employee/select_page_employee.jsp':''}
-									${(feaVO.feano == 'F0020') ? 'mem/listAllMem.jsp':''}
+									${(feaVO.feano == 'F0020') ? 'mem/member_manage.jsp':''}
 									${(feaVO.feano == 'F0030') ? 'product/selectProductPage.jsp':''}
 									${(feaVO.feano == 'F0040') ? 'bok/booking_page_admin.jsp':''}
 									${(feaVO.feano == 'F0050') ? 'activity/select_page_activity.jsp':''}

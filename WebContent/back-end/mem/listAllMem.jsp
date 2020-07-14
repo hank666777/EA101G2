@@ -48,22 +48,19 @@
   }
   
 
-
-  
-
 </style>
-
 </head>
 <%@ include file="/back-end/back-end-head.jsp" %>
 <center>
 <body bgcolor='white'>
 <%@ include file="/back-end/back-end-header.jsp" %>
 
-	
-
+<!-- <br><br> -->
+<%-- <h1><a href="${pageContext.request.contextPath}/back-end/mem/member_manage.jsp"><u>回員工管理</u></a></h1> --%>
 
 <br><br><br>
 <table >
+
 	<tr >
 		<th>會員編號</th>
 		<th>會員帳號</th>

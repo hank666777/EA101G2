@@ -21,7 +21,7 @@
 	<div class="row justify-content-center" style="margin-top: 100px;">
 			<div class="col-xl-4 chefPic ">
 				<figure class="figure">
-				<figcaption class="figure-caption" style="font-size:1.3em;">現場訂單</figcaption>
+				<figcaption class="figure-caption" style="font-size:1.8em;">現場訂單</figcaption>
 				<br/><br/>
 				<a href="${pageContext.request.contextPath}/back-end/liveOrder/select_page.jsp">
 				<img src="${pageContext.request.contextPath}/images/back-end/live.jpg" class="card-img-top" alt="..." style="width:400px;height:500px;">
@@ -31,7 +31,7 @@
 			
 			<div class="col-xl-4 chefPic ">
 				<figure class="figure">
-				<figcaption class="figure-caption" style="font-size:1.3em;">線上訂單</figcaption>
+				<figcaption class="figure-caption" style="font-size:1.8em;">線上訂單</figcaption>
 				<br/><br/>
 				<a href="${pageContext.request.contextPath}/back-end/ono/select_page.jsp">
 				<img src="${pageContext.request.contextPath}/images/back-end/online.png" class="card-img-top" alt="..." style="width:400px;height:500px;">

@@ -247,13 +247,37 @@ div.card.show div.flap2 {
 .push{
 	display:none ;
 }
-  
+ .slider {
+  width: 1024px;
+  margin: 2em auto;
+}
+
+.slider-wrapper {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+
+.slide {
+  float: left;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 3s linear;
+}
+
+.slider-wrapper > .slide:first-child {
+  opacity: 1;
+} 
 </style>
 <%@ include file="/front-end/front-end-head.jsp"%>
 </head>
 <body>
 	<%@ include file="/front-end/front-end-header.jsp"%>
 	<%@ include file="/front-end/front-end-header2.jsp"%>
+	
+	
 	<div id="hoot">
 		<a href="<%=request.getContextPath()%>/front-end/onlineShop/OCart.jsp">
 			<img src="${pageContext.request.contextPath}/images/back-end/shopcar.png">
@@ -378,15 +402,26 @@ div.card.show div.flap2 {
 		
 	</div>
 	</c:if>
-	
+
+	<div class="slider" id="main-slider">
+		<!-- outermost container element -->
+		<div class="slider-wrapper">
+			<!-- innermost wrapper element -->
+			<img src="<%=request.getContextPath()%>/images/front-end/indexImg/0003.jpg" alt="First" class="slide" />
+			<!-- slides -->
+			<img src="<%=request.getContextPath()%>/images/front-end/indexImg/0004.jpg" alt="Second" class="slide" /> 
+			<img src="<%=request.getContextPath()%>/images/front-end/indexImg/0005.jpg" alt="Third" class="slide" />
+		</div>
+	</div>
+
 	<!-- 以下為測試AJAX非同步查詢，撰寫中 -->
 <!-- 	<div class="container"> -->
 <!-- 		<div class="row"> -->
 <!-- 			<div class="col w-50"> -->
-<!-- <!-- 				<form> --> -->
+<!-- <!-- 				<form> --> 
 				
 <!-- 				<input id="ProductSearch" type="text" class="form-control"> -->
-<!-- <!-- 				</form> --> -->
+<!-- <!-- 				</form> --> 
 <!-- 			</div> -->
 <!-- 		</div> -->
 <!-- 	</div> -->
@@ -469,6 +504,65 @@ div.card.show div.flap2 {
 		    }
 		  });
 		});
-</script>
+	
+	//圖片輪播
+	
+		(function() {
+			function Slideshow(element) {
+				this.el = document.querySelector(element);
+				this.init();
+			}
+
+			Slideshow.prototype = {
+				init : function() {
+					this.wrapper = this.el.querySelector(".slider-wrapper");
+					this.slides = this.el.querySelectorAll(".slide");
+					this.previous = this.el.querySelector(".slider-previous");
+					this.next = this.el.querySelector(".slider-next");
+					this.index = 0;
+					this.total = this.slides.length;
+					this.timer = null;
+
+					this.action();
+					this.stopStart();
+				},
+				_slideTo : function(slide) {
+					var currentSlide = this.slides[slide];
+					currentSlide.style.opacity = 1;
+
+					for (var i = 0; i < this.slides.length; i++) {
+						var slide = this.slides[i];
+						if (slide !== currentSlide) {
+							slide.style.opacity = 0;
+						}
+					}
+				},
+				action : function() {
+					var self = this;
+					self.timer = setInterval(function() {
+						self.index++;
+						if (self.index == self.slides.length) {
+							self.index = 0;
+						}
+						self._slideTo(self.index);
+					}, 3000);
+				},
+				stopStart : function() {
+					var self = this;
+					self.el.addEventListener("mouseover", function() {
+						clearInterval(self.timer);
+						self.timer = null;
+					}, false);
+					self.el.addEventListener("mouseout", function() {
+						self.action();
+					}, false);
+				}
+			};
+
+			document.addEventListener("DOMContentLoaded", function() {
+				var slider = new Slideshow("#main-slider");
+			});
+		})();
+	</script>
 </body>
 </html>

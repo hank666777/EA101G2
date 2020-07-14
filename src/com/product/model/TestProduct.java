@@ -8,16 +8,16 @@ public class TestProduct {
 		ProductJDBCDAO dao = new ProductJDBCDAO();
 		
 		//�s�W
-//		ProductVO pd = new ProductVO();
-//		pd.setpname("臭屌");
-//		pd.setpP(70);
-//		pd.setpPic(null);
-//		pd.setpDes("888");
-//		pd.setpDoffer(5);
-//		pd.setINVStatus(1);
-//		pd.setpStatus(1);
-//		pd.setpTno("PT003");
-//		dao.add(pd);
+		ProductVO pd = new ProductVO();
+		pd.setpname("臭屌");
+		pd.setpP(70);
+		pd.setpPic(null);
+		pd.setpDes("888");
+		pd.setpDoffer(5);
+		pd.setINVStatus(1);
+		pd.setpStatus(1);
+		pd.setpTno("PT003");
+		dao.add(pd);
 		
 		// �ק�
 //		ProductVO pd = new ProductVO();

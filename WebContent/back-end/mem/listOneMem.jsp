@@ -41,7 +41,7 @@
   }
   .button_size{
     height:40px;
-    width:90;
+    width:120;
   }
 </style>
 
@@ -51,7 +51,7 @@
 <body bgcolor='white'>
 <%@ include file="/back-end/back-end-header.jsp" %>
 		 
-
+<br><br><br>
 <table>
 	<tr>
 		<th>會員編號</th>
@@ -83,7 +83,7 @@
 	</tr>
 </table>
 <br>
-<input type ="button"  onclick="javascript:location.href='listAllMem.jsp'"   value="回會員列表" ></input>
+<h4><a href="${pageContext.request.contextPath}/back-end/mem/listAllMem.jsp"><u>回會員列表</u></a></h4>
 <%@ include file="/back-end/back-end-footer.jsp"%>
 </body>
 </html>

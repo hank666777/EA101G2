@@ -2,7 +2,7 @@ package com.mem.model;
 import java.util.List;
 
 public interface MemDAO_interface {
-  public void insert(MemVO memVO);
+  public String insert(MemVO memVO);
   public void update(MemVO memVO);
   public void delete(String memno);
   public MemVO findByPrimarykey (String memno);

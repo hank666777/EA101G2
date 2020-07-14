@@ -46,15 +46,15 @@ public class MemJDBCDAO implements MemDAO_interface{
 	}
 	
 	@Override
-	public void insert(MemVO memVO) {
-		
+	public String insert(MemVO memVO) {
+		int []cols= {1};
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(INSERT_STMT);
+			pstmt = con.prepareStatement(INSERT_STMT,cols);
 			
 			pstmt.setString(1, memVO.getmAccount());
 			pstmt.setString(2, memVO.getmPw());	
@@ -66,13 +66,20 @@ public class MemJDBCDAO implements MemDAO_interface{
 			pstmt.setInt(8, memVO.getmStatus());
 			
 			pstmt.executeUpdate();
-				
+			ResultSet rs = pstmt.getGeneratedKeys();
+			
+			if(rs.next()) {
+				String a = rs.getString(1);
+				System.out.println(a);
+				return a;
+			}
 		} catch (ClassNotFoundException e) {	
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
+			
 			if (pstmt != null) {
 				try {
 					pstmt.close();
@@ -87,7 +94,8 @@ public class MemJDBCDAO implements MemDAO_interface{
 					e.printStackTrace(System.err);
 				}
 			}
-		}	
+		}
+		return null;	
       }
 
 	@Override

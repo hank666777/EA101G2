@@ -280,20 +280,22 @@ System.out.println(pTno);
 					}catch(NumberFormatException e){
 						errorMsgs.add("商品價格須為正整數且不得為0");
 					}
-				
-				byte[] pPic = null;
-				Part part = req.getPart("pPic");
-				InputStream in = null;
-					try {
-						in = part.getInputStream();
-						pPic = new byte[(int) part.getSize()];
-						in.read(pPic);
-					} catch (IOException e) {
-							errorMsgs.add("找不到圖片");
-					} finally {
-							in.close();
-					}
-
+					
+					byte[] pPic = null;
+					Part part = req.getPart("pPic");
+					InputStream in = null;
+						try {
+							
+							in = part.getInputStream();
+							pPic = new byte[(int) part.getSize()];
+							in.read(pPic);
+							
+						} catch (IOException e) {
+								errorMsgs.add("找不到圖片");
+						} finally {
+								in.close();
+						}
+						
 				String pDes = req.getParameter("pDes").trim();
 					if(pDes == null || pDes.trim().length() == 0) {
 						errorMsgs.add("請撰寫商品描述");
@@ -301,7 +303,7 @@ System.out.println(pTno);
 				
 				Integer pDoffer = null;
 					try {
-						pDoffer = new Integer(req.getParameter("pP").trim());
+						pDoffer = new Integer(req.getParameter("pDoffer").trim());
 						if(pDoffer<=0) {
 							errorMsgs.add("商品供給量須為正整數且不得為0");
 						}
@@ -331,7 +333,7 @@ System.out.println(pTno);
 				}
 			
 			/**2.開始新增資料**/
-				
+
 				ProductService productSvc = new ProductService();
 				productSvc.addProduct(pname, pP, pPic, pDes, pDoffer, invStatus, pStatus, pTno);
 

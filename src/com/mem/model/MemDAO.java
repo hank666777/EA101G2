@@ -55,14 +55,14 @@ public class MemDAO implements MemDAO_interface {
 		}
     
 	@Override
-	public void insert(MemVO memVO) {
-		
+	public String insert(MemVO memVO) {
+		int []cols= {1};
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
+			pstmt = con.prepareStatement(INSERT_STMT,cols);
 			
 			pstmt.setString(1, memVO.getmAccount());
 			pstmt.setString(2, memVO.getmPw());	
@@ -74,7 +74,11 @@ public class MemDAO implements MemDAO_interface {
 			pstmt.setInt(8, memVO.getmStatus());
 			
 			pstmt.executeUpdate();
-				
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if(rs.next()) {
+				String key = rs.getString(1);
+				return key;
+			}
 		} catch (SQLException e) {	
 			e.printStackTrace();
 		}finally {
@@ -92,7 +96,8 @@ public class MemDAO implements MemDAO_interface {
 					e.printStackTrace(System.err);
 				}
 			}
-		}	
+		}
+		return null;	
       }
 
 	@Override

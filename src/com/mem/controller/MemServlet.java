@@ -6,9 +6,12 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 import com.mem.model.*;
+import com.mycoupon.model.MyCpService;
 
 import redis.clients.jedis.Jedis;
 
+import com.coupon.model.CouponVO;
+import com.coupon.model.CpService;
 import com.mem.controller.MailService;
 import com.mem.controller.MemberRedis;
 
@@ -409,7 +412,12 @@ public class MemServlet extends HttpServlet {
     				Integer mStatus = 1;
     				String mAccount = SmemVO.getmAccount();
     				mSv.identify(mStatus, mAccount);
-    					 				
+    				
+    				//發送優惠券
+    		        MyCpService myCpService = new MyCpService();
+    		        ArrayList<CouponVO> allCoupon = (ArrayList<CouponVO>) new CpService().getAll();
+    		        myCpService.add(allCoupon.get((int)(Math.random()*allCoupon.size())).getCouponno(), SmemVO.getMemno());
+
     				String url = "/front-end/mem/memberlogin.jsp";// 成功後，跳轉到重新登入
     				//重新登入要移除會員session
     				session.removeAttribute("memVO");

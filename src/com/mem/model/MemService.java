@@ -23,8 +23,8 @@ public class MemService {
 		memVO.setmPhone(mPhone);
 		memVO.setmEmail(mEmail);
 		memVO.setmStatus(mStatus);
-		dao.insert(memVO);
-		
+		String PK = dao.insert(memVO);
+		memVO.setMemno(PK);
 		return memVO;	
 	}
 	
