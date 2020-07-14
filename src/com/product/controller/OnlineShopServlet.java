@@ -139,6 +139,37 @@ public class OnlineShopServlet extends HttpServlet {
 			}
 		}
 		
+		// ----------------------查詢商品2_AJAX-------------------------------------------
+		
+		if("listProduct_ByCompositeQuery_ajax".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/**1.將輸入資料轉為Map**/
+				Map<String, String[]> map = (Map<String, String[]>) session.getAttribute("map");
+				if (req.getParameter("whichPage") == null) {
+					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());	
+					req.setAttribute("map", map1);
+					map = map1;
+				}
+				/**2.開始複合查詢**/	
+				ProductService productSvc = new ProductService();
+				List<ProductVO> list = productSvc.getAll(map);
+				
+				/**3.查詢完成,準備轉交(Send the Success view)**/
+				req.setAttribute("listProduct_ByCompositeQuery_ajax", list);
+				RequestDispatcher successView = req.getRequestDispatcher("/front-end/onlineShop/oshop_ajax.jsp");
+				successView.forward(req, res);
+				
+			}catch(Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/onlineShop/oshop_ajax.jsp");
+				failureView.forward(req, res);
+				
+			}
+		}
+		
 		
 		
 		// ----------------------刪除購物車中的書籍-------------------------------------------

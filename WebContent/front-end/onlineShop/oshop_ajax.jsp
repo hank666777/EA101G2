@@ -260,130 +260,63 @@ div.card.show div.flap2 {
 			</font>
 		</a>
 	</div>
-	
-	<c:if test="${listProduct_ByCompositeQuery !=null }">
-		
-	
-	<div class="cards">
-		<c:forEach var="listVO" items="${listProduct_ByCompositeQuery}">
-			<Form name="shoppingForm" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="post">
-			
-				<div class="card">
-					<div class="card__image-holder">
-						<img class="card__image"
-							src="<%=request.getContextPath()%>/product/DBGifReaderProduct.do?pno=${listVO.pno}" alt="wave"
-							style="width: 298px;height:230px;" >
-					</div>
-					<div class="card-title">
-						<a href="#" class="toggle-info btn"> <span class="left"></span>
-							<span class="right"></span>
-						</a>
-						<h2>
-							商品名稱:${listVO.pname}<small>商品價格:$${listVO.pP}</small>
-						</h2>
-					</div>
-					<div class="card-flap flap1">
-						<div class="card-description">商品明細:${listVO.pDes}</div>
-						<div class="card-flap flap2">
-							<div class="card-actions">數量:
-						        <select size="1" name="pDoffer">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-								</select>
-								<input type="hidden" name="action" value="ADD">
-								<input type="hidden" name="pno" value="${listVO.pno}">
-								<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
-								<input type="submit" name="Submit" value="加入購物車" class="btn">
-							</div>
-							<input type="hidden" name="pPic" value="${listVO.pPic}">
-							<input type="hidden" name="pname" value="${listVO.pname}">
-							<input type="hidden" name="pP" value="${listVO.pP}">
-							<input type="hidden" name="pDes" value="${listVO.pDes}">
-							
-						</div>
-					</div>
-				</div>
+
+	<!-- 以下為測試AJAX非同步查詢，撰寫中 -->
+	<div class="container">
+		<div class="row">
+			<div class="col w-50">
 				
-			</Form>
-		</c:forEach>	
-		
+				<input id="textSearchAera" type="text" class="form-control">
+			</div>
+			<div class="row">
+				<div id="searchInfo" class="col"></div>
+			</div>
+		</div>
 	</div>
-		
-	</c:if>
 	
 	
-	<c:if test="${listProduct_ByCompositeQuery ==null }">
-				
-	<%@ include file="page/page1.file"%>
-	<center><%@ include file="page/page2.file"%></center>
-	<div class="cards">
-		<c:forEach var="prdVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-			<Form name="shoppingForm" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="post">
+	
+<script>
+	$('#textSearchAera').keypress(function(){
+		$('#searchInfo')
+			.html('搜尋中....');
+	});
+ 	$('#textSearchAera').keyup(function(data){ 
+ 		var textSearchAera = $('#textSearchAera').val();
+ 		
+ 		$.ajax({ 
+ 			url:'${pageContext.request.contextPath}/product/OnlineShopServlet.do',
+ 			type:'post', 
+ 			dataType : 'text',
+ 			cache : false,
+			data: {
+				action : 'listProduct_ByCompositeQuery_ajax',
+				map : textSearchAera
+			},
 			
-				<div class="card">
-					<div class="card__image-holder">
-						<img class="card__image"
-							src="<%=request.getContextPath()%>/product/DBGifReaderProduct.do?pno=${prdVO.pno}" alt="wave"
-							style="width: 298px;height:230px;" >
-					</div>
-					<div class="card-title">
-						<a href="#" class="toggle-info btn"> <span class="left"></span>
-							<span class="right"></span>
-						</a>
-						<h2>
-							商品名稱:${prdVO.pname}<small>商品價格:$${prdVO.pP}</small>
-						</h2>
-					</div>
-					<div class="card-flap flap1">
-						<div class="card-description">商品明細:${prdVO.pDes}</div>
-						<div class="card-flap flap2">
-							<div class="card-actions">數量:
-						        <select size="1" name="pDoffer">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-								</select>
-								<input type="hidden" name="action" value="ADD">
-								<input type="hidden" name="pno" value="${prdVO.pno}">
-								<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
-								<input type="hidden" name="whichPage"  value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
-								<input type="submit" name="Submit" value="加入購物車" class="btn">
-							</div>
-							<input type="hidden" name="pPic" value="${prdVO.pPic}">
-							<input type="hidden" name="pname" value="${prdVO.pname}">
-							<input type="hidden" name="pP" value="${prdVO.pP}">
-							<input type="hidden" name="pDes" value="${prdVO.pDes}">
-							
-						</div>
-					</div>
-				</div>
-				
-			</Form>
-		</c:forEach>	
-		
-	</div>
-	</c:if>
+ 			stop : function(reponse){
+ 				$('#searchInfo').html('');
+ 			},
+ 			
+ 			beforeSend : function(reponse){
+ 				$('#searchInfo').html('等待搜尋結果...');
+ 			},
+ 			
+ 			success : function(reponse) { 
+ 				$("#searchInfo").html(data); 
+ 			} 
+ 		}); 
+ 	}); 
 	
-	<%@ include file="/front-end/front-end-footer.jsp"%>
-	
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-	<script  type="text/javascript">
+</script>
+<!-- 以上為測試AJAX非同步查詢，撰寫中 -->
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script  type="text/javascript">
 	$(function() {
 		var that;
 		$("input.btn").click(function(e) {
@@ -437,5 +370,6 @@ div.card.show div.flap2 {
 		  });
 		});
 </script>
+<%@ include file="/front-end/front-end-footer.jsp"%>
 </body>
 </html>
