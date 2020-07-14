@@ -160,7 +160,7 @@
 			
 			<td class="ptds">商品圖片:</td>
 			<td class="ptds" id="container">
-				<input id="myfile" type="file" name="pPic" size="45" multiple>
+				<input id="myfile" type="file" name="pPic" size="45" accept="image/jpeg, image/png" >
 				<div id ="preview"></div>		
 			</td>
 		</tr>
