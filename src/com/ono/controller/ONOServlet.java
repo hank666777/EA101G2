@@ -107,7 +107,7 @@ public class ONOServlet extends HttpServlet {
 /************需把購物車清出，修改中，峰***********/
 			session.removeAttribute("shoppingcart");
 			req.setAttribute("onVO2", onVO2);
-			String url = "/front-end/index.jsp";
+			String url = "/front-end/onlineShop/successPay.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 			return;// 程式中斷	

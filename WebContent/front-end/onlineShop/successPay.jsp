@@ -17,13 +17,14 @@
 		}
 	#successView{
 			position: relative;
-			margin:7% auto;
+			margin:15% auto;
 			width: 300px;
 			height: 300px;
 			text-align: center;
 			background-color: #F8F8F8;
 			border-radius:5px;
 			box-shadow:3px 3px 9px black;
+			padding-top:20px;
 			display: none;
 		}
 </style>
@@ -35,38 +36,36 @@
 
 	<div class="container-fluid shop-container">
 		<div id="successView">
-
-					<span id="sp"></span>
-	
+			<img src="<%=request.getContextPath()%>/images/front-end/pay.jpg" style="height:250px;width:250px;"><br>
+			於<span id="time">4</span>秒後跳轉至首頁
 		</div>
 	</div>
-	
 
-	
 	<%@ include file="/front-end/front-end-footer.jsp"%>
 	
-	
 	<script type="text/javascript">
-// 		οnlοad=function(){
-// 			setInterval(go, 1000);
-// 		};
-		
-		function go(x){
-			if(x>0){
-				x--;
-				var sp = document.getElementById('sp'); 
-				sp.innerHTML = x;
-				console.log(x);
-			}else{
-				window.location.href='<%=request.getContextPath()%>/front-end/index.jsp';
-			}
+
+		delayURL();   
+		function delayURL() {
+    		var delay = document.getElementById("time").innerHTML;
+			var t = setTimeout("delayURL()", 1000);
+    	if (delay > 0) {
+	        delay--;
+	        document.getElementById("time").innerHTML = delay;
+   			 } else {
+	 		clearTimeout(t); 
+	        window.location.href = '<%=request.getContextPath()%>/front-end/index.jsp';
+    		}       
 		}
+
+
 
 		$(document).ready(function (){
 			 $("#successView").fadeIn("slow");
-			 var x=3; 
-			 setInterval(go, 3000);
 		});
+		
+		
+		
 	</script>
 </body>
 </html>
