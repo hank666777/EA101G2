@@ -287,7 +287,7 @@ System.out.println(pTno);
 						try {
 							
 							in = part.getInputStream();
-							pPic = new byte[(int) part.getSize()];
+							pPic = new byte[in.available()];
 							in.read(pPic);
 							
 						} catch (IOException e) {
@@ -335,7 +335,7 @@ System.out.println(pTno);
 			/**2.開始新增資料**/
 
 				ProductService productSvc = new ProductService();
-				productSvc.addProduct(pname, pP, pPic, pDes, pDoffer, invStatus, pStatus, pTno);
+				productSvc.addProduct(pname,pP,pPic,pDes,pDoffer,invStatus,pStatus,pTno);
 
 			/**3.新增完成,準備轉交(Send the Success view)**/			
 				
@@ -407,10 +407,8 @@ System.out.println(pTno);
 			try {
 				
 			/**1.接收請求參數 - 輸入格式的錯誤處理**/
-				
 			
-				String pno =req.getParameter("pno").trim();
-
+				String pno = req.getParameter("pno").trim();
 				String pname = req.getParameter("pname");
 				String pnameReg="^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,60}$";
 					if(pname==null || pname.trim().length()==0) {
@@ -429,17 +427,14 @@ System.out.println(pTno);
 						errorMsgs.add("商品價格須為正整數且不得為0");
 					}
 				
-				byte[] pPic = null;
-				Part part = req.getPart("pPic");
-				InputStream in = null;
-					try {
-						in = part.getInputStream();
-						pPic = new byte[(int) part.getSize()];
-						in.read(pPic);
-					} catch (IOException e) {
-							errorMsgs.add("找不到圖片");
-					} finally {
-							in.close();
+					Part pPic = req.getPart("pPic");
+					InputStream in = pPic.getInputStream();
+					byte[] buf = new byte[in.available()];
+					if(in.available() == 0) {
+						errorMsgs.add("請上傳商品圖片");
+					}else{
+						in.read(buf);
+						in.close();
 					}
 
 				String pDes = req.getParameter("pDes").trim();
@@ -462,16 +457,16 @@ System.out.println(pTno);
 				String pTno = req.getParameter("pTno").trim();
 
 				ProductVO productVO = new ProductVO();
-				productVO.setpno(pno);
 				productVO.setpname(pname);
 				productVO.setpP(pP);
-				productVO.setpPic(pPic);
+				productVO.setpPic(buf);
 				productVO.setpDes(pDes);
 				productVO.setpDoffer(pDoffer);
 				productVO.setINVStatus(invStatus);
 				productVO.setpStatus(pStatus);
 				productVO.setpTno(pTno);
-
+				productVO.setpno(pno);
+				
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productVO", productVO);
 					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/product/updateProductInput.jsp");
@@ -490,7 +485,7 @@ System.out.println(pTno);
 				}
 				
 				ProductService productSvc = new ProductService();
-				productSvc.updateProduct(pname, pP, pPic, pDes, pDoffer, invStatus, pStatus, pTno,pno);
+				productSvc.updateProduct(pname,pP,buf,pDes,pDoffer,invStatus,pStatus,pTno,pno);
 
 			/**3.修改完成,準備轉交(Send the Success view)**/	
 				

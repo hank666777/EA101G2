@@ -29,8 +29,8 @@ public class ProductJNDIDAO implements Product_interface{
 		}
 	}
 	
-	public static final String INSERT_STMT = "INSERT INTO PRODUCT (PNAME, PP,PPIC,PDES,PDOFFER,"
-			+ "INVSTATUS,PSTATUS,PTNO) VALUES ('P'||LPAD(TO_CHAR(PT_SEQ.NEXTVAL),4,'0'),?,?,?,?,?,?,?)";
+	public static final String INSERT_STMT = "INSERT INTO PRODUCT (PNO,PNAME, PP,PPIC,PDES,PDOFFER,"
+			+ "INVSTATUS,PSTATUS,PTNO) VALUES ('P'||LPAD(TO_CHAR(PT_SEQ.NEXTVAL),4,'0'),?,?,?,?,?,?,?,?)";
 	private static final String UPDATE_STMT = "UPDATE PRODUCT SET  PNAME = ?, PP = ?, PPIC=?,PDES=?,"
 			+ "PDOFFER = ?, INVSTATUS = ?, PSTATUS = ?,PTNO = ? WHERE PNO = ?";
 	private static final String DELETE_STMT = "DELETE FROM PRODUCT WHERE PNO = ?";
