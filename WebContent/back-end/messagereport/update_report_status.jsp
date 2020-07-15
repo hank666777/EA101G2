@@ -100,34 +100,23 @@
 								type="radio" name="poststatus" value="1"
 								${(mbVO.postStatus==1)?'checked':''}>顯示</td>
 						</tr>
-						<tr>
-							<th>檢舉處理狀態:</th>
-							<td><input type="radio" name="reportstatus" value="0"
-								${(mrVO.reportStatus==0)?'checked':''}>未處理 <input
-								type="radio" name="reportstatus" value="1"
-								${(mrVO.reportStatus==1)?'checked':''}>已處理通過 <input
-								type="radio" name="reportstatus" value="2"
-								${(mrVO.reportStatus==2)?'checked':''}>已處理未通過</td>
-						</tr>
+						
 
 					</table>
-					<br> <input type="hidden" name="action" value="update">
-					<input type="hidden" name="reportno"
-						value="<%=mrVO.getReportno()%>"> <input type="hidden"
-						name="reportdetail" value="<%=mrVO.getReportDetail()%>"> <input
-						type="hidden" name="reporttime" value="<%=mrVO.getReportTime()%>">
+					<br> 
+					<input type="hidden" name="action" value="update">
+					<input type="hidden" name="reportno" value="<%=mrVO.getReportno()%>"> 
+					<input type="hidden" name="reportdetail" value="<%=mrVO.getReportDetail()%>"> 
+					<input type="hidden" name="reporttime" value="<%=mrVO.getReportTime()%>">
 
 
 
 					<input type="hidden" name="postno" value="<%=mbVO.getPostno()%>">
-					<input type="hidden" name="posttitle"
-						value="<%=mbVO.getPostTitle()%>"> <input type="hidden"
-						name="postsort" value="<%=mbVO.getPostSort()%>"> <input
-						type="hidden" name="postdetail" value="<%=mbVO.getPostDetail()%>">
-					<input type="hidden" name="posttime"
-						value="<%=mbVO.getPostTime()%>"> <input type="hidden"
-						name="memno" value="<%=mbVO.getMemno()%>"> <input
-						type="hidden" name="parentno" value="<%=mbVO.getParentno()%>">
+					<input type="hidden" name="posttitle" value="<%=mbVO.getPostTitle()%>"> 
+					<input type="hidden" name="postsort" value="<%=mbVO.getPostSort()%>"> <input						type="hidden" name="postdetail" value="<%=mbVO.getPostDetail()%>">
+					<input type="hidden" name="posttime" value="<%=mbVO.getPostTime()%>"> 
+					<input type="hidden"name="memno" value="<%=mbVO.getMemno()%>"> 
+					<input type="hidden" name="parentno" value="<%=mbVO.getParentno()%>">
 
 					<input type="submit" value="送出修改">
 					<input type="button" value="返回審核列表" 

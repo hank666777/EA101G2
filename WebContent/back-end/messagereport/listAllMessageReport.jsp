@@ -65,6 +65,12 @@ tr {
 	border:5px solid lightblue;
 	border-radius:10px;
 }
+.report_detail{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width:150px;
+}
 </style>
 <%@ include file="/back-end/back-end-head.jsp" %>
 
@@ -109,11 +115,11 @@ tr {
 
 							<tr>
 								<td>${mrVO.reportno}</td>
-								<td>${mrVO.reportDetail}</td>
+								<td><div class="report_detail">${mrVO.reportDetail}</div></td>
 								<td><fmt:formatDate value="${mrVO.reportTime}"
 										pattern="yyyy-MM-dd HH:mm" /></td>
 
-								<td><c:if test="${mrVO.reportStatus == 0}">
+								<td style="width:10%;"><c:if test="${mrVO.reportStatus == 0}">
 										<div style="color: blue; font-weight: bold; vertical-align:middle">未審核</div>
 									</c:if> <c:if test="${mrVO.reportStatus == 1}">已審核通過</c:if> <c:if
 										test="${mrVO.reportStatus == 2}">已審核未通過</c:if></td>

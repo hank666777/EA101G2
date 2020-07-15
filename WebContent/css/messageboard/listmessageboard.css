@@ -69,10 +69,13 @@ a.btn2 {
 	color: #000000;
 	text-decoration: none;
 }
-
+a.btn2:hover {
+	color: #000000;
+	text-decoration: none;
+}
 /*<board list css>*/
 .row{
-	margin: 0;
+	margin: 5px 0 ;
 }
 
 #searchbar {

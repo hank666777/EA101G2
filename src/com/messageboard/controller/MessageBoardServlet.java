@@ -200,7 +200,7 @@ public class MessageBoardServlet extends HttpServlet {
 
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-				String posttitle = req.getParameter("posttitle");
+				String posttitle = req.getParameter("posttitle").trim();
 				String titleReg = "^[\\S]{4,25}$";
 							
 				if (posttitle == null || posttitle.trim().length() == 0) {

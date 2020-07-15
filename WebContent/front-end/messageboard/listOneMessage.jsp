@@ -22,12 +22,12 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/messageboard/listonemessage.css" type="text/css" />
 <style type="text/css">
-html, #main  {
+ #main {
 	/* font-family: 'DFKai-SB';*/
 /* 	background-color: #fab5b6; */
 	background-image: url('<%=request.getContextPath()%>/images/front-end/messageboard/background_candy.jpg');
 	background-repeat: repeat-y;
-	background-size: contain;
+	background-size: 100%;
 }
 
 #main_message{
@@ -48,9 +48,10 @@ html, #main  {
 
 <%@ include file="/front-end/front-end-header.jsp"%>
 <%@ include file="/front-end/front-end-header2.jsp"%>	
+
 <div class="container-fluid" id="main" style="padding: 0;">
 	<div class="row" >	 
-		<div class="col-12">
+		
 	<div class ="container rounded" id="main_message">
 		<div id="post_header">
 			<div class ="h3" id="title_info">
@@ -147,121 +148,117 @@ html, #main  {
 			</div>
 		</div>
 	</div>
-	
+	</div>
 	
 		<!-- 底下為回覆留言 -->
 	
-
-<c:forEach var="mbVO" items="${mblist}">
-		<!-- 以下為Side Message -->
-		<!-- foreach VO-->
-	<p id="floor_count"></p>
-	<div class ="container rounded" id="side_message">
-		<div id="post_header">
-			<div class="row blockquote text-left" >
-				<div class="img_block" >
-				<c:forEach var="memVO" items="${memlist}">
-					<c:if test="${memVO.memno == mbVO.memno}">
-					<img id="post_img" style="height:64px;object-fit: cover; " 
-						src="${pageContext.request.contextPath}/front-end/mem/mem.mPic?memno=${memVO.memno}"
-						alt="會員圖片">
-					</c:if><!-- 按下後連結留言者資訊-->
-				</c:forEach>
-				</div>	
-				<div class="col-sm align-self-end" id="member_info">
-					
-				<div class ="col-sm" id="post_member">
+	<div class="row">
+	<c:forEach var="mbVO" items="${mblist}">
+			<!-- 以下為Side Message -->
+			<!-- foreach VO-->
+		<p id="floor_count"></p>
+		<div class ="container rounded" id="side_message">
+			<div id="post_header">
+				<div class="row blockquote text-left" >
+					<div class="img_block" >
 					<c:forEach var="memVO" items="${memlist}">
 						<c:if test="${memVO.memno == mbVO.memno}">
-								 <a style="text-decoration:none;" href=""
-							 		data-toggle="modal" data-target="#_${memVO.memno }">${memVO.mName}</a>&nbsp${memVO.mAccount}								
-									
-					<!-- 		memberdata modal -->
-								 	<div class="modal fade" id="_${memVO.memno }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									  <div class="modal-dialog modal-dialog-centered">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <h5 class="modal-title" id="exampleModal">${memVO.mName}</h5>
-									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									          <span aria-hidden="true">&times;</span>
-									        </button>
-									      </div>
-									      <div class="modal-body">      
-									     	 <%@ include file="/front-end/messageboard/show_member.jsp"%>        
-									      </div>
-										     
-									    </div>
-									  </div>
-									</div>							 					 															 
-							</c:if><!-- 按下後連結留言者資訊-->
-						</c:forEach>
+						<img id="post_img" style="height:64px;object-fit: cover; " 
+							src="${pageContext.request.contextPath}/front-end/mem/mem.mPic?memno=${memVO.memno}"
+							alt="會員圖片">
+						</c:if><!-- 按下後連結留言者資訊-->
+					</c:forEach>
+					</div>	
+					<div class="col-sm align-self-end" id="member_info">
+						
+					<div class ="col-sm" id="post_member">
+						<c:forEach var="memVO" items="${memlist}">
+							<c:if test="${memVO.memno == mbVO.memno}">
+									 <a style="text-decoration:none;" href=""
+								 		data-toggle="modal" data-target="#_${memVO.memno }">${memVO.mName}</a>&nbsp${memVO.mAccount}								
+										
+						<!-- 		memberdata modal -->
+									 	<div class="modal fade" id="_${memVO.memno }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog modal-dialog-centered">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h5 class="modal-title" id="exampleModal">${memVO.mName}</h5>
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										          <span aria-hidden="true">&times;</span>
+										        </button>
+										      </div>
+										      <div class="modal-body">      
+										     	 <%@ include file="/front-end/messageboard/show_member.jsp"%>        
+										      </div>
+											     
+										    </div>
+										  </div>
+										</div>							 					 															 
+								</c:if><!-- 按下後連結留言者資訊-->
+							</c:forEach>
+							
+						</div>
+						<div class ="col-sm" id="post_time">
+							<fmt:formatDate value="${mbVO.postTime}" 
+										pattern="yyyy-MM-dd HH:mm" />
+						</div>
 						
 					</div>
-					<div class ="col-sm" id="post_time">
-						<fmt:formatDate value="${mbVO.postTime}" 
-									pattern="yyyy-MM-dd HH:mm" />
-					</div>
-					
-				</div>
-				<div class ="col-sm text-right floor">#</div>
-			</div>	
-		</div>
-		<div>
-			<div class="h4" style="width: 1000px;">${mbVO.postDetail}</div>
-			<br>
-			<br>
-		</div>
-		<div class="row blockquote text-right">
-			<div class="col-sm-9"></div>	
-					<c:if test="${mbVO.memno == sessionScope.memVO.memno}" >
-					<div class="">
-						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/messageboard/messageboard.do">
-		    	 		<input class="btn btn-danger" type="submit" value="修改">
-		     			<input type="hidden" name="postno"  value="${mbVO.postno}">
-		     			<input type="hidden" name="action"	value="getOne_For_Update"></FORM>				
-					</div>
-					</c:if>
-				
-   <!-- 占格數用 --><c:if test="${mbVO.memno != sessionScope.memVO.memno}" ><input class="btn btn-danger invisible" type="submit" value="修改"></c:if>
-			
+					<div class ="col-sm text-right floor">#</div>
+				</div>	
+			</div>
+			<div>
+				<div class="h4" style="width: 1000px;">${mbVO.postDetail}</div>
+				<br>
+				<br>
+			</div>
+			<div class="row blockquote text-right">
+				<div class="col-sm-9"></div>	
+						<c:if test="${mbVO.memno == sessionScope.memVO.memno}" >
 						<div class="">
-							<input class="btn btn-danger" type="submit" value="回覆" data-toggle="modal" data-target="#replymessage" >			
+							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/messageboard/messageboard.do">
+			    	 		<input class="btn btn-danger" type="submit" value="修改">
+			     			<input type="hidden" name="postno"  value="${mbVO.postno}">
+			     			<input type="hidden" name="action"	value="getOne_For_Update"></FORM>				
 						</div>
-					<c:if test="${sessionScope.memVO.memno != mbVO.memno }" >
-						<div class="">
-							<input class="btn btn-secondary" type="submit" value="檢舉" data-toggle="modal" data-target="#_${mbVO.postno}">
-		    		 	</div>
-
-					</c:if>		
-   <!-- 占格數用 --><c:if test="${mbVO.memno != sessionScope.memVO.memno}" ><input class="btn btn-secondary invisible" type="submit" value="檢舉"></c:if>
-		</div>
-	</div>
+						</c:if>
+					
+	   <!-- 占格數用 --><c:if test="${mbVO.memno != sessionScope.memVO.memno}" ><input class="btn btn-danger invisible" type="submit" value="修改"></c:if>
+				
+							<div class="">
+								<input class="btn btn-danger" type="submit" value="回覆" data-toggle="modal" data-target="#replymessage" >			
+							</div>
+						<c:if test="${sessionScope.memVO.memno != mbVO.memno }" >
+							<div class="">
+								<input class="btn btn-secondary" type="submit" value="檢舉" data-toggle="modal" data-target="#_${mbVO.postno}">
+			    		 	</div>
 	
+						</c:if>		
+	   <!-- 占格數用 --><c:if test="${mbVO.memno != sessionScope.memVO.memno}" ><input class="btn btn-secondary invisible" type="submit" value="檢舉"></c:if>
+			</div>
+		</div>
+		
+									<!-- bootstrap report message -->
+								<div class="modal fade" id="_${mbVO.postno}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+								  <div class="modal-dialog modal-dialog-centered">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title" id="exampleModal">Report message</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">    
+								        <%@ include file="/front-end/messagereport/addReport.jsp"%>        
+								      </div>
+								     
+								    </div>
+								  </div>
+								</div>
+	
+	</c:forEach>
 	</div>
 </div>
-
-	
-	
-	
-								<!-- bootstrap report message -->
-							<div class="modal fade" id="_${mbVO.postno}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-							  <div class="modal-dialog modal-dialog-centered">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModal">Report message</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-body">    
-							        <%@ include file="/front-end/messagereport/addReport.jsp"%>        
-							      </div>
-							     
-							    </div>
-							  </div>
-							</div>
-	
-</c:forEach>
 
 <!-- bootstrap reply message -->
 <div class="modal fade" id="replymessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -299,23 +296,6 @@ html, #main  {
 								    </div>
 								  </div>
 								</div>
-<!-- bootstrap report message -->
-							<div class="modal fade" id="_${mbVO.postno}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-							  <div class="modal-dialog modal-dialog-centered">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLabel">Report message</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-body">    
-							        <%@ include file="/front-end/messagereport/addReport.jsp"%>        
-							      </div>
-							     
-							    </div>
-							  </div>
-							</div>
 
 
 
