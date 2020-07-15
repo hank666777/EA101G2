@@ -30,8 +30,10 @@
 	  			
 	  			<div class="row text-light w-100 h-auto">
 					<div class="col">
-						<img style="width:150px; height:150px;"class="mx-auto d-block" 
-						src="${pageContext.request.contextPath}/images/logo.png" />
+						<a href="${pageContext.request.contextPath}/back-end/back-end-index.jsp">
+							<img style="width:150px; height:150px;"class="mx-auto d-block" 
+									 src="${pageContext.request.contextPath}/images/logo.png" />
+						</a>
 					</div>
 				</div>
 					

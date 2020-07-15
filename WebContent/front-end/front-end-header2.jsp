@@ -30,7 +30,7 @@
 					</li>
 
 					<li class="nav-item font-weight-bold">
-						<a class="nav-link" href="#">活動快訊</a>
+						<a class="nav-link" href="${pageContext.request.contextPath}/front-end/activity/front_page.jsp">活動快訊</a>
 					</li>
 
 					<li id="massageboard" class="nav-item font-weight-bold">

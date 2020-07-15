@@ -66,6 +66,9 @@
 		<url-pattern>/front-end/bok/*</url-pattern>
 		<url-pattern>/front-end/messageboard/listAllMessageBoard.jsp</url-pattern>
 		<url-pattern>/front-end/onlineShop/payMoney.jsp</url-pattern>
+<!-- 		<url-pattern>/front-end/activity/activityshop2.jsp</url-pattern> -->
+<!-- 		<url-pattern>/front-end/activity/activitythx.jsp</url-pattern> -->
+<!-- 		<url-pattern>/front-end/activity/activitycart.jsp</url-pattern> -->
 		
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
@@ -355,6 +358,7 @@
  	 <servlet-mapping>
 	    <servlet-name>ActivitypicServlet</servlet-name>
 	    <url-pattern>/back-end/activity/activitypicServlet.do</url-pattern>
+	    <url-pattern>/front-end/activity/activitypicServlet.do</url-pattern>
   	</servlet-mapping>
   	
  	 <servlet>
@@ -364,6 +368,7 @@
   	<servlet-mapping>
 	    <servlet-name>ActivitypostpicServlet</servlet-name>
 	    <url-pattern>/back-end/activity_post/activitypostpicServlet.do</url-pattern>
+	    <url-pattern>/front-end/activity_post/activitypostpicServlet.do</url-pattern>
   	</servlet-mapping>
 	
 </web-app>

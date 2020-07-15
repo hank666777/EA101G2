@@ -279,4 +279,11 @@ public class ActivityDAO implements ActivityDAO_interface{
 		return AVOList;
 	}
 
+
+	@Override
+	public void updateTotal(ActivityVO ActivityVO) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

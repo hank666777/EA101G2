@@ -49,7 +49,7 @@
 						<td class="align-middle">${employeeVO.empno}</td>
 						<td class="align-middle">
 							<img width=100 height=100
-							src="<%=request.getContextPath()%>/back-end/employee/epicshow.do?empno=${employeeVO.empno}" /></td>
+									 src="<%=request.getContextPath()%>/back-end/employee/epicshow.do?empno=${employeeVO.empno}" /></td>
 						<td class="align-middle">${employeeVO.eName}</td>
 						<td class="align-middle">${employeeVO.ePhone}</td>
 						<td class="align-middle">${employeeVO.eEmail}</td>

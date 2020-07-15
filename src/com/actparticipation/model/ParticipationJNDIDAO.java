@@ -25,7 +25,7 @@ public class ParticipationJNDIDAO implements ParticipationDAO_interface{
 		}
 	}
 
-	public static final String INSERT_STMT = "INSERT INTO PARTICIPATION (AVTPARTNO, MEMNO, ACTNO, ACTPARTDATE, ACTPARTENR, ACTTAE)"
+	public static final String INSERT_STMT = "INSERT INTO PARTICIPATION (AVTPARTNO, MEMNO, ACTNO, ACTPARTDATE, ACTPARTENR,ACTTALFEE)" //←ACTTAE是什麼??
 			+"VALUES ((TO_CHAR(SYSDATE,'YYYYMMDD')||'-AP'||LPAD(to_char(Participation_SEQ.NEXTVAL),4,'0'))"
 			+ ",?,?,?,?,?)";
 	public static final String UPDATE_STMT = "UPDATE PARTICIPATION SET MEMNO = ?, ACTNO = ?, ACTPARTDATE = ?, ACTPARTENR = ?, ACTTALFEE = ? WHERE AVTPARTNO =?";

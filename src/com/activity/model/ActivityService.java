@@ -11,7 +11,7 @@ public class ActivityService {
 	private ActivityDAO_interface AVO;
 	
 	public ActivityService() {
-		AVO = new ActivityDAO();
+		AVO = new ActivityJNDIDAO();
 	}
 	
 	public ActivityVO add(String ACTTYNO,String ACTNAME,String ACTDES,byte[] ACTPIC,
@@ -68,5 +68,11 @@ public class ActivityService {
 	}
 	public List<ActivityVO> getAll(){
 		return AVO.getAll();
+	}
+	public ActivityVO updateTotal(Integer ACTTALPEO,String actno) {
+		ActivityVO ACVO = new ActivityVO();
+		ACVO.setActTalPeo(ACTTALPEO);
+		ACVO.setActno(actno);
+		return ACVO;
 	}
 }

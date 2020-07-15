@@ -1,8 +1,10 @@
 package com.activity.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ActivityVO implements java.io.Serializable{
+public class ActivityVO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String actno;
 	private String actTyno;
 	private String actName;
@@ -16,6 +18,28 @@ public class ActivityVO implements java.io.Serializable{
 	private Integer actMode;
 	private Integer actUpper;
 	private Integer actLower;
+	
+	public ActivityVO() {
+		super();
+	}
+	public ActivityVO(String actno, String actTyno, String actName, String actDes, byte[] actPic, Integer actTalPeo,
+			Timestamp actHoDate, Timestamp actStDate, Timestamp actEdDate, Integer actFee, Integer actMode, Integer actUpper,
+			Integer actLower) {
+		super();
+		this.actno = actno;
+		this.actTyno = actTyno;
+		this.actName = actName;
+		this.actDes = actDes;
+		this.actPic = actPic;
+		this.actTalPeo = actTalPeo;
+		this.actHoDate = actHoDate;
+		this.actStDate = actStDate;
+		this.actEdDate = actEdDate;
+		this.actFee = actFee;
+		this.actMode = actMode;
+		this.actUpper = actUpper;
+		this.actLower = actLower;
+	}
 	public String getActno() {
 		return actno;
 	}
@@ -95,6 +119,8 @@ public class ActivityVO implements java.io.Serializable{
 		this.actLower = actLower;
 	}
 	
+	
+
 
 	
 

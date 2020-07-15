@@ -95,10 +95,12 @@
 		      	<%@ include file="/front-end/bok/listByMemNoForInclude.jsp"%> 
 		      </div>
 		      <div class="tab-pane fade" id="list-activity" role="tabpanel" aria-labelledby="activity-list">
-		      	活動查詢(未導入)
+		      	<!-- 會員活動查詢 -->
+		      	<%@ include file="/front-end/activity/listone_membercenter.jsp"%> 
 		      </div>
 		      <div class="tab-pane fade" id="list-activity-post" role="tabpanel" aria-labelledby="activity-post-list">
-		      	活動貼文查詢(未導入)
+		      	<!-- 會員活動貼文查詢 -->
+		      	<%@ include file="/front-end/activity/feelings_membercenter.jsp"%> 
 		      </div>
 		      <div class="tab-pane fade" id="list-responselist" role="tabpanel" aria-labelledby="">
 		      	意見反映查詢(未導入)

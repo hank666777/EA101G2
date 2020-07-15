@@ -2,8 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*" %>
+<%@ page import="java.util.stream.*"%>
 <%@ page import="com.employee.model.*"%>
 <%@ page import="com.permission.model.*"%>
+
+<%@ page import="com.booking.model.*"%>
+<%@ page import="com.messagereport.model.*"%>
 <%
 	EmployeeVO employeeVO = (EmployeeVO) session.getAttribute("employeeVO");
 	List<PermissionVO> perVOlist = (ArrayList<PermissionVO>) session.getAttribute("perVOlist");
@@ -44,8 +48,10 @@
 	  		
 	  			<div class="row text-light w-100 h-auto">
 						<div class="col">
-							<img style="width:150px; height:150px;"class="mx-auto d-block" 
-							src="${pageContext.request.contextPath}/images/logo.png" />
+							<a href="${pageContext.request.contextPath}/back-end/back-end-index.jsp">
+								<img style="width:150px; height:150px;"class="mx-auto d-block" 
+										 src="${pageContext.request.contextPath}/images/logo.png" />
+							</a>
 						</div>
 					</div>
 					
@@ -122,14 +128,48 @@
 	  		
 	  		<div class="col-10" style="padding:0;">
 							
-	  			<div class="container-fluid">
-						<div class="row banner justify-content-md-center">
-						
+	  			<div class="container ">
+						<div class="row banner align-items-center" style="background-color:#EEE; opacity:.8;">
+							<!-- 放置區開始 -->
+							<div class="col-12 text-center">
+<%
+	
+	long bokCount = new BokService().getAll().stream().filter(bok -> bok.getBkStatus().equals(0)).count();
+// 	System.out.println("bokCount: " + bokCount);
+	request.setAttribute("bokCount", bokCount);
+	long mrCount = new MessageReportService().getAll().stream().filter(mr -> mr.getReportStatus().equals(0)).count();
+	request.setAttribute("mrCount", mrCount);
+	
+	
+%>
+								<table class="table table-sm text-nowarp table-striped table-hover"
+												style="font-size:2em;">
+									<thead>
+								    <tr>
+								      <th class="text-center"></th>
+								      <th class="text-center">待辦清單</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    <tr>
+								      <th class="text-center" >1 </th>
+								      <td class="text-center" style="color:#F00;">Mark</td>
+								    </tr>
+								    <tr>
+								      <th class="text-center" >訂位未報到筆數</th>
+								      <td class="text-center" style="color:#F00;">${bokCount}</td>
+								    </tr>
+								    <tr>
+								      <th class="text-center" >檢舉未處理筆數</th>
+								      <td class="text-center" style="color:#F00;">${mrCount} </td>
+								    </tr>
+								  </tbody>
+								</table>
+							</div>
+							<!-- 放置區結束 -->
 						</div>
 						
-						<!-- 放置區開始 -->
-												
-						<!-- 放置區結束 -->
+						
 						
 					</div>
 	  		

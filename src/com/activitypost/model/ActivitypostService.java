@@ -8,7 +8,7 @@ public class ActivitypostService {
 	private ActivitypostDAO_interface AVO;
 	
 	public ActivitypostService() {
-		AVO = new ActivitypostDAO();
+		AVO = new ActivitypostJNIDAO();
 	}
 	public ActivitypostVO add(String ACTNO, String MEMNO,
 			Timestamp ACTPOSTDATE, String ACTPOSTCON, byte[] ACTPOSTPIC) 

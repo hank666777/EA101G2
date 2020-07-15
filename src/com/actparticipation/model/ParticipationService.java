@@ -8,7 +8,7 @@ public class ParticipationService {
 	private ParticipationDAO_interface PDAO;
 	
 	public ParticipationService() {
-		PDAO = new ParticipationDAO();
+		PDAO = new ParticipationJNDIDAO();
 	}
 	public ParticipationVO add(String MEMNO, String ACTNO,
 			Timestamp ACTPARTDATE, Integer ACTPARTENR,Integer ACTTALFEE) {

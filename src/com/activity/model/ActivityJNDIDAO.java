@@ -34,7 +34,7 @@ public class ActivityJNDIDAO implements ActivityDAO_interface{
 	private static final String DELETE_STMT = "DELETE FROM ACTIVITY WHERE ACTNO = ?";
 	public static final String FIND_BY_PK = "SELECT * FROM ACTIVITY WHERE ACTNO = ?";
 	public static final String GET_ALL = "SELECT * FROM ACTIVITY";
-	
+	public static final String updateTotal = "UPDATE ACTIVITY SET ACTTALPEO =? WHERE ACTNO = ?";
 	
 	@Override
 	public void add(ActivityVO ActivityVO) {
@@ -277,6 +277,42 @@ public class ActivityJNDIDAO implements ActivityDAO_interface{
 			}
 		}
 		return AVOList;
+	}
+
+	@Override
+	public void updateTotal(ActivityVO actVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		
+		try {
+			con =ds.getConnection();
+			pstmt = con.prepareStatement(updateTotal);		
+
+			
+			pstmt.setInt(1, actVO.getActTalPeo());
+			pstmt.setString(2, actVO.getActno());
+			pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			throw new RuntimeException("A database error occured. " + e.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 	}
 
 }

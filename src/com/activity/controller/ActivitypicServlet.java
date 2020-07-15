@@ -13,11 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.activity.model.ActivityService;
 import com.activity.model.ActivityVO;
 
-@MultipartConfig
 public class ActivitypicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
+	}
+
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 	
 		res.setContentType("image/gif");
