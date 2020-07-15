@@ -449,7 +449,7 @@ System.out.println(pTno);
 				
 				Integer pDoffer = null;
 					try {
-						pDoffer = new Integer(req.getParameter("pP").trim());
+						pDoffer = new Integer(req.getParameter("pDoffer").trim());
 						if(pDoffer<=0) {
 							errorMsgs.add("商品供給量須為正整數且不得為0");
 						}
