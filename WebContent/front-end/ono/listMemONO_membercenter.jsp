@@ -39,7 +39,7 @@
 </head>
 
 <body>
-<div id="container" class="container" style="margin:auto; margin-top:30px;">
+<div id="container" class="container" style="margin:auto; margin-top:30px;overflow:scroll; background-color:#EEE; opacity:.9;">
 	<div class="row">
 		<div class="col text-center"><p class="h2">線上訂單<p></div>
 	</div>

@@ -5,3 +5,5 @@
 <link	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900"	rel="stylesheet" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/back_end_header.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<!-- font-awesome CSS 5.13-->
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.css">

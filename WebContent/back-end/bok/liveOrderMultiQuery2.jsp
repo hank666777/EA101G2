@@ -28,6 +28,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
+	<!-- font-awesome CSS 5.13-->
+	<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.css">
 	<style type="text/css">
 
   #table-1{

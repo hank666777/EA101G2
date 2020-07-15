@@ -61,14 +61,12 @@
 				
 				<c:forEach var="mbVO" items="${mblist}" end ="4" >
                     <li class="board_info">
-                    	<a href="messageboard.do?search=getOne_For_Display&postno=${mbVO.postno}" class="btn2">
-						
+<%--                     	<a href="messageboard.do?search=getOne_For_Display&postno=${mbVO.postno}" class="btn2"> --%>
                             
                         <div class="" style="display: inline-block;padding: 0 0 10px 35px;width: 50%;">
                             <div class="board_title">${mbVO.postDetail}</div>
-
                         </div>
-                          </a>    
+<!--                      </a>     -->
                         <div class="board_sorttime">
                             <div id="M_NAME" title="PO文者" class="d-none d-xl-block">
                             	<c:forEach var="memVO" items="${memlist}">
