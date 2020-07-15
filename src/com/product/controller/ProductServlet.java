@@ -409,7 +409,7 @@ System.out.println(pTno);
 			/**1.接收請求參數 - 輸入格式的錯誤處理**/
 			
 				String pno = req.getParameter("pno").trim();
-				String pname = req.getParameter("pname");
+				String pname = req.getParameter("pname").trim();
 				String pnameReg="^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,60}$";
 					if(pname==null || pname.trim().length()==0) {
 						errorMsgs.add("商品名稱：請勿空白");
@@ -427,15 +427,20 @@ System.out.println(pTno);
 						errorMsgs.add("商品價格須為正整數且不得為0");
 					}
 				
-					Part pPic = req.getPart("pPic");
-					InputStream in = pPic.getInputStream();
-					byte[] buf = new byte[in.available()];
-					if(in.available() == 0) {
-						errorMsgs.add("請上傳商品圖片");
-					}else{
-						in.read(buf);
-						in.close();
-					}
+					byte[] pPic = null;
+					Part part = req.getPart("pPic");
+					InputStream in = null;
+						try {
+							
+							in = part.getInputStream();
+							pPic = new byte[in.available()];
+							in.read(pPic);
+							
+						} catch (IOException e) {
+								errorMsgs.add("找不到圖片");
+						} finally {
+								in.close();
+						}
 
 				String pDes = req.getParameter("pDes").trim();
 					if(pDes == null || pDes.trim().length() == 0) {
@@ -459,7 +464,7 @@ System.out.println(pTno);
 				ProductVO productVO = new ProductVO();
 				productVO.setpname(pname);
 				productVO.setpP(pP);
-				productVO.setpPic(buf);
+				productVO.setpPic(pPic);
 				productVO.setpDes(pDes);
 				productVO.setpDoffer(pDoffer);
 				productVO.setINVStatus(invStatus);
@@ -485,7 +490,7 @@ System.out.println(pTno);
 				}
 				
 				ProductService productSvc = new ProductService();
-				productSvc.updateProduct(pname,pP,buf,pDes,pDoffer,invStatus,pStatus,pTno,pno);
+				productSvc.updateProduct(pname,pP,pPic,pDes,pDoffer,invStatus,pStatus,pTno,pno);
 
 			/**3.修改完成,準備轉交(Send the Success view)**/	
 				

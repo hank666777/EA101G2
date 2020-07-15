@@ -137,7 +137,7 @@
 			
 			<td class="ptds">庫存狀態:</td>
 			<td class="ptds">
-			<input type="range" name="invStatus" min="0" max="1" step="1" value="<%=productVO.getINVStatus() %>">
+			<input type="range" name="invStatus" min="0" max="1" step="1" value=<%=productVO.getINVStatus() %>>
 			</td>
 			
 		</tr>
@@ -163,7 +163,7 @@
 			
 			<td class="ptds">商品圖片:</td>
 			<td class="ptds" id="container">
-				<input id="myfile" type="file" name="pPic" size="45" accept="image/jpeg, image/png" value="<%=productVO.getpPic()%>" />
+				<input id="myfile" type="file" name="pPic" size="45" multiple>
 				<div id ="preview">			
 				</div>		
 			</td>
