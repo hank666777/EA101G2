@@ -80,7 +80,7 @@
 			margin-top:6.5%; 
 			margin-left: 50px;
 			width: 300px;
-			height: 600px; 
+			height: 650px; 
 			background-color: #F8F8F8;
 			border-radius:5px;
 			box-shadow:3px 3px 9px black;

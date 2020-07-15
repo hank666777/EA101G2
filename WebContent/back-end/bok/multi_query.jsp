@@ -109,6 +109,9 @@
 			top: 150px;
 			left: 60px;
 		}
+		label:hover{
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>

@@ -66,33 +66,35 @@ public class BokServlet_admin extends HttpServlet {
 				bokvo.setBkPrice(bkprice);
 				bokvo.setMemno(memno);
 				/************************判斷是否有重複資料****************************************/
-				BokdtService bokdtSvc = new BokdtService();
-				List<BokdtVO> bokdtlist = bokdtSvc.getBokdtListByTime(bkdate, bkperiod);
-				for(BokdtVO bokdt : bokdtlist) {
-					for(int i=0 ; i<tableno.length ; i++) {
-						if(tableno[i].equals(bokdt.getTableno())) {
-							errorMsgs.add("所選坐位已被預訂。");
-							RequestDispatcher failureView = req.getRequestDispatcher("/back-end/bok/failureView.jsp");
-							failureView.forward(req, res);
-							return;
+				synchronized (this) {
+
+					BokdtService bokdtSvc = new BokdtService();
+					List<BokdtVO> bokdtlist = bokdtSvc.getBokdtListByTime(bkdate, bkperiod);
+					for (BokdtVO bokdt : bokdtlist) {
+						for (int i = 0; i < tableno.length; i++) {
+							if (tableno[i].equals(bokdt.getTableno())) {
+								errorMsgs.add("所選坐位已被預訂。");
+								RequestDispatcher failureView = req.getRequestDispatcher("/back-end/bok/failureView.jsp");
+								failureView.forward(req, res);
+								return;
+							}
 						}
 					}
+					/*************************** 2.開始新增資料 ***************************************/
+					BokService bokSvc = new BokService();
+					String newbkno = bokSvc.liveNewBok(bokvo);
+					System.out.println(newbkno);
+					System.out.println(tableno.length);
+					for (int i = 0; i < tableno.length; i++) {
+						bokdtvo.setBkDate(bkdate);
+						bokdtvo.setBkPeriod(bkperiod);
+						bokdtvo.setTableno(tableno[i]);
+						bokdtvo.setBkno(newbkno);
+						bokdtSvc.insertOneBokdt(bokdtvo);
+						System.out.println(tableno[i]);
+					}
+
 				}
-				/***************************2.開始新增資料***************************************/
-				BokService bokSvc = new BokService();
-				String newbkno = bokSvc.liveNewBok(bokvo);
-				System.out.println(newbkno);
-				System.out.println(tableno.length);
-				for(int i=0 ; i<tableno.length ; i++) {
-					bokdtvo.setBkDate(bkdate);
-					bokdtvo.setBkPeriod(bkperiod);
-					bokdtvo.setTableno(tableno[i]);
-					bokdtvo.setBkno(newbkno);
-					bokdtSvc.insertOneBokdt(bokdtvo);
-					System.out.println(tableno[i]);
-				}
-				
-				
 				/***************************3.完成,準備轉交(Send the Success view)***********/
 				String url = "/back-end/bok/successView.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
