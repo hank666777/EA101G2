@@ -173,7 +173,7 @@ img#demo:hover {
 		$('#magicspan').on('click',function(){
 			$('#mAccount').val('Tommy');
 			$('#mPw').val('1234');
-			$('#mName').val('肉球');
+			$('#mName').val('湯米');
 			$('#mPhone').val('0987654321');
 			$('#mEmail').val('fengptt47@gmail.com');
 		});

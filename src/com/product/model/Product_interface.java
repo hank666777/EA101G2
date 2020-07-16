@@ -23,4 +23,5 @@ public interface Product_interface {
 	
 	List<ProductVO> getProductByCategory(String pTno);
 	List<ProductVO> getAll(Map<String, String[]> map);
+	List<ProductVO> getAllselect(String str);
 }

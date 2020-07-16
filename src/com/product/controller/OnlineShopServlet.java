@@ -1,6 +1,9 @@
 package com.product.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,11 +21,16 @@ import javax.servlet.http.HttpSession;
 
 import com.coupon.model.CouponVO;
 import com.coupon.model.CpService;
+import com.google.gson.Gson;
 import com.mycoupon.model.MyCouponVO;
 import com.mycoupon.model.MyCpService;
 import com.onodetail.model.ONODetailService;
 import com.product.model.ProductService;
 import com.product.model.ProductVO;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 @MultipartConfig
 public class OnlineShopServlet extends HttpServlet {
@@ -142,32 +150,66 @@ public class OnlineShopServlet extends HttpServlet {
 		// ----------------------查詢商品2_AJAX-------------------------------------------
 		
 		if("listProduct_ByCompositeQuery_ajax".equals(action)) {
-			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
+//			List<String> errorMsgs = new LinkedList<String>();
+//			req.setAttribute("errorMsgs", errorMsgs);
+			ProductService productSvc = new ProductService();
 			
-			try {
-				/**1.將輸入資料轉為Map**/
-				Map<String, String[]> map = (Map<String, String[]>) session.getAttribute("map");
-				if (req.getParameter("whichPage") == null) {
-					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());	
-					req.setAttribute("map", map1);
-					map = map1;
+				//接收
+				try {
+					String product = req.getParameter("product");
+					System.out.println("product: "+ product);
+					
+					List<ProductVO> plist = productSvc.get_by_pname_or_pdes(product, product);
+					
+//					List<ProductVO> plist = productSvc.getAll();
+					JSONArray json = new JSONArray();
+					
+			     // convert your list to json
+//					List<ProductVO> select = productSvc.getAllselect(product);
+//					Gson gson = new Gson();
+//			    String jsonCartList = gson.toJson(select);
+					for(ProductVO p: plist) {
+//						if(p.getpname().contains(product) || p.getpDes().contains(product)) {
+							JSONObject jsonlist = new JSONObject();
+							jsonlist.put("pno",p.getpno());
+							jsonlist.put("pname", p.getpname());
+							jsonlist.put("pP", p.getpP());
+							jsonlist.put("pPic", p.getpPic());
+							jsonlist.put("pDes", p.getpDes());
+							jsonlist.put("pDoffer", p.getpDoffer());
+							jsonlist.put("invStatus", p.getINVStatus());
+							jsonlist.put("pStatus", p.getpStatus());
+							jsonlist.put("pTno", p.getpTno());
+							json.put(jsonlist);
+//						}
+					}
+					
+//					System.out.println(jsonCartList.toString());
+//					System.out.println(select.size());
+//					System.out.println("plist size: " + plist);
+					
+//					for(ProductVO p : plist) {
+//						JSONObject jsonlist = new JSONObject();
+//						jsonlist.put("pno",p.getpno());
+//						jsonlist.put("pname", p.getpname());
+//						jsonlist.put("pP", p.getpP());
+//						jsonlist.put("pPic", p.getpPic());
+//						jsonlist.put("pDes", p.getpDes());
+//						jsonlist.put("pDoffer", p.getpDoffer());
+//						jsonlist.put("invStatus", p.getINVStatus());
+//						jsonlist.put("pStatus", p.getpStatus());
+//						jsonlist.put("pTno", p.getpTno());
+//						json.put(jsonlist);
+//					}
+//					System.out.println();
+					System.out.println(json.length());
+					PrintWriter out = res.getWriter();
+					out.print(json);
+					out.close();
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-				/**2.開始複合查詢**/	
-				ProductService productSvc = new ProductService();
-				List<ProductVO> list = productSvc.getAll(map);
 				
-				/**3.查詢完成,準備轉交(Send the Success view)**/
-				req.setAttribute("listProduct_ByCompositeQuery_ajax", list);
-				RequestDispatcher successView = req.getRequestDispatcher("/front-end/onlineShop/oshop_ajax.jsp");
-				successView.forward(req, res);
-				
-			}catch(Exception e) {
-				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/onlineShop/oshop_ajax.jsp");
-				failureView.forward(req, res);
-				
-			}
 		}
 		
 		

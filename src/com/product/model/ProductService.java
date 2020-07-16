@@ -3,6 +3,7 @@ package com.product.model;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ProductService {
 	private Product_interface dao;
@@ -73,5 +74,18 @@ public class ProductService {
 	}
 	public List<ProductVO> getAll(Map<String, String[]> map){
 		return dao.getAll(map);
+	}
+	public List<ProductVO> getAllselect(String str){
+		return dao.getAllselect(str);
+	}
+	
+	//模糊查詢，依據商品名稱商商品描述，符合即是
+	public List<ProductVO> get_by_pname_or_pdes(String pname,String pdes){
+		List<ProductVO> searchlist = null;
+		searchlist = dao.getAll().stream().filter(p-> p.getpname().indexOf(pname) > -1 || p.getpDes().indexOf(pdes) > -1)
+																 			.collect(Collectors.toList());
+
+		
+		return searchlist;
 	}
 }

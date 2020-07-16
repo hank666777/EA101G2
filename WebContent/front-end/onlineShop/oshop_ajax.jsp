@@ -315,7 +315,58 @@ div.card.show div.flap2 {
 		</div>
 		<div class="row">
 			<div id="searchInfo" style="height:100vh;" class="col-3">
+				
 				<!-- 搜尋結果 -->
+<!-- 				<div class="cards"> -->
+			
+<!-- 					<div class="card"> -->
+<!-- 						<div class="card__image-holder"> -->
+<!-- 							<img class="card__image" -->
+<%-- 								src="<%=request.getContextPath()%>/product/DBGifReaderProduct.do?pno=${listVO.pno}" alt="wave" --%>
+<!-- 								style="width: 298px;height:230px;" > -->
+<!-- 						</div> -->
+<!-- 						<div class="card-title"> -->
+<!-- 							<a href="#" class="toggle-info btn"> <span class="left"></span> -->
+<!-- 								<span class="right"></span> -->
+<!-- 							</a> -->
+<!-- 							<h2> -->
+<%-- 								商品名稱:${listVO.pname}<small>商品價格:$${listVO.pP}</small> --%>
+<!-- 							</h2> -->
+<!-- 						</div> -->
+<!-- 						<div class="card-flap flap1"> -->
+<%-- 							<div class="card-description">商品明細:${listVO.pDes}</div> --%>
+<!-- 							<div class="card-flap flap2"> -->
+<!-- 								<div class="card-actions">數量: -->
+<!-- 							        <select size="1" name="pDoffer"> -->
+<!-- 										<option value="1">1</option> -->
+<!-- 										<option value="2">2</option> -->
+<!-- 										<option value="3">3</option> -->
+<!-- 										<option value="4">4</option> -->
+<!-- 										<option value="5">5</option> -->
+<!-- 										<option value="6">6</option> -->
+<!-- 										<option value="7">7</option> -->
+<!-- 										<option value="8">8</option> -->
+<!-- 										<option value="9">9</option> -->
+<!-- 									</select> -->
+<!-- 									<input type="hidden" name="action" value="ADD"> -->
+<%-- 									<input type="hidden" name="pno" value="${listVO.pno}"> --%>
+<%-- 									<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller--> --%>
+<!-- 									<input type="submit" name="Submit" value="加入購物車" class="btn"> -->
+<!-- 								</div> -->
+<%-- 								<input type="hidden" name="pPic" value="${listVO.pPic}"> --%>
+<%-- 								<input type="hidden" name="pname" value="${listVO.pname}"> --%>
+<%-- 								<input type="hidden" name="pP" value="${listVO.pP}"> --%>
+<%-- 								<input type="hidden" name="pDes" value="${listVO.pDes}"> --%>
+								
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+					
+<!-- 				</div> -->
+				
+				
+				
+				
 			</div>
 		</div>
 	</div>
@@ -326,17 +377,19 @@ div.card.show div.flap2 {
 		$('#textSearchAera').keypress(function() {
 			$('#searchInfo').html('搜尋中....');
 		});
-		$('#textSearchAera').keyup(function(data) {
+		
+		$('#textSearchAera').on('change',function(data) {
 			var textSearchAera = $('#textSearchAera').val();
 
 			$.ajax({
 				url : '${pageContext.request.contextPath}/product/OnlineShopServlet.do',
 				type : 'post',
-				dataType : 'text',
+				dataType : 'json',
 				cache : false,
+				//資料進控制器
 				data : {
 					action : 'listProduct_ByCompositeQuery_ajax',
-					map : textSearchAera
+					product : textSearchAera
 				},
 
 				stop : function(reponse) {
@@ -347,8 +400,55 @@ div.card.show div.flap2 {
 					$('#searchInfo').html('等待搜尋結果...');
 				},
 
-				success : function(reponse) {
-					$("#searchInfo").html(data);
+				//接收資料
+				success : function(data) {
+					console.log('data:' + data)
+					let str = "";
+					if(data.length !=0){
+						for (let i=0 ; i< data.length ; i++){
+							str +=
+								"<div class='cards'><div class='card'><div class='card__image-holder'>"+
+									"<img class='card__image' src='<%=request.getContextPath()%>/product/DBGifReaderProduct.do?pno='" + data[i].pno + " alt='wave'" +
+												"style='width: 298px;height:230px;' ></div><div class='card-title'><a href='#' class='toggle-info btn'> <span class='left'></span>"+
+												"<span class='right'></span>"+
+											"</a><h2>商品名稱:" + data[i].pname + `<small>商品價格:$`+ `data[i].pP` +`</small>`+
+											`</h2>`+
+										`</div>`+
+										`<div class="card-flap flap1">`+
+											`<div class="card-description">商品明細:`+ data[i].pDes +`</div>`+
+											`<div class="card-flap flap2">`+
+												`<div class="card-actions">數量:`+
+											        `<select size="1" name="pDoffer">`+
+														`<option value="1">1</option>`+
+														`<option value="2">2</option>`+
+														`<option value="3">3</option>`+
+														`<option value="4">4</option>`+
+														`<option value="5">5</option>`+
+														`<option value="6">6</option>`+
+														`<option value="7">7</option>`+
+														`<option value="8">8</option>`+
+														`<option value="9">9</option>`+
+													`</select>`+
+													`<input type="hidden" name="action" value="ADD">`+
+													`<input type="hidden" name="pno" value="`+ data[i].pno +`">`+
+													`<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">`+
+													`<input type="submit" name="Submit" value="加入購物車" class="btn">`+
+												`</div>`+
+												`<input type="hidden" name="pPic" value="`+ data[i].pP  +`">`+
+												`<input type="hidden" name="pname" value="`+ data[i].pname + `">`+
+												`<input type="hidden" name="pP" value="` + data[i].pP + `">`+
+												`<input type="hidden" name="pDes" value="`+ data[i].pDes +`">`+
+												
+											`</div>`+
+										`</div>`+
+									`</div>`+
+									
+								`</div>`
+						}
+					}
+					$('#searchInfo').empty();
+					$('#searchInfo').append(str);
+// 					$("#searchInfo").html(data);
 				}
 			});
 		});

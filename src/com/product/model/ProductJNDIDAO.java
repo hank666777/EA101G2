@@ -41,6 +41,7 @@ public class ProductJNDIDAO implements Product_interface{
 	private static final String GET_ALL_STATUSANDTYPE = "SELECT * FROM PRODUCT where pStatus=? and pTno=?";
 	private static final String GET_Product_Bypno_STMT = "SELECT PNAME, PP,PPIC,PDES,PDOFFER,INVSTATUS,pStatus,PTNO FROM PRODUCT where pno = ? order by pno";
 	public static final String GET_CATEGORY = "SELECT * FROM PRODUCT WHERE PTNO = ?";
+	public static final String GET_SELECT = "SELECT * FROM PRODUCT WHERE PDES LIKE ? AND PNAME LIKE ?";
 	@Override
 	public void add(ProductVO productVO) {
 		
@@ -586,6 +587,61 @@ public class ProductJNDIDAO implements Product_interface{
 					pstmt.close();
 				} catch (SQLException se) {
 					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return pdList;
+	}
+
+	@Override
+	public List<ProductVO> getAllselect(String str) {
+		List<ProductVO> pdList = new ArrayList<ProductVO>();
+		ProductVO pd = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_SELECT);
+			pstmt.setString(1, "%"+str+"%");
+			pstmt.setString(2, "%"+str+"%");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				pd = new ProductVO();
+				pd.setpno(rs.getString("PNO"));
+				pd.setpname(rs.getString("PNAME"));
+				pd.setpP(rs.getInt("PP"));
+				pd.setpPic(rs.getBytes("PPIC"));
+				pd.setpDes(rs.getString("PDES"));
+				pd.setpDoffer(rs.getInt("PDOFFER"));
+				pd.setINVStatus(rs.getInt("INVSTATUS"));
+				pd.setpStatus(rs.getInt("PSTATUS"));
+				pd.setpTno(rs.getString("PTNO"));
+				pdList.add(pd);
+			}
+		}catch(SQLException e) {
+			throw new RuntimeException("A database error occured. " + e.getMessage());
+		}finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
 				}
 			}
 			if (con != null) {

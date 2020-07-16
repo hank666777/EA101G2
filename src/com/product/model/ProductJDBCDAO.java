@@ -553,6 +553,12 @@ public class ProductJDBCDAO implements Product_interface{
 		}
 		return pdList;
 	}
+
+	@Override
+	public List<ProductVO> getAllselect(String str) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 //	public static void main(String[] args) {
 //		ProductJDBCDAO dao = new ProductJDBCDAO();
