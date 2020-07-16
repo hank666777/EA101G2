@@ -73,7 +73,7 @@
 	var self = '${employeeVO.eAccount}';
 	var webSocket;                   
 
-	function connect() {
+	$(".btn-raised").click(function connect() {
 		// create a websocket
 		webSocket = new WebSocket(endPointURL);
 
@@ -129,7 +129,7 @@
 		webSocket.onclose = function(event) {
 			console.log("Disconnected!");
 		};
-	}
+	});
 	
 	function sendMessage() {
 		var inputMessage = document.getElementById("message");

@@ -416,8 +416,10 @@ public class MemServlet extends HttpServlet {
     				//發送優惠券
     		        MyCpService myCpService = new MyCpService();
     		        ArrayList<CouponVO> allCoupon = (ArrayList<CouponVO>) new CpService().getAll();
-    		        myCpService.add(allCoupon.get((int)(Math.random()*allCoupon.size())).getCouponno(), SmemVO.getMemno());
-
+    		        CouponVO cp = allCoupon.get((int)(Math.random()*allCoupon.size()));
+    		        myCpService.add(cp.getCouponno(), SmemVO.getMemno());
+    		        jedis.set(SmemVO.getmAccount(),"恭喜你獲得"+cp.getCouponName());
+    		        req.getSession().setAttribute("authCode", authCode);
     				String url = "/front-end/mem/memberlogin.jsp";// 成功後，跳轉到重新登入
     				//重新登入要移除會員session
     				session.removeAttribute("memVO");

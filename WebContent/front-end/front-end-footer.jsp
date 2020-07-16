@@ -81,6 +81,49 @@
 	  });
 	});
 	
+	
+	window.onload=function connect2() {
+		  var MyPoint = "/PushSocket/${memVO.mAccount}";
+		  var host = window.location.host;
+		  var path = window.location.pathname;
+		  var webCtx = path.substring(0, path.indexOf('/', 1));
+		  var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+		  var webSocket= new WebSocket(endPointURL);
+		  function cloze(){webSocket.close();console.log("colse");}
+		   webSocket.onopen = function(event) {
+		    console.log("Connect Success77777!");
+		  }
+		   webSocket.onmessage = function(event) {
+		    Swal.fire({
+		       title: '註冊會員即送優惠券!!',
+		       text: event.data,
+		       imageWidth: 400,
+		       imageHeight: 200,
+		       footer: '<a href=mem/member_center.jsp>立即查看</a>'
+		     })
+		  }
+		    setTimeout(cloze,10000);
+		 
+		 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	var MyPoint = "/FriendWS/${memVO.mAccount}";
 	var host = window.location.host;
 	var path = window.location.pathname;
@@ -92,7 +135,7 @@
 	var self = '${memVO.mAccount}';
 	var webSocket;                   
 
-	function connect() {
+	$(".btn-raised").click(function connect() {
 		// create a websocket
 		webSocket = new WebSocket(endPointURL);
 
@@ -148,7 +191,7 @@
 		webSocket.onclose = function(event) {
 			console.log("Disconnected!");
 		};
-	}
+	});
 	
 	function sendMessage() {
 			var inputMessage = document.getElementById("message");
