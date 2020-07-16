@@ -118,7 +118,7 @@
 
 	  		</div>
 	  		
-	  		<div class="col-10" style="padding:0;">
+	  		<div class="col-10 " style="padding:0;">
 							
 						<!-- 放置區開始 -->
 						<div class="row " id="back-end-main-area" >

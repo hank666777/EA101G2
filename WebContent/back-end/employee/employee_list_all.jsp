@@ -26,7 +26,7 @@
 <!-- 	<div class="container"> -->
 <!-- 		<div class="row "> -->
 <!-- 		<div class=""> -->
-			<table class="table table-striped text-nowrap table-bordered table-hover table-sm text-center"
+			<table class="table table-striped text-nowrap table-bordered table-hover table-sm text-center "
 							style="margin:0; padding:0px; background-color:#EEE; ocacity:.9;">
 		 		<thead>
 					<tr class="table-primary">

@@ -61,7 +61,7 @@
 							   <tr>
 							     <th><p class="h3">報名時間</p></th>
 							     <td>
-							     	<input id="f_date1" type="text" name="actPatDate">
+							     	<input id="f_date1" type="text" name="actPatDate"readonly>
 							     </td>
 							   </tr>
 							   <tr>

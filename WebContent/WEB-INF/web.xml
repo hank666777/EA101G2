@@ -66,9 +66,9 @@
 		<url-pattern>/front-end/bok/*</url-pattern>
 		<url-pattern>/front-end/messageboard/listAllMessageBoard.jsp</url-pattern>
 		<url-pattern>/front-end/onlineShop/payMoney.jsp</url-pattern>
-<!-- 		<url-pattern>/front-end/activity/activityshop2.jsp</url-pattern> -->
-<!-- 		<url-pattern>/front-end/activity/activitythx.jsp</url-pattern> -->
-<!-- 		<url-pattern>/front-end/activity/activitycart.jsp</url-pattern> -->
+		<url-pattern>/front-end/activity/activityshop2.jsp</url-pattern>
+		<url-pattern>/front-end/activity/activitythx.jsp</url-pattern>
+		<url-pattern>/front-end/activity/activitycart.jsp</url-pattern>
 		
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
