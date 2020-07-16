@@ -7,6 +7,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
 import com.chat.controller.PushSocket;
+import com.mem.model.MemVO;
 import com.product.model.*;
 import com.ptype.model.PTypeService;
 import com.ptype.model.PTypeVO;
@@ -330,8 +331,13 @@ System.out.println(pTno);
 				productVO.setpTno(pTno);
 				
 				// 建立連線 取得新增商品的key value
-				PushSocket pdPush = new PushSocket();
-				pdPush.pushproduct(productVO.getpname());
+				
+				HttpSession session = req.getSession();
+				MemVO memVO = (MemVO) session.getAttribute("memVO");
+				if(memVO != null) {
+					PushSocket pdPush = new PushSocket();
+					pdPush.pushproduct(productVO.getpname());
+				}
 
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productVO", productVO);
