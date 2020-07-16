@@ -171,12 +171,12 @@ img#demo:hover {
 		
 		//magic btn
 		$('#magicspan').on('click',function(){
-			$('#mAccount').val('SSSS');
+			$('#mAccount').val('Tommy');
 			$('#mPw').val('1234');
 			$('#mName').val('肉球');
 			$('#mPhone').val('0987654321');
 			$('#mEmail').val('fengptt47@gmail.com');
-		}); 
+		});
 	
 		$('#file').change(function() {
 			var file = $('#file')[0].files[0];
