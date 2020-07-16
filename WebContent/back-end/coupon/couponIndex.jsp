@@ -72,12 +72,12 @@ background-color: rgb(255, 255, 255) !important;
       <li class="nav-item">
         <a class="nav-link" href="<%=request.getContextPath()%>/back-end/coupon/listAllCoupon.jsp" target="coupon">查詢優惠券種類</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%=request.getContextPath()%>/back-end/myCoupon/addMyCoupon.jsp" target="coupon">發送優惠券</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="<%=request.getContextPath()%>/back-end/coupon/listAllMyCoupon.jsp" target="coupon">查詢優惠券</a>
-      </li>
+<!--       <li class="nav-item"> -->
+<%--         <a class="nav-link" href="<%=request.getContextPath()%>/back-end/myCoupon/addMyCoupon.jsp" target="coupon">發送優惠券</a> --%>
+<!--       </li> -->
+<!--       <li class="nav-item"> -->
+<%--         <a class="nav-link " href="<%=request.getContextPath()%>/back-end/coupon/listAllMyCoupon.jsp" target="coupon">查詢優惠券</a> --%>
+<!--       </li> -->
     </ul>
   </div>
 </nav>
