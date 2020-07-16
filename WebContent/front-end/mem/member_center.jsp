@@ -103,7 +103,8 @@
 		      	<%@ include file="/front-end/activity/feelings_membercenter.jsp"%> 
 		      </div>
 		      <div class="tab-pane fade" id="list-responselist" role="tabpanel" aria-labelledby="">
-		      	意見反映查詢(未導入)
+		      	<!-- 會員意見反映查詢 -->
+		      	<%@ include file="/front-end/suggest/list_my_sugest_memcenter.jsp"%> 
 		      </div>
 		      <div class="tab-pane fade" id="list-messagess" role="tabpanel" aria-labelledby="">
 		      	<!-- 會員留言紀錄 -->

@@ -44,7 +44,7 @@
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="${pageContext.request.contextPath}/front-end/about_us.jsp">關於我們</a> 
-							<a class="dropdown-item" href="#">意見反映</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/front-end/suggest/addSuggest.jsp">意見反映</a>
 						</div>
 					</li>
 				</ul>
