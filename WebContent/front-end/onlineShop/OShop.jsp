@@ -442,8 +442,6 @@ div.card.show div.flap2 {
 <!-- 	</script> -->
 	<!-- 以上為測試AJAX非同步查詢，撰寫中 -->
 	
-=======
->>>>>>> 6453d85f138c77a68f944180332451843ca09d4d
 	
 	<%@ include file="/front-end/front-end-footer.jsp"%>
 	
@@ -467,6 +465,10 @@ div.card.show div.flap2 {
 			});
 		});
 	});
+	
+	
+	//新商品推播
+	
 	
 	
 	$(document).ready(function () {

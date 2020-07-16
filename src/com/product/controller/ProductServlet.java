@@ -6,9 +6,12 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import com.chat.controller.PushSocket;
 import com.product.model.*;
 import com.ptype.model.PTypeService;
 import com.ptype.model.PTypeVO;
+
+import redis.clients.jedis.Jedis;
 
 @MultipartConfig
 public class ProductServlet extends HttpServlet {
@@ -259,6 +262,7 @@ System.out.println(pTno);
 		if ("insert".equals(action)) { 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
+			
 			try {
 				
 			/**1.接收請求參數 - 輸入格式的錯誤處理**/
@@ -324,6 +328,10 @@ System.out.println(pTno);
 				productVO.setINVStatus(invStatus);
 				productVO.setpStatus(pStatus);
 				productVO.setpTno(pTno);
+				
+				// 建立連線 取得新增商品的key value
+				PushSocket pdPush = new PushSocket();
+				pdPush.pushproduct(productVO.getpname());
 
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productVO", productVO);

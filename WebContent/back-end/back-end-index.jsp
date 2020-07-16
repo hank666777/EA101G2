@@ -152,10 +152,6 @@
 								  </thead>
 								  <tbody>
 								    <tr>
-								      <th class="text-center" >1 </th>
-								      <td class="text-center" style="color:#F00;">Mark</td>
-								    </tr>
-								    <tr>
 								      <th class="text-center" >訂位未報到筆數</th>
 								      <td class="text-center" style="color:#F00;">${bokCount}</td>
 								    </tr>
@@ -243,7 +239,7 @@
 	var self = '${employeeVO.eAccount}';
 	var webSocket;                   
 
-	$(".btn-raised").click(function connect() {
+	function connect() {
 		// create a websocket
 		webSocket = new WebSocket(endPointURL);
 
@@ -299,7 +295,7 @@
 		webSocket.onclose = function(event) {
 			console.log("Disconnected!");
 		};
-	});
+	}
 	
 	function sendMessage() {
 		var inputMessage = document.getElementById("message");
