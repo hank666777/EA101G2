@@ -21,7 +21,7 @@
 }
 </style>
 </head>
-<body>
+<body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg">
 
 	<%@ include file="/back-end/back-end-header.jsp" %>
 <!-- 	<div class="container"> -->
@@ -45,7 +45,7 @@
 
 				<table style="margin-top:10px;"
 					class="table table-striped table-bordered table-hover table-sm text-center justify-content-center">
-					<thead>
+					<thead style="background-color:#FFF; opacity:.9;">
 						<tr>
 							<th class="text-nowrap align-middle table-primary">員工編號</th>
 							<td class="align-middle">${employeeVO.empno}</td>

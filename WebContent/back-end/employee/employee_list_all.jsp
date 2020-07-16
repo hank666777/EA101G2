@@ -20,14 +20,14 @@
 	<title>MISS M員工資料查詢</title>
 	<%@ include file="/back-end/back-end-head.jsp" %>
 </head>
-<body>
+<body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg">
 
 <%@ include file="/back-end/back-end-header.jsp" %>
 <!-- 	<div class="container"> -->
 <!-- 		<div class="row "> -->
 <!-- 		<div class=""> -->
-			<table class="table table-striped text-nowrap table-bordered table-hover table-sm text-center"
-							style="margin:0; padding:0px;">
+			<table class="table table-striped text-nowrap table-bordered table-hover table-sm text-center "
+							style="margin:0; padding:0px; background-color:#EEE; ocacity:.9;">
 		 		<thead>
 					<tr class="table-primary">
 						<th scope="col" class="">員工編號</th>

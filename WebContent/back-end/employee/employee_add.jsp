@@ -15,7 +15,7 @@
 	<%@ include file="/back-end/back-end-head.jsp" %>
 
 </head>
-<body>
+<body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg">
 	<%@ include file="/back-end/back-end-header.jsp" %>
 <!-- 	<div class="container"> -->
 	
@@ -48,6 +48,7 @@
 		<div class="row justify-content-center  ">
 			<div id="col-7 text-center ">
 				<table class="table table-striped table-bordered table-shover  text-center">
+					<tbody style="background-color:#FFF; opacity:.9;">
 					<tr>
 						<th class="text-nowrap align-middle table-primary" scope="col">帳號</th>
 						<td>隨機生成</td>
@@ -115,14 +116,14 @@
 							</div>
 						</td>
 					</tr>
-						
+						</tbody>
 				</table>
 			</div>
 		</div>
 		
 		<div class="row justify-content-center">
 			<input type="hidden" name="action" value="insert"> 
-			<input class="btn btn-outline-success" type="submit" id="sendbtn" value="送出新增" >
+			<input class="btn btn-success" type="submit" id="sendbtn" value="送出新增" >
 			<span id="magicspan" class="badge badge-success">.</span>
 		</div>
 		</FORM>

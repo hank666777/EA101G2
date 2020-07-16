@@ -26,11 +26,13 @@ public class SugestDAO implements SugestDAO_interface {
 
 	public static final String INSERT_STMT = "INSERT INTO RESPONSELIST (suggestno,SuggestDate,SuggestDetail,ResStatus,responseDetail,Memno) VALUES "
 			+ "(to_char(sysdate,'yyyymmdd')||'-RL'||LPAD(to_char(Suggestno_seq.NEXTVAL),4,'0'), sysdate, ?,?,?,?)";
-	public static final String GET_ALL_STMT = "SELECT SuggestNo,to_char(SuggestDate,'yyyy-mm-dd hh:mm:ss') SuggestDate,SuggestDetail,ResStatus,responseDetail,MemNo from ResponseList order by suggestno ";
-	public static final String GET_ONE_STMT = "SELECT SuggestNo,to_char(SuggestDate,'yyyy-mm-dd hh:mm:ss') SuggestDate,SuggestDetail,ResStatus,responseDetail,MemNo from ResponseList where suggestno=? ";
+	public static final String GET_ALL_STMT = 
+			"SELECT SuggestNo,to_char(SuggestDate,'yyyy-mm-dd hh:mm:ss') SuggestDate,SuggestDetail,ResStatus,responseDetail,MemNo from RESPONSELIST order by suggestno ";
+	public static final String GET_ONE_STMT = 
+			"SELECT SuggestNo,to_char(SuggestDate,'yyyy-mm-dd hh:mm:ss') SuggestDate,SuggestDetail,ResStatus,responseDetail,MemNo from RESPONSELIST where suggestno=? ";
 	public static final String DELETE = "DELETE From ResponseList where suggestNo = ?";
 	public static final String UPDATE = "UPDATE RESPONSELIST set SuggestDate=?,SuggestDetail=?,ResStatus=?,Memno=?,responseDetail=? where suggestno=? ";
-	public static final String GET_MYSUGLIST_STMT = "SELECT * FROM from ResponseList where memno=? ";
+	public static final String GET_MYSUGLIST_STMT = "SELECT * FROM RESPONSELIST where memno=? ";
 	@Override
 	public void insert(SugestVO sugestVO) {
 		Connection con = null;
@@ -276,7 +278,7 @@ public class SugestDAO implements SugestDAO_interface {
 				sugestVO.setSuggestDate(rs.getTimestamp("SuggestDate"));
 				sugestVO.setSuggestDetail(rs.getString("SuggestDetail"));
 				sugestVO.setResStatus(rs.getInt("ResStatus"));
-				sugestVO.setResponseDetail(rs.getString("responseDetail"));
+				sugestVO.setResponseDetail(rs.getString("RESPONSEDETAIL"));
 				sugestVO.setMemno(rs.getString("MemNo"));
 				list.add(sugestVO);
 			}

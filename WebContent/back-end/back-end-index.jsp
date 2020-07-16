@@ -125,13 +125,13 @@
 					</div>
 
 	  		</div>
-	  		
-	  		<div class="col-10" style="padding:0;">
+	  		<div class="col-4"></div>
+	  		<div class="col-3 align-self-center " style="padding:0;">
 							
 	  			<div class="container ">
-						<div class="row banner align-items-center" style="background-color:#EEE; opacity:.8;">
+						<div class="row banner" style="">
 							<!-- 放置區開始 -->
-							<div class="col-12 text-center">
+							<div class="col text-center ">
 <%
 	
 	long bokCount = new BokService().getAll().stream().filter(bok -> bok.getBkStatus().equals(0)).count();
@@ -142,8 +142,8 @@
 	
 	
 %>
-								<table class="table table-sm text-nowarp table-striped table-hover"
-												style="font-size:2em;">
+								<table class="table table-sm text-nowrap table-striped table-hover"
+												style="font-size:2em; background-color:#EEE; opacity:.9;">
 									<thead>
 								    <tr>
 								      <th class="text-center"></th>

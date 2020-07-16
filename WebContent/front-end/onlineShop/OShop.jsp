@@ -412,37 +412,6 @@ div.card.show div.flap2 {
 		</div>
 	</div>
 
-	<!-- 以下為測試AJAX非同步查詢，撰寫中 -->
-<!-- 	<div class="container"> -->
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col w-50"> -->
-<!-- <!-- 				<form> --> 
-				
-<!-- 				<input id="ProductSearch" type="text" class="form-control"> -->
-<!-- <!-- 				</form> --> 
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- 	<script> -->
-<!-- // 	$('#ProductSearch').on('chnage',function(data){ -->
-<!-- // 		$.ajax({ -->
-<%-- // 			url:'${pageContext.request.contextPath}/product/OnlineShopServlet.do', --%>
-<!-- // 			type:'post', -->
-<!-- // 			name:'action', -->
-<!-- // 			data:{ -->
-<!-- // 				name:'', -->
-<!-- // 			}, -->
-			
-<!-- // 			success : function(data) { -->
-<!-- // 				$("#demo").html(data); -->
-<!-- // 			} -->
-<!-- // 		}) -->
-<!-- // 	}) -->
-	
-<!-- 	</script> -->
-	<!-- 以上為測試AJAX非同步查詢，撰寫中 -->
-	
-	
 	<%@ include file="/front-end/front-end-footer.jsp"%>
 	
 	

@@ -25,7 +25,7 @@ input{
 </style>
 </head>
 
-<body>
+<body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg">
 
 	<%@ include file="/back-end/back-end-header.jsp" %>
 	<div class="container">
@@ -58,7 +58,7 @@ input{
 
 		<form method="post" action="${pageContext.request.contextPath}/back-end/employee/employee.do" name="form1" enctype="multipart/form-data">
 		<div class="row justify-content-center">
-			<div class="col-xl-6 ">
+			<div class="col-xl-6" style="background-color:#FFF; opacity:.9;">
 				
 				<table style="margin-top:15px;" 
 					class="table table-striped table-bordered table-hover table-sm text-center justify-content-center">
