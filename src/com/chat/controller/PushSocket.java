@@ -33,7 +33,6 @@ public class PushSocket {
 	public void pushproduct(String pname){
 		session.getAsyncRemote().sendText(pname);
 	}
-	
 }
 
 
