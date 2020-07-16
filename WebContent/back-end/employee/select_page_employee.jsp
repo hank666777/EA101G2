@@ -11,7 +11,7 @@
 	<title>MISS M-員工管理</title>
 	<%@ include file="/back-end/back-end-head.jsp" %>
 </head>
-<body>
+<body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg">
 
 	<%@ include file="/back-end/back-end-header.jsp" %>
 
@@ -157,14 +157,14 @@
 		<div class="row justify-content-center ">
 			<div class="col-xl-2 text-center ">
 				<form method="post" action="${pageContext.request.contextPath}/back-end/employee/employee.do">
-					<b>選擇員工姓名:</b> 
+					<p class="h4" style="color:#FFF;">選擇員工姓名:</p> 
 					<select class="custom-select d-block w-100" size="" name="empno" id="">
 						<c:forEach var="employeeVO" items="${empSvc.all}">
 							<option value="${employeeVO.empno}">${employeeVO.eName}
 						</c:forEach>
 					</select> 
 					<input type="hidden" name="action" value="getOne_For_Display">
-					<input class="btn btn-outline-warning sendbtn" type="submit" value="送 出">
+					<input class="btn btn-warning sendbtn" type="submit" value="送 出">
 				</form>
 			</div>
 				
@@ -173,12 +173,12 @@
 					<div class="row text-center">
 						<div class="col">
 							<!-- 請輸入查詢字：員工編號或姓名或職稱或狀態 -->
-							<b>輸入員工編號(如E0000001):</b> 
+							<p class="h4" style="color:#FFF;">輸入員工編號(如E0000001):</p> 
 							<input type="text" name="empno"	class="form-control"> 
 							<!-- 準備改寫，送請求致控制器list_search_employee -->
 							<input type="hidden" name="action" value="getOne_For_Display"> 
 <!-- 								<input type="hidden" name="action" value="list_search_employee">  -->
-							<input class="btn btn-outline-warning sendbtn" type="submit" name="送出">
+							<input class="btn btn-warning sendbtn" type="submit" name="送出">
 							
 						</div>
 					</div>
@@ -203,7 +203,7 @@
 		<div class="row justify-content-center">
 			<div class="col-xl-3 chefPic ">
 				<figure class="figure">
-				<figcaption class="figure-caption" style="font-size:1.3em;">新增員工</figcaption>
+				<figcaption class="figure-caption" style="font-size:1.3em; color:#FFF;">新增員工</figcaption>
 				<br/><br/>
 				<a href="${pageContext.request.contextPath}/back-end/employee/employee_add.jsp">
 				<img src="${pageContext.request.contextPath}/images/back-end/employee/selectPage03.png" class="card-img-top" alt="...">
@@ -213,7 +213,7 @@
 			
 			<div class="col-xl-3 chefPic">
 				<figure class="figure">
-				<figcaption class="figure-caption" style="font-size:1.3em;">查詢所有員工</figcaption>
+				<figcaption class="figure-caption" style="font-size:1.3em; color:#FFF;">查詢所有員工</figcaption>
 				<br/><br/>
 				<a href="${pageContext.request.contextPath}/back-end/employee/employee_list_all.jsp">
 				<img src="${pageContext.request.contextPath}/images/back-end/employee/selectPage02.png" class="card-img-top" alt="...">
@@ -223,7 +223,7 @@
 			
 			<div class="col-xl-3 chefPic">
 				<figure class="figure">
-				<figcaption class="figure-caption" style="font-size:1.3em;">個人資料修改</figcaption>
+				<figcaption class="figure-caption" style="font-size:1.3em; color:#FFF;">個人資料修改</figcaption>
 				<br/><br/>
 				<a href="${pageContext.request.contextPath}/back-end/employee/employee_update.jsp">
 				<img src="${pageContext.request.contextPath}/images/back-end/employee/selectPage01.png" class="card-img-top" alt="...">
