@@ -7,7 +7,7 @@ public class ActivitytypeService {
 	private ActivitytypeDAO_interface AVO;
 	
 	public ActivitytypeService() {
-		AVO = new ActivitypeJNDIDAO();
+		AVO = new ActivitytypeDAO();
 	}
 	
 	public ActivitytypeVO add(String ACTTYNO, String ACTTYNAME) {

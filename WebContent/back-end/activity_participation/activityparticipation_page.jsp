@@ -4,42 +4,48 @@
 <%@ page import="com.employee.model.*"%>
 <%@ page import="com.permission.model.*"%>
 <%@ page import="com.features.model.*"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>活動報名管理</title>
 
 <style>
-table#table-1 {
-	width: 450px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-	border: 3px ridge Gray;
-	height: 80px;
-	text-align: center;
-}
 
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
+	.actlabol{
+		text-align:center;
+		margin-bottom:30px;
+	}
 
-h4 {
-	color: blue;
-	display: inline;
-}
+	.card{
+ 		opacity:0.9; 
+ 		width:550px; 
+ 		margin:50px auto; 
+		padding:50px; 
+	}
+
+	.shorthyper{
+		display: inline;
+		margin-left: 5px;
+	}
+	
+	.shorthyper2{
+		display: inline;
+		margin-left: 20px;
+		
+	}
+
 </style>
 <%@ include file="/back-end/back-end-head.jsp" %>
 <body>
 
 <%@ include file="/back-end/back-end-header.jsp" %>
+	
 	<div class="container">
-		<div class="row text-center">
-			<div class="col">
+		<div class="row">
+			<div class="card">
 
-				<h3>活動報名管理</h3>
+				<h3 class="actlabol">活動報名管理</h3>
 
 				<%-- 錯誤列表 --%>
 				<c:if test="${not empty errorMsgs}">
@@ -51,9 +57,11 @@ h4 {
 					</ul>
 				</c:if>
 				<ul>
-					<li><a
-						href="<%=request.getContextPath()%>/back-end/activity_participation/listAllActivityparticipation.jsp">List</a></li>
-
+					
+					<li class="shorthyper"><a href="<%=request.getContextPath()%>/back-end/activity_participation/addparticipation.jsp">新增報名紀錄</a></li>
+					
+					<li class="shorthyper2"><a  href="<%=request.getContextPath()%>/back-end/activity_participation/listAllActivityparticipation.jsp">活動報名列表</a></li>
+			
 					<jsp:useBean id="actPASvc" scope="page"
 						class="com.actparticipation.model.ParticipationService" />
 
@@ -68,14 +76,7 @@ h4 {
 							<input type="submit" value="送出">
 						</FORM>
 					</li>
-				</ul>
 
-				<h3>活動報名管理</h3>
-
-				<ul>
-					<li><a
-						href="<%=request.getContextPath()%>/back-end/activity_participation/addparticipation.jsp">ADD</a>
-						a new participation</li>
 				</ul>
 			</div>
 		</div>

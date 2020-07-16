@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.employee.model.*"%>
 <%@ page import="com.permission.model.*"%>
-<%@ page import="com.features.model.*"%>
+<%@ page import="com.features.model.*"%>"%>
 
 <html>
 <head>
@@ -11,35 +11,44 @@
 <title>活動推文管理</title>
 
 <style>
-table#table-1 {
-	width: 450px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-	border: 3px ridge Gray;
-	height: 80px;
-	text-align: center;
-}
+	body{
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: center;
+	}
 
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
+	.actlabol{
+		text-align:center;
+		margin-bottom:30px;
+	}
 
-h4 {
-	color: blue;
-	display: inline;
-}
+	.card{
+ 		opacity:0.9; 
+ 		width:550px; 
+ 		margin:50px auto; 
+		padding:50px; 
+	}
+
+	.shorthyper{
+		display: inline;
+		margin-left: 5px;
+	}
+	
+	.shorthyper2{
+		display: inline;
+		margin-left: 15px;
+	}
+	
 </style>
 <%@ include file="/back-end/back-end-head.jsp" %>
 <body>
 
 <%@ include file="/back-end/back-end-header.jsp" %>
 	<div class="container">
-		<div class="row text-center">
-			<div class="col">
-				<h3>資料查詢:</h3>
+		<div class="row">
+			<div class="card">
+				<h3 class="actlabol">資料查詢:</h3>
 
 				<%-- 錯誤列表 --%>
 				<c:if test="${not empty errorMsgs}">
@@ -51,10 +60,11 @@ h4 {
 					</ul>
 				</c:if>
 				<ul>
-					<li><a
-						href="<%=request.getContextPath()%>/back-end/activity_post/listAllActivitypost.jsp">List</a>
-						all actpost. <br>
-					<br></li>
+				
+					<li class="shorthyper"><a href="<%=request.getContextPath()%>/back-end/activity_post/addactivitypost.jsp">新增活動心得</a></li>
+					
+					<li class="shorthyper2"><a href="<%=request.getContextPath()%>/back-end/activity_post/listAllActivitypost.jsp">活動心得列表</a></li>
+		
 
 					<jsp:useBean id="actPSvc" scope="page"
 						class="com.activitypost.model.ActivitypostService" />
@@ -71,15 +81,6 @@ h4 {
 						</FORM>
 					</li>
 
-
-				</ul>
-
-				<h3>活動管理</h3>
-
-				<ul>
-					<li><a
-						href="<%=request.getContextPath()%>/back-end/activity_post/addactivitypost.jsp">ADD</a>
-						a new activity</li>
 				</ul>
 
 			</div>

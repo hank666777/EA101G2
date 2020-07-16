@@ -11,6 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import com.activity.model.ActivityJNDIDAO;
+import com.activity.model.ActivityVO;
+import com.activitypost.model.ActivitypostJNIDAO;
 import com.activitypost.model.ActivitypostService;
 import com.activitypost.model.ActivitypostVO;
 
@@ -244,6 +247,31 @@ public class ActivitypostServlet extends HttpServlet {
 					}
 
 				}
+				
+				if("getwindowActivity".equals(action)) {
+					
+					try {
+						String actPostno = new String(req.getParameter("actPostno"));
+						
+						ActivitypostJNIDAO dao = new ActivitypostJNIDAO();
+						ActivitypostVO ACPVO = dao.findByPK(actPostno);
+						
+						req.setAttribute("ACPVO", ACPVO);
+						
+						boolean openModal=true;
+						req.setAttribute("openModal", openModal);
+						
+						RequestDispatcher successView = req.getRequestDispatcher("/back-end/activity_post/listAllActivitypost.jsp");
+						
+						successView.forward(req, res);
+						return;
+						
+					}catch(Exception e) {
+						throw new ServletException(e);
+					}
+					
+				}
+				
 			}
 		}
 	

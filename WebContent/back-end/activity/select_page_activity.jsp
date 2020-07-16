@@ -21,30 +21,30 @@
 		<div class="row justify-content-center">
 			<div class="col-xl-3 chefPic ">
 				<figure class="figure">
-				<figcaption class="figure-caption" style="font-size:1.3em;">活動新增查詢</figcaption>
+				<figcaption class="figure-caption" style="font-size:1.3em;margin-top:200px;">活動新增查詢</figcaption>
 				<br/><br/>
 				<a href="${pageContext.request.contextPath}/back-end/activity/activity_page.jsp">
-				<img src="${pageContext.request.contextPath}/images/back-end/employee/selectPage03.png" class="card-img-top" alt="...">
+				<img src="${pageContext.request.contextPath}/images/back-end/start.jpeg" class="card-img-top" alt="...">
 				</a>
 				</figure>
 			</div>
 			
 			<div class="col-xl-3 chefPic">
 				<figure class="figure">
-				<figcaption class="figure-caption" style="font-size:1.3em;">活動貼文新增查詢</figcaption>
+				<figcaption class="figure-caption" style="font-size:1.3em;margin-top:200px;">活動心得新增查詢</figcaption>
 				<br/><br/>
 				<a href="${pageContext.request.contextPath}/back-end/activity_post/activitypost_page.jsp">
-				<img src="${pageContext.request.contextPath}/images/back-end/employee/selectPage02.png" class="card-img-top" alt="...">
+				<img src="${pageContext.request.contextPath}/images/back-end/elephant.jpeg" class="card-img-top" alt="...">
 				</a>
 				</figure> 
 			</div>
 			
 			<div class="col-xl-3 chefPic">
 				<figure class="figure">
-				<figcaption class="figure-caption" style="font-size:1.3em;">活動心得新增查詢</figcaption>
+				<figcaption class="figure-caption" style="font-size:1.3em;margin-top:200px;">活動報名新增查詢</figcaption>
 				<br/><br/>
 				<a href="${pageContext.request.contextPath}/back-end/activity_participation/activityparticipation_page.jsp">
-				<img src="${pageContext.request.contextPath}/images/back-end/employee/selectPage01.png" class="card-img-top" alt="...">
+				<img src="${pageContext.request.contextPath}/images/back-end/catengl.jpeg" class="card-img-top" alt="...">
 				</a>
 				</figure> 
 			</div>

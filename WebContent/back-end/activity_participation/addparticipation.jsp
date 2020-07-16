@@ -16,51 +16,29 @@
 <title>活動報名記錄新增- addparticipation.jsp</title>
 
 <style>
-table#table-1 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
 
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
+	body{
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: center;
+	}
 
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
+	.card{
+		opacity:0.9;
+		width:1200px;
+		margin:50px auto;
+		padding:50px;
+	}
 
-<style>
-table {
-	width: 500px;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-}
-
-table, th, td {
-	border: 0px solid #CCCCFF;
-}
-
-th, td {
-	padding: 1px;
-}
 </style>
 <%@ include file="/back-end/back-end-head.jsp" %>
 <body>
 
 <%@ include file="/back-end/back-end-header.jsp" %>
 	<div class="container">
-		<div class="row text-center">
-			<div class="col">
-				<h4>
-					<a
-						href="<%=request.getContextPath()%>/back-end/activity_participation/activityparticipation_page.jsp">回首頁</a>
-				</h4>
+		<div class="row text-center" style="margin-top:50px; text-align:center;">
+			<div class="card" style="width: 700px;">
 
 				<h3>資料新增</h3>
 

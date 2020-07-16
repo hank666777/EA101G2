@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import com.activity.model.ActivityJNDIDAO;
 import com.activity.model.ActivityService;
 import com.activity.model.ActivityVO;
 
@@ -356,5 +357,51 @@ public class ActivityServlet extends HttpServlet {
 			}
 
 		}
+			if("getwindowActivity".equals(action)) {
+			
+			try {
+				String actno = new String(req.getParameter("actno"));
+				
+				ActivityJNDIDAO dao = new ActivityJNDIDAO();
+				ActivityVO ACVO = dao.findByPK(actno);
+				
+				req.setAttribute("ACVO", ACVO);
+				
+				boolean openModal=true;
+				req.setAttribute("openModal", openModal);
+				
+				RequestDispatcher successView = req.getRequestDispatcher("/back-end/activity/listAllActivity.jsp");
+				
+				successView.forward(req, res);
+				return;
+				
+			}catch(Exception e) {
+				throw new ServletException(e);
+			}
+			
+		}
+			if("getwindowActivity2".equals(action)) {
+				
+				try {
+					String actno = new String(req.getParameter("actno"));
+					
+					ActivityJNDIDAO dao = new ActivityJNDIDAO();
+					ActivityVO actVO = dao.findByPK(actno);
+					
+					req.setAttribute("actVO", actVO);
+					
+					boolean openModal=true;
+					req.setAttribute("openModal", openModal);
+					
+					RequestDispatcher successView = req.getRequestDispatcher("/back-end/activity/listOneActivity.jsp");
+					
+					successView.forward(req, res);
+					return;
+					
+				}catch(Exception e) {
+					throw new ServletException(e);
+				}
+				
+			}
 	}
 }

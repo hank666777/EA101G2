@@ -16,40 +16,34 @@
 <title>活動推文資料 - listOneactivitypost.jsp</title>
 
 <style>
-table#table-1 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
+	.thact{
+		text-align: center;
+		padding: 5px;
+		border: orange 2px solid;
+	}
+	
+	.tdact{
+		text-align: center;
+		padding: 5px;
+		border: orange 2px solid;
+	}
 
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
+	.card{
+		opacity:0.9;
+		width:1200px;
+		margin:50px auto;
+		padding:50px;
+	}
 
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
-
-<style>
-table {
-	width: 750px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
+	.clicksure{
+		text-align:left;
+		margin-top:10px;
+	}
+	
+	.aligncenter{
+		text-align:left;
+	}
+	
 </style>
 <%@ include file="/back-end/back-end-head.jsp" %>
 <body>
@@ -57,28 +51,27 @@ th, td {
 <%@ include file="/back-end/back-end-header.jsp" %>
 	<div class="container">
 		<div class="row text-center">
-			<div class="col">
-				<h3>活動資料 - ListOneActivitypost.jsp</h3>
-				<h4>
-					<a
-						href="<%=request.getContextPath()%>/back-end/activity_post/activitypost_page.jsp">回首頁</a>
+			<div class="card">
+				<h3>活動資料</h3>
+				<h4 class="aligncenter">
+					<a href="<%=request.getContextPath()%>/back-end/activity_post/activitypost_page.jsp">回首頁</a>
 				</h4>
 				<table>
 					<tr>
-						<th>活動文章編號</th>
-						<th>活動編號</th>
-						<th>會員編號</th>
-						<th>活動推文日期</th>
-						<th>活動推文內容</th>
-						<th>活動推文照片</th>
+						<th class="thact">活動文章編號</th>
+						<th class="thact">活動編號</th>
+						<th class="thact">會員編號</th>
+						<th class="thact">活動推文日期</th>
+						<th class="thact">活動推文內容</th>
+						<th class="thact">活動推文照片</th>
 					</tr>
 					<tr>
-						<td><%=actPVO.getActPostno()%></td>
-						<td><%=actPVO.getActno()%></td>
-						<td><%=actPVO.getMemno()%></td>
-						<td><%=actPVO.getActPostDate()%></td>
-						<td><%=actPVO.getActPostCon()%></td>
-						<td><%=actPVO.getActPostPic()%></td>
+						<td class="tdact"><%=actPVO.getActPostno()%></td>
+						<td class="tdact"><%=actPVO.getActno()%></td>
+						<td class="tdact"><%=actPVO.getMemno()%></td>
+						<td class="tdact"><%=actPVO.getActPostDate()%></td>
+						<td class="tdact"><%=actPVO.getActPostCon()%></td>
+						<td class="tdact"><img src="<%=request.getContextPath()%>/back-end/activity_post/activitypostpicServlet.do?actPostno=${actPVO.actPostno}" width="300px" height="250px"></td>
 					</tr>
 				</table>
 			</div>

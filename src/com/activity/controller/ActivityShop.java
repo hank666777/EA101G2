@@ -50,12 +50,12 @@ public class ActivityShop extends HttpServlet {
 			req.setAttribute("actno",actno);
 			/** 進入 **/ 
 			String url = "/front-end/activity/activitycart.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);
 
 		}catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/activity/activityshop.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/activityshop.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -117,34 +117,34 @@ public class ActivityShop extends HttpServlet {
 
 			try {
 			/**取值**/
-				MemVO memVO = (MemVO) session.getAttribute("memVO"); 
-				String memno = memVO.getMemno();
-	
-				String actno = req.getParameter("actno");
-	
-				Timestamp actPatDate = null;
-			
-				try {
-					actPatDate = Timestamp.valueOf(req.getParameter("actPatDate").trim());
-				}catch(Exception e) {
-					actPatDate=new Timestamp(System.currentTimeMillis());
-					errorMsgs.add("請輸入報名時間");
-				}
+			MemVO memVO = (MemVO) session.getAttribute("memVO"); 
+			String memno = memVO.getMemno();
 
-				Integer actParEnr = null;
-				try {
-					actParEnr = new Integer(req.getParameter("actParEnr").trim());
-				}catch(NumberFormatException e) {
-					actParEnr = 0;
-					errorMsgs.add("請輸入報名人數");
-				}
-				Integer actFee = null;
-				try {
-					actFee = new Integer(req.getParameter("actTalFee").trim());
-				}catch(NumberFormatException e){
-					actFee = 0;
-					errorMsgs.add("請輸入報名費用");
-				}
+			String actno = req.getParameter("actno");
+
+			Timestamp actPatDate = null;
+			
+			try {
+				actPatDate = Timestamp.valueOf(req.getParameter("actPatDate").trim());
+			}catch(Exception e) {
+				actPatDate=new Timestamp(System.currentTimeMillis());
+				errorMsgs.add("請輸入報名時間");
+			}
+
+			Integer actParEnr = null;
+			try {
+				actParEnr = new Integer(req.getParameter("actParEnr").trim());
+			}catch(NumberFormatException e) {
+				actParEnr = 0;
+				errorMsgs.add("請輸入報名人數");
+			}
+			Integer actFee = null;
+			try {
+				actFee = new Integer(req.getParameter("actTalFee").trim());
+			}catch(NumberFormatException e){
+				actFee = 0;
+				errorMsgs.add("請輸入報名費用");
+			}
 //			Integer actTotal = null;
 //			try {
 //				actTotal = new Integer(req.getParameter("actTotal").trim());
@@ -157,8 +157,8 @@ public class ActivityShop extends HttpServlet {
 //			Integer actTalPeo = Integer.valueOf(actTotal);
 
 			//取得總價格
-				actFee *= actParEnr;
-				Integer actTalFee = Integer.valueOf(actFee);
+			actFee *= actParEnr;
+			Integer actTalFee = Integer.valueOf(actFee);
 			
 			
 //			ActivityService actSvc = new ActivityService();
@@ -169,31 +169,29 @@ public class ActivityShop extends HttpServlet {
 			
 			//====================================================
 			
-				ParticipationVO PVO = new ParticipationVO();
-				PVO.setMemno(memno);
-				PVO.setActno(actno);
-				PVO.setActPatTime(actPatDate);
-				PVO.setActParEnr(actParEnr);
-				PVO.setActTalFee(actTalFee);
+			ParticipationVO PVO = new ParticipationVO();
+			PVO.setMemno(memno);
+			PVO.setActno(actno);
+			PVO.setActPatTime(actPatDate);
+			PVO.setActParEnr(actParEnr);
+			PVO.setActTalFee(actTalFee);
 			
-				if(!errorMsgs.isEmpty()) {
-					req.setAttribute("PVO",PVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/activity/activitycart.jsp");
-					failureView.forward(req, res);
-					return; //程式中斷
-				}
+			if(!errorMsgs.isEmpty()) {
+				req.setAttribute("PVO",PVO);
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/activity/activitycart.jsp");
+				failureView.forward(req, res);
+				return; //程式中斷
+			}
 
-				/**********2.開始新增資料***************/
-				ParticipationService actPvc = new ParticipationService();
-				actPvc.add(memno, actno, actPatDate, actParEnr, actTalFee);
+			/**2 確認資料**/
+			ParticipationService actPvc = new ParticipationService();
+			actPvc.add(memno, actno, actPatDate, actParEnr, actTalFee);
 //			req.setAttribute("acttVO", acttVO);
 //			req.setAttribute("actTalFee", actTalFee);
-				/**3 傳入資料，準備轉交*************/
-				String url = "/front-end/activity/activitythx.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交jsp
-				successView.forward(req, res);
-				
-				/**********其他可能的錯誤處理************/
+			/**3 傳入資料**/
+			String url = "/front-end/activity/activitythx.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交jsp
+			successView.forward(req, res);
 			}catch(Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/activity/avtivitycart.jsp");

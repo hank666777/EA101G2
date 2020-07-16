@@ -15,76 +15,73 @@
 <head>
 <title>活動報名紀錄資料</title>
 <style>
-table#table-1 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
+	
+	body{
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: center;
+	}
+	
+	.thact{
+		text-align: center;
+		padding: 5px;
+		border: orange 2px solid;
+	}
+	
+	.tdact{
+		text-align: center;
+		padding: 5px;
+		border: orange 2px solid;
+	}
 
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
+	.card{
+		opacity:0.9;
+		width:1200px;
+		margin:50px auto;
+		padding:50px;
+	}
 
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
-
-<style>
-table {
-	width: 750px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
+	.clicksure{
+		text-align:left;
+		margin-top:10px;
+	}
 </style>
 <%@ include file="/back-end/back-end-head.jsp" %>
 <body>
 
 <%@ include file="/back-end/back-end-header.jsp" %>
-	<div class="container">
-		<div class="row text-center">
-			<div class="col">
-				<h3>活動報名紀錄資料-listOneactivityparticipation.jsp</h3>
+<!-- 	<div class="container"> -->
+<%-- 		<div class="row> --%>
+			<div class="card">
+				
+				<h3>活動報名紀錄資料</h3>
 				<h4>
-					<a
-						href="<%=request.getContextPath()%>/back-end/activity_participation/activityparticipation_page.jsp">回首頁</a>
+					<a href="<%=request.getContextPath()%>/back-end/activity_participation/activityparticipation_page.jsp">回首頁</a>
 				</h4>
 
 				<table>
 					<tr>
-						<th>活動報名編號</th>
-						<th>會員編號</th>
-						<th>活動編號</th>
-						<th>活動報名時間</th>
-						<th>活動報名人數</th>
-						<th>報名總費用</th>
+						<th class="thact">活動報名編號</th>
+						<th class="thact">會員編號</th>
+						<th class="thact">活動編號</th>
+						<th class="thact">活動報名時間</th>
+						<th class="thact">活動報名人數</th>
+						<th class="thact">報名總費用</th>
 					</tr>
 					<tr>
-						<td><%=PVO.getAvPartno()%></td>
-						<td><%=PVO.getMemno()%></td>
-						<td><%=PVO.getActno()%></td>
-						<td><%=PVO.getActPatTime()%></td>
-						<td><%=PVO.getActParEnr()%></td>
-						<td><%=PVO.getActTalFee()%></td>
+						<td class="tdact"><%=PVO.getAvPartno()%></td>
+						<td class="tdact"><%=PVO.getMemno()%></td>
+						<td class="tdact"><%=PVO.getActno()%></td>
+						<td class="tdact"><%=PVO.getActPatTime()%></td>
+						<td class="tdact"><%=PVO.getActParEnr()%></td>
+						<td class="tdact"><%=PVO.getActTalFee()%></td>
 					</tr>
 				</table>
-
 			</div>
-		</div>
-	</div>
+<!-- 		</div> -->
+<!-- 	</div> -->
+
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 </body>
 </html>

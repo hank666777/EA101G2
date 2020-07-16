@@ -15,51 +15,42 @@
 <head>
 <title>所有活動推文資料 - listAllActpost.jsp</title>
 <style>
-table#table-1 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
 
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
+	.thact{
+		text-align: center;
+		padding: 5px;
+		border: orange 2px solid;
+	}
+	
+	.tdact{
+		text-align: center;
+		padding: 5px;
+		border: orange 2px solid;
+	}
 
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
+	.card{
+		opacity:0.9;
+		width:1200px;
+		margin:50px auto;
+		padding:50px;
+	}
 
-<style>
-table {
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
+	.clicksure{
+		text-align:left;
+		margin-top:10px;
+	}
 
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
 </style>
 <%@ include file="/back-end/back-end-head.jsp" %>
 <body>
 
 <%@ include file="/back-end/back-end-header.jsp" %>
 	<div class="container">
-		<div class="row text-center">
-			<div class="col">
+		<div class="row">
+			<div class="card">
 				<h3>所有活動推文資料</h3>
 				<h4>
-					<a href="<%=request.getContextPath()%>/back-end/activity_participation/activitypost_page.jsp">回活動管理首頁</a>
+					<a href="<%=request.getContextPath()%>/back-end/activity_post/activitypost_page.jsp">回首頁</a>
 					
 				</h4>
 				<%-- 錯誤列表 --%>
@@ -73,29 +64,33 @@ th, td {
 				</c:if>
 				<table>
 					<tr>
-						<th>活動文章編號</th>
-						<th>活動編號</th>
-						<th>會員編號</th>
-						<th>活動推文日期</th>
-						<th>活動推文內容</th>
-						<th>活動推文照片</th>
-						<th>修改</th>
-						<th>刪除</th>
+						<th class="thact">活動文章編號</th>
+						<th class="thact">活動編號</th>
+						<th class="thact">會員編號</th>
+						<th class="thact">活動推文日期</th>
+<!-- 						<th class="thact">活動推文內容</th> -->
+<!-- 						<th class="thact">活動推文照片</th> -->
+						<th class="thact">修改</th>
+						<th class="thact">刪除</th>
 					</tr>
 					<%@ include file="page1.file"%>
 					<c:forEach var="ACPVO" items="${list}" begin="<%=pageIndex%>"
 						end="<%=pageIndex+rowsPerPage-1%>">
 						<tr>
-							<td>${ACPVO.actPostno}</td>
-							<td>${ACPVO.actno}</td>
-							<td>${ACPVO.memno}</td>
-							<td>${ACPVO.actPostDate}</td>
-							<td>${ACPVO.actPostCon}</td>
-							<td><img
-								src="<%=request.getContextPath()%>/back-end/activity_post/activitypostpicServlet.do?actPostno=${ACPVO.actPostno}"></td>
+							<td class="tdact">
+								
+								<a href="<%= request.getContextPath()%>/back-end/activity_post/activitypostServlet.do?actPostno=${ACPVO.actPostno}&action=getwindowActivity">${ACPVO.actPostno}</a>
+								
+							</td>
+								
+							<td class="tdact">${ACPVO.actno}</td>
+							<td class="tdact">${ACPVO.memno}</td>
+							<td class="tdact">${ACPVO.actPostDate}</td>
+<%-- 							<td class="tdact">${ACPVO.actPostCon}</td> --%>
+<%-- 							<td class="tdact"><img src="<%=request.getContextPath()%>/back-end/activity_post/activitypostpicServlet.do?actPostno=${ACPVO.actPostno}" width="300px" height="250px"></td> --%>
 
 
-							<td>
+							<td class="tdact">
 								<FORM METHOD="post"
 									ACTION="<%=request.getContextPath()%>/back-end/activity_post/activitypostServlet.do"
 									style="margin-bottom: 0px;">
@@ -104,7 +99,7 @@ th, td {
 										type="hidden" name="action" value="getOne_For_Update">
 								</FORM>
 							</td>
-							<td>
+							<td class="tdact">
 								<FORM METHOD="post"
 									ACTION="<%=request.getContextPath()%>/back-end/activity_post/activitypostServlet.do"
 									style="margin-bottom: 0px;">
@@ -121,6 +116,37 @@ th, td {
 			</div>
 		</div>
 	</div>
+	
+		<c:if test="${openModal!=null}">
+
+			<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+							
+						<div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			            </div>
+						
+						<div class="modal-body">
+		<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+		               <jsp:include page="windowsActivitylistPost.jsp" />
+		<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+						</div>
+						
+						<div class="modal-footer">
+			                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			            </div>
+					
+					</div>
+				</div>
+			</div>
+
+	        <script>
+	    		 $("#basicModal").modal({show: true});
+	        </script>
+ 	
+ 		</c:if>
+	
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 </body>
 </html>

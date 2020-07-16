@@ -16,48 +16,29 @@
 <title>活動資料新增 - addact.jsp</title>
 
 <style>
-table#table-1 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
+	body{
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: center;
+	}
 
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
+	.card{
+		opacity:0.9;
+		width:1200px;
+		margin:50px auto;
+		padding:50px;
+	}
 </style>
 
-<style>
-table {
-	width: 500px;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-}
-
-table, th, td {
-	border: 0px solid #CCCCFF;
-}
-
-th, td {
-	padding: 1px;
-}
-</style>
 </head>
 <%@ include file="/back-end/back-end-head.jsp" %>
 <body>
 
 <%@ include file="/back-end/back-end-header.jsp" %>
 	<div class="container">
-		<div class="row text-center">
-			<div class="col">
+		<div class="row text-center" style="margin-top:50px; text-align:center;">
+			<div class="card" style="width: 700px;">
 
 				<h3>資料新增</h3>
 
@@ -73,7 +54,7 @@ th, td {
 
 				<FORM METHOD="post"
 					ACTION="<%=request.getContextPath()%>/back-end/activity/activityServlet.do"
-					name="form1" enctype="multipart/form-data">
+					name="form1" enctype="multipart/form-data" style="text-align:-webkit-center;">
 
 					<table>
 						<jsp:useBean id="actSvc" scope="page"
@@ -111,20 +92,18 @@ th, td {
 							<td><input type="TEXT" name="actTalPeo" size="45"
 								value="<%=(actVO == null) ? "60" : actVO.getActTalPeo()%>" /></td>
 						</tr>
-						<tr>
-							<td>活動舉辦日期</td>
-							<td><input id="f_date1" type="text" name="actHoDate"
-								value="<%=(actVO == null) ? "請選擇舉辦日期" : actVO.getActHoDate()%>" /></td>
+						<tr>				
+							<td>舉辦日期</td>
+							<td>
+							<input id="f_date1" type="text" name="actHoDate" placeholder="請輸入舉辦日期" /></td>
 						</tr>
 						<tr>
-							<td>報名開始日期</td>
-							<td><input id="f_date2" type="text" name="actStDate"
-								value="<%=(actVO == null) ? "請選擇開始日期" : actVO.getActStDate()%>" /></td>
+							<td>報名起始日</td>
+							<td><input id="f_date2" type="text" name="actStDate" placeholder="請輸入報名起始日" /></td>
 						</tr>
 						<tr>
-							<td>報名截止日期</td>
-							<td><input id="f_date3" type="text" name="actEdDate"
-								value="<%=(actVO == null) ? "請選擇截止日期" : actVO.getActEdDate()%>" /></td>
+							<td>報名截止日</td>
+							<td><input id="f_date3" type="text" name="actEdDate" placeholder="請輸入報名截止日 "/></td>
 						</tr>
 						<tr>
 							<td>報名費</td>

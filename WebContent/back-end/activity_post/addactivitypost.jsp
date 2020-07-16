@@ -16,53 +16,36 @@
 <title>活動貼文資料新增 - addactpost.jsp</title>
 
 <style>
-table#table-1 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
-
-<style>
-table {
-	width: 500px;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-}
-
-table, th, td {
-	border: 0px solid #CCCCFF;
-}
-
-th, td {
-	padding: 1px;
-}
+	.card{
+		opacity:0.9;
+		width:600px;
+		margin:50px auto;
+		padding:50px;
+	}
+	
+	.buttonleft{
+		text-align:left;
+	}
+	
+	#delive{
+		margin-top:20px;
+		margin-left: 85%;
+	}
+	
+	
 </style>
 <%@ include file="/back-end/back-end-head.jsp" %>
 <body>
 
 <%@ include file="/back-end/back-end-header.jsp" %>
 	<div class="container">
-		<div class="row text-center">
-			<div class="col">
-				<h3>活動貼文資料新增 - addactivitypost.jsp</h3>
-				</td>
+		<div class="row">
+			<div class="card">
+		
 				<td>
-					<h4>
-						<a href="<%=request.getContextPath()%>/back-end/activity_participation/activitypost_page.jsp">回活動管理首頁</a>
-					</h4>
+					<h5>
+						<a href="<%=request.getContextPath()%>/back-end/activity_post/activitypost_page.jsp">回首頁</a>
+					</h5>
 					<h3>資料新增</h3> <%-- 錯誤列表 --%> <c:if test="${not empty errorMsgs}">
 						<font style="color: red">請修正以下錯誤:</font>
 						<ul>
@@ -115,7 +98,7 @@ th, td {
 
 						</table>
 						<br> <input type="hidden" name="action" value="add">
-						<input type="submit" value="送出新增">
+						<input  id="delive" type="submit" value="送出新增">
 					</FORM>
 			</div>
 		</div>
