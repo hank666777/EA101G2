@@ -360,11 +360,16 @@ public class EmployeeServlet extends HttpServlet {
 				
 				//account verify，原帳號帳號亂數生成
 //				String eAccount = UUID.randomUUID().toString().substring(0, 3); 
-				if(loginemp.geteAccount() != "Kent463") {
-					String eAccount = "Kent463";
+				List<EmployeeVO> emplist = empSvc.getAll();
+				//不是Kent463就給他Kent463
+				boolean b = emplist.stream().anyMatch(emp -> emp.geteAccount().equals("Kent463"));
+				String eAccount = "";
+				if(!b) {
+					eAccount = "Kent463";
+				}else {
+					eAccount = UUID.randomUUID().toString().substring(0, 3); 
 				}
-				
-				String eAccount = UUID.randomUUID().toString().substring(0, 3); 
+								
 				
 				//ePw verify，員工新增，密碼自動生成
 				String ePw = UUID.randomUUID().toString().substring(0, 8);
