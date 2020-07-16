@@ -16,7 +16,7 @@
  
 <!-- font-awesome CSS 5.13-->
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.css">
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <style>
 
 </style>

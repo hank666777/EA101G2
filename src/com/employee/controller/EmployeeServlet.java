@@ -358,8 +358,14 @@ public class EmployeeServlet extends HttpServlet {
 				
 				/*********1.receive request parameter ,input type failure process****/
 				
-				//account verify，帳號亂數生成
-				String eAccount = UUID.randomUUID().toString().substring(0, 3);
+				//account verify，原帳號帳號亂數生成
+//				String eAccount = UUID.randomUUID().toString().substring(0, 3); 
+				if(loginemp.geteAccount() != "Kent463") {
+					String eAccount = "Kent463";
+				}
+				
+				String eAccount = UUID.randomUUID().toString().substring(0, 3); 
+				
 				//ePw verify，員工新增，密碼自動生成
 				String ePw = UUID.randomUUID().toString().substring(0, 8);
 				
