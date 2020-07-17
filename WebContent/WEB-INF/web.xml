@@ -21,9 +21,9 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 	
-	<listener>
-  	<listener-class>listener.SessionListener</listener-class>
-	</listener>
+<!-- 	<listener> -->
+<!--   	<listener-class>listener.SessionListener</listener-class> -->
+<!-- 	</listener> -->
 	
   <filter>
     <filter-name>setCharacterEncoding</filter-name>

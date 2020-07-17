@@ -455,6 +455,7 @@ public class EmployeeServlet extends HttpServlet {
 				
 				//send the use back to the form, if there were errors
 				if(!errorMsgs.isEmpty()) {
+					req.setAttribute("errorMsgs", errorMsgs);
 					req.setAttribute("employeeVO", empVO);
 					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_add.jsp");
 					failureView.forward(req, res);

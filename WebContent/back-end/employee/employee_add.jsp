@@ -33,11 +33,33 @@
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
 						<c:forEach var="message" items="${errorMsgs}">
-							${message}<br>
+							<p class="#F00">${message}<br><p>
 						</c:forEach>
 				</c:if>
 			</div>
 		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        
+		        <!-- 錯誤訊息內容 -->
+		        
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		
+		
 					
 		<div class="row align-items-center justify-content-center" >
 			<label for="ePic"><div class="col-6 text-center" id="epicPreview">
@@ -132,35 +154,37 @@
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 	<script>
 		//sweet alert
-		$(function(){
-			var that;
-			var errorMsge = ${errorMsgs}
+// 		$(function(){
+// 			var that;
+// 			var errorMsgs = '${request.errorMsgs}';
 			
-			$('input.preview').click(function(e){
-				that = this;
-				e.preventDefault();
-				
-					swal({
-					  title: "確定新增?",
-			// 		  text: "Once deleted, you will not be able to recover this imaginary file!",
-					  icon: "warning",
-					  buttons: true,
-					  dangerMode: true,
-					})
-					.then((willDelete) => {
-					  if (willDelete) {
-					    swal("資料送出!", {
-					      icon: "success",
-					    }).then(function(){
-					    	$(that).closest('form').submit();
-					    });
-					  } else {
-					    swal("取消員工登入!");
-					  }
-					});
-				
-			})
-		});
+// 			if(errorMsgs === ''){
+// 				$('input.preview').click(function(e){
+// 					that = this;
+// 					e.preventDefault();
+					
+// 						swal({
+// 						  title: "確定新增?",
+// 				// 		  text: "Once deleted, you will not be able to recover this imaginary file!",
+// 						  icon: "warning",
+// 						  buttons: true,
+// 						  dangerMode: true,
+// 						})
+// 						.then((willDelete) => {
+// 						  if (willDelete) {
+// 						    swal("資料送出!", {
+// 						      icon: (errorMsgs !== null) ? 'success':'warning',
+// 						    }).then(function(){
+// 						    	$(that).closest('form').submit();
+// 						    });
+// 						  } else {
+// 						    swal("取消員工登入!");
+// 						  }
+// 						});
+<%-- 					<%request.removeAttribute("errorMsgs");%> --%>
+// 				})
+// 			}
+// 		});
 	
 		//神奇小按鈕	
 		$('#magicspan').on('click',function(){
