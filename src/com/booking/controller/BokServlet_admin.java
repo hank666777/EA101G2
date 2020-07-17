@@ -123,7 +123,12 @@ public class BokServlet_admin extends HttpServlet {
 				
 				/***************************2.開始處理資料***************************************/
 				BokService bokSvc = new BokService();
-				
+				if(bokSvc.getBokByBkNo(bkno).getBkStatus()==2) {
+					errorMsgs.add("該訂單已被取消。");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/bok/failureView.jsp");
+					failureView.forward(req, res);
+					return;
+				}
 				bokSvc.checkin(bkno);
 				System.out.println(requestURL);
 				/***************************3.完成,準備轉交(Send the Success view)***********/

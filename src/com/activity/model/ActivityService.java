@@ -11,7 +11,7 @@ public class ActivityService {
 	private ActivityDAO_interface AVO;
 	
 	public ActivityService() {
-		AVO = new ActivityDAO();
+		AVO = new ActivityJNDIDAO();
 	}
 	
 	public ActivityVO add(String ACTTYNO,String ACTNAME,String ACTDES,byte[] ACTPIC,

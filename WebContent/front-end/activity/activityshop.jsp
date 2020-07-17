@@ -235,7 +235,7 @@ figure.snip1249:hover:after, figure.snip1249.hover:after { /*紅色區塊*/
 
 					<figure class="snip1249">
 						<div class="image">
-							<img src="<%=request.getContextPath()%>/back-end/activity/activitypicServlet.do?actno=${AVS.actno}"class="card-img-top" alt=""><i class="ion-ios-star-outline"></i>
+							<img src="<%=request.getContextPath()%>/front-end/activity/activitypicServlet.do?actno=${AVS.actno}"class="card-img-top" alt=""><i class="ion-ios-star-outline"></i>
 						</div>
 						<figcaption>
 							<h5 class="card-title">${AVS.actName}</h5>
