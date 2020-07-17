@@ -8,7 +8,6 @@
 	ActivityService AVS = new ActivityService();
 	List<ActivityVO> list =AVS.getAll();
 	pageContext.setAttribute("list",list);
-	System.out.println("123: " + list);
 	
 	
 	MemVO memVO = (MemVO) session.getAttribute("memVO");

@@ -206,7 +206,7 @@
 	
 <script>
 
-	$(function () {
+$(function () {
 	  var INDEX = 0;
 	  $("#sendMessage").click(function (e) {
 	    e.preventDefault();
@@ -248,9 +248,7 @@
 		};
 
 		webSocket.onmessage = function(event) {
-			console.log("7777");
 			var jsonObj = JSON.parse(event.data);
-			console.log(jsonObj);
 			if ("open" === jsonObj.type) {
 				refreshFriendList(jsonObj);
 				
@@ -258,7 +256,7 @@
 			var jsonObj = {
 				"type" : "history",
 				"sender" : self,
-				"receiver" : "Pingu",
+				"receiver" : "PPP",
 				"message" : ""
 			};
 			webSocket.send(JSON.stringify(jsonObj));
@@ -311,7 +309,7 @@
 			var jsonObj = {
 				"type" : "chat",
 				"sender" : self,
-				"receiver" : "Pingu",
+				"receiver" : "PPP",
 				"message" : message
 			};
 			webSocket.send(JSON.stringify(jsonObj));
@@ -340,11 +338,11 @@
 			test.style.display="none";
 			
 			var friend = e.srcElement.textContent;
-			updateFriendName("Pingu");
+			updateFriendName("PPP");
 			var jsonObj = {
 					"type" : "history",
 					"sender" : self,
-					"receiver" : "Pingu",
+					"receiver" : "PPP",
 					"message" : ""
 				};
 			webSocket.send(JSON.stringify(jsonObj));

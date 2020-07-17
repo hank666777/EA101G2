@@ -186,7 +186,7 @@
 		var self = '${memVO.mAccount}';
 		var webSocket;                   
 
-		$(".btn-raised").click(function connect() {
+		function connect() {
 			// create a websocket
 			webSocket = new WebSocket(endPointURL);
 
@@ -203,7 +203,7 @@
 				var jsonObj = {
 					"type" : "history",
 					"sender" : self,
-					"receiver" : "kent463",
+					"receiver" : "AAA",
 					"message" : ""
 				};
 				webSocket.send(JSON.stringify(jsonObj));
@@ -242,28 +242,28 @@
 			webSocket.onclose = function(event) {
 				console.log("Disconnected!");
 			};
-		})
+		}
 		
 		function sendMessage() {
-			var inputMessage = document.getElementById("message");
-			//var friend = statusOutput.textContent;
-			var message = inputMessage.value.trim();
-			
-			if (message === "") {
-				alert("Input a message");
-				inputMessage.focus();
-			} else {
-				var jsonObj = {
-					"type" : "chat",
-					"sender" : self,
-					"receiver" : "kent463",
-					"message" : message
-				};
-				webSocket.send(JSON.stringify(jsonObj));
-				inputMessage.value = "";
-				inputMessage.focus();
+				var inputMessage = document.getElementById("message");
+				//var friend = statusOutput.textContent;
+				var message = inputMessage.value.trim();
+		
+				if (message === "") {
+					alert("Input a message");
+					inputMessage.focus();
+				} else {
+					var jsonObj = {
+						"type" : "chat",
+						"sender" : self,
+						"receiver" : "AAA",
+						"message" : message
+					};
+					webSocket.send(JSON.stringify(jsonObj));
+					inputMessage.value = "";
+					inputMessage.focus();
+			        }	       
 			}
-		}
 		
 		// 有好友上線或離線就更新列表
 		function refreshFriendList(jsonObj) {
@@ -285,11 +285,11 @@
 				test.style.display="none";
 				
 				var friend = e.srcElement.textContent;
-				updateFriendName("kent463");
+				updateFriendName("AAA");
 				var jsonObj = {
 						"type" : "history",
 						"sender" : self,
-						"receiver" : "kent463",
+						"receiver" : "AAA",
 						"message" : ""
 					};
 				webSocket.send(JSON.stringify(jsonObj));

@@ -44,7 +44,7 @@
 				<div>活動名稱：<%=actVO.getActName()%></div>
 				<div>活動描述：<%=actVO.getActDes()%></div>
 				<div style="width: auto; height: auto;">
-					<img src="<%=request.getContextPath()%>/back-end/activity/activitypicServlet.do?actno=<%=actVO.getActno()%>">
+					<img src="<%=request.getContextPath()%>/front-end/activity/activitypicServlet.do?actno=<%=actVO.getActno()%>">
 				</div>
 				<c:if test="${acttVO != null}">
 				<div>現在報名人數：${acttVO.actTalPeo}</div>

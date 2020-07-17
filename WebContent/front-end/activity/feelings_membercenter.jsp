@@ -97,7 +97,7 @@ img{
 <%-- 							<td align="center">${activitypostVO.memno}</td> --%>
 							<td align="center"><b><fmt:formatDate value="${activitypostVO.actPostDate}"  type="both" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></b></td>
 							<td align="center"><b>${activitypostVO.actPostCon}</b></td>
-							<td align="center"><img src="<%=request.getContextPath()%>/front-end/activity_post/activitypostpicServlet.do?actPostno=${activitypostVO.actPostno}"></td>
+							<td align="center"><img src="<%=request.getContextPath()%>/back-end/activity_post/activitypostpicServlet.do?actPostno=${activitypostVO.actPostno}"></td>
 						</tr>
 						</c:if>
 					</c:forEach>

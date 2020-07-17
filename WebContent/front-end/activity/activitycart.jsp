@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.* , com.activity.model.*" %>
 <%@ page import="com.mem.model.*" %>
+<%@ page import="java.text.*" %>
 <%@ page import="com.actparticipation.model.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -10,6 +11,9 @@
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
 	ParticipationVO PV = new ParticipationVO();
 	
+	Calendar rightNow = Calendar.getInstance();
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	String sysdate = format.format(rightNow.getTime());
 %>
 
 
@@ -62,7 +66,7 @@
 							   <tr>
 							     <th><p class="h3">報名時間</p></th>
 							     <td>
-							     	<input id="f_date1" type="text" name="actPatDate">
+							     	<input id="f_date1" type="hidden" name="actPatDate"/><%=sysdate %>
 							     </td>
 							   </tr>
 							   <tr>
@@ -171,9 +175,9 @@
 	   actPostDate = new java.sql.Timestamp(System.currentTimeMillis());
    }
 %>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/activity/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/back-end/activity_post/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/back-end/activity_post/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front-end/activity/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/front-end/activity/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/front-end/activity/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
