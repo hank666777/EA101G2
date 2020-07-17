@@ -13,7 +13,7 @@
 <script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="https://use.fontawesome.com/0114a256f7.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<%@ include file="/back-end/back-end-head.jsp" %>
+<%@ include file="/front-end/front-end-head.jsp" %>
 </head>
 
 <style>

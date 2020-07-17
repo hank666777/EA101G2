@@ -18,8 +18,10 @@
 				    <p class="mb-0 h3">${sessionScope.employeeVO.eName} 您好~</p>
 				  </li> 
 				  <li class="nav-item my-1 mx-2">
-				    <img style="width:60px; height:60px; border-radius:50%;"class="mx-auto d-block" 
-							src="${pageContext.request.contextPath}/back-end/employee/epicshow.do?empno=${sessionScope.employeeVO.empno}" />
+				  	<a href="<%=request.getContextPath()%>/back-end/employee/employee_list_one.jsp">
+				    	<img style="width:60px; height:60px; border-radius:50%;"class="mx-auto d-block" 
+								   src="${pageContext.request.contextPath}/back-end/employee/epicshow.do?empno=${sessionScope.employeeVO.empno}" />
+						</a>
 				  </li>
 				</ul>
 			</div>
