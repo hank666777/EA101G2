@@ -79,7 +79,7 @@ tr {
 
 
 </head>
-<body bgcolor='white'>
+<body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg">
 <%@ include file="/back-end/back-end-header.jsp" %>
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -95,7 +95,7 @@ tr {
 		<div class="wrapper">
 			<div class="report_main">
 				<div class="text-center" id="title">
-					<h2>檢舉留言列表</h2>
+					<p class="h2" style="color:#FFF;">檢舉留言列表</p>
 				</div>
 				<div class="data_area">
 					<table class="text-center">

@@ -154,37 +154,22 @@
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 	<script>
 		//sweet alert
-// 		$(function(){
+		$(function(){
 // 			var that;
 // 			var errorMsgs = '${request.errorMsgs}';
+			var error_code = "${error_code}";
+			var error_msg = "${error_msg}";
 			
-// 			if(errorMsgs === ''){
-// 				$('input.preview').click(function(e){
-// 					that = this;
-// 					e.preventDefault();
-					
-// 						swal({
-// 						  title: "確定新增?",
-// 				// 		  text: "Once deleted, you will not be able to recover this imaginary file!",
-// 						  icon: "warning",
-// 						  buttons: true,
-// 						  dangerMode: true,
-// 						})
-// 						.then((willDelete) => {
-// 						  if (willDelete) {
-// 						    swal("資料送出!", {
-// 						      icon: (errorMsgs !== null) ? 'success':'warning',
-// 						    }).then(function(){
-// 						    	$(that).closest('form').submit();
-// 						    });
-// 						  } else {
-// 						    swal("取消員工登入!");
-// 						  }
-// 						});
-<%-- 					<%request.removeAttribute("errorMsgs");%> --%>
-// 				})
-// 			}
-// 		});
+			if(error_code !== ''){
+				swal({
+					  title: error_code !== "1" ? "員工登錄成功!":"員工登錄失敗",
+					  text: "請確認資料!",
+					  icon: error_code === "0"? "success":"warning"
+				});
+				<%request.removeAttribute("error_code");%>s
+				<%request.removeAttribute("error_msg");%>
+			}
+		});
 	
 		//神奇小按鈕	
 		$('#magicspan').on('click',function(){

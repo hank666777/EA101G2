@@ -62,11 +62,11 @@ th, td {
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
 </head>
-<body bgcolor='white'>
+<body  style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg">
 <%@ include file="/back-end/back-end-header.jsp" %>
 	<div class="container">
 		<div class="wrapper">
-			<h2 class="text-center">審核相關資料如下:</h2>
+			<h2 class="text-center" style="color:#FFF;">審核相關資料如下</h2>
 			<div class="data_area">
 				<table id="report_info">
 					<tr>

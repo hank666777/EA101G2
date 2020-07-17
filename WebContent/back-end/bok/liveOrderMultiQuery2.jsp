@@ -88,7 +88,7 @@
 </style>
 </head>
 
-<body>
+<body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/productImg/backProductBackground.jpg">
 
 <%@ include file="/back-end/back-end-header.jsp" %>
 
