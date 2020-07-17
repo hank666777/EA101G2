@@ -59,7 +59,7 @@
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script>
 
-	$(function () {
+$(function () {
 	  var INDEX = 0;
 	  $("#sendMessage").click(function (e) {
 	    e.preventDefault();
@@ -81,45 +81,6 @@
 	  });
 	});
 	
-	//優惠卷推播
-	
-	
-	window.onload = function connect2() {
-		var MyPoint = "/PushSocket/${memVO.mAccount}";
-		var host = window.location.host;
-		var path = window.location.pathname;
-		var webCtx = path.substring(0, path.indexOf('/', 1));
-		var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
-		var webSocket = new WebSocket(endPointURL);
-		function cloze() {
-			webSocket.close();
-			console.log("colse");
-		}
-		webSocket.onopen = function(event) {
-			console.log("Connect Success77777!");
-		}
-		webSocket.onmessage = function(event) {
-			if ((event.data).endsWith("券")) {
-				Swal.fire({
-					title : '註冊會員即送優惠券!!',
-					text : event.data,
-					imageWidth : 400,
-					imageHeight : 200,
-					footer : '<a href=mem/member_center.jsp>立即查看</a>'
-				})
-			} else {
-				Swal.fire({
-					title : '目前有新商品上架囉!!',
-					text : event.data,
-					imageWidth : 400,
-					imageHeight : 200,
-					footer : '<a href=onlineShop/OShop.jsp>立即查看</a>'
-				})
-			}
-		}
-	}
-
-	//聊天室推播
 	var MyPoint = "/FriendWS/${memVO.mAccount}";
 	var host = window.location.host;
 	var path = window.location.pathname;
@@ -129,71 +90,69 @@
 	var statusOutput = document.getElementById("statusOutput");
 	var messagesArea = document.getElementById("messagesArea");
 	var self = '${memVO.mAccount}';
-	var webSocket;
+	var webSocket;                   
 
-	$(".btn-raised").click(
-			function connect() {
-				// create a websocket
-				webSocket = new WebSocket(endPointURL);
+	function connect() {
+		// create a websocket
+		webSocket = new WebSocket(endPointURL);
 
-				webSocket.onopen = function(event) {
-					console.log("Connect Success!");
-				};
+		webSocket.onopen = function(event) {
+			console.log("Connect Success!");
+		};
 
-				webSocket.onmessage = function(event) {
-					var jsonObj = JSON.parse(event.data);
-					if ("open" === jsonObj.type) {
-						refreshFriendList(jsonObj);
+		webSocket.onmessage = function(event) {
+			var jsonObj = JSON.parse(event.data);
+			if ("open" === jsonObj.type) {
+				refreshFriendList(jsonObj);
+				
+			/*不須點選取得歷史訊息*/
+			var jsonObj = {
+				"type" : "history",
+				"sender" : self,
+				"receiver" : "kent463",
+				"message" : ""
+			};
+			webSocket.send(JSON.stringify(jsonObj));
+				
+				
+			} else if ("history" === jsonObj.type) {
+				messagesArea.innerHTML = '';
+				var ul = document.createElement('ul');
+				ul.id = "area";
+				messagesArea.appendChild(ul);
+				// 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
+				var messages = JSON.parse(jsonObj.message);
+				for (var i = 0; i < messages.length; i++) {
+					var historyData = JSON.parse(messages[i]);
+					var showMsg = historyData.message;
+					var li = document.createElement('li');
+					// 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
+					historyData.sender === self ? li.className += 'me' : li.className += 'friend';
+					li.innerHTML = showMsg;
+					ul.appendChild(li);
+				}
+				messagesArea.scrollTop = messagesArea.scrollHeight;
+			} else if ("chat" === jsonObj.type) {
+				var li = document.createElement('li');
+				jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
+				li.innerHTML = jsonObj.message;
+				console.log(li);
+				document.getElementById("area").appendChild(li);
+				messagesArea.scrollTop = messagesArea.scrollHeight;
+			} else if ("close" === jsonObj.type) {
+				refreshFriendList(jsonObj);
+			}
+			
+		};
 
-						/*不須點選取得歷史訊息*/
-						var jsonObj = {
-							"type" : "history",
-							"sender" : self,
-							"receiver" : "Tommy",
-							"message" : ""
-						};
-						webSocket.send(JSON.stringify(jsonObj));
-
-					} else if ("history" === jsonObj.type) {
-						messagesArea.innerHTML = '';
-						var ul = document.createElement('ul');
-						ul.id = "area";
-						messagesArea.appendChild(ul);
-						// 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
-						var messages = JSON.parse(jsonObj.message);
-						for (var i = 0; i < messages.length; i++) {
-							var historyData = JSON.parse(messages[i]);
-							var showMsg = historyData.message;
-							var li = document.createElement('li');
-							// 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
-							historyData.sender === self ? li.className += 'me'
-									: li.className += 'friend';
-							li.innerHTML = showMsg;
-							ul.appendChild(li);
-						}
-						messagesArea.scrollTop = messagesArea.scrollHeight;
-					} else if ("chat" === jsonObj.type) {
-						var li = document.createElement('li');
-						jsonObj.sender === self ? li.className += 'me'
-								: li.className += 'friend';
-						li.innerHTML = jsonObj.message;
-						console.log(li);
-						document.getElementById("area").appendChild(li);
-						messagesArea.scrollTop = messagesArea.scrollHeight;
-					} else if ("close" === jsonObj.type) {
-						refreshFriendList(jsonObj);
-					}
-
-				};
-
-				webSocket.onclose = function(event) {
-					console.log("Disconnected!");
-				};
-			});
-
+		webSocket.onclose = function(event) {
+			console.log("Disconnected!");
+		};
+	}
+	
 	function sendMessage() {
 		var inputMessage = document.getElementById("message");
-		//var friend = statusOutput.textContent;
+// 		var friend = statusOutput.textContent;
 		var message = inputMessage.value.trim();
 
 		if (message === "") {
@@ -211,18 +170,15 @@
 			inputMessage.focus();
 		}
 	}
-
+	
 	// 有好友上線或離線就更新列表
 	function refreshFriendList(jsonObj) {
 		var friends = jsonObj.users;
 		var row = document.getElementById("row");
 		row.innerHTML = '';
 		for (var i = 0; i < friends.length; i++) {
-			if (friends[i] === self) {
-				continue;
-			} /*註解好友列表*/
-			row.innerHTML += '<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' style="display:none;"><h2>'
-					+ friends[i] + '</h2></div>';
+			if (friends[i] === self) { continue; }                                                     /*註解好友列表*/
+			row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' style="display:none;"><h2>' + friends[i] + '</h2></div>';
 		}
 		addListener();
 	}
@@ -231,26 +187,26 @@
 		var container = document.getElementById("row");
 		container.addEventListener("click", function(e) {
 			//以下讓多餘的編號畫面隱藏
-			var test = document.getElementById("statusOutput");
-			test.style.display = "none";
-
+			var test = document.getElementById("statusOutput");   
+			test.style.display="none";
+			
 			var friend = e.srcElement.textContent;
 			updateFriendName("kent463");
 			var jsonObj = {
-				"type" : "history",
-				"sender" : self,
-				"receiver" : "kent463",
-				"message" : ""
-			};
+					"type" : "history",
+					"sender" : self,
+					"receiver" : "kent463",
+					"message" : ""
+				};
 			webSocket.send(JSON.stringify(jsonObj));
 		});
 	}
-
+	
 	function disconnect() {
 		webSocket.close();
 		document.getElementById('sendMessage').disabled = true;
 	}
-
+	
 	function updateFriendName(name) {
 		statusOutput.innerHTML = name;
 	}

@@ -90,7 +90,7 @@
 			var jsonObj = {
 				"type" : "history",
 				"sender" : self,
-				"receiver" : "kent463",
+				"receiver" : "PPP",
 				"message" : ""
 			};
 			webSocket.send(JSON.stringify(jsonObj));
@@ -143,7 +143,7 @@
 			var jsonObj = {
 				"type" : "chat",
 				"sender" : self,
-				"receiver" : "Tommy",
+				"receiver" : "PPP",
 				"message" : message
 			};
 			webSocket.send(JSON.stringify(jsonObj));
@@ -172,11 +172,11 @@
 			test.style.display="none";
 			
 			var friend = e.srcElement.textContent;
-			updateFriendName("Tommy");
+			updateFriendName("PPP");
 			var jsonObj = {
 					"type" : "history",
 					"sender" : self,
-					"receiver" : "Tommy",
+					"receiver" : "PPP",
 					"message" : ""
 				};
 			webSocket.send(JSON.stringify(jsonObj));

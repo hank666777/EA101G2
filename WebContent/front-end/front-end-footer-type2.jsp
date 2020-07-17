@@ -63,7 +63,8 @@
 	var self = '${memVO.mAccount}';
 	var webSocket;                   
 
-	$(".btn-raised").click(function connect() {
+// 	$(".btn-raised").click(
+			function connect() {
 		// create a websocket
 		webSocket = new WebSocket(endPointURL);
 
@@ -80,7 +81,7 @@
 			var jsonObj = {
 				"type" : "history",
 				"sender" : self,
-				"receiver" : "Tommy",
+				"receiver" : "kent463",
 				"message" : ""
 			};
 			webSocket.send(JSON.stringify(jsonObj));
@@ -119,7 +120,7 @@
 		webSocket.onclose = function(event) {
 			console.log("Disconnected!");
 		};
-	});
+	}
 	
 	function sendMessage() {
 			var inputMessage = document.getElementById("message");

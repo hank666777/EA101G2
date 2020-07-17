@@ -175,6 +175,44 @@
 	</div>
 </div>
 <%@ include file="front-end-footer.jsp"%>
+<script>
+//優惠卷及商品推播
 
+
+window.onload = function connect2() {
+	var MyPoint = "/PushSocket/${memVO.mAccount}";
+	var host = window.location.host;
+	var path = window.location.pathname;
+	var webCtx = path.substring(0, path.indexOf('/', 1));
+	var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+	var webSocket = new WebSocket(endPointURL);
+	function cloze() {
+		webSocket.close();
+		console.log("colse");
+	}
+	webSocket.onopen = function(event) {
+		console.log("Connect Success77777!");
+	}
+	webSocket.onmessage = function(event) {
+		if ((event.data).endsWith("券")) {
+			Swal.fire({
+				title : '註冊會員即送優惠券!!',
+				text : event.data,
+				imageWidth : 400,
+				imageHeight : 200,
+				footer : '<a href=mem/member_center.jsp>立即查看</a>'
+			})
+		} else {
+			Swal.fire({
+				title : '目前有新商品上架囉!!',
+				text : event.data,
+				imageWidth : 400,
+				imageHeight : 200,
+				footer : '<a href=onlineShop/OShop.jsp>立即查看</a>'
+			})
+		}
+	}
+}
+</script>
 </body>
 </html>

@@ -154,101 +154,101 @@
 	<script>
 
 	$(function () {
-	  var INDEX = 0;
-	  $("#sendMessage").click(function (e) {
-	    e.preventDefault();
-	    var msg = $("#message").val();
-	    if (msg.trim() == "") {
-	      return false;
-	    }
+		  var INDEX = 0;
+		  $("#sendMessage").click(function (e) {
+		    e.preventDefault();
+		    var msg = $("#message").val();
+		    if (msg.trim() == "") {
+		      return false;
+		    }
 
-	  });
-	
-	 $("#chat-circle").click(function () {
-	    $("#chat-circle").toggle("scale");
-	    $(".chat-box").toggle("scale");
-	  });
+		  });
+		
+		 $("#chat-circle").click(function () {
+		    $("#chat-circle").toggle("scale");
+		    $(".chat-box").toggle("scale");
+		  });
 
-	  $(".chat-box-toggle").click(function () {
-	    $("#chat-circle").toggle("scale");
-	    $(".chat-box").toggle("scale");
-	  });
-	});
-	
-	var MyPoint = "/FriendWS/${memVO.mAccount}";
-	var host = window.location.host;
-	var path = window.location.pathname;
-	var webCtx = path.substring(0, path.indexOf('/', 1));
-	var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+		  $(".chat-box-toggle").click(function () {
+		    $("#chat-circle").toggle("scale");
+		    $(".chat-box").toggle("scale");
+		  });
+		});
+		
+		var MyPoint = "/FriendWS/${memVO.mAccount}";
+		var host = window.location.host;
+		var path = window.location.pathname;
+		var webCtx = path.substring(0, path.indexOf('/', 1));
+		var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
 
-	var statusOutput = document.getElementById("statusOutput");
-	var messagesArea = document.getElementById("messagesArea");
-	var self = '${memVO.mAccount}';
-	var webSocket;                   
+		var statusOutput = document.getElementById("statusOutput");
+		var messagesArea = document.getElementById("messagesArea");
+		var self = '${memVO.mAccount}';
+		var webSocket;                   
 
-	function connect() {
-		// create a websocket
-		webSocket = new WebSocket(endPointURL);
+		function connect() {
+			// create a websocket
+			webSocket = new WebSocket(endPointURL);
 
-		webSocket.onopen = function(event) {
-			console.log("Connect Success!");
-		};
-
-		webSocket.onmessage = function(event) {
-			var jsonObj = JSON.parse(event.data);
-			if ("open" === jsonObj.type) {
-				refreshFriendList(jsonObj);
-				
-			/*不須點選取得歷史訊息*/
-			var jsonObj = {
-				"type" : "history",
-				"sender" : self,
-				"receiver" : "Trump",
-				"message" : ""
+			webSocket.onopen = function(event) {
+				console.log("Connect Success!");
 			};
-			webSocket.send(JSON.stringify(jsonObj));
-				
-				
-			} else if ("history" === jsonObj.type) {
-				messagesArea.innerHTML = '';
-				var ul = document.createElement('ul');
-				ul.id = "area";
-				messagesArea.appendChild(ul);
-				// 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
-				var messages = JSON.parse(jsonObj.message);
-				for (var i = 0; i < messages.length; i++) {
-					var historyData = JSON.parse(messages[i]);
-					var showMsg = historyData.message;
-					var li = document.createElement('li');
-					// 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
-					historyData.sender === self ? li.className += 'me' : li.className += 'friend';
-					li.innerHTML = showMsg;
-					ul.appendChild(li);
-				}
-				messagesArea.scrollTop = messagesArea.scrollHeight;
-			} else if ("chat" === jsonObj.type) {
-				var li = document.createElement('li');
-				jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
-				li.innerHTML = jsonObj.message;
-				console.log(li);
-				document.getElementById("area").appendChild(li);
-				messagesArea.scrollTop = messagesArea.scrollHeight;
-			} else if ("close" === jsonObj.type) {
-				refreshFriendList(jsonObj);
-			}
-			
-		};
 
-		webSocket.onclose = function(event) {
-			console.log("Disconnected!");
-		};
-	}
-	
-	function sendMessage() {
+			webSocket.onmessage = function(event) {
+				var jsonObj = JSON.parse(event.data);
+				if ("open" === jsonObj.type) {
+					refreshFriendList(jsonObj);
+					
+				/*不須點選取得歷史訊息*/
+				var jsonObj = {
+					"type" : "history",
+					"sender" : self,
+					"receiver" : "kent463",
+					"message" : ""
+				};
+				webSocket.send(JSON.stringify(jsonObj));
+					
+					
+				} else if ("history" === jsonObj.type) {
+					messagesArea.innerHTML = '';
+					var ul = document.createElement('ul');
+					ul.id = "area";
+					messagesArea.appendChild(ul);
+					// 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
+					var messages = JSON.parse(jsonObj.message);
+					for (var i = 0; i < messages.length; i++) {
+						var historyData = JSON.parse(messages[i]);
+						var showMsg = historyData.message;
+						var li = document.createElement('li');
+						// 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
+						historyData.sender === self ? li.className += 'me' : li.className += 'friend';
+						li.innerHTML = showMsg;
+						ul.appendChild(li);
+					}
+					messagesArea.scrollTop = messagesArea.scrollHeight;
+				} else if ("chat" === jsonObj.type) {
+					var li = document.createElement('li');
+					jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
+					li.innerHTML = jsonObj.message;
+					console.log(li);
+					document.getElementById("area").appendChild(li);
+					messagesArea.scrollTop = messagesArea.scrollHeight;
+				} else if ("close" === jsonObj.type) {
+					refreshFriendList(jsonObj);
+				}
+				
+			};
+
+			webSocket.onclose = function(event) {
+				console.log("Disconnected!");
+			};
+		}
+		
+		function sendMessage() {
 			var inputMessage = document.getElementById("message");
 			//var friend = statusOutput.textContent;
 			var message = inputMessage.value.trim();
-	
+
 			if (message === "") {
 				alert("Input a message");
 				inputMessage.focus();
@@ -256,54 +256,54 @@
 				var jsonObj = {
 					"type" : "chat",
 					"sender" : self,
-					"receiver" : "AAA",
+					"receiver" : "kent463",
 					"message" : message
 				};
 				webSocket.send(JSON.stringify(jsonObj));
 				inputMessage.value = "";
 				inputMessage.focus();
-		        }	       
+			}
 		}
-	
-	// 有好友上線或離線就更新列表
-	function refreshFriendList(jsonObj) {
-		var friends = jsonObj.users;
-		var row = document.getElementById("row");
-		row.innerHTML = '';
-		for (var i = 0; i < friends.length; i++) {
-			if (friends[i] === self) { continue; }                                                     /*註解好友列表*/
-			row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' style="display:none;"><h2>' + friends[i] + '</h2></div>';
+		
+		// 有好友上線或離線就更新列表
+		function refreshFriendList(jsonObj) {
+			var friends = jsonObj.users;
+			var row = document.getElementById("row");
+			row.innerHTML = '';
+			for (var i = 0; i < friends.length; i++) {
+				if (friends[i] === self) { continue; }                                                     /*註解好友列表*/
+				row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' style="display:none;"><h2>' + friends[i] + '</h2></div>';
+			}
+			addListener();
 		}
-		addListener();
-	}
-	// 註冊列表點擊事件並抓取好友名字以取得歷史訊息
-	function addListener() {
-		var container = document.getElementById("row");
-		container.addEventListener("click", function(e) {
-			//以下讓多餘的編號畫面隱藏
-			var test = document.getElementById("statusOutput");   
-			test.style.display="none";
-			
-			var friend = e.srcElement.textContent;
-			updateFriendName("AAA");
-			var jsonObj = {
-					"type" : "history",
-					"sender" : self,
-					"receiver" : "AAA",
-					"message" : ""
-				};
-			webSocket.send(JSON.stringify(jsonObj));
-		});
-	}
-	
-	function disconnect() {
-		webSocket.close();
-		document.getElementById('sendMessage').disabled = true;
-	}
-	
-	function updateFriendName(name) {
-		statusOutput.innerHTML = name;
-	}
+		// 註冊列表點擊事件並抓取好友名字以取得歷史訊息
+		function addListener() {
+			var container = document.getElementById("row");
+			container.addEventListener("click", function(e) {
+				//以下讓多餘的編號畫面隱藏
+				var test = document.getElementById("statusOutput");   
+				test.style.display="none";
+				
+				var friend = e.srcElement.textContent;
+				updateFriendName("kent463");
+				var jsonObj = {
+						"type" : "history",
+						"sender" : self,
+						"receiver" : "kent463",
+						"message" : ""
+					};
+				webSocket.send(JSON.stringify(jsonObj));
+			});
+		}
+		
+		function disconnect() {
+			webSocket.close();
+			document.getElementById('sendMessage').disabled = true;
+		}
+		
+		function updateFriendName(name) {
+			statusOutput.innerHTML = name;
+		}
 </script>
 </body>
 </html>
