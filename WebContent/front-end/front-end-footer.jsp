@@ -104,7 +104,6 @@ $(function () {
 			var jsonObj = JSON.parse(event.data);
 			if ("open" === jsonObj.type) {
 				refreshFriendList(jsonObj);
-				
 			/*不須點選取得歷史訊息*/
 			var jsonObj = {
 				"type" : "history",
@@ -112,6 +111,7 @@ $(function () {
 				"receiver" : "kent463",
 				"message" : ""
 			};
+			
 			webSocket.send(JSON.stringify(jsonObj));
 				
 				
@@ -144,7 +144,6 @@ $(function () {
 			}
 			
 		};
-
 		webSocket.onclose = function(event) {
 			console.log("Disconnected!");
 		};

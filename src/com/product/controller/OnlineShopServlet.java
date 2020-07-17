@@ -273,8 +273,7 @@ public class OnlineShopServlet extends HttpServlet {
 			 String amount = (String)session.getAttribute("amount");
 			 Double amount2 = Double.valueOf(amount);
 			 int dis=(int)Math.floor((disCount*amount2/10));
-			 System.out.println(dis);
-			 res.getWriter().write(dis);
+			 res.getWriter().write(dis+"");
 			 }
 		}
 	}

@@ -186,7 +186,7 @@
 		var self = '${memVO.mAccount}';
 		var webSocket;                   
 
-		function connect() {
+		$(".btn-raised").click(function connect() {
 			// create a websocket
 			webSocket = new WebSocket(endPointURL);
 
@@ -242,13 +242,13 @@
 			webSocket.onclose = function(event) {
 				console.log("Disconnected!");
 			};
-		}
+		})
 		
 		function sendMessage() {
 			var inputMessage = document.getElementById("message");
 			//var friend = statusOutput.textContent;
 			var message = inputMessage.value.trim();
-
+			
 			if (message === "") {
 				alert("Input a message");
 				inputMessage.focus();

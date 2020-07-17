@@ -20,4 +20,4 @@
 <style>
 
 </style>
-<body onload="connect();" onunload="disconnect();">
+<body onunload="disconnect();">

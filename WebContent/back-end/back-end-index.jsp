@@ -248,7 +248,9 @@
 		};
 
 		webSocket.onmessage = function(event) {
+			console.log("7777");
 			var jsonObj = JSON.parse(event.data);
+			console.log(jsonObj);
 			if ("open" === jsonObj.type) {
 				refreshFriendList(jsonObj);
 				
@@ -256,7 +258,7 @@
 			var jsonObj = {
 				"type" : "history",
 				"sender" : self,
-				"receiver" : "PPP",
+				"receiver" : "Pingu",
 				"message" : ""
 			};
 			webSocket.send(JSON.stringify(jsonObj));
@@ -309,7 +311,7 @@
 			var jsonObj = {
 				"type" : "chat",
 				"sender" : self,
-				"receiver" : "PPP",
+				"receiver" : "Pingu",
 				"message" : message
 			};
 			webSocket.send(JSON.stringify(jsonObj));
@@ -338,11 +340,11 @@
 			test.style.display="none";
 			
 			var friend = e.srcElement.textContent;
-			updateFriendName("PPP");
+			updateFriendName("Pingu");
 			var jsonObj = {
 					"type" : "history",
 					"sender" : self,
-					"receiver" : "PPP",
+					"receiver" : "Pingu",
 					"message" : ""
 				};
 			webSocket.send(JSON.stringify(jsonObj));

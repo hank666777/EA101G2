@@ -62,7 +62,7 @@ public class FriendWS {
 				return;
 			}
 		}
-		
+	
 		
 		Session receiverSession = sessionsMap.get(receiver);
 		if (receiverSession != null && receiverSession.isOpen()) {
