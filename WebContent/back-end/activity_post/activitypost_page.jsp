@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.employee.model.*"%>
 <%@ page import="com.permission.model.*"%>
-<%@ page import="com.features.model.*"%>"%>
+<%@ page import="com.features.model.*"%>
 
 <html>
 <head>

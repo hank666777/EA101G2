@@ -6,7 +6,7 @@ public class PTypeService {
 	private PTypeDAO_interface dao;
 	
 	public PTypeService() {
-		dao = new PTypeJDBCDAO();
+		dao = new PTypeJNDIDAO();
 	}
 	
 	public PTypeVO addPType(String pTName) {

@@ -157,7 +157,7 @@
 		<div class="row justify-content-center ">
 			<div class="col-xl-2 text-center ">
 				<form method="post" action="${pageContext.request.contextPath}/back-end/employee/employee.do">
-					<p class="h4" style="color:#FFF;">選擇員工姓名:</p> 
+					<p class="h4" style="color:#FFF;">選擇員工姓名:(請選擇)</p> 
 					<select class="custom-select d-block w-100" size="" name="empno" id="">
 						<c:forEach var="employeeVO" items="${empSvc.all}">
 							<option value="${employeeVO.empno}">${employeeVO.eName}

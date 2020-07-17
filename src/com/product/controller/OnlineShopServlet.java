@@ -44,6 +44,7 @@ public class OnlineShopServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html;charset=UTF-8");
 		HttpSession session = req.getSession();
 		@SuppressWarnings("unchecked")
 		Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingcart");// 區域變數，也可放實體變數
@@ -271,8 +272,9 @@ public class OnlineShopServlet extends HttpServlet {
 			 Integer disCount = CpService.getOne3(couponsno);
 			 String amount = (String)session.getAttribute("amount");
 			 Double amount2 = Double.valueOf(amount);
-			 Double dis=disCount*amount2/10;
-			 res.getWriter().write(String.valueOf(dis));
+			 int dis=(int)Math.floor((disCount*amount2/10));
+			 System.out.println(dis);
+			 res.getWriter().write(dis);
 			 }
 		}
 	}

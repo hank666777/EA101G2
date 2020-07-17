@@ -38,9 +38,10 @@ $(function(){
 				  action: "paypay" 
 				 },
 			success:function(data){
-			$(".money").val(data);	
+			$(".money").val( "需付新台幣$"+data);	
+			$(".realmoney").val(data);
 			}
-			
+				
 		})
 		
 	})
@@ -86,7 +87,7 @@ $(function(){
 		</c:forEach>
 	</select>
 	
-	<input type="hidden" name="onoTotal"  value="<fmt:formatNumber type="number" groupingUsed = "false" value="<%=amount %>"></fmt:formatNumber>">
+	<input type="hidden" class="realmoney" name="onoTotal"  value="<fmt:formatNumber type="number" groupingUsed = "false" value="<%=amount %>"></fmt:formatNumber>">
 	<input type="hidden" name="action" value="Detail">
 	<input id="paySubmitBtn" class="money" type="submit" value="需付新台幣$<fmt:formatNumber type="number" groupingUsed = "false" value="<%=amount %>"></fmt:formatNumber>">
 	
