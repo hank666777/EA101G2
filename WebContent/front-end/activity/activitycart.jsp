@@ -15,6 +15,7 @@
 
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="">
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>活動報名</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
@@ -61,7 +62,7 @@
 							   <tr>
 							     <th><p class="h3">報名時間</p></th>
 							     <td>
-							     	<input id="f_date1" type="text" name="actPatDate"readonly>
+							     	<input id="f_date1" type="text" name="actPatDate">
 							     </td>
 							   </tr>
 							   <tr>
@@ -148,12 +149,12 @@
 		</Form>
 	<script>
 		
-	$('#actParEnr').change(function(){
-		var actParEnr = $(this).val();
-		console.log($(this).val());
-		$('#actTalFee').text(${param.actFee} * actParEnr);
-		$("#actTalFee").val(${param.actFee} * actParEnr);
-	});
+		$('#actParEnr').change(function(){
+			var actParEnr = $(this).val();
+			console.log($(this).val());
+			$('#actTalFee').text(${param.actFee} * actParEnr);
+			$("#actTalFee").val(${param.actFee} * actParEnr);
+		});
 	</script>
 	
 	
@@ -170,9 +171,9 @@
 	   actPostDate = new java.sql.Timestamp(System.currentTimeMillis());
    }
 %>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/activity/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/back-end/activity_post/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/back-end/activity_post/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {

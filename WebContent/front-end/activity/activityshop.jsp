@@ -1,24 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.* , com.activity.model.*" %>
+<%@ page import="com.mem.model.*" %>
+<%@ page import="com.actparticipation.model.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
-<%@ page import="com.mem.model.*"%>
-<%@ page import="com.activity.model.*"%>
-<%@ page import="com.actparticipation.model.*"%>
-
 
 <%
-	ActivityService avs = new ActivityService();
-	List<ActivityVO> avslist = avs.getAll();
-	pageContext.setAttribute("avslist", avslist);
-
+	ActivityService AVS = new ActivityService();
+	List<ActivityVO> list =AVS.getAll();
+	pageContext.setAttribute("list",list);
+	System.out.println("123: " + list);
+	
+	
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
+	
 %>
+
 
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
 <title>活動瀏覽</title>
-<link rel="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link
+	rel="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="https://fonts.googleapis.com/css?family=Raleway:400, 500">
 <style type="text/css">
 /* Icon set - http://ionicons.com */
@@ -201,12 +205,11 @@ figure.snip1249:hover:after, figure.snip1249.hover:after { /*紅色區塊*/
 	transform: skew(-45deg) translateX(-75%);
 }
 </style>
-<%@ include file="/front-end/front-end-head.jsp"%>
 </head>
-
+<%@ include file="/front-end/front-end-head.jsp"%>
 <body>
-	<%@ include file="/front-end/front-end-header.jsp"%>
-	<%@ include file="/front-end/front-end-header2.jsp"%>
+<%@ include file="/front-end/front-end-header.jsp"%>
+<%@ include file="/front-end/front-end-header2.jsp"%>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -225,34 +228,38 @@ figure.snip1249:hover:after, figure.snip1249.hover:after { /*紅色區塊*/
 			</div>
 		</div>
 		<div class="row text-center">
-			<c:forEach var="AVS" items="${avslist}">
-				<Form action="<%=request.getContextPath()%>/front-end/activity/activityshop.do">
+			<c:forEach var="AVS" items="${list}">
+				<Form
+					action="<%=request.getContextPath()%>/front-end/activity/activityshop.do">
 					<div class="col-3"></div>
 
 					<figure class="snip1249">
 						<div class="image">
-							<img class="card-img-top" src="<%=request.getContextPath()%>/front-end/activity/activitypicServlet.do?actno=${AVS.actno}">
-							<i class="ion-ios-star-outline"></i>
+							<img src="<%=request.getContextPath()%>/back-end/activity/activitypicServlet.do?actno=${AVS.actno}"class="card-img-top" alt=""><i class="ion-ios-star-outline"></i>
 						</div>
 						<figcaption>
 							<h5 class="card-title">${AVS.actName}</h5>
 							<p class="card-text">${AVS.actDes}</p>
 							<div class="price">精選活動</div>
 							<input type="hidden" name="actno" value="${AVS.actno}">
-							<input type="hidden" name="memno" value="${sessionScope.memVO.memno}">
+							<input type="hidden" name="memno" value="${memVO.memno}">
 							<input type="hidden" name="action" value="check">
 							<input type="submit" value="參加活動" class="add-to-cart">
-							<!-- 							<a type="submit" href="#" class="add-to-cart">查看詳情</a> -->
+<!-- 							<a type="submit" href="#" class="add-to-cart">查看詳情</a> -->
 						</figcaption>
 					</figure>
 					<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
-					<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-					<script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
+					<script
+						src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+					<script
+						src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
 					<script>
-						/* Demo purposes only */
-						$(".hover").mouseleave(function() {
-							$(this).removeClass("hover");
-						});
+  /* Demo purposes only */
+  $(".hover").mouseleave(
+    function () {
+      $(this).removeClass("hover");
+    }
+  );
 					</script>
 				</Form>
 			</c:forEach>

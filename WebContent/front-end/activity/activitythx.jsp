@@ -16,7 +16,8 @@
 		<div class="row text-center">
 			<div class="col">
 				<h4>
-					<a href="<%=request.getContextPath()%>/front-end/activity/front_page.jsp">回活動首頁</a>
+					<a
+						href="<%=request.getContextPath()%>/front-end/activity/front_page.jsp">回首頁</a>
 				</h4>
 				<h1>感謝您的參與，期待活動上相見</h1>
 			</div>

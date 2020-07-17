@@ -32,8 +32,9 @@
 		<div class="row text-center">
 			<div class="col">
 
-				<FORM METHOD="post"enctype="multipart/form-data"
-							ACTION="<%=request.getContextPath()%>/front-end/activity/activityfeelings.do">
+				<FORM METHOD="post"
+					ACTION="<%=request.getContextPath()%>/front-end/activity/activityfeelings.do"
+					enctype="multipart/form-data">
 
 
 					<jsp:useBean id="actPSvc" scope="page" class="com.activitypost.model.ActivitypostService" />
@@ -66,7 +67,7 @@
 						</div>
 						<br>
 						<div>
-							活動推文日期：<input type="text" id="f_date1" name="actPostDate" readonly>
+							活動推文日期：<input type="text" id="f_date1" name="actPostDate">
 						</div>
 						<br>
 						<div>
@@ -104,9 +105,9 @@
 	   actPostDate = new java.sql.Timestamp(System.currentTimeMillis());
    }
 %>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/activity/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/back-end/activity_post/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/back-end/activity_post/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
