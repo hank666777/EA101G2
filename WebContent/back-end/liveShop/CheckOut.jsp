@@ -17,8 +17,9 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/liveShop/css/ShoppingCart.css">
 </head>
 <body>
-	<font size="+3">桌號${tbVO.tableNo}結帳明細:</font>
-
+	<div id="tabledetail" style="font-size:20px;text-decoration:underline;">
+		桌號<p style="color:orange;">${tbVO.tableNo}</p>結帳明細:
+	</div>
 	<table id="table-1" style="margin: auto;">
 		<tr>
 		<th width="200">商品名稱</th>

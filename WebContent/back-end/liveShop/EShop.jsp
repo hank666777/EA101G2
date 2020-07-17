@@ -53,7 +53,7 @@
 			<p>商品列表</p>
 
 			<div id="sit">
-				桌號${tbVO.tableNo}
+				目前已選桌號${tbVO.tableNo}
 			</div>
 		</div>
 

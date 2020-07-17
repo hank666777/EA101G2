@@ -26,7 +26,12 @@ table#table-1 {
 		to(#629721));
 	text-align:center;
 }
-
+#tabledetail{
+	position:relative;
+	right:400;
+	margin:auto;
+	text-align:center;
+}
 table {
 	width: 850px;
 	background-color: white;
