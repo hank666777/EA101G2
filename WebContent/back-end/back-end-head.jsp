@@ -7,3 +7,5 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <!-- font-awesome CSS 5.13-->
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.css">
+<!-- Sweet Alert-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

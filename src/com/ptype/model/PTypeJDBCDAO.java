@@ -7,7 +7,7 @@ import java.util.*;
 public class PTypeJDBCDAO implements PTypeDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "EA101_G2";
+	String userid = "EA101G2";
 	String passwd = "123456";
 	
 	private static final String INSERT_STMT=

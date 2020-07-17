@@ -13,6 +13,7 @@
 <head>
 	<title>MISS M員工資料新增 </title>
 	<%@ include file="/back-end/back-end-head.jsp" %>
+	
 
 </head>
 <body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg">
@@ -123,13 +124,44 @@
 		
 		<div class="row justify-content-center">
 			<input type="hidden" name="action" value="insert"> 
-			<input class="btn btn-success" type="submit" id="sendbtn" value="送出新增" >
+			<input class="btn btn-success preview" type="submit" id="sendbtn" value="送出新增" >
 			<span id="magicspan" class="badge badge-success">.</span>
 		</div>
 		</FORM>
 <!-- 	</div> -->
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 	<script>
+		//sweet alert
+		$(function(){
+			var that;
+			var errorMsge = ${errorMsgs}
+			
+			$('input.preview').click(function(e){
+				that = this;
+				e.preventDefault();
+				
+					swal({
+					  title: "確定新增?",
+			// 		  text: "Once deleted, you will not be able to recover this imaginary file!",
+					  icon: "warning",
+					  buttons: true,
+					  dangerMode: true,
+					})
+					.then((willDelete) => {
+					  if (willDelete) {
+					    swal("資料送出!", {
+					      icon: "success",
+					    }).then(function(){
+					    	$(that).closest('form').submit();
+					    });
+					  } else {
+					    swal("取消員工登入!");
+					  }
+					});
+				
+			})
+		});
+	
 		//神奇小按鈕	
 		$('#magicspan').on('click',function(){
 			$('#eName').val('羊駝');
@@ -143,6 +175,9 @@
 			setTimeout(function(){
 				btn.disabled = true;
 			},50);
+			setTimeout(function(){
+				btn.disabled = false;
+			},4000)
 		});
 	
 		//預覽圖片
