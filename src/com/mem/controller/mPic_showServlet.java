@@ -9,69 +9,30 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.sql.DataSource;
 
+import com.activity.model.ActivityService;
+import com.activity.model.ActivityVO;
+import com.mem.model.MemService;
+import com.mem.model.MemVO;
+
 public class mPic_showServlet extends HttpServlet {
-	Connection con;
-
-	public void doGet(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException {
-
-    req.setCharacterEncoding("UTF-8");
+	private static final long serialVersionUID = 1L;
+    
+	   
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	
 		res.setContentType("image/gif");
 		ServletOutputStream out = res.getOutputStream();
-
+		
 		try {
-			Statement stmt = con.createStatement();
-            String memno = req.getParameter("memno").trim();
-			ResultSet rs = stmt.executeQuery(
-				"SELECT mPic FROM MEMBER WHERE memno='"+memno+"'");
-
-			if (rs.next()) {
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("mPic"));
-				byte[] buf = new byte[4 * 1024]; // 4K buffer
-				int len;
-				while ((len = in.read(buf)) != -1) {
-					out.write(buf, 0, len);
-				}
-				in.close();
-			} else {
-//				res.sendError(HttpServletResponse.SC_NOT_FOUND);
-				InputStream in=getServletContext().getResourceAsStream("/images/back-end/none2.jpg");
-			    byte[] b=new byte[in.available()];
-			    in.read(b);
-			    out.write(b);
-			    in.close();
-			}
-			rs.close();
-			stmt.close();
-		} catch (Exception e) {
-//			System.out.println(e);
-			InputStream in=getServletContext().getResourceAsStream("/images/back-end//null.jpg");
-		    byte[] b=new byte[in.available()];
-		    in.read(b);
-		    out.write(b);
-		    in.close();
+			String memno = req.getParameter("memno");
+			MemVO memVO = new MemService().getOneMem(memno);
+			byte[] buf = memVO.getmPic();
+			out.write(buf);
+		}catch(Exception e) {
+			System.out.println("mPic_showServlet" + e.getMessage());
 		}
+			
+		
 	}
-
-	public void init() throws ServletException {
-		try {
-			Context ctx = new javax.naming.InitialContext();
-			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB3");
-			con = ds.getConnection();
-		} catch (NamingException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void destroy() {
-		try {
-			if (con != null) con.close();
-		} catch (SQLException e) {
-			System.out.println(e);
-		}
-	}
-
 }
 

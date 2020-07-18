@@ -13,7 +13,6 @@ import redis.clients.jedis.Jedis;
 import com.coupon.model.CouponVO;
 import com.coupon.model.CpService;
 import com.mem.controller.MailService;
-import com.mem.controller.MemberRedis;
 
 @MultipartConfig(maxRequestSize = 100 * 1024 * 1024)
 
@@ -24,7 +23,8 @@ public class MemServlet extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+			
+		
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
