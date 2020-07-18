@@ -12,7 +12,7 @@
 <title>MISS M-訂單管理</title>
 <%@ include file="/back-end/back-end-head.jsp" %>
 </head>
-<body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/productImg/backProductBackground.jpg">
+<body>
 	
 	<%@ include file="/back-end/back-end-header.jsp" %>
 	
