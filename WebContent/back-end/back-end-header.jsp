@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/back-end/chatRoom/css/chatStyle.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <body style="background-size:cover; " onload="connect();" onunload="disconnect();">
 	  <div class="container-fluid" style="hegiht:100vh;">
 	  	
@@ -112,14 +113,41 @@
 						</c:forEach>
 						</c:forEach>
 						
-						<a class="btn btn-block btn-secondary"
-						 	href="${pageContext.request.contextPath}/employeelogout.do">
-								<p class="h2 text-white">Logout</p>
+						<a class="btn btn-block btn-secondary" id="backLogout"
+						 	href="">
+								<p class="h2 text-white"><i class="fas fa-sign-out-alt"></i>Logout</p>
 						</a>
 					</div>
 
 	  		</div>
-	  		
+<script>
+//sweet alert2 logout
+$('#backLogout').on('click',function(e){
+	// stops the default action
+	e.preventDefault();
+	Swal.fire({
+	  title: '確定登出?',
+	  text: "",
+	  icon: 'question',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  confirmButtonText: '確定',
+	  cancelButtonColor: '#d33',
+	  cancelButtonText: '取消'
+	}).then((result) => {
+	  if (result.value) {
+	    Swal.fire(
+	      '登出成功',
+	      '',
+	      'success'
+	    ).then(function(){
+			  window.location.href = "${pageContext.request.contextPath}/employeelogout.do";
+		  })
+	  }
+	});
+});
+
+</script>
 	  		<div class="col-10 " style="padding:0;">
 							
 						<!-- 放置區開始 -->

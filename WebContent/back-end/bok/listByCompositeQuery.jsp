@@ -25,7 +25,8 @@
 	<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
 	
 
-
+	<!-- font-awesome CSS 5.13-->
+	<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.css">
 	<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<style type="text/css">

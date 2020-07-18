@@ -232,9 +232,10 @@
 			</div>
 		</div>
 		
-	</div>
+<!-- 	</div> -->
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 	<script>
+			//btn Locked
       $('.sendbtn').click(function(){
           var btn = this;
           setTimeout(function(){

@@ -22,6 +22,7 @@
 	<%@ include file="/back-end/back-end-head.jsp" %>
 	<!-- font-awesome CSS 5.13-->
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg" onload="connect();" onunload="disconnect();">
 	  <div class="container-fluid" style="hegiht:100vh;">
@@ -120,20 +121,20 @@
 						</c:forEach>
 						</c:forEach>
 						
-						<a class="btn btn-block btn-secondary"
-						 	href="${pageContext.request.contextPath}/employeelogout.do">
-								<p class="h2 text-white">Logout</p>
+						<a class="btn btn-block btn-secondary" id="backLogout"
+						 	href="">
+								<p class="h2 text-white"><i class="fas fa-sign-out-alt"></i>Logout</p>
 						</a>
 					</div>
 
 	  		</div>
 	  		<div class="col-4"></div>
-	  		<div class="col-3 align-self-center " style="padding:0;">
+	  		<div class="col-3 align-self-center" style="padding:0;">
 							
 	  			<div class="container ">
 						<div class="row banner" style="">
 							<!-- 放置區開始 -->
-							<div class="col text-center ">
+							<div class="col text-center">
 <%
 	
 	long bokCount = new BokService().getAll().stream().filter(bok -> bok.getBkStatus().equals(0)).count();
@@ -207,6 +208,32 @@
 	<script src="${pageContext.request.contextPath}/js/jquery_3.5.1.min.js"></script>
 	
 <script>
+	//sweet alert2 logout
+	$('#backLogout').on('click',function(e){
+		// stops the default action
+		e.preventDefault();
+		Swal.fire({
+		  title: '確定登出?',
+		  text: "",
+		  icon: 'question',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  confirmButtonText: '確定',
+		  cancelButtonColor: '#d33',
+		  cancelButtonText: '取消'
+		}).then((result) => {
+		  if (result.value) {
+		    Swal.fire(
+		      '登出成功',
+		      '',
+		      'success'
+		    ).then(function(){
+				  window.location.href = "${pageContext.request.contextPath}/employeelogout.do";
+			  })
+		  }
+		});
+	});
+
 
 $(function () {
 	  var INDEX = 0;
