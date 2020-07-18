@@ -40,7 +40,7 @@
 
 <script>
 
-	$(function () {
+$(function () {
 	  var INDEX = 0;
 	  $("#sendMessage").click(function (e) {
 	    e.preventDefault();
