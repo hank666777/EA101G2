@@ -26,7 +26,7 @@
 
 	.innerdetail{
 		margin:5px 20px;
-		float:left;
+		
 	}
 	
 	.tdcart{
@@ -37,45 +37,65 @@
 		text-align:center;
 	}
 	
+	.tddes{
+		text-indent: 32px;
+	}
+	
+	.floating-card {
+        float: left;
+        margin: 30px;
+        max-width: 300px;
+
+    }
+	
 </style>
 
 </head>
 <body>
 		
-	<jsp:useBean id="PTypeSvc" scope="page" class="com.ptype.model.PTypeService" />
- 	
- 	<h4 id="showproducttitle">${productVO.pname}</h4>
- 	
- 	<div class="col-xl-6 card innerdetail">
- 		<img src="<%=request.getContextPath()%>/ProductReader?pno=${productVO.pno}" width=360px height=270px>
- 	</div>
- 	
- 	
-	 	<div class="col-xl-6 card innerdetail">
-	
-	<table height=270px>
-	 		<tr>
-	 			<th nowrap="nowrap">商品描述：</th>
-	 		</tr>
-	 		<tr>
-	 			<td>${productVO.pDes}</td>
-	 		</tr>
-	 		
-	 		<tr>
-	 			<td nowrap="nowrap"><b>商品價格：</b>NT${productVO.pP}元</td>
-	 		</tr>
-	 	
-	 		<tr>
-	 			<td nowrap="nowrap"><b>每日限量：</b>${productVO.pDoffer}個</td>
-	 		</tr>
-	 	
-	 		<tr>
-	 			<td class="tdcart"><input type="button" value="加入購物車"> </td>
-	 		</tr>
-	 	
-	</table>
+	<h4 id="showproducttitle">${productVO.pname}</h4>	
 		
-	 	</div>
+	<div class="container">
+		<div class="row">
+	
+		<jsp:useBean id="PTypeSvc" scope="page" class="com.ptype.model.PTypeService" />
+ 	
+		 	<div class="floating-card">
+		 	
+			 	<div class="col-xl-4 col-lg-6 innerdetail">
+			 		<img src="<%=request.getContextPath()%>/ProductReader?pno=${productVO.pno}" width=320px height=240px>
+			 	</div>
+		 	
+		 	</div>
+ 	
+		 	<div class="floating-card">
+		 	
+				 <div class="col-xl-4 col-lg-6 innerdetail">
+			
+					<table width="320px" height="240px">
+					 		<tr>
+					 			<th nowrap="nowrap">商品描述：</th>
+					 		</tr>
+					 		<tr>
+					 			<td class="tddes">${productVO.pDes}</td>
+					 		</tr>
+					 		
+					 		<tr>
+					 			<td nowrap="nowrap"><b>商品價格：</b>NT${productVO.pP}元</td>
+					 		</tr>
+					 	
+					 		<tr>
+					 			<td nowrap="nowrap"><b>每日限量：</b>${productVO.pDoffer}個</td>
+					 		</tr>
+			 	
+					</table>
+		
+	 			</div>
+			</div>
+			
+		</div>	
+	</div>	
+	
 	 	
 	
 	

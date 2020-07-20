@@ -14,10 +14,12 @@
 	//將pTno的物件強轉型成String才能使用下面的方法
 	//String pTno=(String)request.getAttribute("pTno");
 	
-	Object PT = session.getAttribute("pTno");
-	ProductService productSvc = new ProductService();
-	List<ProductVO>list = productSvc.getProductByCategory(PT.toString());
-	pageContext.setAttribute("list", list);
+// 	Object PT = session.getAttribute("pTno");
+// 	ProductService productSvc = new ProductService();
+// 	List<ProductVO>list = productSvc.getProductByCategory(PT.toString());
+// 	pageContext.setAttribute("list", list);
+
+	List<ProductVO> list = (List<ProductVO> )session.getAttribute("listProduct_ByCompositeQuery2");
 %>    
 
 
@@ -34,7 +36,7 @@
 <style type="text/css" media="screen">	
 		
 		body{
-		background-image:url('<%= request.getContextPath() %>/front-end/product/image/productShoppingBackground.jpg');
+		background-image:url('<%= request.getContextPath() %>/images/front-end/productImg/frontProductBackground.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
@@ -48,11 +50,11 @@
 				
 			}
 			
-		.card{
-			width: 340px;
-			margin:10px;
-		}	
-					
+/* 		.card{ */
+/* 			width: 300px; */
+/* 			margin:10px; */
+/* 		}	 */
+								
 		.productimage{
 		
 			border: 2px solid #fff;
@@ -71,6 +73,25 @@
 			margin-bottom:20px;
 		}
 		
+		.olt{
+			background-color: #F3EFCA;
+			width:1200px;
+			margin:0 0 0 10;
+			padding:10px;	
+		}
+
+		.pagefloat{
+			text-align:left;
+			margin-right:10px;
+		}
+
+		.pagebox{
+			margin-bottom:30px;
+		}
+		
+		.clicksure{
+			margin-bottom:10px;
+		}
 
 </style>
 
@@ -85,88 +106,113 @@
 <!-- 		</tr> -->
 <!-- 	</table> -->
 
+<%@ include file="/front-end/front-end-head.jsp" %>
+<%@ include file="/front-end/front-end-header.jsp" %>
+<%@ include file="/front-end/front-end-header2.jsp" %>
+
+	<div id="productmark">
+			<h1 id="searchproducttitle">商品一覽</h1>
+	</div>
+
 	
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs} ">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
+
+
+<div class="container">
+	<div class="row">
+
+	<c:if test="${not empty errorMsgs}">
+		<font style="color:red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs} ">
+				<li style="color:red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
 
 
 
 	<jsp:useBean id="PTypeSvc" scope="page" class="com.ptype.model.PTypeService" />
 		
-		<div id="productmark">
-			<h1 id="searchproducttitle">商品一覽</h1>
-		</div>
+	<div class="olt">	
 	
-	<div class = "container">
+	<%@ include file="page1.file" %>	
 	
-		<c:forEach var="productVO" items="${list}">
+		<c:forEach var="productVO" items="${listProduct_ByCompositeQuery2}" begin="<%=pageIndex %>" end="<%=pageIndex + rowsPerPage-1 %>">
 
-			<div class="col-xl-4 col-lg-6 card">		
+			<div class="col-xl-4 col-lg-6 card" style="width:360px; margin:0px 10px 10px 0px;">		
+ 			
+ 				<div class="card-body">
  			
  					<a href="<%= request.getContextPath()%>/product.do?pno=${productVO.pno}&action=getDisplayView">
- 						<img class="productimage" src="<%=request.getContextPath()%>/ProductReader?pno=${productVO.pno}" width=300px height=225px> 
+ 						<img class="productimage" src="<%=request.getContextPath()%>/ProductReader?pno=${productVO.pno}" width=292px height=219px> 
 					</a>
 					<div>
 						<p class="productInfo">名稱：${productVO.pname}
 						</p>
 					</div>
 				
-				<div class = "row">
-						
-					<div class="col-7">		
-						<p class="productInfo">價格：${productVO.pP}元
-						</p>
-					</div>	
-					
-					<div class="col-5">		
-						<input type="button" value="加入購物車"> 
-					</div>
+					<div class = "row">
 							
-				</div>
+						<div class="col-7">		
+							<p class="productInfo">價格：${productVO.pP}元
+							</p>
+						</div>	
+								
+					</div>
+		  
+		  		</div>
+		  
 		   </div>
 			
 		</c:forEach>
+	
+				
+	
 	</div>
+		
+	<div class="olt pagebox">
+		<%@ include file="page2.file" %>
+	</div>	
+			
 	
 	<c:if test="${openModal!=null}">
 
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
+		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+						
+					<div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		            </div>
+					
+					<div class="modal-body">
+		<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+		               <jsp:include page="listOneProduct.jsp" />
+		<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+					</div>
+					
+					<div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		            </div>
 				
-			<div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-			
-			<div class="modal-body">
-<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
-               <jsp:include page="listOneProduct.jsp" />
-<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+				</div>
 			</div>
-			
-			<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-		
+		</div>
+	
+	        <script>
+	    		 $("#basicModal").modal({show: true});
+	        </script>
+
+	</c:if>
+
+	
 		</div>
 	</div>
-</div>
 
-        <script>
-    		 $("#basicModal").modal({show: true});
-        </script>
-
-</c:if>
-	
 	
 
-
+<%@ include file="/front-end/front-end-footer.jsp" %>
 
 </body>
 </html>
+

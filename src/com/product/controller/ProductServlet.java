@@ -659,7 +659,7 @@ System.out.println(pTno);
 					
 				}catch(Exception e) {
 					errorMsgs.add(e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/product/frontProductSearch.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/product/frontProductCategory.jsp");
 					failureView.forward(req, res);
 						
 				}

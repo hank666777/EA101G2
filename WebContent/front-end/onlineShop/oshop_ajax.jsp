@@ -378,7 +378,7 @@ div.card.show div.flap2 {
 			$('#searchInfo').html('搜尋中....');
 		});
 		
-		$('#textSearchAera').on('change',function(data) {
+		$('#textSearchAera').keyup(function(data) {
 			var textSearchAera = $('#textSearchAera').val();
 
 			$.ajax({
