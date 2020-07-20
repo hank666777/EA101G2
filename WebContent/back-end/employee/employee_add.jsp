@@ -28,37 +28,35 @@
 			</div>
 		</div>
 						
-		<div class="row justify-content-center">
-			<div class="col-xl-7 text-center" style="color:#F00;">
-				<%-- 錯誤表列 --%>
-				<c:if test="${not empty errorMsgs}">
-						<c:forEach var="message" items="${errorMsgs}">
-							<p class="#F00">${message}<br><p>
-						</c:forEach>
-				</c:if>
-			</div>
-		</div>
+<!-- 		<div class="row justify-content-center"> -->
+<!-- 			<div class="col-xl-7 text-center" style="color:#F00;"> -->
+<%-- 				錯誤表列 --%>
+<%-- 				<c:if test="${not empty errorMsgs}"> --%>
+<%-- 						<c:forEach var="message" items="${errorMsgs}"> --%>
+<%-- 							<p class="#F00">${message}<br><p> --%>
+<%-- 						</c:forEach> --%>
+<%-- 				</c:if> --%>
+<!-- 			</div> -->
+<!-- 		</div> -->
 		
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        
-		        <!-- 錯誤訊息內容 -->
-		        
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		
-		
+<script>
+$(function(){
+	
+	<c:if test="${not empty errorMsgs}">
+			var message = "";
+		<c:forEach var="message" items="${errorMsgs}">
+			message += "${message}<br>"
+		</c:forEach>
+		Swal.fire({
+			icon:"error",
+			title:"請修正以下錯誤",
+			html: message
+			
+		})
+	</c:if>
+	
+});
+</script>
 		
 					
 		<div class="row align-items-center justify-content-center" >

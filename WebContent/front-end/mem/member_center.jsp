@@ -96,11 +96,11 @@
 		      </div>
 		      <div class="tab-pane fade" id="list-activity" role="tabpanel" aria-labelledby="activity-list">
 		      	<!-- 會員活動查詢 -->
-<%-- 		      	<%@ include file="/front-end/activity/listone_membercenter.jsp"%>  --%>
+		      	<%@ include file="/front-end/activity/listone_membercenter.jsp"%> 
 		      </div>
 		      <div class="tab-pane fade" id="list-activity-post" role="tabpanel" aria-labelledby="activity-post-list">
 		      	<!-- 會員活動貼文查詢 -->
-<%-- 		      	<%@ include file="/front-end/activity/feelings_membercenter.jsp"%>  --%>
+		      	<%@ include file="/front-end/activity/feelings_membercenter.jsp"%> 
 		      </div>
 		      <div class="tab-pane fade" id="list-responselist" role="tabpanel" aria-labelledby="">
 		      	<!-- 會員意見反映查詢 -->
