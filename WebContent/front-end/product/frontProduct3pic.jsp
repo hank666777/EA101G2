@@ -77,10 +77,6 @@
 			
 		}
 		
-		.productInfo{
-			margin-left: 25px;
-		}
-
 		#searchproducttitle{
 			text-align:center;
 			margin-bottom:20px;
@@ -129,7 +125,7 @@
 				
 					<div class = "row">
 							
-						<div class="col-7">		
+						<div class="col-12">		
 							<p class="productInfo">價格：${productVO.pP}元
 							</p>
 						</div>	
