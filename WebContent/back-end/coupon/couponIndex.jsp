@@ -21,6 +21,13 @@
 
     </script>
 <style type="text/css">
+body{
+		background-image:url("<%= request.getContextPath() %>/back-end/coupon/images/bgc.jpg"); 
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: center;
+	}
 
 ul{
 margin:0px;
@@ -72,17 +79,12 @@ background-color: rgb(255, 255, 255) !important;
       <li class="nav-item">
         <a class="nav-link" href="<%=request.getContextPath()%>/back-end/coupon/listAllCoupon.jsp" target="coupon">查詢優惠券種類</a>
       </li>
-<!--       <li class="nav-item"> -->
-<%--         <a class="nav-link" href="<%=request.getContextPath()%>/back-end/myCoupon/addMyCoupon.jsp" target="coupon">發送優惠券</a> --%>
-<!--       </li> -->
-<!--       <li class="nav-item"> -->
-<%--         <a class="nav-link " href="<%=request.getContextPath()%>/back-end/coupon/listAllMyCoupon.jsp" target="coupon">查詢優惠券</a> --%>
-<!--       </li> -->
+
     </ul>
   </div>
 </nav>
 
 
-	<iframe src="" frameborder="no" scrolling="no" width="100%" height="700px" name="coupon"></iframe>
+	<iframe src="" frameborder="no" scrolling="no" width="100%" height="1000px" name="coupon"></iframe>
 
 <%@ include file="/back-end/back-end-footer.jsp" %> 

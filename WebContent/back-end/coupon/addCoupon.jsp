@@ -56,12 +56,27 @@
 	
     </script>
 <style type="text/css">
+.bg {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            bottom: 10px;
+            right: 0;
+            z-index: -999;
+            opacity:0.85;
+        }
+        .bg img {
+        	background-size:cover;
+            height: 1000px;
+            width: 100%;
+        }
 
 h3 {
 	margin: 5px;
 	display: inline-block;
 	font-size: 14px;
 	font-weight: 400;
+	color:white;
 }
 .img {
 	visibility: hidden;
@@ -78,7 +93,9 @@ body{
 font-family:Microsoft jhengHei;
 background-color: rgb(255, 255, 255);
 font-size: 12px;
+
 }
+
 .errors{
 color:red;
 font-family:Microsoft jhengHei;
@@ -101,12 +118,24 @@ background:url(<%=request.getContextPath()%>/back-end/coupon/images/xx.png) no-r
 .right{
 background:url(<%=request.getContextPath()%>/back-end/coupon/images/oo.png) no-repeat left center;
 }
+
+.form{
+position:absolute;
+top:10%;
+left:25%;
+border:1px solid ;
+padding:20px;
+background-color: rgb(15,15,15,0.3);
+}
+
 </style>
 
 <title>Insert title here</title>
 </head>
-<body>
-
+<body >
+<div class="bg">
+		<img src="<%= request.getContextPath() %>/back-end/coupon/images/bgc.jpg" style="height:100%">
+</div>
 	<div class="row">
 	<div class="form col-md-6">
 	
