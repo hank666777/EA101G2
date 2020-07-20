@@ -27,17 +27,6 @@
 				</div>
 			</div>
 		</div>
-						
-<!-- 		<div class="row justify-content-center"> -->
-<!-- 			<div class="col-xl-7 text-center" style="color:#F00;"> -->
-<%-- 				錯誤表列 --%>
-<%-- 				<c:if test="${not empty errorMsgs}"> --%>
-<%-- 						<c:forEach var="message" items="${errorMsgs}"> --%>
-<%-- 							<p class="#F00">${message}<br><p> --%>
-<%-- 						</c:forEach> --%>
-<%-- 				</c:if> --%>
-<!-- 			</div> -->
-<!-- 		</div> -->
 		
 <script>
 $(function(){
@@ -51,7 +40,6 @@ $(function(){
 			icon:"error",
 			title:"請修正以下錯誤",
 			html: message
-			
 		})
 	</c:if>
 	

@@ -418,7 +418,7 @@ System.out.println(pTno);
 
 			String requestURL = req.getParameter("requestURL");
 			
-			try {
+//			try {
 				
 			/**1.接收請求參數 - 輸入格式的錯誤處理**/
 			
@@ -495,33 +495,33 @@ System.out.println(pTno);
 				
 			/**2.開始修改資料**/
 				
-				HttpSession session = req.getSession();
-				Map<String, String[]> map = (Map<String, String[]>) session.getAttribute("map");
-				if (req.getParameter("whichPage") == null) {
-					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());	
-					session.setAttribute("map", map1);
-					map = map1;
-				}
+//				HttpSession session = req.getSession();
+//				Map<String, String[]> map = (Map<String, String[]>) session.getAttribute("map");
+//				if (req.getParameter("whichPage") == null) {
+//					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());	
+//					session.setAttribute("map", map1);
+//					map = map1;
+//				}
 				
 				ProductService productSvc = new ProductService();
 				productSvc.updateProduct(pname,pP,pPic,pDes,pDoffer,invStatus,pStatus,pTno,pno);
 
 			/**3.修改完成,準備轉交(Send the Success view)**/	
 				
-				if(requestURL.equals("/back-end/product/listProductByCompositeQuery.jsp") || requestURL.equals("/back-end/product/listAllProduct.jsp"))		
-				req.setAttribute("listProduct_ByCompositeQuery", productSvc.getAll(map));
-				
-				String url = requestURL;
-				RequestDispatcher successView = req.getRequestDispatcher(url);
+//				if(requestURL.equals("/back-end/product/listProductByCompositeQuery.jsp") || requestURL.equals("/back-end/product/listAllProduct.jsp"))		
+////				req.setAttribute("listProduct_ByCompositeQuery", productSvc.getAll(map));
+//				
+//				String url = requestURL;
+				RequestDispatcher successView = req.getRequestDispatcher(requestURL);
 				successView.forward(req, res);
 
 			/**其他可能的錯誤處理**/	
 				
-			} catch (Exception e) {
-				errorMsgs.add("修改資料失敗：" +e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/product/updateProductInput.jsp");
-				failureView.forward(req, res);
-			}
+//			} catch (Exception e) {
+//				errorMsgs.add("修改資料失敗：" +e.getMessage());
+//				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/product/updateProductInput.jsp");
+//				failureView.forward(req, res);
+//			}
 		}
 
 		

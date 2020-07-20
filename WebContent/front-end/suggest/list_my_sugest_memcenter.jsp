@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
+<%@ page import="java.util.stream.*"%>
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.suggest.model.*"%>
 
@@ -12,10 +13,13 @@
 
 	//找出自己的反應清單
 	List<SugestVO> mySugList = new SugService().getmySug(memVO4.getMemno());
-	if(mySugList.size() != 0){
-		pageContext.setAttribute("mySugListSize",mySugList.size() - 5);
-	}
-	pageContext.setAttribute("mySugList", mySugList);
+	List<SugestVO> newSugList = mySugList.stream()
+		.limit(5)
+		.collect(Collectors.toList());
+	
+	System.out.println("Size = " + newSugList.size());
+	
+	pageContext.setAttribute("mySugList", newSugList);
 %>
 
 
@@ -45,7 +49,7 @@
 							<th><p class="h4">回覆狀態</p></th>
 							<th><p class="h4">回應內容</p></th>
 						</tr>
-<c:forEach var="mysuglist" items="${mySugList}" begin="${mySugListSize}">
+<c:forEach var="mysuglist" items="${mySugList}">
 						<tr>
 							<td><p class="h5">${mysuglist.suggestno}</p></td>
 							<td><p class="h5">${mysuglist.suggestDate}</p></td>

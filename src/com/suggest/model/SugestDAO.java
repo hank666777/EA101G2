@@ -32,7 +32,7 @@ public class SugestDAO implements SugestDAO_interface {
 			"SELECT SuggestNo,to_char(SuggestDate,'yyyy-mm-dd hh:mm:ss') SuggestDate,SuggestDetail,ResStatus,responseDetail,MemNo from RESPONSELIST where suggestno=? ";
 	public static final String DELETE = "DELETE From ResponseList where suggestNo = ?";
 	public static final String UPDATE = "UPDATE RESPONSELIST set SuggestDate=?,SuggestDetail=?,ResStatus=?,Memno=?,responseDetail=? where suggestno=? ";
-	public static final String GET_MYSUGLIST_STMT = "SELECT * FROM RESPONSELIST where memno=? ";
+	public static final String GET_MYSUGLIST_STMT = "SELECT * FROM RESPONSELIST where memno=? ORDER BY SUGGESTNO DESC";
 	@Override
 	public void insert(SugestVO sugestVO) {
 		Connection con = null;
