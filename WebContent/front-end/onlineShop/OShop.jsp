@@ -102,7 +102,7 @@ div.cards {
 div.card {
   background: #ffffff;
   display: inline-block;
-  margin: 8px;
+  margin: 40px 40px;
   max-width: 300px;
   position: relative;
   text-align: left;
@@ -290,7 +290,7 @@ div.card.show div.flap2 {
 	
 	<div class="cards">
 		<c:forEach var="listVO" items="${listProduct_ByCompositeQuery}">
-			<Form name="shoppingForm" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="post">
+			<Form name="shoppingForm" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="post" style="margin:50px 50px;">
 			
 				<div class="card">
 					<div class="card__image-holder">
