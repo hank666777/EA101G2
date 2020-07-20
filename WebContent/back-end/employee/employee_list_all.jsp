@@ -23,9 +23,21 @@
 <body style="background-size:cover;" background="${pageContext.request.contextPath}/images/back-end/back-bg.jpg">
 
 <%@ include file="/back-end/back-end-header.jsp" %>
-<!-- 	<div class="container"> -->
-<!-- 		<div class="row "> -->
-<!-- 		<div class=""> -->
+	<div class="container-fluid">
+	
+		<div class="row">
+					<div class="col-12">
+							<!-- 請輸入查詢字：員工編號或姓名或職稱或狀態 -->
+							<p class="h4" style="color:#FFF;">輸入員工姓名:</p> 
+							<input type="text" name="eName"	class="form-control" id="eName"> 
+					</div>
+		</div>
+		<div class="row">
+			<div class="col-12" id="searchInfo"></div>
+		</div>
+		
+		<div class="row ">
+			<div class="col-12">
 			<table class="table table-striped text-nowrap table-bordered table-hover table-sm text-center "
 							style="margin:0; padding:0px; background-color:#EEE; ocacity:.9;">
 		 		<thead>
@@ -44,8 +56,8 @@
 				<%@ include file="page1.file"%>
 					<tbody>
 				<c:forEach var="employeeVO" items="${list}" begin="<%=pageIndex%>"
-					end="<%=pageIndex+rowsPerPage-1%>">
-					<tr>
+									 end="<%=pageIndex+rowsPerPage-1%>">
+					<tr id="info-tr">
 						<td class="align-middle">${employeeVO.empno}</td>
 						<td class="align-middle">
 							<img width=100 height=100
@@ -89,11 +101,39 @@
 				</c:forEach>
 					</tbody>
 			</table>
-<!-- 		</div> -->
+			
+		</div>
+		</div>
 		<br>
 		<%@ include file="page2.file"%>
-<!-- 	</div> -->
-
+	</div>
+<script>
+		$('#eName').keypress(function(){
+			$('#searchInfo')
+				.html('<div class="spinner-grow text-primary" style="width: 3rem; height: 3rem; role="status"></div>');
+		});
+		$('#eName').keyup(function(){
+// 			$('#info-tr').html();
+			var eName = $('#eName');
+			$.ajax({
+				url : '${pageContext.request.contextPath}/back-end/employee/employee.do',
+				type : 'post',
+				dataType : 'json',
+				data : {
+					action :'employee_one_search',
+					ename : eName
+				},
+				stop : function(data){
+					$('#searchInfo').html('');
+				},
+				
+				success : function(data){
+					console.log('data' + data);
+				}
+				
+			});
+		});
+</script>
 	<%@ include file="/back-end/back-end-footer.jsp"%>
 
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>

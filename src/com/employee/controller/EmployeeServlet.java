@@ -2,10 +2,14 @@ package com.employee.controller;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.employee.model.*;
 import com.features.model.FeaturesService;
@@ -574,11 +578,41 @@ public class EmployeeServlet extends HttpServlet {
 				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/employee/employee_list_search.jsp");
 				failureView.forward(req, res);
 			}
-////////////////////////////////////////			
-			
-			
-			
 		}
+////////////////////////////////////////			
+		if("employee_one_search".equals(action)) {
+			
+			try {
+				String eName = req.getParameter("ename");
+				EmployeeService empSvc = new EmployeeService();
+				List<EmployeeVO> emplist = empSvc.getAll();
+				List<EmployeeVO> newEmpList = emplist.parallelStream().filter(e-> e.geteName().contains(eName))
+									  								  .collect(Collectors.toList());
+				
+				JSONArray json = new JSONArray();
+				if(newEmpList != null) {
+					for(EmployeeVO emp: newEmpList) {
+						JSONObject obj = new JSONObject();
+						obj.put("empno",emp.getEmpno());
+						obj.put("eName",emp.geteName());
+						obj.put("eEmail",emp.geteEmail());
+						obj.put("ePhone",emp.getePhone());
+						obj.put("eTitle",emp.geteTitle());
+						obj.put("eStatus",emp.geteStatus());
+						json.put(obj);
+					}
+				}
+				PrintWriter out = res.getWriter();
+				out.print(json);
+				out.close();
+				
+			}catch(Exception e) {
+				System.out.println("EmployeeServlet搜尋異常: " + e.getMessage());
+			}
+		}
+			
+			
+		
 		//不會用到
 		if("delete".equals(action)) { //來自listAllEmployee.jsp
 			

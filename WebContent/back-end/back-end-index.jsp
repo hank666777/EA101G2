@@ -226,7 +226,7 @@
 		    Swal.fire(
 		      '登出成功',
 		      '',
-		      'success'
+		      'info'
 		    ).then(function(){
 				  window.location.href = "${pageContext.request.contextPath}/employeelogout.do";
 			  })

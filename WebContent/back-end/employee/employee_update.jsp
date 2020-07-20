@@ -37,17 +37,21 @@ input{
 				</div>
 			</div>
 		</div>
-		
-		<div class="row justify-content-center">
-			<div class="col-xl-6 text-center"  style="color:#F00;">
-				<%-- 錯誤表列 --%>
-				<c:if test="${not empty errorMsgs}">
-						<c:forEach var="message" items="${errorMsgs}">
-							${message}<br>
-						</c:forEach>
-				</c:if>
-			</div>
-		</div>
+<script>
+
+	<c:if test="${not empty errorMsgs}">
+		var message = "";
+		<c:forEach var="message" items="${errorMsgs}">
+			 message +='${message}<br>'
+		</c:forEach>
+			 Swal.fire({
+				 icon:"error",
+				 title:"請修正以下錯誤",
+				 html: message
+			 })
+	</c:if>
+
+</script>	
 		
 		<div class="row justify-content-center">
 			<label for="ePic"><div class="col-xl-6 text-center">
