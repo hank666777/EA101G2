@@ -18,7 +18,7 @@ public class CouponJNDIDAO implements CouponDAO {
 	private static final String UPDATE_STMT2 = "UPDATE COUPON SET COUPONNAME = ?, COUPONDISCOUNT = ?WHERE COUPONNO = ?";
 	private static final String DELETE_STMT = "DELETE FROM COUPON WHERE COUPONNO = ?";
 	private static final String FIND_BY_PK = "SELECT * FROM COUPON WHERE COUPONNO = ?";
-	private static final String GET_ALL = "SELECT * FROM COUPON";
+	private static final String GET_ALL = "SELECT * FROM COUPON order by rownum desc";
 	private static final String FIND_BY_PK2 = "SELECT COUPONDISCOUNT FROM COUPON WHERE COUPONNAME = ?";
 	private static final String FIND_BY_PK3 = "SELECT coupondiscount from coupon where couponno=(select couponno from mycoupon where couponsno=?)";
 	@Override
