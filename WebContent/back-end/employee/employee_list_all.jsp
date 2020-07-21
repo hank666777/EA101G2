@@ -25,16 +25,16 @@
 <%@ include file="/back-end/back-end-header.jsp" %>
 	<div class="container-fluid">
 	
-		<div class="row">
-					<div class="col-12">
-							<!-- 請輸入查詢字：員工編號或姓名或職稱或狀態 -->
-							<p class="h4" style="color:#FFF;">輸入員工姓名:</p> 
-							<input type="text" name="eName"	class="form-control" id="eName"> 
-					</div>
-		</div>
-		<div class="row">
-			<div class="col-12" id="searchInfo"></div>
-		</div>
+<!-- 		<div class="row"> -->
+<!-- 					<div class="col-12"> -->
+<!-- 							請輸入查詢字：員工編號或姓名或職稱或狀態 -->
+<!-- 							<p class="h4" style="color:#FFF;">輸入員工姓名:</p>  -->
+<!-- 							<input type="text" name="eName"	class="form-control" id="eName">  -->
+<!-- 					</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-12" id="searchInfo"></div> -->
+<!-- 		</div> -->
 		
 		<div class="row ">
 			<div class="col-12">
@@ -108,30 +108,49 @@
 		<%@ include file="page2.file"%>
 	</div>
 <script>
+		//此為需要事先定義要記錄的定時器
+		var keyinTime;
 		$('#eName').keypress(function(){
 			$('#searchInfo')
-				.html('<div class="spinner-grow text-primary" style="width: 3rem; height: 3rem; role="status"></div>');
+				.html('<div class="spinner-grow text-primary text-center" style="width: 3rem; height: 3rem; role="status"></div>');
 		});
-		$('#eName').keyup(function(){
-// 			$('#info-tr').html();
-			var eName = $('#eName');
-			$.ajax({
-				url : '${pageContext.request.contextPath}/back-end/employee/employee.do',
-				type : 'post',
-				dataType : 'json',
-				data : {
-					action :'employee_one_search',
-					ename : eName
-				},
-				stop : function(data){
-					$('#searchInfo').html('');
-				},
+		
+		$('#eName').keyup(function(e){
+			var eName = $('#eName').val();
+			e.preventDefault();
+			//要清掉正在計時的事件，要不然會多重運行
+			clearTimeout(keyinTime);
+			keyinTime = setTimeout(function(){
+				if (eName > 0){
+					$.ajax({
+						url : '${pageContext.request.contextPath}/back-end/employee/employee.do',
+						type : 'post',
+						dataType : 'json',
+						data : {
+							action :'employee_one_search',
+							ename : eName
+						},
+						stop : function(data){
+							$('#searchInfo').html('');
+						},
+						
+						success : function(data){
+							if(data.length = 0){
+								console.log(data)
+							}
+							if(data.length > 0){
+								
+							}
+							
+							console.log('data: ' + data);
+						}
+						
+					});
 				
-				success : function(data){
-					console.log('data' + data);
 				}
-				
-			});
+				//秒數就看你要定義多久才運行，一般理想是800~1500的值
+			},1000);
+			
 		});
 </script>
 	<%@ include file="/back-end/back-end-footer.jsp"%>

@@ -584,6 +584,7 @@ public class EmployeeServlet extends HttpServlet {
 			
 			try {
 				String eName = req.getParameter("ename");
+				System.out.println("eName: "+ eName);
 				EmployeeService empSvc = new EmployeeService();
 				List<EmployeeVO> emplist = empSvc.getAll();
 				List<EmployeeVO> newEmpList = emplist.parallelStream().filter(e-> e.geteName().contains(eName))
@@ -602,8 +603,13 @@ public class EmployeeServlet extends HttpServlet {
 						json.put(obj);
 					}
 				}
+				System.out.println("json.length() : "+json.length());
 				PrintWriter out = res.getWriter();
-				out.print(json);
+				if(newEmpList.isEmpty()) {
+					out.print(json.put("查無結果"));
+				}else if (newEmpList.size() > 0) {
+					out.print(json);
+				}
 				out.close();
 				
 			}catch(Exception e) {
