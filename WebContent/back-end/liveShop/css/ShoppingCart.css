@@ -134,7 +134,10 @@ input.button2:hover {
 	#banner{
 		width:100%;
 	}
-	table{
+	#table-1{
 		width:100%;
+	}
+	#cartShow{
+		width: 800px;
 	}
 }

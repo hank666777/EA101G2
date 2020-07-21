@@ -27,7 +27,7 @@
 <font size="+3">桌號${tbVO.tableNo}目前已購商品如下</font><p>
 </div>
 	
-	<table>
+	<table id="cartShow">
 		<tr>
 			<th>選購商品名稱</th>
 			<th>商品單價</th>

@@ -76,6 +76,14 @@
  			overflow-y: auto; 
  			display: none;
  		}
+ 		@media screen and (max-width: 1367px) {
+			#list_container{ 
+				width:500px;
+			}
+			.liveOrderno{
+				display:none;
+			}
+	    }
 </style>
 </head>
 <body>

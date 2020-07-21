@@ -114,6 +114,11 @@
   	-webkit-transform:translate(10px) scale(0.9);
   	transform:translate(10px) scale(0.9);
   }
+  @media screen and (max-width:1200px) {
+			.text-white{
+				font-size:16px;
+			}
+		}
 </style>
 </head>
 <%@ include file="/back-end/back-end-head.jsp" %>

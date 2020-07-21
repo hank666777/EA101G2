@@ -16,6 +16,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/liveShop/css/ShoppingCart.css">
+<style>
+	@media screen and (max-width: 1367px) {
+		
+	}
+</style>
+
 </head>
 <body>
 	<div id="tabledetail" style="font-size:20px;text-decoration:underline;">
