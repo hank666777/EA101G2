@@ -106,7 +106,7 @@
   }
   .input-container input:focus ~ div,
   .input-container input:not(:placeholder-shown) ~ div {
-  	width:230px;
+  	width:250px;
   }
   .input-container input:focus + label,
   .input-container input:not(:placeholder-shown) + label{

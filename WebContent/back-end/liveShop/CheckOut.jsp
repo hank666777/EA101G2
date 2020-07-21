@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@ page import="com.product.model.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.*"%>
 <%@ page import="com.tabless.model.*"%>
 <%@ page import="com.employee.model.*"%>
@@ -61,7 +62,7 @@
 		
 		<td colspan="6" style="text-align:right;"> 
 		<input type="hidden" name = "liveOrderTotal" value="<%=amount%>">
-		   <font size="+2">總金額： <h4>$<%=amount%></h4> </font>
+		   <font size="+2">總金額：$ <h4><fmt:formatNumber type="number" value="<%=amount%>"></fmt:formatNumber></h4> </font>
 		   
 	    </td>
 	</tr>

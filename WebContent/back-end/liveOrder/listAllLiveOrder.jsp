@@ -28,7 +28,7 @@
 
   #table-1{
  	position: relative;
-	background-color: #CCCCFF;
+	background-color: orange;
     border: 2px solid black;
     text-align: center;
     border-collapse: collapse;

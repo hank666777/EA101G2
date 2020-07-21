@@ -35,7 +35,7 @@ public class LiveOrderJNDIDAO implements LiveOrder_interface{
 			+ "LIVEORDERTIME = ?, LIVEORDERTOTAL = ?, LIVEORDERPAYMENT = ? ,LIVEORDERSTATUS=? WHERE LIVEORDERNO = ?";
 	public static final String DELETE_STMT = "DELETE FROM LIVEORDER WHERE LIVEORDERNO = ?";
 	public static final String FIND_BY_PK = "SELECT * FROM LIVEORDER WHERE LIVEORDERNO = ?";
-	public static final String GET_ALL = "SELECT * FROM LIVEORDER ORDER BY LIVEORDERNO";
+	public static final String GET_ALL = "SELECT * FROM LIVEORDER order by rownum desc";
 	public static final String GET_LIVEORDERDETAIL_BYLIVEORDERNO_STMT = "SELECT LIVEORDERNO,PNO,PP,LIVEORDERQTY FROM LIVEORDERDETAIL WHERE LIVEORDERNO = ?";
 	@Override
 	public void add(LiveOrderVO liveOrderVO) {

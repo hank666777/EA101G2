@@ -63,7 +63,7 @@ public class LiveOrderServlet extends HttpServlet{
 			Double liveOrderTotal = liveOrderTotalxx.doubleValue();
 			System.out.println(liveOrderTotal);
 			
-			Integer liveOrderPayment = 1;
+			Integer liveOrderPayment = 0;
 			Integer liveOrderStatus = 1;
 			
 			LiveOrderVO loVO = new LiveOrderVO();

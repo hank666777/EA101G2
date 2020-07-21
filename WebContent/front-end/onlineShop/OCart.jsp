@@ -58,7 +58,7 @@
 				<Form name="deleteForm" action="<%=request.getContextPath()%>/product/OnlineShopServlet.do" method="POST">
 				    <input type="hidden" name="action" value="QTY"> 
 		    	 	<input type="hidden" name="qty" value="<%=index%>"> 
-					<input type="number" name="pDoffer" value="<%= order.getpDoffer()%>" min="1" size="1" />
+					<input type="number" name="pDoffer" value="<%= order.getpDoffer()%>" min="1" size="1" oninput="if(value>20)value=20" />
 					<input class="btn btn-sm btn-outline-warning" type="submit" value="修改" class="button2">
 				</Form>
 				</div>
