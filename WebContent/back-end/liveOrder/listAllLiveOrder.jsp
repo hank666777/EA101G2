@@ -79,6 +79,14 @@
  			overflow-y: auto; 
  			display: none;
  		} 
+ 		@media screen and (max-width: 1367px) {
+			#list_container{ 
+				width:500px;
+			}
+			.liveOrderno{
+				display:none;
+			}
+	    }
 </style>
 </head>
 
@@ -108,7 +116,7 @@
 	<div id="list_container">
 	<table id="listAll">
 	<tr>
-		<th>現場訂單編號</th>
+		<th class="liveOrderno">現場訂單編號</th>
 		<th>員工編號</th>
 		<th>桌號</th>
 		<th>現場訂單時間</th>
@@ -122,7 +130,7 @@
 	<c:forEach var="loVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 	<tr class="data">
-			<td>${loVO.liveOrderno}</td>
+			<td class="liveOrderno">${loVO.liveOrderno}</td>
 			<td>${loVO.empno}</td>
 			<td>${loVO.tableno}</td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${loVO.liveOrderTime}"></fmt:formatDate></td>
